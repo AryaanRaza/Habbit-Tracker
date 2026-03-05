@@ -1,7 +1,99 @@
-
+@import url('https://fonts.googleapis.com/css2?family=Akronim&family=Leckerli+One&display=swap');
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+body {
+  box-sizing: border-box;
+  min-height: 100vh; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* align-content: center; */
+  background: linear-gradient(
+    180deg,
+    #ff5f7e 0%,
+    #ffdfd4 100%
+  ); 
+}
+
+.landing-header {
+  margin-top: 30vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  padding: 1rem;
+}
+.app-title {
+  color: white;
+  font-family: "Leckerli One", cursive;
+  font-size: 10rem;
+  line-height: 1;
+}
+
+.tagline {
+  color: rgb(69, 67, 67);
+  font-family: "Akronim", system-ui;
+  margin-bottom: 30px;
+}
+
+.splash-content {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+  max-width: 300px; /* Prevents buttons from being too wide */
+}
+
+.btn {
+  width: 100%;
+  display: flex;
+  /* gap: 15px; */
+  flex-direction: column;
+  padding: 10px ;
+  font-size: 1.3rem;
+  font-weight: bold;
+  cursor: pointer;
+  color: white;
+
+  border: 4px solid transparent;
+  border-radius: 30px;
+
+  background-image:
+    linear-gradient(rgb(1, 1, 57), rgb(1, 1, 57)),
+    linear-gradient(144deg, #af40ff, #5b42f3 50%, #00ddeb);
+
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+
+  transition:
+    transform 0.2s ease,
+    filter 0.3s ease,
+    background 0.4s ease;
+}
+
+.btn-login {
+  background-color: #4caf50;
+  color: white;
+}
+
+.btn-register {
+  background-color: #2196f3;
+  color: white;
+}
+
+button:hover {
+  background-image:
+    linear-gradient(transparent, transparent),
+    linear-gradient(144deg, #af40ff, #5b42f3 50%, #00ddeb);
+  filter: brightness(1.2);
+  transform: translateY(-2px);
+}
+
+button:active {
+  transform: scale(0.95);
+}
