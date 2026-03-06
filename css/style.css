@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Akronim&family=Leckerli+One&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Akronim&family=Leckerli+One&display=swap");
 * {
   margin: 0;
   padding: 0;
@@ -7,20 +7,15 @@
 
 body {
   box-sizing: border-box;
-  min-height: 100vh; 
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* align-content: center; */
-  background: linear-gradient(
-    180deg,
-    #ff5f7e 0%,
-    #ffdfd4 100%
-  ); 
+  background: linear-gradient(180deg, #ff5f7e 0%, #ffdfd4 100%);
 }
 
 .landing-header {
-  margin-top: 30vh;
+  margin-top: 10vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -54,7 +49,7 @@ body {
   display: flex;
   /* gap: 15px; */
   flex-direction: column;
-  padding: 10px ;
+  padding: 10px;
   font-size: 1.3rem;
   font-weight: bold;
   cursor: pointer;
@@ -91,54 +86,135 @@ button:hover {
   transform: translateY(-2px);
 }
 
-/* ///////////////////// */
+/* Login-Page*/
 
-fieldset {
-  width: 90%;
-  margin: auto;
-  border: 1px solid #04012b;
-  border-radius: 8px;
-  padding: 1.5rem;
-  margin-bottom: 1.5rem;
-  background: var(--bg);
+/* Login Page Specific Layout */
+body.login-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+  background: linear-gradient(180deg, #ff5f7e 0%, #ffdfd4 100%);
 }
 
-legend {
-  font-weight: bold;
+.login-card {
+  width: 100%;
+  max-width: 850px; /* Controls the horizontal size */
+  background: rgba(255, 255, 255, 0.2); /* Semi-transparent white */
+  backdrop-filter: blur(10px); /* Blurs background for glass effect */
+  padding: 40px; /* Controls the vertical size/breathing room */
+  border-radius: 30px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.form-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.login-card h1 {
+  font-family: "Leckerli One", cursive;
+  color: white;
   font-size: 2.5rem;
-  padding: 0 10px;
-  color: var(--th);
-}
-/* Target all text-based inputs and the select box */
-input[type="text"],
-input[type="email"],
-input[type="tel"],
-select,
-textarea {
-  width: 80%;
-  padding: 12px;
-  margin-top: 5px;
-  border: 1px solid rgb(37, 37, 200);
-  border-radius: 4px;
-  box-sizing: border-box;
-  font-size: 1rem;
-  font-family: inherit;
+  margin-bottom: 5px;
 }
 
-input:focus,
-textarea:focus,
-select:focus {
-  outline: none;
-  border-color: #48a9cf;
-  box-shadow: 0 0 10px rgba(24, 169, 202, 0.2);
+.form-header h2 {
+  color: white;
+  font-size: 1.5rem;
 }
 
-textarea {
-  resize: vertical; /* Allows user to grow the box height but not width */
+.form-header p {
+  color: #8b3a3a;
+  font-size: 0.9rem;
 }
 
-label {
+/* Input Styling */
+.input-group {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.input-group label {
+  color: white;
   font-weight: 600;
-  color: #333;
-  display: block; /* Helps with alignment */
+  margin-bottom: 8px;
+  font-size: 0.9rem;
+}
+
+.input-group input {
+  padding: 15px;
+  border-radius: 12px;
+  border: none;
+  background: white;
+  font-size: 1rem;
+  outline: none;
+}
+
+/* Controls and Buttons */
+.form-options {
+    display: flex;
+    justify-content: space-between; /* Pushes Remember Me left, Forgot Password right */
+    align-items: center;
+    width: 100%;
+    margin: 10px 0 25px 0;
+    font-size: 0.9rem;
+}
+
+/* Styling the Checkbox and its Label */
+.remember-me {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #8b3a3a; 
+    cursor: pointer;
+}
+
+.remember-me input[type="checkbox"] {
+    accent-color: #ff5f7e; /* Makes the checkbox match your brand pink */
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+}
+
+.forgot-link {
+    color: #5b42f3; /* Matching the blue in your button gradient */
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.forgot-link:hover {
+    text-decoration: underline;
+}
+
+
+/* This is the parent container of your button */
+.login-card form {
+    display: flex;
+    flex-direction: column; /* Keeps inputs stacked vertically */
+    width: 100%;            /* Makes sure the form fills the card */
+}
+
+/* Now your existing code will work! */
+.login-card .btn {
+    width: 50%;
+    align-self: center;     /* This now has a Flexbox parent to talk to */
+    margin-top: 20px;       /* Gives it some space from the checkbox row */
+}
+
+
+.switch-auth {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 0.9rem;
+  color: #8b3a3a;
+}
+
+.switch-auth a {
+  color: white;
+  font-weight: bold;
+  text-decoration: none;
 }
