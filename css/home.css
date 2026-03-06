@@ -1,0 +1,24 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  background-color: white  
+}
+.headline{
+    font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    font-size: 50px;
+    text-align :justify;
+}
+.subhead{
+    font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    font-size: 10px;
+    font-weight: lighter;
+}
+.status{
+    display:flex;
+    flex-wrap: wrap;
+    gap:190px;
+    justify-content: center;
+}
