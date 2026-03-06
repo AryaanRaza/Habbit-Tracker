@@ -91,3 +91,54 @@ button:hover {
   transform: translateY(-2px);
 }
 
+/* ///////////////////// */
+
+fieldset {
+  width: 90%;
+  margin: auto;
+  border: 1px solid #04012b;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  background: var(--bg);
+}
+
+legend {
+  font-weight: bold;
+  font-size: 2.5rem;
+  padding: 0 10px;
+  color: var(--th);
+}
+/* Target all text-based inputs and the select box */
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+select,
+textarea {
+  width: 80%;
+  padding: 12px;
+  margin-top: 5px;
+  border: 1px solid rgb(37, 37, 200);
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-size: 1rem;
+  font-family: inherit;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: #48a9cf;
+  box-shadow: 0 0 10px rgba(24, 169, 202, 0.2);
+}
+
+textarea {
+  resize: vertical; /* Allows user to grow the box height but not width */
+}
+
+label {
+  font-weight: 600;
+  color: #333;
+  display: block; /* Helps with alignment */
+}
