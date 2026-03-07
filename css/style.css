@@ -85,27 +85,6 @@ button:hover {
   transform: translateY(-2px);
 }
 
-/* Style for guest link as line */
-
-.link-guest {
-  margin-top: 10px;
-  text-align: center;
-  color: rgba(127, 116, 116, 0.7);
-  text-decoration: none;
-  font-size: 1rem;
-  font-weight: 500;
-  opacity: 0.8; /* Makes it look secondary */
-  transition:
-    opacity 0.3s ease,
-    text-decoration 0.3s ease;
-}
-
-.link-guest:hover {
-  color: #2b0633;
-  opacity: 1;
-  text-decoration: underline;
-  text-underline-offset: 5px;
-}
 
 /* Style for guest link as button */
 .guest-option {
@@ -117,26 +96,42 @@ button:hover {
   gap: 10px;
 }
 
+/* Styling for a "Continuing" or secondary button (e.g., Guest Access) */
 .btn-guest {
-  color: rgba(127, 116, 116, 0.7);
-  font-size: 0.9rem;
-  text-transform: uppercase;
-  background: rgba(255, 255, 255, 0.1);
-
-  text-decoration: none;
-  font-weight: 600;
-  padding: 10px 20px;
-  border: 2px solid rgba(255, 255, 255, 0.5);
-  border-radius: 50px;
-  transition: all 0.3s ease;
-  font-size: 0.9rem;
+    display: inline-block; /* Allows width/height to be set and centers text */
+    text-align: center;
+    text-decoration: none; /* Removes underline from links */
+    
+    /* 1. Base Colors - Dark Wine for Text, Subtle Pink for Border */
+    color: rgba(139, 58, 58, 0.85); /* 85% opacity of your #8b3a3a wine color */
+    border: 2px solid rgba(255, 95, 126, 0.5); /* 50% opacity of your #ff5f7e pink */
+    background: rgba(255, 255, 255, 0.3); /* Soft, 30% translucent white base */
+    
+    /* 2. Text styling */
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    
+    /* 3. Button shape */
+    padding: 12px 30px;
+    border-radius: 50px; /* Matching the pill shape of your main buttons */
+    
+    /* 4. Setup the Transition */
+    transition: all 0.3s ease-out; /* Smooth fade and scale */
+    cursor: pointer;
 }
 
+/* 5. The "Bloom" Hover Effect */
 .btn-guest:hover {
-  background: rgba(255, 255, 255, 0.1);
-  color: #2b0633;
-  border-color: rgb(91, 88, 88);
-  cursor: pointer;
+    color: white; /* Text turns fully white */
+    border-color: #ff5f7e; /* The pink border activates fully */
+    background-color: #ff5f7e; /* The background turns solid coral pink */
+    
+    /* Optional special effect: A soft "coral pulse" glow */
+    box-shadow: 0 0 20px rgba(255, 95, 126, 0.4);
+    
+    transform: translateY(-2px); /* Lifts slightly */
 }
 
 /* Author-Page*/
@@ -267,46 +262,4 @@ body.auth-page {
   color: rgb(122, 7, 111);
   font-weight: bold;
   text-decoration: none;
-}
-
-
-
-
-
-/* Styling for a "Continuing" or secondary button (e.g., Guest Access) */
-.btn-secondary {
-    display: inline-block; /* Allows width/height to be set and centers text */
-    text-align: center;
-    text-decoration: none; /* Removes underline from links */
-    
-    /* 1. Base Colors - Dark Wine for Text, Subtle Pink for Border */
-    color: rgba(139, 58, 58, 0.85); /* 85% opacity of your #8b3a3a wine color */
-    border: 2px solid rgba(255, 95, 126, 0.5); /* 50% opacity of your #ff5f7e pink */
-    background: rgba(255, 255, 255, 0.3); /* Soft, 30% translucent white base */
-    
-    /* 2. Text styling */
-    font-weight: 700;
-    text-transform: uppercase;
-    font-size: 0.9rem;
-    letter-spacing: 1px;
-    
-    /* 3. Button shape */
-    padding: 12px 30px;
-    border-radius: 50px; /* Matching the pill shape of your main buttons */
-    
-    /* 4. Setup the Transition */
-    transition: all 0.3s ease-out; /* Smooth fade and scale */
-    cursor: pointer;
-}
-
-/* 5. The "Bloom" Hover Effect */
-.btn-secondary:hover {
-    color: white; /* Text turns fully white */
-    border-color: #ff5f7e; /* The pink border activates fully */
-    background-color: #ff5f7e; /* The background turns solid coral pink */
-    
-    /* Optional special effect: A soft "coral pulse" glow */
-    box-shadow: 0 0 20px rgba(255, 95, 126, 0.4);
-    
-    transform: translateY(-2px); /* Lifts slightly */
 }
