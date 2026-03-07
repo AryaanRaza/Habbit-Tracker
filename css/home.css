@@ -1,0 +1,108 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  background-color: whitesmoke; 
+}
+.headline{
+    font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    font-size: 70px;
+    text-align :justify;
+    margin-bottom: 9px;
+    margin-top: 0px;
+    margin-left: 30px;
+
+
+}
+.Subhead{
+   font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    font-size: 20px;
+    text-align :justify;
+    margin-bottom: 9px;
+    margin-top: 0px;
+    margin-left: 30px;
+
+}
+.status{
+    display: flex;
+    gap:0px;
+    justify-content: center;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+.card{
+   background-color: white; 
+   padding:24px;
+   margin: 40px 40px 40px 10px;
+   width: 100%;
+   color: rgb(20, 17, 17);
+   border-bottom-left-radius: 2rem;
+   border-bottom-right-radius: 2rem;
+   border-top-left-radius: 2rem;
+   border-top-right-radius: 2rem;
+   font-weight: bold;
+  box-shadow: 0px 3px 10px rgb(204, 181, 181);
+}
+   .card:hover {
+  background-image:
+    linear-gradient(transparent, transparent),
+    linear-gradient(144deg, white, white , white);
+  filter: brightness(1.1);
+  transform: translateY(-2px);
+
+}
+.h1{
+    font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    font-size: 10px;
+    font-weight:0;
+    color: oklch(0.54 0.03 264.37);
+    margin-bottom: 10px;
+    margin-top: 0px;
+    
+}
+.h2{
+    font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    font-size: 35px;
+    font-weight:lighter;
+    color: oklch(17.795% 0.02919 262.199);
+    margin-bottom: 0px;
+    margin-top: 0px;
+    
+}
+.card2{
+   background-color: white; 
+   margin-left: 10px;
+   padding:21px;
+   width: 99%;
+   min-height: 130px;
+   color: rgb(20, 17, 17);
+   border-bottom-left-radius: 1rem;
+   border-bottom-right-radius: 1rem;
+   border-top-left-radius: 1rem;
+   border-top-right-radius: 1rem;
+   font-weight: bold;
+  box-shadow: 0px 3px 10px rgb(204, 181, 181);
+}
+   .card:hover {
+  background-image:
+    linear-gradient(transparent, transparent),
+    linear-gradient(144deg, white, white , white);
+  filter: brightness(1.1);
+  transform: translateY(-5px);
+
+}
+.Addhabit{ 
+  padding: 15px;
+  min-height: 90px;
+  width:10%;
+  background:  linear-gradient(130deg, rgb(31, 15, 105), rgb(11, 57, 98) , rgb(211, 56, 118));;
+  color: #9acafd;
+  float:right;
+  text-align: center;
+  font-size: 30px;
+  cursor: pointer;
+  transition: 0.3s;
+  border-radius:20px;
+}
