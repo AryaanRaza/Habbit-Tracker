@@ -5,6 +5,11 @@
   box-sizing: border-box;
 }
 
+:root {
+  --card-bg: rgba(255, 255, 255, 0.2);
+  --page-gradient: linear-gradient(180deg, #ff5f7e 0%, #ffdfd4 100%);
+}
+
 body {
   box-sizing: border-box;
   min-height: 100vh;
@@ -123,7 +128,6 @@ button:hover {
     filter 0.3s ease,
     background 0.4s ease;
 }
-/* close */
 
 /* Style for guest link as button */
 .guest-option {
@@ -135,67 +139,95 @@ button:hover {
   gap: 10px;
 }
 
-/* Styling for a "Continuing" or secondary button (e.g., Guest Access) */
 .btn-guest {
-  display: inline-block; /* Allows width/height to be set and centers text */
+  display: inline-block;
   text-align: center;
-  text-decoration: none; /* Removes underline from links */
-
-  /* 1. Base Colors - Dark Wine for Text, Subtle Pink for Border */
-  color: rgba(139, 58, 58, 0.85); /* 85% opacity of your #8b3a3a wine color */
-  border: 2px solid rgba(255, 95, 126, 0.5); /* 50% opacity of your #ff5f7e pink */
-  background: rgba(255, 255, 255, 0.3); /* Soft, 30% translucent white base */
-
-  /* 2. Text styling */
+  text-decoration: none;
+  color: rgba(139, 58, 58, 0.85);
+  border: 2px solid rgba(255, 95, 126, 0.5);
+  background: rgba(255, 255, 255, 0.3);
   font-weight: 700;
   text-transform: uppercase;
   font-size: 0.9rem;
   letter-spacing: 1px;
-
-  /* 3. Button shape */
   padding: 12px 30px;
-  border-radius: 50px; /* Matching the pill shape of your main buttons */
+  border-radius: 50px;
 
-  /* 4. Setup the Transition */
-  transition: all 0.3s ease-out; /* Smooth fade and scale */
+  transition: all 0.3s ease-out;
   cursor: pointer;
 }
 
-/* 5. The "Bloom" Hover Effect */
 .btn-guest:hover {
-  color: white; /* Text turns fully white */
-  border-color: #ff5f7e; /* The pink border activates fully */
-  background-color: #ff5f7e; /* The background turns solid coral pink */
-
-  /* Optional special effect: A soft "coral pulse" glow */
+  color: white;
+  border-color: #ff5f7e;
+  background-color: #ff5f7e;
   box-shadow: 0 0 20px rgba(255, 95, 126, 0.4);
-
-  transform: translateY(-2px); /* Lifts slightly */
+  transform: translateY(-2px);
 }
 
-/* Author-Page*/
-
 body.auth-page {
+  margin: 0;
+  padding: 0;
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  padding: 20px;
-  background: linear-gradient(180deg, #ff5f7e 0%, #ffdfd4 100%);
+  font-family: "Inter", sans-serif;
+  background: var(--page-gradient);
 }
 
 .auth-card {
+  background: var(--card-bg);
+  padding: 40px;
+  border-radius: 28px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
   width: 100%;
   max-width: 850px;
-  background: rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(10px);
-  padding: 40px;
-  border-radius: 30px;
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  /* text-align: center; */
+  position: relative;
+}
+
+/* 1. Shared styles for the mascot on ANY auth page */
+.mascot-waving {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  height: auto;
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
+  z-index: 10;
+
+  /* for later animation */
+  transition: all 0.3s ease;
+}
+
+/* 2. Specific position for the Login Page */
+.login-pos {
+  top: 95px;
+  width: 120px;
+}
+
+/* 3. Specific position for the Registration Page */
+.reg-pos {
+  top: 10px;
+  width: 95px;
+}
+
+.mascot-waving {
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateX(-50%) translateY(0px);
+  }
+  50% {
+    transform: translateX(-50%) translateY(-10px);
+  }
 }
 
 .form-header {
+  padding-top: 60px;
   text-align: center;
   margin-bottom: 30px;
 }
@@ -210,11 +242,11 @@ body.auth-page {
 .form-header h2 {
   color: white;
   font-size: 1.5rem;
+  margin-bottom: 8px;
 }
 
 .form-header p {
   color: #2b0633;
-  /* color: #5B3256; */
   font-size: 0.9rem;
 }
 
