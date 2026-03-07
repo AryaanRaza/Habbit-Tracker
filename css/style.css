@@ -15,7 +15,7 @@ body {
 }
 
 .landing-header {
-  margin-top: 10vh;
+  /* margin-top: 0vh; */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -41,7 +41,7 @@ body {
   flex-direction: column;
   gap: 15px;
   width: 100%;
-  max-width: 300px; 
+  max-width: 300px;
 }
 
 .btn {
@@ -85,6 +85,60 @@ button:hover {
   transform: translateY(-2px);
 }
 
+/* Style for guest link as line */
+
+.link-guest {
+  margin-top: 10px;
+  text-align: center;
+  color: rgba(127, 116, 116, 0.7);
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 500;
+  opacity: 0.8; /* Makes it look secondary */
+  transition:
+    opacity 0.3s ease,
+    text-decoration 0.3s ease;
+}
+
+.link-guest:hover {
+  color: #2b0633;
+  opacity: 1;
+  text-decoration: underline;
+  text-underline-offset: 5px;
+}
+
+/* Style for guest link as button */
+.guest-option {
+  text-align: center;
+  margin-top: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.btn-guest {
+  color: rgba(127, 116, 116, 0.7);
+  font-size: 09rem;
+  text-transform: uppercase;
+  background: rgba(255, 255, 255, 0.1);
+
+  text-decoration: none;
+  font-weight: 600;
+  padding: 10px 20px;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  border-radius: 50px;
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
+}
+
+.btn-guest:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #2b0633;
+  border-color: rgb(91, 88, 88);
+  cursor: pointer;
+}
+
 /* Author-Page*/
 
 body.auth-page {
@@ -98,10 +152,10 @@ body.auth-page {
 
 .auth-card {
   width: 100%;
-  max-width: 850px; 
-  background: rgba(255, 255, 255, 0.2); 
-  backdrop-filter: blur(10px); 
-  padding: 40px; 
+  max-width: 850px;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  padding: 40px;
   border-radius: 30px;
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
   border: 1px solid rgba(255, 255, 255, 0.3);
@@ -155,54 +209,52 @@ body.auth-page {
 
 /* Controls and Buttons */
 .form-options {
-    display: flex;
-    justify-content: space-between; 
-    align-items: center;
-    width: 100%;
-    margin: 10px 0 25px 0;
-    font-size: 0.9rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin: 10px 0 25px 0;
+  font-size: 0.9rem;
 }
 
 /* Styling the Checkbox and its Label */
 .remember-me {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    color: #8b3a3a; 
-    cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #8b3a3a;
+  cursor: pointer;
 }
 
 .remember-me input[type="checkbox"] {
-    accent-color: #ff5f7e; 
-    width: 16px;
-    height: 16px;
-    cursor: pointer;
+  accent-color: #ff5f7e;
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
 }
 
 .forgot-link {
-    color: #5b42f3; 
-    text-decoration: none;
-    font-weight: 600;
+  color: #5b42f3;
+  text-decoration: none;
+  font-weight: 600;
 }
 
 .forgot-link:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }
-
 
 /* Parent container button */
 .auth-card form {
-    display: flex;
-    flex-direction: column; 
-    width: 100%;            
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 }
 
 .auth-card .btn {
-    width: 50%;
-    align-self: center;     
-    margin-top: 20px;       
+  width: 50%;
+  align-self: center;
+  margin-top: 20px;
 }
-
 
 .switch-auth {
   text-align: center;
@@ -216,3 +268,5 @@ body.auth-page {
   font-weight: bold;
   text-decoration: none;
 }
+
+
