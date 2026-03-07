@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Akronim&family=Leckerli+One&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Akronim&family=Leckerli+One&display=swap");
 * {
   margin: 0;
   padding: 0;
@@ -7,20 +7,15 @@
 
 body {
   box-sizing: border-box;
-  min-height: 100vh; 
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* align-content: center; */
-  background: linear-gradient(
-    180deg,
-    #ff5f7e 0%,
-    #ffdfd4 100%
-  ); 
+  background: linear-gradient(180deg, #ff5f7e 0%, #ffdfd4 100%);
 }
 
 .landing-header {
-  margin-top: 30vh;
+  /* margin-top: 0vh; */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -46,15 +41,14 @@ body {
   flex-direction: column;
   gap: 15px;
   width: 100%;
-  max-width: 300px; /* Prevents buttons from being too wide */
+  max-width: 300px;
 }
 
 .btn {
   width: 100%;
   display: flex;
-  /* gap: 15px; */
   flex-direction: column;
-  padding: 10px ;
+  padding: 10px;
   font-size: 1.3rem;
   font-weight: bold;
   cursor: pointer;
@@ -136,3 +130,181 @@ button:hover {
 
 
 
+
+/* Style for guest link as button */
+.guest-option {
+  text-align: center;
+  margin-top: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Styling for a "Continuing" or secondary button (e.g., Guest Access) */
+.btn-guest {
+    display: inline-block; /* Allows width/height to be set and centers text */
+    text-align: center;
+    text-decoration: none; /* Removes underline from links */
+    
+    /* 1. Base Colors - Dark Wine for Text, Subtle Pink for Border */
+    color: rgba(139, 58, 58, 0.85); /* 85% opacity of your #8b3a3a wine color */
+    border: 2px solid rgba(255, 95, 126, 0.5); /* 50% opacity of your #ff5f7e pink */
+    background: rgba(255, 255, 255, 0.3); /* Soft, 30% translucent white base */
+    
+    /* 2. Text styling */
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    
+    /* 3. Button shape */
+    padding: 12px 30px;
+    border-radius: 50px; /* Matching the pill shape of your main buttons */
+    
+    /* 4. Setup the Transition */
+    transition: all 0.3s ease-out; /* Smooth fade and scale */
+    cursor: pointer;
+}
+
+/* 5. The "Bloom" Hover Effect */
+.btn-guest:hover {
+    color: white; /* Text turns fully white */
+    border-color: #ff5f7e; /* The pink border activates fully */
+    background-color: #ff5f7e; /* The background turns solid coral pink */
+    
+    /* Optional special effect: A soft "coral pulse" glow */
+    box-shadow: 0 0 20px rgba(255, 95, 126, 0.4);
+    
+    transform: translateY(-2px); /* Lifts slightly */
+}
+
+/* Author-Page*/
+
+body.auth-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+  background: linear-gradient(180deg, #ff5f7e 0%, #ffdfd4 100%);
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 850px;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  padding: 40px;
+  border-radius: 30px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.form-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.auth-card h1 {
+  font-family: "Leckerli One", cursive;
+  color: white;
+  font-size: 2.5rem;
+  margin-bottom: 5px;
+}
+
+.form-header h2 {
+  color: white;
+  font-size: 1.5rem;
+}
+
+.form-header p {
+  color: #2b0633;
+  /* color: #5B3256; */
+  font-size: 0.9rem;
+}
+
+/* Input Styling */
+.input-group {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.input-group label {
+  color: white;
+  font-weight: 600;
+  margin-bottom: 8px;
+  font-size: 0.9rem;
+}
+
+.input-group input {
+  padding: 15px;
+  border-radius: 12px;
+  border: none;
+  background: white;
+  font-size: 1rem;
+  outline: none;
+}
+
+/* Controls and Buttons */
+.form-options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin: 10px 0 25px 0;
+  font-size: 0.9rem;
+}
+
+/* Styling the Checkbox and its Label */
+.remember-me {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #8b3a3a;
+  cursor: pointer;
+}
+
+.remember-me input[type="checkbox"] {
+  accent-color: #ff5f7e;
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+.forgot-link {
+  color: #5b42f3;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.forgot-link:hover {
+  text-decoration: underline;
+}
+
+/* Parent container button */
+.auth-card form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.auth-card .btn {
+  width: 50%;
+  align-self: center;
+  margin-top: 20px;
+}
+
+.switch-auth {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 0.9rem;
+  color: #8b3a3a;
+}
+
+.switch-auth a {
+  color: rgb(122, 7, 111);
+  font-weight: bold;
+  text-decoration: none;
+}
