@@ -31,6 +31,7 @@ body {
 }
 
 .tagline {
+  font-size: 1.5rem;
   color: 2A3439;
   font-family: "Akronim", system-ui;
   margin-bottom: 30px;
@@ -97,7 +98,7 @@ button:hover {
 
 .bton {
   margin-top: 70vh;
-  text-decoration:;
+  text-decoration: none;
   width: 100%;
   display: flex;
   /* gap: 15px; */
