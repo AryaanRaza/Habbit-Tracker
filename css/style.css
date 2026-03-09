@@ -12,6 +12,17 @@
   --clr-secondary: #5b42f3; /* Royal Blue/Purple accent */
   --clr-accent-neon: #00ddeb; /* Cyan highlight */
 
+
+  /* --- Typography --- */
+  --font-brand: "Leckerli One", cursive;
+  --font-tagline: "Akronim", system-ui;
+  --font-main: "Inter", sans-serif;
+
+  /* --- Font Sizes --- */
+  --fs-logo: 10rem;
+  --fs-h1: 2.5rem;
+  --fs-h2: 1.5rem;
+
   /* --- Text & Contrast --- */
   --clr-text-main: #ffffff; /* Primary headers */
   --clr-text-wine: #8b3a3a; /* Wine color for labels/links */
@@ -58,16 +69,16 @@ body {
   padding: 1rem;
 }
 .app-title {
-  color: rgb(226, 218, 218);
-  font-family: "Leckerli One", cursive;
-  font-size: 10rem;
+  color: var(--clr-text-main);
+  font-family: var(--font-brand);
+  font-size: var(--fs-logo);
   line-height: 1;
 }
 
 .tagline {
-  font-size: 1.5rem;
+  font-family: var(--font-tagline);
   color: var(--clr-text-dark);
-  font-family: "Akronim", system-ui;
+  font-size: var(--fs-h2);
   margin-bottom: 30px;
 }
 
@@ -161,15 +172,18 @@ button:hover {
   transform: translateY(-2px);
 }
 
+
+/* Author Pages */
+
 body.auth-page {
+  background: var(--grad-page);
+  font-family: var(--font-main);
   margin: 0;
   padding: 0;
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  font-family: "Inter", sans-serif;
-  background: var(--grad-page);
 }
 
 
@@ -182,6 +196,31 @@ body.auth-page {
   width: 100%;
   max-width: 850px;
   position: relative;
+}
+
+.form-header {
+  padding-top: 60px;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.auth-card h1 {
+  font-family: var(--font-brand);
+  color: var(--clr-text-main);
+  font-size: var(--fs-h1);
+  margin-bottom: 5px;
+}
+
+.form-header h2 {
+  color: var(--clr-text-main);
+  font-size: var(--fs-h2);
+  margin-bottom: 8px;
+}
+
+.form-header p,
+.switch-auth {
+  color: var(--clr-text-main);
+  font-size: 0.9rem;
 }
 
 /* 1. Shared styles for the mascot on ANY auth page */
@@ -223,30 +262,7 @@ body.auth-page {
   }
 }
 
-.form-header {
-  padding-top: 60px;
-  text-align: center;
-  margin-bottom: 30px;
-}
 
-.auth-card h1 {
-  font-family: "Leckerli One", cursive;
-  color: var(--clr-text-main);
-  font-size: 2.5rem;
-  margin-bottom: 5px;
-}
-
-.form-header h2 {
-  color: var(--clr-text-main);
-  font-size: 1.5rem;
-  margin-bottom: 8px;
-}
-
-.form-header p,
-.switch-auth {
-  color: var(--clr-text-main);
-  font-size: 0.9rem;
-}
 
 /* Input Styling */
 .input-group {
