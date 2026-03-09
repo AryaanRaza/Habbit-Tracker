@@ -6,17 +6,46 @@
 }
 
 :root {
-  --card-bg: rgba(255, 255, 255, 0.2);
-  --page-gradient: linear-gradient(180deg, #ff5f7e 0%, #ffdfd4 100%);
+  /* --- Brand Colors --- */
+  --clr-primary: #ff5f7e; /* Main Coral Pink */
+  --clr-primary-light: #ffdfd4; /* Peach Fade */
+  --clr-secondary: #5b42f3; /* Royal Blue/Purple accent */
+  --clr-accent-neon: #00ddeb; /* Cyan highlight */
+
+  /* --- Text & Contrast --- */
+  --clr-text-main: #ffffff; /* Primary headers */
+  --clr-text-wine: #8b3a3a; /* Wine color for labels/links */
+  --clr-text-dark: #2b0633; /* Deep purple for small subtext */
+
+  /* --- Interactive & Surfaces --- */
+  --clr-btn-base: rgb(1, 1, 57); /* Deep Navy for button depth */
+  --clr-btn-gst: #ff5f7e80;
+  --bg-card: rgba(255, 255, 255, 0.2);
+  --bg-glass: rgba(255, 255, 255, 0.3);
+
+  /* --- Gradients & Shadows --- */
+  --grad-page: linear-gradient(
+    180deg,
+    var(--clr-primary) 0%,
+    var(--clr-primary-light) 100%
+  );
+  --grad-neon: linear-gradient(
+    144deg,
+    #af40ff,
+    var(--clr-secondary) 50%,
+    var(--clr-accent-neon)
+  );
+  --shadow-ui: 0 10px 30px rgba(0, 0, 0, 0.08);
 }
 
 body {
+  background: var(--grad-page);
+  color: var(--clr-text-dark);
   box-sizing: border-box;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: linear-gradient(180deg, #ff5f7e 0%, #ffdfd4 100%);
 }
 
 .landing-header {
@@ -37,7 +66,7 @@ body {
 
 .tagline {
   font-size: 1.5rem;
-  color: 2A3439;
+  color: var(--clr-text-dark);
   font-family: "Akronim", system-ui;
   margin-bottom: 30px;
 }
@@ -58,12 +87,12 @@ body {
   font-size: 1.3rem;
   font-weight: bold;
   cursor: pointer;
-  color: white;
+  color: var(--clr-text-main);
   border: 4px solid transparent;
   border-radius: 50px;
 
   background-image:
-    linear-gradient(rgb(1, 1, 57), rgb(1, 1, 57)),
+    linear-gradient(#010139, #010139),
     linear-gradient(144deg, #af40ff, #5b42f3 50%, #00ddeb);
 
   background-origin: border-box;
@@ -76,17 +105,15 @@ body {
 }
 
 .btn-login {
-  color: white;
+  color: var(--clr-text-main);
 }
 
 .btn-register {
-  color: white;
+  color: var(--clr-text-main);
 }
 
 button:hover {
-  background-image:
-    linear-gradient(transparent, transparent),
-    linear-gradient(144deg, #af40ff, #5b42f3 50%, #00ddeb);
+  background-image: var(--grad-neon);
   filter: brightness(1.1);
   transform: translateY(-1px);
 }
@@ -94,39 +121,8 @@ button:hover {
 /* Login & Register Submit button */
 
 .btn-Submit:hover {
-  background-image:
-    linear-gradient(transparent, transparent),
-    linear-gradient(144deg, #faf7f1, #301713 50%, #011112);
   filter: brightness(1.1);
   transform: translateY(-1px);
-}
-
-.bton {
-  margin-top: 70vh;
-  text-decoration: none;
-  width: 100%;
-  display: flex;
-  /* gap: 15px; */
-  flex-direction: column;
-  padding: 10px;
-  font-size: 1.3rem;
-  font-weight: bold;
-  cursor: pointer;
-  color: white;
-  border: 4px solid transparent;
-  border-radius: 50px;
-
-  background-image:
-    linear-gradient(rgb(1, 1, 57), rgb(1, 1, 57)),
-    linear-gradient(144deg, #ffe240, #5b42f3 50%, #00ddeb);
-
-  background-origin: border-box;
-  background-clip: padding-box, border-box;
-
-  transition:
-    transform 0.2s ease,
-    filter 0.3s ease,
-    background 0.4s ease;
 }
 
 /* Style for guest link as button */
@@ -143,9 +139,9 @@ button:hover {
   display: inline-block;
   text-align: center;
   text-decoration: none;
-  color: rgba(139, 58, 58, 0.85);
-  border: 2px solid rgba(255, 95, 126, 0.5);
-  background: rgba(255, 255, 255, 0.3);
+  color: var(--clr-text-wine);
+  border: 2px solid var(--clr-btn-gst);
+  background: var(--bg-glass);
   font-weight: 700;
   text-transform: uppercase;
   font-size: 0.9rem;
@@ -158,10 +154,10 @@ button:hover {
 }
 
 .btn-guest:hover {
-  color: white;
-  border-color: #ff5f7e;
-  background-color: #ff5f7e;
-  box-shadow: 0 0 20px rgba(255, 95, 126, 0.4);
+  color: var(--clr-text-main);
+  background-color: var(--clr-primary);
+  border-color: var(--clr-primary);
+  box-shadow: 0 0 20px var(--clr-btn-gst);
   transform: translateY(-2px);
 }
 
@@ -173,22 +169,23 @@ body.auth-page {
   align-items: center;
   min-height: 100vh;
   font-family: "Inter", sans-serif;
-  background: var(--page-gradient);
+  background: var(--grad-page);
 }
 
+
 .auth-card {
-  background: var(--card-bg);
+  background: var(--bg-card);
+  box-shadow: var(--shadow-ui);
+  border: 1px solid var(--bg-glass);
   padding: 40px;
   border-radius: 28px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
   width: 100%;
   max-width: 850px;
-  /* text-align: center; */
   position: relative;
 }
 
 /* 1. Shared styles for the mascot on ANY auth page */
-.mascot-waving {
+.mascot-auth {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
@@ -212,7 +209,7 @@ body.auth-page {
   width: 95px;
 }
 
-.mascot-waving {
+.mascot-auth {
   animation: float 3s ease-in-out infinite;
 }
 
@@ -234,19 +231,20 @@ body.auth-page {
 
 .auth-card h1 {
   font-family: "Leckerli One", cursive;
-  color: white;
+  color: var(--clr-text-main);
   font-size: 2.5rem;
   margin-bottom: 5px;
 }
 
 .form-header h2 {
-  color: white;
+  color: var(--clr-text-main);
   font-size: 1.5rem;
   margin-bottom: 8px;
 }
 
-.form-header p {
-  color: #2b0633;
+.form-header p,
+.switch-auth {
+  color: var(--clr-text-main);
   font-size: 0.9rem;
 }
 
@@ -258,7 +256,7 @@ body.auth-page {
 }
 
 .input-group label {
-  color: white;
+  color: var(--clr-text-main);
   font-weight: 600;
   margin-bottom: 8px;
   font-size: 0.9rem;
@@ -268,7 +266,7 @@ body.auth-page {
   padding: 15px;
   border-radius: 12px;
   border: none;
-  background: white;
+  background: var(--clr-text-main);
   font-size: 1rem;
   outline: none;
 }
@@ -288,19 +286,19 @@ body.auth-page {
   display: flex;
   align-items: center;
   gap: 8px;
-  color: #8b3a3a;
+  color: var(--clr-text-wine);
   cursor: pointer;
 }
 
 .remember-me input[type="checkbox"] {
-  accent-color: #ff5f7e;
+  accent-color: var(--clr-primary);
   width: 16px;
   height: 16px;
   cursor: pointer;
 }
 
 .forgot-link {
-  color: #5b42f3;
+  color: var(--clr-secondary);
   text-decoration: none;
   font-weight: 600;
 }
@@ -326,7 +324,7 @@ body.auth-page {
   text-align: center;
   margin-top: 20px;
   font-size: 0.9rem;
-  color: #8b3a3a;
+  color: var(--clr-text-wine);
 }
 
 .switch-auth a {
