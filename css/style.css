@@ -12,7 +12,6 @@
   --clr-secondary: #5b42f3; /* Royal Blue/Purple accent */
   --clr-accent-neon: #00ddeb; /* Cyan highlight */
 
-
   /* --- Typography --- */
   --font-brand: "Leckerli One", cursive;
   --font-tagline: "Akronim", system-ui;
@@ -172,7 +171,6 @@ button:hover {
   transform: translateY(-2px);
 }
 
-
 /* Author Pages */
 
 body.auth-page {
@@ -185,7 +183,6 @@ body.auth-page {
   align-items: center;
   min-height: 100vh;
 }
-
 
 .auth-card {
   background: var(--bg-card);
@@ -261,8 +258,6 @@ body.auth-page {
     transform: translateX(-50%) translateY(-10px);
   }
 }
-
-
 
 /* Input Styling */
 .input-group {
@@ -347,4 +342,134 @@ body.auth-page {
   color: rgb(122, 7, 111);
   font-weight: bold;
   text-decoration: none;
+}
+
+/* Settings */
+
+body.settings-page {
+  padding-top: 40px 20px; /* Give it some breathing room at the top */
+  min-height: 100vh;
+}
+
+/* Specific layout for the Settings Card */
+.settings-card {
+  width: 80%;
+  /* max-width: 450px;  */
+  /* margin: 0 auto; */
+  text-align: left; /* Aligns headers to the left as well */
+  padding-bottom: 80px; /* Space for the bottom tab bar */
+  /* position: relative; */
+  overflow: hidden;
+}
+
+.settings-header {
+    margin-bottom: 20px;
+}
+
+.settings-header h1{
+  text-align: center;
+  font-family: var(--font-brand);
+  font-size: 6rem;
+  color: var(--clr-text-main);
+}
+
+.settings-header h2{
+  margin-top: 40px;
+  font-family: var(--font-main);
+  color: var(--clr-text-wine);
+  font-size: 2.5rem;
+
+}
+
+.settings-list {
+  display: flex;
+  flex-direction: column;
+  line-height: 3.5rem;
+  gap: 12px;
+  margin-top: 20px;
+  /* align-items: stretch; */
+}
+
+.settings-item {
+  background: var(--bg-glass); /* Using your organized variables */
+  border: 3px solid var(--glass-border);
+  padding: 16px 20px;
+  border-radius: 35px;
+  display: flex;
+  justify-content: space-between;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.settings-item:hover {
+  background: rgba(255, 255, 255, 0.5);
+  transform: translateX(5px); /* Subtle slide effect */
+}
+
+.item-content {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.item-icon {
+  font-size: 2.2rem;
+}
+
+.item-text {
+  color: var(--clr-text-dark);
+  font-size: 1.3rem;
+  font-weight: 800;
+}
+
+.chevron {
+  color: var(--clr-text-dark);
+  font-size: 1.5rem;
+  font-weight: 900;
+}
+
+
+/* FOOTER */
+
+.bottom-tab-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 70px;
+  background: white;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border-top: 1px solid rgba(146, 17, 17, 0.05);
+}
+
+.tab-item {
+  text-decoration: none;
+  font-size: 1.5rem;
+  opacity: .5;
+  transition: opacity 0.3s ease;
+}
+
+.tab-item.active {
+  opacity: 1;
+  transform: translateY(-5px);
+  filter: drop-shadow(0 0 8px var(--clr-primary));
+}
+
+.material-symbols-rounded {
+  font-variation-settings:
+    'FILL' 0,   /* 0 for outlined, 1 for solid */
+    'wght' 800, /* Thickness of the lines */
+    'grad' 0,
+    'opsz' 24;
+  font-size: 2rem; 
+  transition: all 0.3s ease;
+  color: #010139;
+}
+
+
+.tab-item.active .material-symbols-rounded {
+  font-variation-settings: 'FILL' 1, 'wght' 600;
+  color: var(--clr-primary);
 }
