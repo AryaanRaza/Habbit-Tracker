@@ -5,30 +5,31 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register | Habit Tracker</title>
+    <title>Account | Habit Tracker</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 
-<body class="auth-page">
-    <img src="img/waving-dino.png" alt="Waving Habit Dino Mascot" class="mascot-auth reg-pos"
-        title="Streakasaur is excited to help you grow!">
+<body class="update-page">
+    <header class="settings-header">
+        <h1>HabitFlow</h1>
+        <h2>Update Account</h2>
+    </header>
     <div class="auth-card">
-        <header class="form-header">
-            <h1>HabitFlow</h1>
-            <h2>Create Account</h2>
-            <p>Set your goals in motion.</p>
-        </header>
-
         <form action="#" class="auth-form">
-
             <div class="input-group">
                 <label for="firstName">First Name:</label>
                 <input type="text" name="firstName" id="firstName" placeholder="Jane" autocomplete="on" required
                     autofocus>
             </div>
+
             <div class="input-group">
                 <label for="lastName">Last Name:</label>
                 <input type="text" name="lastName" id="lastName" placeholder="Doe" autocomplete="on" required>
+            </div>
+
+            <div class="input-group">
+                <label>Date of Birth</label>
+                <input type="date" id="dob">
             </div>
 
             <div class="input-group">
@@ -45,19 +46,7 @@
                 <label for="password">Confirm Password</label>
                 <input type="password" id="password" placeholder="••••••••" required>
             </div>
-
-            <div class="form-options">
-                <label class="remember-me">
-                    <input type="checkbox"> I agree to the Terms of Service and Privacy Policy.
-                </label>
-                <!-- <a href="#" class="forgot-link">Forgot Password?</a> -->
-            </div>
-
-            <button type="submit" class="btn btn-register">Sign Up</button>
-
-            <p class="switch-auth">
-                Already have an account? <a href="login.html">Login</a>
-            </p>
+            <button type="submit" class="btn btn-register">Update</button>
         </form>
     </div>
 
