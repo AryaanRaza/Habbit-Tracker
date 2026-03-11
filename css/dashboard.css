@@ -124,7 +124,22 @@ body {
 
 }
 
+.habitbox  li{
+  display: flex;
+  box-sizing: border-box;
 
+    background-color: white; 
+   padding:24px;
+   margin: 40px 40px 40px 10px;
+   width: 100%;
+   color: rgb(20, 17, 17);
+   border-bottom-left-radius: 2rem;
+   border-bottom-right-radius: 2rem;
+   border-top-left-radius: 2rem;
+   border-top-right-radius: 2rem;
+   font-weight: bold;
+  box-shadow: 0px 3px 10px rgb(204, 181, 181);
+}
 
 #myUL{
      box-sizing: border-box;
