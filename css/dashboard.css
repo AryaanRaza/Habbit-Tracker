@@ -77,15 +77,16 @@ body {
    background-color: white; 
    margin-left: 10px;
    padding:21px;
-   width: 99%;
+
    min-height: 130px;
    color: rgb(20, 17, 17);
-   border-bottom-left-radius: 1rem;
-   border-bottom-right-radius: 1rem;
-   border-top-left-radius: 1rem;
-   border-top-right-radius: 1rem;
+   border-bottom-left-radius: 2.5rem;
+   border-bottom-right-radius: 2.5rem;
+   border-top-left-radius: 2.5rem;
+   border-top-right-radius: 2.5rem;
    font-weight: bold;
   box-shadow: 0px 3px 10px rgb(204, 181, 181);
+  
 }
    .card:hover {
   background-image:
@@ -107,4 +108,35 @@ body {
   cursor: pointer;
   transition: 0.3s;
   border-radius:20px;
+   margin-right: 30px;
+
+}
+#myInput{
+       border-bottom-left-radius: 2rem;
+   border-bottom-right-radius: 2rem;
+   border-top-left-radius: 2rem;
+   border-top-right-radius: 2rem;
+  width:85%;
+   min-height: 90px;
+   margin-left: 30px;
+       font-size: 50px;
+
+
+}
+
+
+
+#myUL{
+     box-sizing: border-box;
+       padding: 50px;
+  min-height: 90px;
+  width:100%;
+  color: #9acafd;
+  float:right;
+  font-size: 30px;
+  cursor: pointer;
+  transition: 0.3s;
+  border-radius:20px;
+
+     
 }
