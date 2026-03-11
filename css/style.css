@@ -8,7 +8,7 @@
 :root {
   /* --- Brand Colors --- */
   --clr-primary: #ff5f7e; /* Main Coral Pink */
-  --clr-primary-light: #ffdfd4; /* Peach Fade */
+  --clr-primary-light: #ffd2e2; /* Peach Fade */
   --clr-secondary: #5b42f3; /* Royal Blue/Purple accent */
   --clr-accent-neon: #00ddeb; /* Cyan highlight */
 
@@ -427,12 +427,12 @@ body.settings-page {
 /* FOOTER */
 
 .bottom-tab-bar {
-  position: absolute;
+  position: fixed;
   bottom: 0;
   left: 0;
   width: 100%;
   height: 70px;
-  background: white;
+  background:  #f7f4f5;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -440,10 +440,17 @@ body.settings-page {
 }
 
 .tab-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-decoration: none;
-  font-size: 1.5rem;
+  font-size: 12px;
   opacity: 0.5;
   transition: opacity 0.3s ease;
+}
+/* Controls size of icon */
+.tab-item span:first-child{
+  font-size: 30px;
 }
 
 .tab-item.active {
@@ -460,7 +467,7 @@ body.settings-page {
     "opsz" 24;
   font-size: 2rem;
   transition: all 0.3s ease;
-  color: #010139;
+  color: #30021d;
 }
 
 .tab-item.active .material-symbols-rounded {
@@ -474,7 +481,7 @@ body.update-page {
   font-family: var(--font-main);
 }
 
-.update-page h2{
+.update-page h2 {
   font-family: var(--font-main);
   text-align: center;
 }
