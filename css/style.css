@@ -424,6 +424,43 @@ body.settings-page {
   font-weight: 900;
 }
 
+body.update-page {
+  font-family: var(--font-main);
+}
+
+.update-page h2 {
+  font-family: var(--font-main);
+  text-align: center;
+}
+
+/* Terms & Condition */
+
+.terms-content {
+    background: var(--bg-glass);
+    padding: 40px; 
+    border-radius: 25px;
+    border: 1px solid var(--glass-border);
+    width: 90%;
+    max-width: 800px;
+    backdrop-filter: blur(10px); 
+    box-shadow: var(--shadow-ui);
+}
+
+.terms-content section {
+    margin-bottom: 30px; 
+}
+
+.terms-content h3 {
+    color: var(--clr-primary);
+    margin-top: 0; 
+    margin-bottom: 10px;
+}
+
+.terms-content p {
+    color: var(--clr-text-muted);
+    line-height: 1.6;
+    font-size: 1.2rem;
+}
 /* FOOTER */
 
 .bottom-tab-bar {
@@ -475,13 +512,4 @@ body.settings-page {
     "FILL" 1,
     "wght" 600;
   color: var(--clr-primary);
-}
-
-body.update-page {
-  font-family: var(--font-main);
-}
-
-.update-page h2 {
-  font-family: var(--font-main);
-  text-align: center;
 }
