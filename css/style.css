@@ -47,7 +47,10 @@
   );
   --shadow-ui: 0 10px 30px rgba(0, 0, 0, 0.08);
 }
-
+/* Global reset for all links in HabitFlow */
+a {
+    text-decoration: none;
+}
 body {
   background: var(--grad-page);
   color: var(--clr-text-dark);
@@ -82,6 +85,7 @@ body {
 }
 
 .splash-content {
+  text-decoration:none;
   display: flex;
   flex-direction: column;
   gap: 15px;
@@ -90,6 +94,7 @@ body {
 }
 
 .btn {
+  text-decoration: none;
   width: 100%;
   display: flex;
   flex-direction: column;
