@@ -25,15 +25,13 @@
 }
 
 .splash-content {
-  text-decoration:none;
+  text-decoration: none;
   display: flex;
   flex-direction: column;
   gap: 15px;
   width: 100%;
   max-width: 300px;
 }
-
-
 
 /* =========================================
    2. AUTHOR - PAGES
@@ -300,10 +298,6 @@ body.settings-page {
    ========================================= */
 
 /* Target the update page specifically */
-body.update {
-  overflow: hidden; /* Prevent the whole page from scrolling */
-}
-
 
 body.update .input-group label {
   margin-bottom: 4px; /* Tighten the gap to the input */
@@ -311,7 +305,7 @@ body.update .input-group label {
 }
 
 body.update .input-group input {
-  padding: 10px 15px; /* Thinner inputs save a lot of vertical room */
+  padding: 10px 15px;
 }
 
 /* Compact Button */
@@ -320,9 +314,8 @@ body.update .auth-card .btn {
   padding: 8px; /* Slimmer button */
 }
 
-
 /* =========================================
-   3.1.2. TERNS & CONDITION PAGE
+   3.1.2. TERMS & CONDITION PAGE
    ========================================= */
 
 .terms-content {
@@ -347,7 +340,7 @@ body.update .auth-card .btn {
 }
 
 .terms-content p {
-  color: var(--clr-text-muted);
+  color: var(--clr-text-dark);
   line-height: 1.6;
   font-size: 1.2rem;
 }
