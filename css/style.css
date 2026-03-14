@@ -431,24 +431,24 @@ body.settings-page {
 }
 .sub-header {
   display: flex;
-  flex-direction: column; 
+  flex-direction: column;
   align-items: center;
   width: 100%;
   margin-top: 20px;
 }
 .header-top {
-    width: 100%;
-    max-width: 800px;
-    position: relative;
-    display: flex;
-    justify-content: center; 
-    align-items: center;
+  width: 100%;
+  max-width: 800px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .sub-header h2 {
-    margin-top: 15px; /* Adds space between HabitFlow and Privacy Policy */
-    text-align: center;
-    width: 100%;
+  margin-top: 15px; /* Adds space between HabitFlow and Privacy Policy */
+  text-align: center;
+  width: 100%;
 }
 .back-btn {
   position: absolute;
@@ -482,14 +482,27 @@ body.settings-page {
   color: white; /* Arrow turns white when background turns pink */
 }
 
-body.update{
-  font-family: var(--font-main);
+/* Target the update page specifically */
+body.update {
+  overflow: hidden; /* Prevent the whole page from scrolling */
 }
 
-.update-page h2 {
-  font-family: var(--font-main);
-  text-align: center;
+
+body.update .input-group label {
+  margin-bottom: 4px; /* Tighten the gap to the input */
+  font-size: 0.85rem;
 }
+
+body.update .input-group input {
+  padding: 10px 15px; /* Thinner inputs save a lot of vertical room */
+}
+
+/* Compact Button */
+body.update .auth-card .btn {
+  margin-top: 10px;
+  padding: 8px; /* Slimmer button */
+}
+
 
 /* Terms & Condition */
 
