@@ -1,4 +1,6 @@
-/* Landing Page */
+/* =========================================
+   1. LANDING PAGE
+   ========================================= */
 .landing-header {
   /* margin-top: 0vh; */
   display: flex;
@@ -33,7 +35,9 @@
 
 
 
-/* Author Pages */
+/* =========================================
+   2. AUTHOR - PAGES
+   ========================================= */
 
 body.auth-page {
   font-family: var(--font-main);
@@ -118,8 +122,6 @@ body.auth-page {
   }
 }
 
-
-
 /* Parent container button */
 .auth-card form {
   display: flex;
@@ -146,7 +148,9 @@ body.auth-page {
   text-decoration: none;
 }
 
-/* Settings */
+/* =========================================
+   3. SETTINGS MAIN MENU 
+   ========================================= */
 
 body.settings-page {
   padding-top: 40px 20px; /* Give it some breathing room at the top */
@@ -229,6 +233,10 @@ body.settings-page {
   font-weight: 900;
 }
 
+/* =========================================
+   3.1. SUB-SETTINGS (About, Privacy, etc.)
+   ========================================= */
+
 /* This applies ONLY to pages with the .sub-settings-page class */
 .sub-settings-page .settings-header {
   text-align: center;
@@ -287,6 +295,10 @@ body.settings-page {
   color: white; /* Arrow turns white when background turns pink */
 }
 
+/* =========================================
+   3.1.1. ACCOUNT UPDATE PAGE
+   ========================================= */
+
 /* Target the update page specifically */
 body.update {
   overflow: hidden; /* Prevent the whole page from scrolling */
@@ -309,7 +321,9 @@ body.update .auth-card .btn {
 }
 
 
-/* Terms & Condition */
+/* =========================================
+   3.1.2. TERNS & CONDITION PAGE
+   ========================================= */
 
 .terms-content {
   background: var(--bg-glass);
