@@ -512,3 +512,191 @@ body.update .auth-card .btn {
   margin-top: 10px;
   color: var(--clr-text-wine);
 }
+
+/* =========================================
+   4. DASHBOARD PAGE STYLES
+   ========================================= */
+/* Dashboard Container */
+.dashboard-container {
+  background: var(--grad-page); /* Your coral/blue neon gradient */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 10px;
+}
+/* HEADER */
+.dash-header {
+  border-bottom: 1px solid #eee;
+
+  width: 80%; /* Header width */
+  max-width: 900px;
+  text-align: center; /* Or center, depending on your vibe */
+  margin-bottom: 20px;
+}
+
+.dash-title {
+  font-family: var(--font-brand);
+  font-size: 5.5rem;
+  color: var(--clr-text-main);
+}
+
+.dash-tag {
+  font-family: var(--font-main);
+  font-size: 0.9rem;
+  color: var(--clr-text-dark);
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+/* MAIN */
+
+.dash-wrapper {
+  /* width: 80%;
+  max-width: 900px;
+  background: rgba(255, 255, 255, 0.9); 
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  padding: 30px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  margin: 0 auto; */
+
+  /* 2nd style */
+  width: 80%;
+  max-width: 900px;
+  background: rgba(255, 255, 255, 0.1);
+  /* background: white; */
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 24px;
+  padding: 30px;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+}
+
+/* Stats */
+
+.stats-overview {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr; /* Exact 3 columns from image */
+  gap: 10px;
+}
+
+.stat-card {
+  background: #f8f9fa; /* Light grey background like the image */
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+  padding: 12px 5px;
+  display: flex;
+  flex-direction: row; /* Horizontal icon + text like the image */
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+.stat-icon {
+  font-size: 1.5rem;
+}
+
+.stat-label p {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--clr-text-wine);
+  /* margin: 5px 0; */
+}
+
+.stat-value strong {
+  font-size: 0.9rem;
+  color: var(--clr-text-dark);
+}
+
+/* INPUT-AREA */
+
+.habit-input-area {
+  margin-top: 10px;
+}
+
+.input-wrapper {
+  display: flex;
+  gap: 5px;
+  margin-top: 10px;
+}
+
+.habit-field {
+  flex: 2;
+  padding: 15px;
+  border-radius: 15px;
+  border: 1px solid var(--bg-glass);
+  font-size: 1rem;
+}
+
+.btn-add-habit {
+  /* flex: 1; */
+  /* background: var(--grad-neon); */
+  /* color: white; */
+  font-size: 1rem;
+  font-weight: 300;
+  border-radius: 15px;
+  cursor: pointer;
+  width: auto; /*VIMP*/
+  min-width: 100px;
+}
+
+/* HABIT CARD */
+
+.habit-list-container {
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+}
+
+.habit-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #ffffff;
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+  padding: 15px 20px;
+  margin-bottom: 12px;
+}
+
+.habit-name {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #2c3e50;
+  margin-bottom: 3px;
+}
+
+.habit-stats {
+  font-size: 0.75rem;
+  color: #6c757d;
+}
+
+.btn-complete {
+  background: #5cb85c; /* The specific green from your image */
+  color: white;
+  border: none;
+  padding: 10px 25px;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 0.8rem;
+  transition: background 0.2s;
+
+  /* Padding controls the "Left/Right" expansion inside the button */
+  padding: 10px 25px;
+
+  /* If you want it to never exceed a certain size */
+  width: auto;
+  min-width: 120px;
+
+  /* Ensures the button doesn't shrink if text is long */
+  flex-shrink: 0;
+}
+
+.btn-complete:hover {
+  background: #4cae4c;
+}
