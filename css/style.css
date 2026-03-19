@@ -566,14 +566,19 @@ body.update .auth-card .btn {
   /* 2nd style */
   width: 80%;
   max-width: 900px;
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.15);
   /* background: white; */
-  backdrop-filter: blur(20px);
+  backdrop-filter: blur(25px);
   -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 24px;
   padding: 30px;
-  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+  /* The Glow Effect */
+  border: 1px solid rgba(255, 255, 255, 0.3); /* Bright top-left border */
+  box-shadow:
+    0 20px 50px rgba(0, 0, 0, 0.3),
+    /* Deep shadow for lift */ 0 0 20px rgba(255, 255, 255, 0.1),
+    /* Inner soft glow */ 0 0 40px var(--clr-primary-glow); /* Outer neon glow */
+  box-shadow: 0 0 20px rgba(255, 105, 180, 0.3);
 }
 
 /* Stats */
@@ -585,7 +590,7 @@ body.update .auth-card .btn {
 }
 
 .stat-card {
-  background: #f8f9fa; /* Light grey background like the image */
+  background: white;
   border: 1px solid #e9ecef;
   border-radius: 8px;
   padding: 12px 5px;
@@ -594,6 +599,8 @@ body.update .auth-card .btn {
   align-items: center;
   justify-content: center;
   gap: 5px;
+
+  background: rgba(255, 255, 255, 0.7);
 }
 
 .stat-icon {
@@ -621,16 +628,30 @@ body.update .auth-card .btn {
 
 .input-wrapper {
   display: flex;
-  gap: 5px;
+  gap: 0px;
   margin-top: 10px;
 }
 
 .habit-field {
-  flex: 2;
-  padding: 15px;
-  border-radius: 15px;
-  border: 1px solid var(--bg-glass);
-  font-size: 1rem;
+    flex: 1;
+    background: rgba(255, 255, 255, 0.75); /* Soft white */
+    border: 2px solid transparent; /* Prepare for the glow */
+    border-radius: 15px 0 0 15px; /* Matches the button's curve if connected */
+    padding: 12px 20px;
+    font-size: 1rem;
+    color: var(--clr-text-wine); /* Deep wine text instead of black */
+    transition: all 0.3s ease;
+    outline: none;
+}
+
+.habit-field:focus {
+    background: #f6d6e5;
+    border: 2px solid #5B42F3; /* Purple border on focus */
+    box-shadow: 0 0 10px rgba(91, 66, 243, 0.2);
+}
+
+.habit-field::placeholder {
+    color: #a0a0a0;
 }
 
 .btn-add-habit {
@@ -643,7 +664,17 @@ body.update .auth-card .btn {
   cursor: pointer;
   width: auto; /*VIMP*/
   min-width: 100px;
+  background: #5b42f3;
+  color: var(--clr-text-main);
+  border-radius: 0 15px 15px 0; /* Connects to the input */
 }
+
+.btn-add-habit:hover {
+  background: #ff5f7e;
+  box-shadow: 0 0 15px rgba(255, 95, 126, 0.5);
+}
+
+
 
 /* HABIT CARD */
 
@@ -662,6 +693,8 @@ body.update .auth-card .btn {
   border-radius: 8px;
   padding: 15px 20px;
   margin-bottom: 12px;
+
+  background: rgba(255, 255, 255, 0.7);
 }
 
 .habit-name {
@@ -681,7 +714,7 @@ body.update .auth-card .btn {
   color: white;
   border: none;
   padding: 10px 25px;
-  border-radius: 4px;
+  border-radius: 14px;
   font-weight: 600;
   font-size: 0.8rem;
   transition: background 0.2s;
@@ -689,14 +722,25 @@ body.update .auth-card .btn {
   /* Padding controls the "Left/Right" expansion inside the button */
   padding: 10px 25px;
 
-  /* If you want it to never exceed a certain size */
+  /* never exceed a certain size */
   width: auto;
   min-width: 120px;
 
-  /* Ensures the button doesn't shrink if text is long */
+  /* Prevents the button from growing if the card gets wider */
+  flex-grow: 0;
   flex-shrink: 0;
+
+  background: var(--clr-accent-neon);
+  color: var(--clr-text-dark);
+  font-weight: 800;
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 0 15px var(--clr-accent-glow);
+
+  background: #00d2ff;
 }
 
 .btn-complete:hover {
-  background: #4cae4c;
+  background: #ff5f7e;
+  color: #2c3e50;
 }
