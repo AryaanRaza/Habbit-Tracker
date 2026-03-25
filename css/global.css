@@ -94,15 +94,9 @@ body {
 }
 
 .btn-glow:hover {
+  background-image: var(--grad-neon);
   filter: brightness(1.2);
   transform: translateY(-2px);
-}
-
-button:hover,
-.btn-Submit:hover {
-  background-image: var(--grad-neon);
-  filter: brightness(1.1);
-  transform: translateY(-1px);
 }
 
 /* Style for guest link as button */

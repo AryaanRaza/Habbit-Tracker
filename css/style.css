@@ -718,9 +718,6 @@ body.update .auth-card .btn {
   color: #ff5f7e; /* Changes to coral pink on hover */
   opacity: 1;
   transform: scale(1.1);
-  /* NO BOX SHADOW OR GLOW HERE */
-  box-shadow: none !important;
-  text-shadow: none !important;
 }
 
 /* Ensure the icon itself behaves */
