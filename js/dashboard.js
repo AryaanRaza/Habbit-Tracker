@@ -100,30 +100,59 @@ habitInput.addEventListener('keypress', (e) => {
     if (e.key === 'Enter') addHabit();
 });
 
-// 6. Event Delegation (Mark as Done)
+// 6. Event Delegation (Click, MouseOver, and MouseOut)
+
+// --- A. THE CLICK TOGGLE ---
 habitContainer.addEventListener('click', (e) => {
     if (e.target.classList.contains('btn-complete')) {
         const button = e.target;
         const card = button.closest('.habit-card');
         const habitId = card.getAttribute('data-id');
-
-        // Update the Data Array state
         const habitIndex = habits.findIndex(h => h.id == habitId);
+
         if (habitIndex !== -1) {
-            habits[habitIndex].completedToday = true;
-            habits[habitIndex].streak += 1;
-            habits[habitIndex].total += 1;
-            
-            // Update the UI
-            card.style.opacity = '0.6';
-            button.innerText = 'Completed! 🔥';
-            button.style.background = '#ff5f7e';
-            button.disabled = true;
-            
+            const habit = habits[habitIndex];
+
+            if (!habit.completedToday) {
+                // MARK AS DONE
+                habit.completedToday = true;
+                habit.streak += 1;
+                habit.total += 1;
+                card.classList.add('is-completed');
+                button.innerText = 'Completed! 🔥';
+            } else {
+                // UNMARK (UNDO)
+                habit.completedToday = false;
+                habit.streak -= 1;
+                habit.total -= 1;
+                card.classList.remove('is-completed');
+                button.innerText = 'Mark as Done';
+            }
+
             // Update the text on the card
             const statsText = card.querySelector('.habit-stats');
-            statsText.innerText = `Streak: ${habits[habitIndex].streak} days | Total: ${habits[habitIndex].total}`;
+            statsText.innerText = `Streak: ${habit.streak} days | Total: ${habit.total}`;
         }
     }
 });
 
+// --- B. THE "RE-TOUCH" HINT (Mouse Over) ---
+habitContainer.addEventListener('mouseover', (e) => {
+    if (e.target.classList.contains('btn-complete')) {
+        const card = e.target.closest('.habit-card');
+        // Only change the text if the habit is ALREADY completed
+        if (card.classList.contains('is-completed')) {
+            e.target.innerText = 'Undo? ↩️';
+        }
+    }
+});
+
+// --- C. RESET TEXT (Mouse Out) ---
+habitContainer.addEventListener('mouseout', (e) => {
+    if (e.target.classList.contains('btn-complete')) {
+        const card = e.target.closest('.habit-card');
+        if (card.classList.contains('is-completed')) {
+            e.target.innerText = 'Completed! 🔥';
+        }
+    }
+});
