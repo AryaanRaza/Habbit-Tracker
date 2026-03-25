@@ -512,3 +512,236 @@ body.update .auth-card .btn {
   margin-top: 10px;
   color: var(--clr-text-wine);
 }
+
+/* =========================================
+   4. DASHBOARD PAGE STYLES
+   ========================================= */
+/* Dashboard Container */
+.dashboard-container {
+  background: var(--grad-page); /* Your coral/blue neon gradient */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 10px;
+}
+/* HEADER */
+.dash-header {
+  border-bottom: 1px solid #eee;
+
+  width: 80%; /* Header width */
+  max-width: 900px;
+  text-align: center; /* Or center, depending on your vibe */
+  margin-bottom: 20px;
+}
+
+.dash-title {
+  font-family: var(--font-brand);
+  font-size: 5.5rem;
+  color: var(--clr-text-main);
+}
+
+.dash-tag {
+  font-family: var(--font-main);
+  font-size: 0.9rem;
+  color: var(--clr-text-dark);
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+/* MAIN */
+
+.dash-wrapper {
+  /* width: 80%;
+  max-width: 900px;
+  background: rgba(255, 255, 255, 0.9); 
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  padding: 30px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  margin: 0 auto; */
+
+  /* 2nd style */
+  width: 80%;
+  max-width: 900px;
+  background: rgba(255, 255, 255, 0.15);
+  /* background: white; */
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 24px;
+  padding: 30px;
+  /* The Glow Effect */
+  border: 1px solid rgba(255, 255, 255, 0.3); /* Bright top-left border */
+  box-shadow:
+    0 20px 50px rgba(0, 0, 0, 0.3),
+    /* Deep shadow for lift */ 0 0 20px rgba(255, 255, 255, 0.1),
+    /* Inner soft glow */ 0 0 40px var(--clr-primary-glow); /* Outer neon glow */
+  box-shadow: 0 0 20px rgba(255, 105, 180, 0.3);
+}
+
+/* Stats */
+
+.stats-overview {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr; /* Exact 3 columns from image */
+  gap: 10px;
+}
+
+.stat-card {
+  background: white;
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+  padding: 12px 5px;
+  display: flex;
+  flex-direction: row; /* Horizontal icon + text like the image */
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+
+  background: rgba(255, 255, 255, 0.7);
+}
+
+.stat-icon {
+  font-size: 1.5rem;
+}
+
+.stat-label p {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--clr-text-wine);
+  /* margin: 5px 0; */
+}
+
+.stat-value strong {
+  font-size: 0.9rem;
+  color: var(--clr-text-dark);
+}
+
+/* INPUT-AREA */
+
+.habit-input-area {
+  margin-top: 10px;
+}
+
+.input-wrapper {
+  display: flex;
+  gap: 0px;
+  margin-top: 10px;
+}
+
+.habit-field {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.75); /* Soft white */
+    border: 2px solid transparent; /* Prepare for the glow */
+    border-radius: 15px 0 0 15px; /* Matches the button's curve if connected */
+    padding: 12px 20px;
+    font-size: 1rem;
+    color: var(--clr-text-wine); /* Deep wine text instead of black */
+    transition: all 0.3s ease;
+    outline: none;
+}
+
+.habit-field:focus {
+    background: #f6d6e5;
+    border: 2px solid #5B42F3; /* Purple border on focus */
+    box-shadow: 0 0 10px rgba(91, 66, 243, 0.2);
+}
+
+.habit-field::placeholder {
+    color: #a0a0a0;
+}
+
+.btn-add-habit {
+  /* flex: 1; */
+  /* background: var(--grad-neon); */
+  /* color: white; */
+  font-size: 1rem;
+  font-weight: 300;
+  border-radius: 15px;
+  cursor: pointer;
+  width: auto; /*VIMP*/
+  min-width: 100px;
+  background: #5b42f3;
+  color: var(--clr-text-main);
+  border-radius: 0 15px 15px 0; /* Connects to the input */
+}
+
+.btn-add-habit:hover {
+  background: #ff5f7e;
+  box-shadow: 0 0 15px rgba(255, 95, 126, 0.5);
+}
+
+
+
+/* HABIT CARD */
+
+.habit-list-container {
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+}
+
+.habit-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #ffffff;
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+  padding: 15px 20px;
+  margin-bottom: 12px;
+
+  background: rgba(255, 255, 255, 0.7);
+}
+
+.habit-name {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #2c3e50;
+  margin-bottom: 3px;
+}
+
+.habit-stats {
+  font-size: 0.75rem;
+  color: #6c757d;
+}
+
+.btn-complete {
+  background: #5cb85c; /* The specific green from your image */
+  color: white;
+  border: none;
+  padding: 10px 25px;
+  border-radius: 14px;
+  font-weight: 600;
+  font-size: 0.8rem;
+  transition: background 0.2s;
+
+  /* Padding controls the "Left/Right" expansion inside the button */
+  padding: 10px 25px;
+
+  /* never exceed a certain size */
+  width: auto;
+  min-width: 120px;
+
+  /* Prevents the button from growing if the card gets wider */
+  flex-grow: 0;
+  flex-shrink: 0;
+
+  background: var(--clr-accent-neon);
+  color: var(--clr-text-dark);
+  font-weight: 800;
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 0 15px var(--clr-accent-glow);
+
+  background: #00d2ff;
+}
+
+.btn-complete:hover {
+  background: #ff5f7e;
+  color: #2c3e50;
+}
+
