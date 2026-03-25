@@ -84,7 +84,10 @@ const createHabitCard = (habit) => {
                 <p class="habit-stats">Streak: ${habit.streak} days | Total: ${habit.total}</p>
             </div>
         </div>
-        <button class="btn btn-complete">Mark as Done</button>
+        <div class="habit-actions">
+            <button class="btn btn-complete">Mark as Done</button>
+            <button class="btn-delete" title="Delete Habit">🗑️</button>
+        </div>
     `;
 
     habitContainer.appendChild(habitCard);
@@ -153,6 +156,31 @@ habitContainer.addEventListener('mouseout', (e) => {
         const card = e.target.closest('.habit-card');
         if (card.classList.contains('is-completed')) {
             e.target.innerText = 'Completed! 🔥';
+        }
+    }
+});
+
+// --- D. THE DELETE ACTION ---
+habitContainer.addEventListener('click', (e) => {
+    if (e.target.classList.contains('btn-delete')) {
+        const card = e.target.closest('.habit-card');
+        const habitId = card.getAttribute('data-id');
+
+        // 1. Confirmation (Optional but recommended for premium UX)
+        if (confirm("Are you sure you want to delete this habit? 🌪️")) {
+            
+            // 2. Remove from the Data Array
+            habits = habits.filter(h => h.id != habitId);
+
+            // 3. Smooth UI Removal
+            card.style.transform = "translateX(20px)";
+            card.style.opacity = "0";
+            
+            setTimeout(() => {
+                card.remove();
+            }, 300); // Matches the transition time
+            
+            console.log("Habit deleted. Current list:", habits);
         }
     }
 });

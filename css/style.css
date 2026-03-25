@@ -695,6 +695,40 @@ body.update .auth-card .btn {
   background: rgba(255, 255, 255, 0.7);
 }
 
+.habit-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Space between 'Done' and 'Delete' */
+}
+
+.btn-delete {
+  background: transparent;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 8px;
+  color: #6c757d; /* Subtle grey by default */
+  transition: all 0.2s ease;
+  opacity: 0.6;
+}
+
+.btn-delete:hover {
+  color: #ff5f7e; /* Changes to coral pink on hover */
+  opacity: 1;
+  transform: scale(1.1);
+  /* NO BOX SHADOW OR GLOW HERE */
+  box-shadow: none !important;
+  text-shadow: none !important;
+}
+
+/* Ensure the icon itself behaves */
+.material-symbols-rounded {
+  font-size: 22px;
+  user-select: none;
+}
+
 /* 1. This handles the 'light color' look you had before */
 .habit-card.is-completed {
   opacity: 0.4; /* Stronger fade for that 'done' look */
