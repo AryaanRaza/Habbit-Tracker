@@ -633,25 +633,25 @@ body.update .auth-card .btn {
 }
 
 .habit-field {
-    flex: 1;
-    background: rgba(255, 255, 255, 0.75); /* Soft white */
-    border: 2px solid transparent; /* Prepare for the glow */
-    border-radius: 15px 0 0 15px; /* Matches the button's curve if connected */
-    padding: 12px 20px;
-    font-size: 1rem;
-    color: var(--clr-text-wine); /* Deep wine text instead of black */
-    transition: all 0.3s ease;
-    outline: none;
+  flex: 1;
+  background: rgba(255, 255, 255, 0.807); /* Soft white */
+  border: 2px solid transparent; /* Prepare for the glow */
+  border-radius: 15px 0 0 15px; /* Matches the button's curve if connected */
+  padding: 12px 20px;
+  font-size: 1rem;
+  color: var(--clr-text-wine); /* Deep wine text instead of black */
+  transition: all 0.3s ease;
+  outline: none;
 }
 
 .habit-field:focus {
-    background: #f6d6e5;
-    border: 2px solid #5B42F3; /* Purple border on focus */
-    box-shadow: 0 0 10px rgba(91, 66, 243, 0.2);
+  background: #ffffff;
+  border: 2px solid #5b42f3; /* Purple border on focus */
+  box-shadow: 0 0 10px rgba(91, 66, 243, 0.2);
 }
 
 .habit-field::placeholder {
-    color: #a0a0a0;
+  color: #a0a0a0;
 }
 
 .btn-add-habit {
@@ -674,8 +674,6 @@ body.update .auth-card .btn {
   box-shadow: 0 0 15px rgba(255, 95, 126, 0.5);
 }
 
-
-
 /* HABIT CARD */
 
 .habit-list-container {
@@ -695,6 +693,30 @@ body.update .auth-card .btn {
   margin-bottom: 12px;
 
   background: rgba(255, 255, 255, 0.7);
+}
+
+/* 1. This handles the 'light color' look you had before */
+.habit-card.is-completed {
+  opacity: 0.4; /* Stronger fade for that 'done' look */
+  filter: grayscale(30%); /* Optional: makes it look less 'active' */
+  transition: all 0.3s ease;
+}
+
+/* 2. THE 'RE-TOUCH' HINT: When hovering over a COMPLETED card */
+.habit-card.is-completed:hover {
+  opacity: 0.8; /* Brightens up slightly to show it's interactive */
+  cursor: pointer;
+}
+
+/* 3. Change button look when done */
+.habit-card.is-completed .btn-complete {
+  background: #6c757d; /* Muted color */
+}
+
+/* 4. Special hover for the button when it's already done */
+.habit-card.is-completed .btn-complete:hover {
+  background: #ff5f7e; /* Glows coral to signal 'Undo' */
+  content: "Undo?"; /* Note: this doesn't change text, we do that in JS below */
 }
 
 .habit-name {
@@ -744,4 +766,3 @@ body.update .auth-card .btn {
   background: #ff5f7e;
   color: #2c3e50;
 }
-
