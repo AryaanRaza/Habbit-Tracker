@@ -724,6 +724,9 @@ body.update .auth-card .btn {
 .material-symbols-rounded {
   font-size: 22px;
   user-select: none;
+  /* This makes the icon 'invisible' to the mouse, 
+     so the click always hits the button */
+  pointer-events: none;
 }
 
 /* 1. This handles the 'light color' look you had before */
