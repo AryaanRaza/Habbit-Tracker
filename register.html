@@ -5,65 +5,80 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register | Habit Tracker</title>
+    <title>Register | HabitFlow</title>
     <link rel="stylesheet" href="css/global.css">
     <link rel="stylesheet" href="css/style.css">
-
 </head>
 
 <body class="auth-page">
-    <img src="img/streakasaur-welcome.png" alt="Waving Habit Dino Mascot" class="mascot-auth reg-pos"
-        title="Streakasaur is excited to help you grow!">
-    <div class="auth-card">
-        <header class="form-header">
-            <h1>HabitFlow</h1>
-            <h2>Create Account</h2>
-            <p>Set your goals in motion.</p>
-        </header>
 
-        <form action="#" class="auth-form">
+    <!-- Dreamy Background Orbs -->
+    <div class="bg-orb orb-1"></div>
+    <div class="bg-orb orb-2"></div>
+    <div class="bg-orb orb-3"></div>
 
-            <div class="input-group">
-                <label for="firstName">First Name:</label>
-                <input type="text" name="firstName" id="firstName" placeholder="Jane" autocomplete="on" required
-                    autofocus>
-            </div>
-            <div class="input-group">
-                <label for="lastName">Last Name:</label>
-                <input type="text" name="lastName" id="lastName" placeholder="Doe" autocomplete="on" required>
+    <main class="auth-shell">
+
+        <div class="auth-card">
+
+            <!-- Mascot anchored to card -->
+            <div class="auth-mascot-wrap">
+                <img src="img/streakasaur-welcome.png" alt="Waving Habit Dino Mascot" class="mascot-auth reg-pos"
+                    title="Streakasaur is excited to help you grow!">
             </div>
 
-            <div class="input-group">
-                <label for="email">Email Address</label>
-                <input type="email" id="email" placeholder="name@example.com" required>
-            </div>
+            <header class="form-header">
+                <h1>HabitFlow</h1>
+                <h2>Create Account</h2>
+                <p>Set your goals in motion.</p>
+            </header>
 
-            <div class="input-group">
-                <label for="password">Password</label>
-                <input type="password" id="password" placeholder="••••••••" required>
-            </div>
+            <form action="#" class="auth-form">
 
-            <div class="input-group">
-                <label for="password">Confirm Password</label>
-                <input type="password" id="password" placeholder="••••••••" required>
-            </div>
+                <div class="name-row">
+                    <div class="input-group">
+                        <label for="firstName">First Name</label>
+                        <input type="text" name="firstName" id="firstName" placeholder="Jane" autocomplete="given-name" required autofocus>
+                    </div>
 
-            <div class="form-options">
-                <label class="remember-me">
-                    <input type="checkbox"> I agree to the Terms of Service and Privacy Policy.
-                </label>
-                <!-- <a href="#" class="forgot-link">Forgot Password?</a> -->
-            </div>
+                    <div class="input-group">
+                        <label for="lastName">Last Name</label>
+                        <input type="text" name="lastName" id="lastName" placeholder="Doe" autocomplete="family-name" required>
+                    </div>
+                </div>
 
-            <button type="submit" class="btn btn-glow">Sign Up</button>
+                <div class="input-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" placeholder="name@example.com" autocomplete="email" required>
+                </div>
 
-            <p class="switch-auth">
-                Already have an account? <a href="login.html">Login</a>
-            </p>
-        </form>
-    </div>
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="••••••••" autocomplete="new-password" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="confirmPassword">Confirm Password</label>
+                    <input type="password" id="confirmPassword" name="confirmPassword" placeholder="••••••••" autocomplete="new-password" required>
+                </div>
+
+                <div class="form-options terms-row">
+                    <label class="remember-me terms-check">
+                        <input type="checkbox" required>
+                        <span>I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>.</span>
+                    </label>
+                </div>
+
+                <button type="submit" class="btn btn-glow">Sign Up</button>
+
+                <p class="switch-auth">
+                    Already have an account? <a href="login.html">Login</a>
+                </p>
+            </form>
+        </div>
+
+    </main>
 
 </body>
-
 
 </html>

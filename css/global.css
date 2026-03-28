@@ -11,17 +11,17 @@
      ========================================= */
 
   /* --- Brand Core --- */
-  --clr-primary: #f3b6da;              /* soft rose pink */
-  --clr-primary-strong: #ec8fc3;       /* stronger pink accent */
-  --clr-primary-light: #f8eaff;        /* pearl blush */
+  --clr-primary: #f3b6da; /* soft rose pink */
+  --clr-primary-strong: #ec8fc3; /* stronger pink accent */
+  --clr-primary-light: #f8eaff; /* pearl blush */
 
-  --clr-secondary: #c7b8ff;            /* pastel lavender */
-  --clr-secondary-deep: #8e7bff;       /* richer dreamy purple */
+  --clr-secondary: #c7b8ff; /* pastel lavender */
+  --clr-secondary-deep: #8e7bff; /* richer dreamy purple */
 
-  --clr-accent-blue: #d7e8ff;          /* powder blue */
-  --clr-accent-periwinkle: #bfd1ff;    /* periwinkle */
-  --clr-accent-ice: #eef5ff;           /* icy blue */
-  --clr-accent-neon: #9fe7ff;          /* soft cyan glow */
+  --clr-accent-blue: #d7e8ff; /* powder blue */
+  --clr-accent-periwinkle: #bfd1ff; /* periwinkle */
+  --clr-accent-ice: #eef5ff; /* icy blue */
+  --clr-accent-neon: #9fe7ff; /* soft cyan glow */
 
   /* --- Typography --- */
   --font-brand: "Leckerli One", cursive;
@@ -34,12 +34,12 @@
   --fs-h2: 1.5rem;
 
   /* --- Text --- */
-  --clr-text-main: #2f2557;            /* main readable text */
+  --clr-text-main: #2f2557; /* main readable text */
   --clr-text-heading: #31265c;
   --clr-text-dark: #4f4678;
   --clr-text-soft: #7b739e;
   --clr-text-white: #ffffff;
-  --clr-text-wine: #7b4f88;            /* kept for compatibility with your old classes */
+  --clr-text-wine: #7b4f88; /* kept for compatibility with your old classes */
 
   /* --- Glass Surfaces --- */
   --bg-card: rgba(255, 255, 255, 0.22);
@@ -63,11 +63,34 @@
 
   /* --- Main Page Gradient --- */
   --grad-page:
-    radial-gradient(circle at 18% 22%, rgba(255, 220, 239, 0.6), transparent 26%),
-    radial-gradient(circle at 82% 18%, rgba(191, 216, 255, 0.55), transparent 28%),
-    radial-gradient(circle at 55% 78%, rgba(217, 204, 255, 0.42), transparent 30%),
-    radial-gradient(circle at 25% 82%, rgba(255, 255, 255, 0.2), transparent 18%),
-    linear-gradient(135deg, #f8f4ff 0%, #eadfff 28%, #f7d2ea 55%, #dbe9ff 82%, #cabdff 100%);
+    radial-gradient(
+      circle at 18% 22%,
+      rgba(255, 220, 239, 0.6),
+      transparent 26%
+    ),
+    radial-gradient(
+      circle at 82% 18%,
+      rgba(191, 216, 255, 0.55),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 55% 78%,
+      rgba(217, 204, 255, 0.42),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 25% 82%,
+      rgba(255, 255, 255, 0.2),
+      transparent 18%
+    ),
+    linear-gradient(
+      135deg,
+      #f8f4ff 0%,
+      #eadfff 28%,
+      #f7d2ea 55%,
+      #dbe9ff 82%,
+      #cabdff 100%
+    );
 
   /* --- CTA Gradient --- */
   --grad-btn: linear-gradient(135deg, #7b68ff 0%, #9c8bff 45%, #9fe7ff 100%);
@@ -186,15 +209,14 @@ body {
 }
 
 @keyframes orbFloat {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0px);
   }
   50% {
     transform: translateY(-18px);
   }
 }
-
-
 
 /* The Foundation */
 .btn {
@@ -211,7 +233,6 @@ body {
   outline: none;
 }
 
-
 .btn-glow {
   font-size: 1.3rem;
   border-radius: 999px;
@@ -222,7 +243,10 @@ body {
   box-shadow: var(--shadow-btn);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  transition: transform 0.25s ease, filter 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    transform 0.25s ease,
+    filter 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
 .btn-glow:hover {
@@ -230,8 +254,6 @@ body {
   filter: brightness(1.04);
   box-shadow: 0 14px 30px rgba(123, 104, 255, 0.3);
 }
-
-
 
 /* Style for guest link as button */
 .guest-option {
@@ -247,7 +269,7 @@ body {
   display: inline-block;
   text-align: center;
   text-decoration: none;
-  color: var(--clr-primary-glow);
+  color: var(--clr-primary-strong);
   border: 2px solid var(--clr-btn-gst);
   background: var(--bg-glass);
   font-weight: 700;
@@ -285,11 +307,27 @@ body {
 
 .input-group input {
   padding: 15px;
-  border-radius: 12px;
-  border: none;
-  background: var(--clr-text-main);
+  border-radius: 14px;
+  border: 1px solid var(--border-glass);
+  background: rgba(255, 255, 255, 0.72);
+  color: var(--clr-text-main);
   font-size: 1rem;
   outline: none;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35);
+  transition:
+    border-color 0.25s ease,
+    box-shadow 0.25s ease,
+    background 0.25s ease;
+}
+
+.input-group input::placeholder {
+  color: var(--clr-text-soft);
+}
+
+.input-group input:focus {
+  border-color: rgba(142, 123, 255, 0.5);
+  background: rgba(255, 255, 255, 0.88);
+  box-shadow: 0 0 0 4px rgba(159, 231, 255, 0.18);
 }
 
 /* Controls and Buttons */
@@ -307,7 +345,7 @@ body {
   display: flex;
   align-items: center;
   gap: 8px;
-  color: var(--clr-primary-glow);
+  color: var(--clr-text-soft);
   cursor: pointer;
 }
 
@@ -331,12 +369,16 @@ body {
 /* FOOTER */
 
 .bottom-tab-bar {
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-top: 1px solid var(--border-glass);
+  box-shadow: 0 -6px 20px rgba(126, 102, 190, 0.08);
   position: fixed;
   bottom: 0;
   left: 0;
   width: 100%;
   height: 70px;
-  background: #f7f4f5;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -371,12 +413,12 @@ body {
     "opsz" 24;
   font-size: 2rem;
   transition: all 0.3s ease;
-  color: #30021d;
+  color: var(--clr-text-soft);
 }
 
 .tab-item.active .material-symbols-rounded {
   font-variation-settings:
     "FILL" 1,
     "wght" 600;
-  color: var(--clr-primary);
+  color: var(--clr-secondary-deep);
 }
