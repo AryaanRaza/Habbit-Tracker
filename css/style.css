@@ -471,34 +471,53 @@ body.auth-page {
 }
 .back-btn {
   position: absolute;
-  left: 0;
+  /* Adjust top/left to ensure it doesn't overlap your centered branding */
+  top: 20px;
+  left: 20px;
+
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 45px;
-  height: 45px;
-  background: var(--bg-glass);
+  width: 48px;
+  height: 48px;
+
+  /* Use a stronger glass effect */
+  background: var(--bg-card-strong);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border-radius: 50%;
   text-decoration: none;
-  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  border: 1px solid var(--glass-border);
+  border: 1px solid var(--border-glass);
+
+  /* Use your UI shadow for depth */
+  box-shadow: var(--shadow-ui);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  z-index: 10;
 }
 
 .back-btn span {
-  color: var(--clr-primary-glow);
-  font-size: 1.2rem !important; /* Smaller size for the icon inside the circle */
-  font-weight: 800;
+  /* FIX: Changed from primary-glow (transparent) to primary-strong (solid) */
+  color: var(--clr-primary-strong);
+  font-size: 1.4rem !important;
+  font-weight: 900;
+  transition: color 0.3s ease;
 }
 
-/* Hover Effect: The "Glow" */
+/* Hover Effect: The "HabitGlow" special */
 .back-btn:hover {
-  background: var(--clr-primary);
-  transform: scale(1.1) translateX(-3px);
-  box-shadow: 0 0 15px var(--clr-btn-gst);
+  /* Gradient background on hover to match your brand */
+  background: var(--grad-btn);
+  transform: scale(1.15) rotate(-5deg);
+  border-color: rgba(255, 255, 255, 0.5);
+  box-shadow:
+    0 0 20px var(--clr-primary-glow),
+    var(--shadow-btn);
 }
 
 .back-btn:hover span {
-  color: white; /* Arrow turns white when background turns pink */
+  color: var(--clr-text-heading);
+  /* Add a little text shadow to the arrow for extra polish */
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 /* =========================
@@ -660,6 +679,10 @@ body.auth-page {
   line-height: 1.7;
   color: var(--clr-text-dark);
 }
+.update-form .btn-glow {
+  align-self: center; /* This stops the "stretch" and fits the button to its text */
+  flex-shrink: 1;
+}
 
 /* =========================
    MOBILE
@@ -702,6 +725,7 @@ body.auth-page {
     width: 38px;
     height: 38px;
     border-radius: 12px;
+    top: 5px;
   }
 
   .sub-page-title h2 {
@@ -1137,7 +1161,7 @@ body.update .auth-card .btn {
   font-size: 0.82rem;
   width: auto;
   min-width: 128px;
-  flex-shrink: 0;
+  flex-shrink: 1;
   cursor: pointer;
   box-shadow: 0 10px 20px rgba(100, 217, 255, 0.18);
 }
@@ -1159,6 +1183,7 @@ body.update .auth-card .btn {
   transition: all 0.25s ease;
   border-radius: 14px;
   opacity: 1;
+  flex-shrink: 1;
 }
 
 .btn-delete .material-symbols-rounded {

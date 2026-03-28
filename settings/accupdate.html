@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Account | Habit Tracker</title>
+    <title>Account Update | HabitFlow</title>
     <link rel="stylesheet" href="../css/global.css">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet"
@@ -13,52 +13,67 @@
 </head>
 
 <body class="sub-settings-page update">
-    <header class="settings-header sub-header">
-        <div class="header-top">
-            <a href="/settings.html" class="back-btn">
-                <span class="material-symbols-rounded">arrow_back_ios_new</span>
-            </a>
+    <main class="sub-settings-layout">
+        <header class="sub-settings-branding">
+            <div class="header-top">
+                <a href="../settings.html" class="back-btn">
+                    <span class="material-symbols-rounded">arrow_back_ios_new</span>
+                </a>
+            </div>
             <h1>HabitFlow</h1>
-        </div>
-        <h2>Update Account</h2>
-    </header>
-    <div class="auth-card">
-        <form action="#" class="auth-form">
-            <div class="input-group">
-                <label for="firstName">First Name:</label>
-                <input type="text" name="firstName" id="firstName" placeholder="Jane" autocomplete="on" required
-                    autofocus>
-            </div>
+            <p>Keep your profile as sharp as your streaks.</p>
+        </header>
 
-            <div class="input-group">
-                <label for="lastName">Last Name:</label>
-                <input type="text" name="lastName" id="lastName" placeholder="Doe" autocomplete="on" required>
-            </div>
+        <section class="sub-settings-card glass-panel">
+            <header class="sub-page-header">
+                <div class="sub-page-title">
+                    <h2>Update Account</h2>
+                    <p>Modify your personal details below.</p>
+                </div>
+            </header>
 
-            <div class="input-group">
-                <label>Date of Birth</label>
-                <input type="date" id="dob">
-            </div>
+            <div class="sub-page-content">
+                <form action="#" class="auth-form update-form">
+                    <div class="form-grid">
+                        <div class="input-group">
+                            <label for="firstName">First Name</label>
+                            <input type="text" name="firstName" id="firstName" placeholder="Jane" required autofocus>
+                        </div>
 
-            <div class="input-group">
-                <label for="email">Email Address</label>
-                <input type="email" id="email" placeholder="name@example.com" required>
-            </div>
+                        <div class="input-group">
+                            <label for="lastName">Last Name</label>
+                            <input type="text" name="lastName" id="lastName" placeholder="Doe" required>
+                        </div>
+                    </div>
 
-            <div class="input-group">
-                <label for="password">Password</label>
-                <input type="password" id="password" placeholder="••••••••" required>
-            </div>
+                    <div class="input-group">
+                        <label for="dob">Date of Birth</label>
+                        <input type="date" id="dob">
+                    </div>
 
-            <div class="input-group">
-                <label for="password">Confirm Password</label>
-                <input type="password" id="confirm-password" placeholder="••••••••" required>
+                    <div class="input-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" placeholder="name@example.com" required>
+                    </div>
+
+                    <div class="form-grid">
+                        <div class="input-group">
+                            <label for="password">New Password</label>
+                            <input type="password" id="password" placeholder="••••••••">
+                        </div>
+
+                        <div class="input-group">
+                            <label for="confirm-password">Confirm Password</label>
+                            <input type="password" id="confirm-password" placeholder="••••••••">
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-glow">Save Changes</button>
+                </form>
             </div>
-            <button type="submit" class="btn btn-glow">Update</button>
-        </form>
-    </div>
+        </section>
+    </main>
+
     <script src="/js/navigation.js"></script>
 </body>
-
-
 </html>
