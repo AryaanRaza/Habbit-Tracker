@@ -86,7 +86,9 @@ const createHabitCard = (habit) => {
         </div>
         <div class="habit-actions">
             <button class="btn btn-complete">Mark as Done</button>
-            <button class="btn-delete" title="Delete Habit">🗑️</button>
+            <button class="btn-delete" title="Delete Habit">
+                <span class="material-symbols-rounded">delete</span>
+            </button>
         </div>
     `;
 
@@ -107,8 +109,34 @@ habitInput.addEventListener('keypress', (e) => {
 
 // --- A. THE CLICK TOGGLE ---
 habitContainer.addEventListener('click', (e) => {
-    if (e.target.classList.contains('btn-complete')) {
-        const button = e.target;
+    const deleteBtn = e.target.closest('.btn-delete');
+
+    if (deleteBtn) {
+        const card = deleteBtn.closest('.habit-card');
+        const habitId = card.getAttribute('data-id');
+
+        if (confirm("Are you sure you want to delete this habit? 🌪️")) {
+            habits = habits.filter(h => h.id != habitId);
+
+            card.style.transform = "translateX(20px)";
+            card.style.opacity = "0";
+
+            setTimeout(() => {
+                card.remove();
+            }, 300);
+
+            console.log("Habit deleted. Current list:", habits);
+        }
+    }
+});
+
+habitContainer.addEventListener('click', (e) => {
+    const completeBtn = e.target.closest('.btn-complete');
+    const deleteBtn = e.target.closest('.btn-delete');
+
+    // MARK / UNMARK
+    if (completeBtn) {
+        const button = completeBtn;
         const card = button.closest('.habit-card');
         const habitId = card.getAttribute('data-id');
         const habitIndex = habits.findIndex(h => h.id == habitId);
@@ -117,14 +145,12 @@ habitContainer.addEventListener('click', (e) => {
             const habit = habits[habitIndex];
 
             if (!habit.completedToday) {
-                // MARK AS DONE
                 habit.completedToday = true;
                 habit.streak += 1;
                 habit.total += 1;
                 card.classList.add('is-completed');
                 button.innerText = 'Completed! 🔥';
             } else {
-                // UNMARK (UNDO)
                 habit.completedToday = false;
                 habit.streak -= 1;
                 habit.total -= 1;
@@ -132,30 +158,27 @@ habitContainer.addEventListener('click', (e) => {
                 button.innerText = 'Mark as Done';
             }
 
-            // Update the text on the card
             const statsText = card.querySelector('.habit-stats');
             statsText.innerText = `Streak: ${habit.streak} days | Total: ${habit.total}`;
         }
     }
-});
 
-// --- B. THE "RE-TOUCH" HINT (Mouse Over) ---
-habitContainer.addEventListener('mouseover', (e) => {
-    if (e.target.classList.contains('btn-complete')) {
-        const card = e.target.closest('.habit-card');
-        // Only change the text if the habit is ALREADY completed
-        if (card.classList.contains('is-completed')) {
-            e.target.innerText = 'Undo? ↩️';
-        }
-    }
-});
+    // DELETE
+    if (deleteBtn) {
+        const card = deleteBtn.closest('.habit-card');
+        const habitId = card.getAttribute('data-id');
 
-// --- C. RESET TEXT (Mouse Out) ---
-habitContainer.addEventListener('mouseout', (e) => {
-    if (e.target.classList.contains('btn-complete')) {
-        const card = e.target.closest('.habit-card');
-        if (card.classList.contains('is-completed')) {
-            e.target.innerText = 'Completed! 🔥';
+        if (confirm("Are you sure you want to delete this habit? 🌪️")) {
+            habits = habits.filter(h => h.id != habitId);
+
+            card.style.transform = "translateX(20px)";
+            card.style.opacity = "0";
+
+            setTimeout(() => {
+                card.remove();
+            }, 300);
+
+            console.log("Habit deleted. Current list:", habits);
         }
     }
 });
