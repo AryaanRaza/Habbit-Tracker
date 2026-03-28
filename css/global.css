@@ -46,6 +46,115 @@
   );
   --shadow-ui: 0 10px 30px rgba(0, 0, 0, 0.08);
 }
+:root {
+  /* =========================================
+     HABITGLOW DREAMY GLASSMORPHISM PALETTE
+     ========================================= */
+
+  /* --- Brand Core --- */
+  --clr-primary: #f4b8d8; /* Soft rose pink */
+  --clr-primary-light: #f8eaff; /* Pearl blush */
+  --clr-secondary: #c8b6ff; /* Pastel lavender */
+  --clr-secondary-deep: #b49cff; /* Slightly richer lilac */
+  --clr-accent-blue: #cfe4ff; /* Powder blue */
+  --clr-accent-periwinkle: #bfd0ff; /* Periwinkle glow */
+  --clr-accent-ice: #e6f1ff; /* Soft icy blue */
+  --clr-accent-glow: #ffdcef; /* Pink glow accent */
+
+  /* --- Optional Highlight Accent --- */
+  --clr-accent-neon: #9ee7ff; /* Soft cyan highlight (less harsh than current) */
+
+  /* --- Typography --- */
+  --font-brand: "Leckerli One", cursive;
+  --font-tagline: "Akronim", system-ui;
+  --font-main: "Inter", sans-serif;
+
+  /* --- Font Sizes --- */
+  --fs-logo: 10rem;
+  --fs-h1: 2.5rem;
+  --fs-h2: 1.5rem;
+
+  /* --- Text & Contrast --- */
+  --clr-text-main: #2d2350; /* Deep soft indigo for readability */
+  --clr-text-heading: #31265c; /* Richer heading tone */
+  --clr-text-dark: #4b3f73; /* Body text */
+  --clr-text-soft: #6e6793; /* Muted text */
+  --clr-text-white: #ffffff;
+
+  /* --- Interactive & Surfaces --- */
+  --clr-btn-base: #6f5cff; /* Dreamy purple CTA */
+  --clr-btn-hover: #5f4cf5;
+  --clr-btn-soft: rgba(111, 92, 255, 0.14);
+
+  --bg-card: rgba(255, 255, 255, 0.22);
+  --bg-card-strong: rgba(255, 255, 255, 0.32);
+  --bg-glass: rgba(255, 255, 255, 0.28);
+  --bg-glass-heavy: rgba(255, 255, 255, 0.38);
+  --border-glass: rgba(255, 255, 255, 0.35);
+
+  /* --- Page Background Layers --- */
+  --bg-base: #f8f4ff;
+  --bg-lilac: #e8d9ff;
+  --bg-pink: #f7c9e8;
+  --bg-blue: #d6e7ff;
+  --bg-periwinkle: #cabdff;
+  --bg-mist: #f9f6ff;
+
+  /* --- Main Dreamy Page Gradient --- */
+  --grad-page: linear-gradient(
+    135deg,
+    #f8f4ff 0%,
+    #eadfff 28%,
+    #f7d2ea 55%,
+    #dbe9ff 82%,
+    #cabdff 100%
+  );
+
+  /* --- Soft Button / CTA Gradient --- */
+  --grad-btn: linear-gradient(
+    135deg,
+    #7b68ff 0%,
+    #9c8bff 40%,
+    #9ee7ff 100%
+  );
+
+  /* --- Optional Glass Highlight Gradient --- */
+  --grad-glow: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.45),
+    rgba(255, 255, 255, 0.12)
+  );
+
+  /* --- Soft Accent Gradient for badges / chips --- */
+  --grad-accent: linear-gradient(
+    135deg,
+    rgba(244, 184, 216, 0.8),
+    rgba(200, 182, 255, 0.8),
+    rgba(207, 228, 255, 0.8)
+  );
+
+  /* --- Glow Blobs / Radial Backgrounds --- */
+  --blob-pink: rgba(255, 214, 234, 0.50);
+  --blob-blue: rgba(191, 216, 255, 0.45);
+  --blob-lilac: rgba(217, 204, 255, 0.38);
+  --blob-white: rgba(255, 255, 255, 0.22);
+
+  /* --- Shadows --- */
+  --shadow-ui: 0 10px 30px rgba(113, 92, 180, 0.10);
+  --shadow-soft: 0 8px 24px rgba(160, 140, 255, 0.12);
+  --shadow-glow: 0 0 40px rgba(200, 182, 255, 0.22);
+  --shadow-btn: 0 8px 20px rgba(111, 92, 255, 0.22);
+
+  /* --- Sparkle Colors --- */
+  --sparkle-white: rgba(255, 255, 255, 0.9);
+  --sparkle-pink: rgba(255, 220, 239, 0.9);
+  --sparkle-blue: rgba(214, 231, 255, 0.9);
+
+  /* --- Border Radius Suggestions --- */
+  --radius-xl: 20px;
+  --radius-2xl: 28px;
+  --radius-3xl: 36px;
+}
 /* Global reset for all links in HabitFlow */
 a {
   text-decoration: none;
@@ -59,6 +168,13 @@ body {
   flex-direction: column;
   align-items: center;
 }
+/* body {
+  background:
+    radial-gradient(circle at 18% 28%, rgba(255, 214, 234, 0.45), transparent 32%),
+    radial-gradient(circle at 78% 22%, rgba(191, 216, 255, 0.42), transparent 34%),
+    radial-gradient(circle at 52% 78%, rgba(217, 204, 255, 0.32), transparent 38%),
+    linear-gradient(135deg, #f8f4ff 0%, #eadfff 30%, #f7d2ea 58%, #dbe9ff 82%, #cabdff 100%);
+} */
 
 /* The Foundation */
 .btn {
@@ -79,9 +195,9 @@ body {
   font-size: 1.3rem;
   border-radius: 50px;
   border: 4px solid transparent;
-  background-image:
+  /* background-image:
     linear-gradient(#010139, #010139),
-    linear-gradient(144deg, #af40ff, #5b42f3 50%, #00ddeb);
+    linear-gradient(144deg, #af40ff, #5b42f3 50%, #00ddeb); */
   background-origin: border-box;
   background-clip: padding-box, border-box;
   color: var(--clr-text-main);
