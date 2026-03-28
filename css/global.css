@@ -405,11 +405,12 @@ body {
   filter: drop-shadow(0 0 8px var(--clr-primary));
 }
 
+
 .material-symbols-rounded {
   font-variation-settings:
     "FILL" 0,
-    /* 0 for outlined, 1 for solid */ "wght" 800,
-    /* Thickness of the lines */ "grad" 0,
+    "wght" 800,
+    "grad" 0,
     "opsz" 24;
   font-size: 2rem;
   transition: all 0.3s ease;
