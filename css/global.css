@@ -383,6 +383,7 @@ body {
   justify-content: space-around;
   align-items: center;
   border-top: 1px solid rgba(146, 17, 17, 0.05);
+  z-index: 100;
 }
 
 .tab-item {

@@ -231,7 +231,7 @@ body.auth-page {
 
 .settings-layout {
   width: min(94vw, 1100px);
-  margin-inline: auto;      /* This pushes the left and right margins equally, centering it */
+  margin-inline: auto; /* This pushes the left and right margins equally, centering it */
   position: relative;
   z-index: 2;
 }
@@ -277,7 +277,6 @@ body.auth-page {
   overflow: hidden;
 }
 
-
 /* Optional subtle inner glow */
 .settings-card::before {
   content: "";
@@ -285,9 +284,21 @@ body.auth-page {
   inset: 0;
   pointer-events: none;
   background:
-    radial-gradient(circle at 18% 22%, rgba(255, 255, 255, 0.14), transparent 24%),
-    radial-gradient(circle at 82% 16%, rgba(0, 221, 235, 0.08), transparent 20%),
-    radial-gradient(circle at 72% 82%, rgba(255, 95, 126, 0.08), transparent 24%);
+    radial-gradient(
+      circle at 18% 22%,
+      rgba(255, 255, 255, 0.14),
+      transparent 24%
+    ),
+    radial-gradient(
+      circle at 82% 16%,
+      rgba(0, 221, 235, 0.08),
+      transparent 20%
+    ),
+    radial-gradient(
+      circle at 72% 82%,
+      rgba(255, 95, 126, 0.08),
+      transparent 24%
+    );
 }
 
 /* Header inside card */
@@ -324,7 +335,10 @@ body.auth-page {
   color: inherit;
   background: rgba(255, 255, 255, 0.352);
   border: 1px solid rgba(255, 255, 255, 0.14);
-  transition: transform 0.25s ease, background 0.25s ease, border-color 0.25s ease,
+  transition:
+    transform 0.25s ease,
+    background 0.25s ease,
+    border-color 0.25s ease,
     box-shadow 0.25s ease;
 }
 
@@ -485,6 +499,224 @@ body.auth-page {
 
 .back-btn:hover span {
   color: white; /* Arrow turns white when background turns pink */
+}
+
+/* =========================
+   SUB SETTINGS PAGES
+========================= */
+
+.sub-settings-page {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 12px 20px 100px;
+  position: relative;
+}
+
+.sub-settings-layout {
+  width: min(94vw, 1100px);
+  position: relative;
+  z-index: 2;
+}
+
+.sub-settings-branding {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 18px;
+}
+
+.sub-settings-branding h1 {
+  font-family: var(--font-brand);
+  font-size: clamp(3rem, 7vw, 4.8rem);
+  line-height: 1;
+  margin: 0 0 8px 0;
+  color: var(--clr-text-main);
+  text-shadow: 0 6px 24px rgba(255, 255, 255, 0.18);
+}
+
+.sub-settings-branding p {
+  margin: 0 auto;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--clr-text-dark);
+  max-width: 460px;
+}
+
+.sub-settings-card.glass-panel {
+  width: min(100%, 860px);
+  margin: 0 auto;
+  border-radius: 32px;
+  padding: 26px 24px;
+  background: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
+  box-shadow:
+    0 20px 60px rgba(20, 8, 48, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.16);
+  position: relative;
+  overflow: hidden;
+}
+
+.sub-settings-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(
+      circle at 18% 22%,
+      rgba(255, 255, 255, 0.14),
+      transparent 24%
+    ),
+    radial-gradient(
+      circle at 82% 16%,
+      rgba(0, 221, 235, 0.08),
+      transparent 20%
+    ),
+    radial-gradient(
+      circle at 72% 82%,
+      rgba(255, 95, 126, 0.08),
+      transparent 24%
+    );
+}
+
+.sub-page-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  margin-bottom: 20px;
+  position: relative;
+  z-index: 1;
+}
+
+.back-btn {
+  width: 42px;
+  height: 42px;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  border-radius: 14px;
+  text-decoration: none;
+  color: var(--clr-text-main);
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  transition:
+    transform 0.25s ease,
+    background 0.25s ease;
+}
+
+.back-btn:hover {
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.16);
+}
+
+.back-btn .material-symbols-rounded {
+  font-size: 20px;
+}
+
+.sub-page-title h2 {
+  margin: 0 0 6px 0;
+  font-size: 1.5rem;
+  color: var(--clr-text-main);
+  font-weight: 700;
+}
+
+.sub-page-title p {
+  margin: 0;
+  font-size: 0.95rem;
+  color: var(--clr-text-dark);
+  line-height: 1.5;
+}
+
+.sub-page-content {
+  position: relative;
+  z-index: 1;
+}
+
+/* Legal / text-heavy pages */
+.legal-content {
+  display: grid;
+  gap: 14px;
+}
+
+.content-block {
+  padding: 18px 18px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.content-block h3 {
+  margin: 0 0 8px 0;
+  font-size: 1rem;
+  color: var(--clr-text-main);
+}
+
+.content-block p {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--clr-text-dark);
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 768px) {
+  .sub-settings-page {
+    padding: 14px 14px 90px;
+  }
+
+  .sub-settings-layout {
+    width: 100%;
+  }
+
+  .sub-settings-branding {
+    margin-bottom: 14px;
+  }
+
+  .sub-settings-branding h1 {
+    font-size: clamp(2.6rem, 11vw, 3.6rem);
+  }
+
+  .sub-settings-branding p {
+    font-size: 0.95rem;
+    max-width: 100%;
+  }
+
+  .sub-settings-card.glass-panel {
+    width: 100%;
+    padding: 22px 18px;
+    border-radius: 24px;
+  }
+
+  .sub-page-header {
+    gap: 12px;
+    margin-bottom: 18px;
+  }
+
+  .back-btn {
+    width: 38px;
+    height: 38px;
+    border-radius: 12px;
+  }
+
+  .sub-page-title h2 {
+    font-size: 1.3rem;
+  }
+
+  .sub-page-title p,
+  .content-block p {
+    font-size: 0.92rem;
+  }
+
+  .content-block {
+    padding: 16px 14px;
+    border-radius: 18px;
+  }
 }
 
 /* =========================================
