@@ -620,7 +620,7 @@ body.auth-page {
   text-decoration: none;
   color: var(--clr-text-main);
   background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.16);
+  border: 1.5px solid rgba(233, 191, 239, 0.388);
   transition:
     transform 0.25s ease,
     background 0.25s ease;
