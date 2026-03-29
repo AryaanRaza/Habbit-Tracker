@@ -663,8 +663,9 @@ body.auth-page {
 .content-block {
   padding: 18px 18px;
   border-radius: 20px;
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(247, 247, 247, 0.256);
   border: 1px solid rgba(255, 255, 255, 0.12);
+  margin-bottom: 10px;
 }
 
 .content-block h3 {
@@ -743,57 +744,6 @@ body.auth-page {
   }
 }
 
-/* =========================================
-   3.1.1. ACCOUNT UPDATE PAGE
-   ========================================= */
-
-/* Target the update page specifically */
-
-body.update .input-group label {
-  margin-bottom: 4px; /* Tighten the gap to the input */
-  font-size: 0.85rem;
-}
-
-body.update .input-group input {
-  padding: 10px 15px;
-}
-
-/* Compact Button */
-body.update .auth-card .btn {
-  margin-top: 10px;
-  padding: 8px; /* Slimmer button */
-}
-
-/* =========================================
-   3.1.2. TERMS & CONDITION PAGE
-   ========================================= */
-
-.terms-content {
-  background: var(--bg-glass);
-  padding: 40px;
-  border-radius: 25px;
-  border: 1px solid var(--glass-border);
-  width: 90%;
-  max-width: 800px;
-  backdrop-filter: blur(10px);
-  box-shadow: var(--shadow-ui);
-}
-
-.terms-content section {
-  margin-bottom: 30px;
-}
-
-.terms-content h3 {
-  color: var(--clr-primary);
-  margin-top: 0;
-  margin-bottom: 10px;
-}
-
-.terms-content p {
-  color: var(--clr-text-dark);
-  line-height: 1.6;
-  font-size: 1.2rem;
-}
 /* =========================================
    4. STATS PAGE STYLES
    ========================================= */
