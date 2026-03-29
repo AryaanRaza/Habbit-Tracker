@@ -1,17 +1,23 @@
 document.addEventListener("DOMContentLoaded", () => {
+    // 1. Detect if we are inside the 'settings' folder
+    const isInsideSettings = window.location.pathname.includes('/settings/');
+    
+    // 2. Set the prefix: if in settings, we need '../' to go up one level
+    const prefix = isInsideSettings ? '../' : '';
+
     const footerTemplate = `
     <footer class="bottom-tab-bar">
-        <a href="dashboard.html" class="tab-item" data-match="dashboard">
+        <a href="${prefix}dashboard.html" class="tab-item" data-match="dashboard">
             <span class="material-symbols-rounded">home</span>
             <span class="tab-label">Home</span>
         </a>
 
-        <a href="stats.html" class="tab-item" data-match="stats">
+        <a href="${prefix}stats.html" class="tab-item" data-match="stats">
             <span class="material-symbols-rounded">leaderboard</span>
             <span class="tab-label">Stats</span>
         </a>
 
-        <a href="settings.html" class="tab-item" data-match="settings">
+        <a href="${prefix}settings.html" class="tab-item" data-match="settings">
             <span class="material-symbols-rounded">settings</span>
             <span class="tab-label">Settings</span>
         </a>
@@ -20,21 +26,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
     document.body.insertAdjacentHTML('beforeend', footerTemplate);
     
+    // The rest of your active tab logic
     const currentPath = window.location.pathname.toLowerCase();
     const tabs = document.querySelectorAll('.tab-item');
     
     tabs.forEach(tab => {
         const matchToken = tab.getAttribute('data-match');
         
-        // 1. Handle the Homepage (root or index.html)
-        if (matchToken === 'dashboard' && (currentPath === '/' || currentPath.includes('dashboard.html'))) {
+        if (matchToken === 'dashboard' && (currentPath === '/' || currentPath.includes('dashboard.html') || currentPath.endsWith('habbit-tracker/'))) {
             tab.classList.add('active');
         } 
-        // 2. Handle Stats/Dashboard
         else if (matchToken === 'stats' && currentPath.includes('stats.html')) {
             tab.classList.add('active');
         }
-        // 3. Handle ALL settings pages (matches folder name OR file name)
         else if (matchToken === 'settings' && (currentPath.includes('/settings/') || currentPath.includes('settings.html'))) {
             tab.classList.add('active');
         }
