@@ -1,8 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // 1. Detect if we are inside the 'settings' folder
-    const isInsideSettings = window.location.pathname.includes('/settings/');
+    const path = window.location.pathname.toLowerCase();
     
-    // 2. Set the prefix: if in settings, we need '../' to go up one level
+    // 1. Better detection: Check if 'settings/' is anywhere in the URL
+    const isInsideSettings = path.includes('/settings/');
     const prefix = isInsideSettings ? '../' : '';
 
     const footerTemplate = `
@@ -11,12 +11,10 @@ document.addEventListener("DOMContentLoaded", () => {
             <span class="material-symbols-rounded">home</span>
             <span class="tab-label">Home</span>
         </a>
-
         <a href="${prefix}stats.html" class="tab-item" data-match="stats">
             <span class="material-symbols-rounded">leaderboard</span>
             <span class="tab-label">Stats</span>
         </a>
-
         <a href="${prefix}settings.html" class="tab-item" data-match="settings">
             <span class="material-symbols-rounded">settings</span>
             <span class="tab-label">Settings</span>
@@ -25,21 +23,22 @@ document.addEventListener("DOMContentLoaded", () => {
     `;
 
     document.body.insertAdjacentHTML('beforeend', footerTemplate);
-    
-    // The rest of your active tab logic
-    const currentPath = window.location.pathname.toLowerCase();
+
+    // 2. Updated Active Tab Logic
     const tabs = document.querySelectorAll('.tab-item');
-    
     tabs.forEach(tab => {
         const matchToken = tab.getAttribute('data-match');
         
-        if (matchToken === 'dashboard' && (currentPath === '/' || currentPath.includes('dashboard.html') || currentPath.endsWith('habbit-tracker/'))) {
+        // Match 'dashboard' if the URL ends in dashboard.html
+        if (matchToken === 'dashboard' && path.endsWith('dashboard.html')) {
             tab.classList.add('active');
         } 
-        else if (matchToken === 'stats' && currentPath.includes('stats.html')) {
+        // Match 'stats' if the URL ends in stats.html
+        else if (matchToken === 'stats' && path.endsWith('stats.html')) {
             tab.classList.add('active');
         }
-        else if (matchToken === 'settings' && (currentPath.includes('/settings/') || currentPath.includes('settings.html'))) {
+        // Match 'settings' if we are in the settings folder OR on settings.html
+        else if (matchToken === 'settings' && (isInsideSettings || path.endsWith('settings.html'))) {
             tab.classList.add('active');
         }
     });
