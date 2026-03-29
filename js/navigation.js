@@ -1,17 +1,17 @@
 document.addEventListener("DOMContentLoaded", () => {
     const footerTemplate = `
     <footer class="bottom-tab-bar">
-        <a href="/dashboard.html" class="tab-item" data-match="dashboard">
+        <a href="dashboard.html" class="tab-item" data-match="dashboard">
             <span class="material-symbols-rounded">home</span>
             <span class="tab-label">Home</span>
         </a>
 
-        <a href="/stats.html" class="tab-item" data-match="stats">
+        <a href="stats.html" class="tab-item" data-match="stats">
             <span class="material-symbols-rounded">leaderboard</span>
             <span class="tab-label">Stats</span>
         </a>
 
-        <a href="/settings.html" class="tab-item" data-match="settings">
+        <a href="settings.html" class="tab-item" data-match="settings">
             <span class="material-symbols-rounded">settings</span>
             <span class="tab-label">Settings</span>
         </a>
