@@ -4,46 +4,47 @@ const addBtn = document.querySelector('.btn-add-habit');
 const habitContainer = document.querySelector('.habit-list-container');
 
 // 2. Data State
-let habits = []; 
+let habits = [];
 
-// --- NEW: THE HYDRATION FUNCTION ---
+// 3. Hydrate Existing Habits from HTML
 const initializeExistingHabits = () => {
     const existingCards = document.querySelectorAll('.habit-card');
-    
+
     existingCards.forEach((card, index) => {
         const name = card.querySelector('.habit-name').innerText;
-        const id = Date.now() + index; // Give each existing card a unique ID
-        
-        // Add ID to the HTML element so the click listener can find it
+        const id = Date.now() + index;
+
+        // Give each existing card an ID
         card.setAttribute('data-id', id);
-        
-        // Add it to our JavaScript array
+
+        // Add to JS array
         habits.push({
             id: id,
             name: name,
-            streak: 0, // You can pull the real number from the text if you want!
+            streak: 0,
             total: 0,
             completedToday: false
         });
     });
 };
 
-// Run this immediately when the script loads
+// Run immediately
 initializeExistingHabits();
 
-// 3. The Function to Add a Habit
+// 4. Add Habit Function
 const addHabit = () => {
     const habitText = habitInput.value.trim();
 
-    // Validation: Empty check
+    // Empty validation
     if (habitText === "") {
         alert("Please enter a habit name!");
         return;
     }
 
-    // DUPLICATE CHECK: Compare against our data array
-    // .some() returns true if any item matches the condition
-    const isDuplicate = habits.some(h => h.name.toLowerCase() === habitText.toLowerCase());
+    // Duplicate validation
+    const isDuplicate = habits.some(
+        h => h.name.toLowerCase() === habitText.toLowerCase()
+    );
 
     if (isDuplicate) {
         alert("You're already crushing this habit! No need to add it twice. 🔥");
@@ -51,27 +52,27 @@ const addHabit = () => {
         return;
     }
 
-    // Create a Habit Object (Better for scaling to MERN)
+    // Create habit object
     const newHabit = {
-        id: Date.now(), // Unique ID for each habit
+        id: Date.now(),
         name: habitText,
         streak: 0,
         total: 0,
         completedToday: false
     };
 
-    // Add to our data array
+    // Add to array
     habits.push(newHabit);
 
-    // Render the card to the UI
+    // Render to UI
     createHabitCard(newHabit);
 
-    // Clear and Focus
+    // Reset input
     habitInput.value = "";
     habitInput.focus();
 };
 
-// 4. Helper function to build the HTML (Keeps code clean)
+// 5. Create Habit Card
 const createHabitCard = (habit) => {
     const habitCard = document.createElement('article');
     habitCard.classList.add('habit-card');
@@ -86,29 +87,36 @@ const createHabitCard = (habit) => {
         </div>
         <div class="habit-actions">
             <button class="btn btn-complete">Mark as Done</button>
-            <button class="btn-delete" title="Delete Habit">🗑️</button>
+            <button class="btn-delete" title="Delete Habit">
+                <span class="material-symbols-rounded">delete</span>
+            </button>
         </div>
     `;
 
     habitContainer.appendChild(habitCard);
 };
 
-// 5. Event Listeners (Add Habit)
+// 6. Add Habit Event Listeners
 addBtn.addEventListener('click', (e) => {
     e.preventDefault();
     addHabit();
 });
 
 habitInput.addEventListener('keypress', (e) => {
-    if (e.key === 'Enter') addHabit();
+    if (e.key === 'Enter') {
+        e.preventDefault();
+        addHabit();
+    }
 });
 
-// 6. Event Delegation (Click, MouseOver, and MouseOut)
-
-// --- A. THE CLICK TOGGLE ---
+// 7. Main Click Event Delegation (Complete + Delete)
 habitContainer.addEventListener('click', (e) => {
-    if (e.target.classList.contains('btn-complete')) {
-        const button = e.target;
+    const completeBtn = e.target.closest('.btn-complete');
+    const deleteBtn = e.target.closest('.btn-delete');
+
+    // MARK / UNMARK HABIT
+    if (completeBtn) {
+        const button = completeBtn;
         const card = button.closest('.habit-card');
         const habitId = card.getAttribute('data-id');
         const habitIndex = habits.findIndex(h => h.id == habitId);
@@ -117,14 +125,14 @@ habitContainer.addEventListener('click', (e) => {
             const habit = habits[habitIndex];
 
             if (!habit.completedToday) {
-                // MARK AS DONE
+                // Mark done
                 habit.completedToday = true;
                 habit.streak += 1;
                 habit.total += 1;
                 card.classList.add('is-completed');
                 button.innerText = 'Completed! 🔥';
             } else {
-                // UNMARK (UNDO)
+                // Undo
                 habit.completedToday = false;
                 habit.streak -= 1;
                 habit.total -= 1;
@@ -132,55 +140,56 @@ habitContainer.addEventListener('click', (e) => {
                 button.innerText = 'Mark as Done';
             }
 
-            // Update the text on the card
+            // Update stats text
             const statsText = card.querySelector('.habit-stats');
             statsText.innerText = `Streak: ${habit.streak} days | Total: ${habit.total}`;
         }
-    }
-});
 
-// --- B. THE "RE-TOUCH" HINT (Mouse Over) ---
-habitContainer.addEventListener('mouseover', (e) => {
-    if (e.target.classList.contains('btn-complete')) {
-        const card = e.target.closest('.habit-card');
-        // Only change the text if the habit is ALREADY completed
-        if (card.classList.contains('is-completed')) {
-            e.target.innerText = 'Undo? ↩️';
-        }
+        return; // prevent accidental fall-through
     }
-});
 
-// --- C. RESET TEXT (Mouse Out) ---
-habitContainer.addEventListener('mouseout', (e) => {
-    if (e.target.classList.contains('btn-complete')) {
-        const card = e.target.closest('.habit-card');
-        if (card.classList.contains('is-completed')) {
-            e.target.innerText = 'Completed! 🔥';
-        }
-    }
-});
-
-// --- D. THE DELETE ACTION ---
-habitContainer.addEventListener('click', (e) => {
-    if (e.target.classList.contains('btn-delete')) {
-        const card = e.target.closest('.habit-card');
+    // DELETE HABIT
+    if (deleteBtn) {
+        const card = deleteBtn.closest('.habit-card');
         const habitId = card.getAttribute('data-id');
 
-        // 1. Confirmation (Optional but recommended for premium UX)
         if (confirm("Are you sure you want to delete this habit? 🌪️")) {
-            
-            // 2. Remove from the Data Array
+            // Remove from array
             habits = habits.filter(h => h.id != habitId);
 
-            // 3. Smooth UI Removal
+            // Animate out
             card.style.transform = "translateX(20px)";
             card.style.opacity = "0";
-            
+
             setTimeout(() => {
                 card.remove();
-            }, 300); // Matches the transition time
-            
+            }, 300);
+
             console.log("Habit deleted. Current list:", habits);
         }
+    }
+});
+
+// 8. Hover Effect: Show Undo on Completed Habit
+habitContainer.addEventListener('mouseover', (e) => {
+    const completeBtn = e.target.closest('.btn-complete');
+    if (!completeBtn) return;
+
+    const card = completeBtn.closest('.habit-card');
+
+    if (card.classList.contains('is-completed')) {
+        completeBtn.innerText = 'Undo? ↩️';
+    }
+});
+
+// 9. Hover Out: Restore Completed Text
+habitContainer.addEventListener('mouseout', (e) => {
+    const completeBtn = e.target.closest('.btn-complete');
+    if (!completeBtn) return;
+
+    const card = completeBtn.closest('.habit-card');
+
+    if (card.classList.contains('is-completed')) {
+        completeBtn.innerText = 'Completed! 🔥';
     }
 });

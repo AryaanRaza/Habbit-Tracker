@@ -4,12 +4,24 @@
   padding: 0;
   box-sizing: border-box;
 }
+
 :root {
-  /* --- Brand Colors --- */
-  --clr-primary: #ff5f7e; /* Main Coral Pink */
-  --clr-primary-light: #ffd2e2; /* Peach Fade */
-  --clr-secondary: #5b42f3; /* Royal Blue/Purple accent */
-  --clr-accent-neon: #00ddeb; /* Cyan highlight */
+  /* =========================================
+     HABITFLOW DREAMY GLASSMORPHISM PALETTE
+     ========================================= */
+
+  /* --- Brand Core --- */
+  --clr-primary: #f3b6da; /* soft rose pink */
+  --clr-primary-strong: #ec8fc3; /* stronger pink accent */
+  --clr-primary-light: #f8eaff; /* pearl blush */
+
+  --clr-secondary: #c7b8ff; /* pastel lavender */
+  --clr-secondary-deep: #8e7bff; /* richer dreamy purple */
+
+  --clr-accent-blue: #d7e8ff; /* powder blue */
+  --clr-accent-periwinkle: #bfd1ff; /* periwinkle */
+  --clr-accent-ice: #eef5ff; /* icy blue */
+  --clr-accent-neon: #9fe7ff; /* soft cyan glow */
 
   /* --- Typography --- */
   --font-brand: "Leckerli One", cursive;
@@ -17,47 +29,194 @@
   --font-main: "Inter", sans-serif;
 
   /* --- Font Sizes --- */
-  --fs-logo: 10rem;
+  --fs-logo: clamp(4rem, 10vw, 10rem);
   --fs-h1: 2.5rem;
   --fs-h2: 1.5rem;
 
-  /* --- Text & Contrast --- */
-  --clr-text-main: #ffffff; /* Primary headers */
-  --clr-text-wine: #8b3a3a; /* Wine color for labels/links */
-  --clr-text-dark: #2b0633; /* Deep purple for small subtext */
+  /* --- Text --- */
+  --clr-text-main: #2f2557; /* main readable text */
+  --clr-text-heading: #31265c;
+  --clr-text-dark: #4f4678;
+  --clr-text-soft: #7b739e;
+  --clr-text-white: #ffffff;
+  --clr-text-wine: #7b4f88; /* kept for compatibility with your old classes */
 
-  /* --- Interactive & Surfaces --- */
-  --clr-btn-base: rgb(1, 1, 57); /* Deep Navy for button depth */
-  --clr-btn-gst: #ff5f7e80;
-  --bg-card: rgba(255, 255, 255, 0.2);
-  --bg-glass: rgba(255, 255, 255, 0.3);
+  /* --- Glass Surfaces --- */
+  --bg-card: rgba(255, 255, 255, 0.22);
+  --bg-card-strong: rgba(255, 255, 255, 0.34);
+  --bg-glass: rgba(255, 255, 255, 0.28);
+  --bg-glass-heavy: rgba(255, 255, 255, 0.4);
+  --border-glass: rgba(255, 255, 255, 0.38);
+  --glass-border: rgba(255, 255, 255, 0.38); /* alias so old code works */
 
-  /* --- Gradients & Shadows --- */
-  --grad-page: linear-gradient(
-    180deg,
-    var(--clr-primary) 0%,
-    var(--clr-primary-light) 100%
+  /* --- Buttons --- */
+  --clr-btn-base: #7b68ff;
+  --clr-btn-hover: #6754f3;
+  --clr-btn-gst: rgba(123, 104, 255, 0.22);
+
+  /* --- Backgrounds --- */
+  --bg-base: #f8f4ff;
+  --bg-lilac: #eadfff;
+  --bg-pink: #f8d4ea;
+  --bg-blue: #dce9ff;
+  --bg-periwinkle: #cabdff;
+
+  /* --- Main Page Gradient --- */
+  --grad-page:
+    radial-gradient(
+      circle at 18% 22%,
+      rgba(255, 220, 239, 0.6),
+      transparent 26%
+    ),
+    radial-gradient(
+      circle at 82% 18%,
+      rgba(191, 216, 255, 0.55),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 55% 78%,
+      rgba(217, 204, 255, 0.42),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 25% 82%,
+      rgba(255, 255, 255, 0.2),
+      transparent 18%
+    ),
+    linear-gradient(
+      135deg,
+      #f8f4ff 0%,
+      #eadfff 28%,
+      #f7d2ea 55%,
+      #dbe9ff 82%,
+      #cabdff 100%
+    );
+
+  /* --- CTA Gradient --- */
+  --grad-btn: linear-gradient(135deg, #7b68ff 0%, #9c8bff 45%, #9fe7ff 100%);
+
+  /* --- Accent Gradient --- */
+  --grad-accent: linear-gradient(
+    135deg,
+    rgba(243, 182, 218, 0.9),
+    rgba(199, 184, 255, 0.9),
+    rgba(215, 232, 255, 0.9)
   );
-  --grad-neon: linear-gradient(
-    144deg,
-    #af40ff,
-    var(--clr-secondary) 50%,
-    var(--clr-accent-neon)
-  );
-  --shadow-ui: 0 10px 30px rgba(0, 0, 0, 0.08);
+
+  /* --- Glow / Shadow --- */
+  --shadow-ui: 0 12px 35px rgba(126, 102, 190, 0.12);
+  --shadow-soft: 0 8px 24px rgba(160, 140, 255, 0.14);
+  --shadow-btn: 0 10px 24px rgba(123, 104, 255, 0.25);
+  --shadow-glow: 0 0 40px rgba(200, 182, 255, 0.22);
+  --clr-primary-glow: rgba(243, 182, 218, 0.35); /* fixes your broken var */
+
+  /* --- Radius --- */
+  --radius-xl: 20px;
+  --radius-2xl: 28px;
+  --radius-3xl: 36px;
 }
 /* Global reset for all links in HabitFlow */
 a {
   text-decoration: none;
 }
+
 body {
   background: var(--grad-page);
   color: var(--clr-text-dark);
-  box-sizing: border-box;
+  font-family: var(--font-main);
   min-height: 100vh;
+
+  position: relative;
+  padding-bottom: 80px;
+  overflow-x: hidden;
+}
+/* =========================================
+   SHARED BACKGROUND + GLASS UTILITIES
+   ========================================= */
+
+.page-shell,
+.auth-shell {
+  position: relative;
+  z-index: 2;
+}
+
+.page-shell {
+  min-height: 100vh;
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 48px 20px 60px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+}
+
+.auth-shell {
+  min-height: 100vh;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.glass-panel {
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  box-shadow: var(--shadow-ui), var(--shadow-glow);
+  border-radius: 28px;
+}
+
+/* Floating dreamy background orbs */
+.bg-orb {
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(14px);
+  z-index: 0;
+  pointer-events: none;
+  animation: orbFloat 12s ease-in-out infinite;
+}
+
+.orb-1 {
+  width: 220px;
+  height: 220px;
+  top: 8%;
+  left: 8%;
+  background: rgba(255, 192, 231, 0.45);
+}
+
+.orb-2 {
+  width: 280px;
+  height: 280px;
+  top: 16%;
+  right: 10%;
+  background: rgba(188, 210, 255, 0.42);
+  animation-delay: 2s;
+}
+
+.orb-3 {
+  width: 240px;
+  height: 240px;
+  bottom: 8%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(202, 189, 255, 0.35);
+  animation-delay: 4s;
+}
+
+@keyframes orbFloat {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-18px);
+  }
 }
 
 /* The Foundation */
@@ -77,26 +236,24 @@ body {
 
 .btn-glow {
   font-size: 1.3rem;
-  border-radius: 50px;
-  border: 4px solid transparent;
-  background-image:
-    linear-gradient(#010139, #010139),
-    linear-gradient(144deg, #af40ff, #5b42f3 50%, #00ddeb);
-  background-origin: border-box;
-  background-clip: padding-box, border-box;
-  color: var(--clr-text-main);
-  width: 100%; /* Keeps login buttons full-width */
-
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  background: var(--grad-btn);
+  color: var(--clr-text-white);
+  width: 100%;
+  box-shadow: var(--shadow-btn);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   transition:
-    transform 0.2s ease,
+    transform 0.25s ease,
     filter 0.3s ease,
-    background 0.4s ease;
+    box-shadow 0.3s ease;
 }
 
 .btn-glow:hover {
-  background-image: var(--grad-neon);
-  filter: brightness(1.2);
-  transform: translateY(-2px);
+  transform: translateY(-3px) scale(1.01);
+  filter: brightness(1.04);
+  box-shadow: 0 14px 30px rgba(123, 104, 255, 0.3);
 }
 
 /* Style for guest link as button */
@@ -113,7 +270,7 @@ body {
   display: inline-block;
   text-align: center;
   text-decoration: none;
-  color: var(--clr-text-wine);
+  color: var(--clr-primary-strong);
   border: 2px solid var(--clr-btn-gst);
   background: var(--bg-glass);
   font-weight: 700;
@@ -151,11 +308,27 @@ body {
 
 .input-group input {
   padding: 15px;
-  border-radius: 12px;
-  border: none;
-  background: var(--clr-text-main);
+  border-radius: 14px;
+  border: 1px solid var(--border-glass);
+  background: rgba(255, 255, 255, 0.72);
+  color: var(--clr-text-main);
   font-size: 1rem;
   outline: none;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35);
+  transition:
+    border-color 0.25s ease,
+    box-shadow 0.25s ease,
+    background 0.25s ease;
+}
+
+.input-group input::placeholder {
+  color: var(--clr-text-soft);
+}
+
+.input-group input:focus {
+  border-color: rgba(142, 123, 255, 0.5);
+  background: rgba(255, 255, 255, 0.88);
+  box-shadow: 0 0 0 4px rgba(159, 231, 255, 0.18);
 }
 
 /* Controls and Buttons */
@@ -173,7 +346,7 @@ body {
   display: flex;
   align-items: center;
   gap: 8px;
-  color: var(--clr-text-wine);
+  color: var(--clr-text-soft);
   cursor: pointer;
 }
 
@@ -197,16 +370,21 @@ body {
 /* FOOTER */
 
 .bottom-tab-bar {
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-top: 1px solid var(--border-glass);
+  box-shadow: 0 -6px 20px rgba(126, 102, 190, 0.08);
   position: fixed;
   bottom: 0;
   left: 0;
   width: 100%;
   height: 70px;
-  background: #f7f4f5;
-  display: flex;
+  display: flex !important;
   justify-content: space-around;
   align-items: center;
   border-top: 1px solid rgba(146, 17, 17, 0.05);
+  z-index: 100;
 }
 
 .tab-item {
@@ -232,17 +410,17 @@ body {
 .material-symbols-rounded {
   font-variation-settings:
     "FILL" 0,
-    /* 0 for outlined, 1 for solid */ "wght" 800,
-    /* Thickness of the lines */ "grad" 0,
+    "wght" 800,
+    "grad" 0,
     "opsz" 24;
   font-size: 2rem;
   transition: all 0.3s ease;
-  color: #30021d;
+  color: var(--clr-text-soft);
 }
 
 .tab-item.active .material-symbols-rounded {
   font-variation-settings:
     "FILL" 1,
     "wght" 600;
-  color: var(--clr-primary);
+  color: var(--clr-secondary-deep);
 }

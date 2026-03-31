@@ -2,120 +2,100 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home | Habit Tracker</title>
-    <link rel="stylesheet" href="css/global.css">
-    <link rel="stylesheet" href="css/style.css">
-    <!-- <link rel="stylesheet" href="css/dashboard.css"> -->
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home | Habit Tracker</title>
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/style.css">
+  <!-- <link rel="stylesheet" href="css/dashboard.css"> -->
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 </head>
 
 <body class="dashboard-container">
+  <div class="bg-orb orb-1"></div>
+  <div class="bg-orb orb-2"></div>
+  <div class="bg-orb orb-3"></div>
 
-    <!-- Header Section -->
-    <header class="dash-header">
-        <h1 class="dash-title">HabitFlow</h1>
-        <h2 class="dash-tag">Build better habits,one day at a time</h2>
-    </header>
-    <main class="dash-wrapper">
-        <!-- Quick Stats -->
-        <section class="stats-overview">
-            <div class="stat-card">
-                <span class="stat-icon">🔥</span>
-                <span class="stat-label">
-                    <p>Current Streak</p>
-                </span>
-                <span class="stat-value">
-                    <strong>15</strong>
-                </span>
-            </div>
-            <div class="stat-card">
-                <span class="stat-icon">🏆</span>
-                <span class="stat-label">
-                    <p>Best Streak</p>
-                </span>
-                <span class="stat-value"><strong>12</strong></span>
-            </div>
-            <div class="stat-card">
-                <span class="stat-icon">✅</span>
-                <span class="stat-label">
-                    <p>Total Completion</p>
-                </span>
-                <span class="stat-value"><strong>28</strong></span>
-            </div>
-        </section>
+  <header class="dash-header">
+    <h1 class="dash-title">HabitFlow</h1>
+    <h2 class="dash-tag">Build better habits, one day at a time</h2>
+  </header>
 
-        <!-- Input Section -->
-        <section class="habit-input-area">
-            <h2 class="section-label">Add a New Habit</h2>
-            <div class="input-wrapper">
-                <!-- <label for="text">Email Address</label> -->
-                <input type="text" class="habit-field" placeholder="Enter Habit">
-                <button type="submit" class="btn btn-add-habit">Add Habit</button>
-            </div>
-        </section>
+  <main class="dash-wrapper">
+    <!-- Quick Stats -->
+    <section class="stats-overview">
+      <div class="stat-card">
+        <span class="stat-icon">🔥</span>
+        <span class="stat-label">
+          <p>Current Streak</p>
+        </span>
+        <span class="stat-value"><strong>15</strong></span>
+      </div>
 
-        <!-- The Cards -->
-        <section class="habit-list-container">
-            <h2 class="section-label">My Habits</h2>
+      <div class="stat-card">
+        <span class="stat-icon">🏆</span>
+        <span class="stat-label">
+          <p>Best Streak</p>
+        </span>
+        <span class="stat-value"><strong>12</strong></span>
+      </div>
 
-            <!-- Individual Cards -->
-            <article class="habit-card">
-                <div class="habit-info">
-                    <h3 class="habit-name">Code for 1 Hour</h3>
-                    <div class="habit-meta">
-                        <p class="habit-stats">Streak: 5 days | Total: 14</p>
-                    </div>
-                </div>
-                <div class="habit-actions">
-                    <button class="btn btn-complete">Mark as Done</button>
-                    <button class="btn-delete" title="Delete Habit">
-                        <span class="material-symbols-rounded">delete</span>
-                    </button>
-                </div>
-            </article>
+      <div class="stat-card">
+        <span class="stat-icon">✅</span>
+        <span class="stat-label">
+          <p>Total Completion</p>
+        </span>
+        <span class="stat-value"><strong>28</strong></span>
+      </div>
+    </section>
 
-            <article class="habit-card">
-                <div class="habit-info">
-                    <h3 class="habit-name">Sleep</h3>
-                    <div class="habit-meta">
-                        <p class="habit-stats">Streak: 5 days | Total: 14</p>
-                    </div>
-                </div>
-                <div class="habit-actions">
-                    <button class="btn btn-complete">Mark as Done</button>
-                    <button class="btn-delete" title="Delete Habit">
-                        <span class="material-symbols-rounded">delete</span>
-                    </button>
-                </div>
-            </article>
+    <!-- Mascot Panel -->
+    <!-- <section class="mascot-panel">
+      <div class="mascot-bubble">
+        <img src="img/streakasaur-hero.png" alt="Streakasaur" class="dash-mascot">
+        <div class="mascot-text">
+          <p class="mascot-mood">Ready to crush today’s habits? ✨</p>
+        </div>
+      </div>
+    </section> -->
 
+    <!-- Input Section -->
+    <section class="habit-input-area">
+      <h2 class="section-label">Add a New Habit</h2>
+      <div class="input-wrapper">
+        <input type="text" class="habit-field" placeholder="Enter Habit">
+        <button type="submit" class="btn btn-add-habit">Add Habit</button>
+      </div>
+    </section>
 
-            <article class="habit-card">
-                <div class="habit-info">
-                    <h3 class="habit-name">Morning Walk</h3>
-                    <div class="habit-meta">
-                        <p class="habit-stats">Streak: 5 days | Total: 14</p>
-                    </div>
-                </div>
-                <div class="habit-actions">
-                    <button class="btn btn-complete">Mark as Done</button>
-                    <button class="btn-delete" title="Delete Habit">
-                        <span class="material-symbols-rounded">delete</span>
-                    </button>
-                </div>
-            </article>
-            <!-- Remainng Cards -->
-            <script src="/js/dashboard.js"></script>
-            <!-- .............. -->
-        </section>
-        <footer class="dash-footer">
-            <p class="motivation-text">Keep it up! Stay consistent!</p>
-            <script src="/js/navigation.js"></script>
-        </footer>
-    </main>
+    <!-- Habit Cards -->
+    <section class="habit-list-container">
+      <h2 class="section-label">My Habits</h2>
+
+      <article class="habit-card">
+        <div class="habit-info">
+          <h3 class="habit-name">Code for 1 Hour</h3>
+          <div class="habit-meta">
+            <p class="habit-stats">Streak: 5 days | Total: 14</p>
+          </div>
+        </div>
+        <div class="habit-actions">
+          <button class="btn btn-complete">Mark as Done</button>
+          <button class="btn-delete" title="Delete Habit">
+            <span class="material-symbols-rounded">delete</span>
+          </button>
+        </div>
+      </article>
+    </section>
+
+    <footer class="dash-footer">
+      <p class="motivation-text">Keep it up! Stay consistent!</p>
+    </footer>
+  </main>
+
+  <script src="js/navigation.js"></script>
+  <script src="js/dashboard.js"></script>
 </body>
 
 </html>

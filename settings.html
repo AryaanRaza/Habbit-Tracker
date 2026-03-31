@@ -12,48 +12,54 @@
 </head>
 
 <body class="settings-page">
-    <div class="settings-card">
-        <header class="settings-header">
+    <main class="settings-layout">
+        <header class="settings-branding">
             <h1>HabitFlow</h1>
-            <h2>Settings</h2>
+            <p>Manage your account and app details.</p>
         </header>
 
-        <nav class="settings-list">
-            <a href="settings/accupdate.html" class="settings-item">
-                <div class="item-content">
-                    <span class="item-icon">👤</span>
-                    <span class="item-text">Account</span>
-                </div>
-                <span class="chevron">›</span>
-            </a>
+        <div class="settings-card glass-panel">
+            <header class="settings-header">
+                <h2>Settings</h2>
+            </header>
 
-            <a href="settings/terms.html" class="settings-item">
-                <div class="item-content">
-                    <span class="item-icon">📜</span>
-                    <span class="item-text">Terms and Conditions</span>
-                </div>
-                <span class="chevron">›</span>
-            </a>
+            <nav class="settings-list">
+                <a href="settings/accupdate.html" class="settings-item">
+                    <div class="item-content">
+                        <span class="item-icon">👤</span>
+                        <span class="item-text">Account</span>
+                    </div>
+                    <span class="chevron">›</span>
+                </a>
 
-            <a href="settings/policy.html" class="settings-item">
-                <div class="item-content">
-                    <span class="item-icon">🔒</span>
-                    <span class="item-text">Policy</span>
-                </div>
-                <span class="chevron">›</span>
-            </a>
+                <a href="settings/terms.html" class="settings-item">
+                    <div class="item-content">
+                        <span class="item-icon">📜</span>
+                        <span class="item-text">Terms and Conditions</span>
+                    </div>
+                    <span class="chevron">›</span>
+                </a>
 
-            <a href="settings/about.html" class="settings-item">
-                <div class="item-content">
-                    <span class="item-icon">ℹ️</span>
-                    <span class="item-text">About App</span>
-                </div>
-                <span class="chevron">›</span>
-            </a>
-        </nav>
-    </div>
-    <script src="/js/navigation.js"></script>
+                <a href="settings/policy.html" class="settings-item">
+                    <div class="item-content">
+                        <span class="item-icon">🔒</span>
+                        <span class="item-text">Privacy Policy</span>
+                    </div>
+                    <span class="chevron">›</span>
+                </a>
 
+                <a href="settings/about.html" class="settings-item">
+                    <div class="item-content">
+                        <span class="item-icon">ℹ️</span>
+                        <span class="item-text">About App</span>
+                    </div>
+                    <span class="chevron">›</span>
+                </a>
+            </nav>
+        </div>
+    </main>
+
+    <script src="js/navigation.js"></script>
 </body>
 
 </html>
