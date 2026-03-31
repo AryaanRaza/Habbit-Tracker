@@ -1101,6 +1101,16 @@ body.auth-page {
   gap: 10px;
 }
 
+.habit-mascot {
+  width: 102px;
+  height: 102px;
+  object-fit: contain;
+  flex-shrink: 0;
+  display: block;
+  margin: 0 4px;
+  pointer-events: none;
+}
+
 .btn-complete {
   background: linear-gradient(135deg, #8df0ff 0%, #64d9ff 100%);
   color: #2a2d55;
