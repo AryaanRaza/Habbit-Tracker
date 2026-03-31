@@ -38,7 +38,7 @@ body.landing-page {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 50px;
+  margin-bottom: 22px;
 }
 
 .landing-mascot {
@@ -114,7 +114,7 @@ body.auth-page {
   padding: 34px 34px 30px;
   border-radius: 28px;
   width: 100%;
-  max-width: 460px;
+  max-width: 600px;
   position: relative;
 }
 
@@ -439,7 +439,22 @@ body.auth-page {
   }
 }
 
+/* =========================================
+   3.1. SUB-SETTINGS (About, Privacy, etc.)
+   ========================================= */
 
+/* This applies ONLY to pages with the .sub-settings-page class */
+.sub-settings-page .settings-header {
+  text-align: center;
+  width: 100%;
+}
+.sub-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin-top: 20px;
+}
 .header-top {
   width: 100%;
   max-width: 800px;
@@ -449,6 +464,11 @@ body.auth-page {
   align-items: center;
 }
 
+.sub-header h2 {
+  margin-top: 15px; /* Adds space between HabitFlow and Privacy Policy */
+  text-align: center;
+  width: 100%;
+}
 .back-btn {
   position: absolute;
   /* Adjust top/left to ensure it doesn't overlap your centered branding */
@@ -471,15 +491,14 @@ body.auth-page {
 
   /* Use your UI shadow for depth */
   box-shadow: var(--shadow-ui);
-  transition:
-    transform 0.25s ease,
-    background 0.25s ease;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   z-index: 10;
 }
 
-.back-btn .material-symbols-rounded {
+.back-btn span {
+  /* FIX: Changed from primary-glow (transparent) to primary-strong (solid) */
   color: var(--clr-primary-strong);
-  font-size: 20px;
+  font-size: 1.4rem !important;
   font-weight: 900;
   transition: color 0.3s ease;
 }
@@ -487,8 +506,8 @@ body.auth-page {
 /* Hover Effect: The "HabitGlow" special */
 .back-btn:hover {
   /* Gradient background on hover to match your brand */
-  transform: translateY(-2px);
-  background: rgba(255, 255, 255, 0.16);
+  background: var(--grad-btn);
+  transform: scale(1.15) rotate(-5deg);
   border-color: rgba(255, 255, 255, 0.5);
   box-shadow:
     0 0 20px var(--clr-primary-glow),
@@ -497,6 +516,7 @@ body.auth-page {
 
 .back-btn:hover span {
   color: var(--clr-text-heading);
+  /* Add a little text shadow to the arrow for extra polish */
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
@@ -600,12 +620,20 @@ body.auth-page {
   text-decoration: none;
   color: var(--clr-text-main);
   background: rgba(255, 255, 255, 0.1);
-  border: 1.5px solid rgba(233, 191, 239, 0.388);
+  border: 1px solid rgba(255, 255, 255, 0.16);
   transition:
     transform 0.25s ease,
     background 0.25s ease;
 }
 
+.back-btn:hover {
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.16);
+}
+
+.back-btn .material-symbols-rounded {
+  font-size: 20px;
+}
 
 .sub-page-title h2 {
   margin: 0 0 6px 0;
@@ -699,7 +727,6 @@ body.auth-page {
     height: 38px;
     border-radius: 12px;
     top: 5px;
-    left: 12px;
   }
 
   .sub-page-title h2 {
@@ -887,7 +914,7 @@ body.auth-page {
 }
 
 /* =========================================
-   5. DASHBOARD PAGE STYLES
+   4. DASHBOARD PAGE STYLES
    ========================================= */
 
 .dashboard-container {
@@ -1046,7 +1073,7 @@ body.auth-page {
   gap: 16px;
   background: rgba(255, 255, 255, 0.65);
   border: 1px solid rgba(255, 255, 255, 0.4);
-  border-radius: 20px;
+  border-radius: 30px;
   padding: 18px 20px;
   box-shadow: 0 8px 20px rgba(140, 120, 220, 0.08);
 }
@@ -1106,7 +1133,7 @@ body.auth-page {
   transition: all 0.25s ease;
   border-radius: 14px;
   opacity: 1;
-  flex-shrink: 1;
+  flex-shrink: 0;
 }
 
 .btn-delete .material-symbols-rounded {
@@ -1153,13 +1180,26 @@ body.auth-page {
   }
 
   .habit-card {
-    flex-direction: column;
-    align-items: flex-start;
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
   }
 
   .habit-actions {
-    width: 100%;
-    justify-content: flex-end;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+  }
+
+  .btn-complete {
+    min-width: 112px;
+    padding: 10px 14px;
+    font-size: 0.78rem;
+  }
+
+  .btn-delete {
+    flex-shrink: 0;
   }
 }
 
@@ -1178,8 +1218,40 @@ body.auth-page {
     border-radius: 16px;
     width: 100%;
   }
+  .habit-card {
+    padding: 14px 16px;
+    gap: 10px;
+  }
+
+  .habit-name {
+    font-size: 0.95rem;
+  }
+
+  .habit-stats {
+    font-size: 0.74rem;
+  }
+
+  .habit-actions {
+    gap: 6px;
+    flex-shrink: 0;
+  }
 
   .btn-complete {
-    min-width: 110px;
+    min-width: 92px;
+    padding: 8px 12px;
+    font-size: 0.72rem;
+    white-space: nowrap;
+    border-radius: 12px;
+  }
+
+  .btn-delete {
+    width: 38px;
+    height: 38px;
+    padding: 0;
+    border-radius: 12px;
+  }
+
+  .btn-delete .material-symbols-rounded {
+    font-size: 20px;
   }
 }
