@@ -590,6 +590,21 @@ body.auth-page {
   z-index: 1;
 }
 
+.back-btn {
+  width: 42px;
+  height: 42px;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  border-radius: 14px;
+  text-decoration: none;
+  color: var(--clr-text-main);
+  background: rgba(255, 255, 255, 0.1);
+  border: 1.5px solid rgba(233, 191, 239, 0.388);
+  transition:
+    transform 0.25s ease,
+    background 0.25s ease;
+}
 
 
 .sub-page-title h2 {
