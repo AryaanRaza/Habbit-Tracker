@@ -1102,8 +1102,8 @@ body.auth-page {
 }
 
 .habit-mascot {
-  width: 102px;
-  height: 102px;
+  width: 80px;
+  height: 80px;
   object-fit: contain;
   flex-shrink: 0;
   display: block;
@@ -1245,6 +1245,11 @@ body.auth-page {
     gap: 6px;
     flex-shrink: 0;
   }
+  .habit-mascot {
+  width: 40px;
+  height: 40px;
+
+}
 
   .btn-complete {
     min-width: 92px;
