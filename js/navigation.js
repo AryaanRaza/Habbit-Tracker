@@ -7,6 +7,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const footerTemplate = `
     <footer class="bottom-tab-bar">
+    <div class="sidebar-mascot">
+        <img src="${prefix}img/streakasaur-sidebar.png" alt="Mascot" />
+      </div>
         <a href="${prefix}dashboard.html" class="tab-item" data-match="dashboard">
             <span class="material-symbols-rounded">home</span>
             <span class="tab-label">Home</span>

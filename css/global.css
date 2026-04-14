@@ -377,7 +377,7 @@ body {
 
 /* DEFAULT = MOBILE FLOATING (Telegram Style) */
 .bottom-tab-bar {
-  position: fixed ;
+  position: fixed;
   bottom: 14px;
   left: 50%;
   transform: translateX(-50%);
@@ -453,6 +453,23 @@ body {
 }
 
 @media (min-width: 900px) {
+  .sidebar-mascot {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 20px;
+    padding: 10px;
+  }
+
+  .sidebar-mascot img {
+    width: 200px;
+    height: auto;
+  }
+
+  .sidebar-mascot .mascot-text {
+    font-size: 12px;
+    color: var(--clr-text-soft);
+    margin-top: 6px;
+  }
   /* Move container to LEFT */
   .bottom-tab-bar {
     position: fixed;
