@@ -414,10 +414,6 @@ body {
   opacity: 0.8;
   transition: opacity 0.3s ease;
 }
-/* Controls size of icon */
-.tab-item span:first-child {
-  font-size: 30px;
-}
 
 .tab-item.active {
   opacity: 1;
@@ -425,23 +421,29 @@ body {
   transform: scale(0.92);
 }
 
-.bottom-tab-bar .tab-item span.material-symbols-rounded {
+/* Default (inactive icons) */
+.bottom-tab-bar .material-symbols-rounded {
+  font-size: 24px;
+  color: var(--clr-text-soft);
+
   font-variation-settings:
     "FILL" 0,
-    "wght" 600,
-    "grad" 0,
+    "wght" 500,
+    "GRAD" 0,
     "opsz" 24;
 
-  font-size: 25px; /* 👈 sweet spot */
   transition: all 0.25s ease;
-  color: var(--clr-text-soft);
 }
 
+/* Active icon (FILLED + purple) */
 .tab-item.active .material-symbols-rounded {
+  color: var(--clr-secondary-deep);
+
   font-variation-settings:
     "FILL" 1,
-    "wght" 600;
-  color: var(--clr-secondary-deep);
+    "wght" 700,
+    "GRAD" 0,
+    "opsz" 24;
 }
 
 @media (min-width: 600px) {
