@@ -120,6 +120,11 @@ a {
   text-decoration: none;
 }
 
+html,
+body {
+  height: auto;
+}
+
 body {
   background: var(--grad-page);
   color: var(--clr-text-dark);
@@ -129,6 +134,7 @@ body {
   position: relative;
   padding-bottom: 80px;
   overflow-x: hidden;
+  padding-bottom: 100px;
 }
 /* =========================================
    SHARED BACKGROUND + GLASS UTILITIES
@@ -369,22 +375,28 @@ body {
 
 /* FOOTER */
 
+/* DEFAULT = MOBILE FLOATING (Telegram Style) */
 .bottom-tab-bar {
-  background: rgba(255, 255, 255, 0.72);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border-top: 1px solid var(--border-glass);
-  box-shadow: 0 -6px 20px rgba(126, 102, 190, 0.08);
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 70px;
-  display: flex !important;
+  position: fixed !important;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 420px;
+  height: 65px;
+
+  display: flex;
   justify-content: space-around;
   align-items: center;
-  border-top: 1px solid rgba(146, 17, 17, 0.05);
-  z-index: 100;
+
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(20px);
+  border-radius: 24px;
+
+  box-shadow: 0 8px 30px rgba(126, 102, 190, 0.15);
+  z-index: 9999;
+
+  pointer-events: auto;
 }
 
 .tab-item {
@@ -423,4 +435,66 @@ body {
     "FILL" 1,
     "wght" 600;
   color: var(--clr-secondary-deep);
+}
+
+@media (min-width: 600px) {
+  .bottom-tab-bar {
+    max-width: 500px;
+  }
+}
+
+@media (min-width: 900px) {
+  /* Move container to LEFT */
+  .bottom-tab-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    transform: none;
+
+    width: 220px;
+    height: 100vh;
+
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+
+    padding: 20px 10px;
+    border-radius: 0;
+
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(20px);
+  }
+
+  /* Tabs become row items */
+  .tab-item {
+    flex-direction: row;
+    width: 100%;
+    padding: 12px 16px;
+    border-radius: 14px;
+    gap: 12px;
+  }
+
+  .tab-label {
+    font-size: 14px;
+  }
+
+  /* Active tab highlight like your mock */
+  .tab-item.active {
+    background: linear-gradient(
+      135deg,
+      rgba(126, 102, 190, 0.25),
+      rgba(120, 180, 255, 0.25)
+    );
+    transform: none;
+  }
+
+  /* Hide bottom indicator on desktop */
+  .tab-indicator {
+    display: none;
+  }
+
+  /* Push main content right */
+  body:not(.landing-page,.auth-page) {
+    margin-left: 220px;
+  }
 }
