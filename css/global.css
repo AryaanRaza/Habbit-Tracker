@@ -373,9 +373,10 @@ body {
   text-decoration: underline;
 }
 
-/* FOOTER */
+/* ================================
+   MOBILE DEFAULT (BOTTOM BAR)
+================================ */
 
-/* DEFAULT = MOBILE FLOATING (Telegram Style) */
 .bottom-tab-bar {
   position: fixed;
   bottom: 14px;
@@ -384,44 +385,47 @@ body {
 
   width: 88%;
   max-width: 380px;
-  height: 58px; /* 👈 smaller = cleaner */
+  height: 58px;
 
   display: flex;
   justify-content: space-around;
   align-items: center;
 
+  padding: 6px;
+  border-radius: 999px;
+
   background: rgba(255, 255, 255, 0.65);
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
 
-  border-radius: 999px; /* 👈 perfect pill */
-
   box-shadow:
-    0 6px 20px rgba(126, 102, 190, 0.12),
-    inset 0 1px 0 rgba(255, 255, 255, 0.4);
-
-  padding: 6px;
+    0 10px 30px rgba(126, 102, 190, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.2);
 
   z-index: 9999;
 }
 
+/* Tabs */
 .tab-item {
+  position: relative; /* needed for glow */
   display: flex;
   flex-direction: column;
   align-items: center;
-  text-decoration: none;
+
   font-size: 10px;
+  text-decoration: none;
+
   opacity: 0.8;
-  transition: opacity 0.3s ease;
+  transition: all 0.2s ease;
 }
 
-.tab-item.active {
-  opacity: 1;
-  filter: drop-shadow(0 0 8px var(--clr-primary));
-  transform: scale(0.92);
+/* Tap animation */
+.tab-item:active {
+  transform: scale(0.9);
 }
 
-/* Default (inactive icons) */
+/* Icon base */
 .bottom-tab-bar .material-symbols-rounded {
   font-size: 24px;
   color: var(--clr-text-soft);
@@ -435,7 +439,14 @@ body {
   transition: all 0.25s ease;
 }
 
-/* Active icon (FILLED + purple) */
+/* Active state */
+.tab-item.active {
+  opacity: 1;
+  transform: scale(0.92);
+  filter: drop-shadow(0 0 8px var(--clr-primary));
+}
+
+/* Active icon */
 .tab-item.active .material-symbols-rounded {
   color: var(--clr-secondary-deep);
 
@@ -444,23 +455,45 @@ body {
     "wght" 700,
     "GRAD" 0,
     "opsz" 24;
+
+  transform: scale(1.15);
 }
 
-/* DESKTOP (everything ABOVE 900px) */
-@media (max-width: 9999px) and (min-width: 900px) {
+/* Glow behind active icon */
+.tab-item.active::before {
+  content: "";
+  position: absolute;
+  width: 40px;
+  height: 40px;
+
+  background: radial-gradient(
+    circle,
+    rgba(142, 123, 255, 0.3),
+    transparent 70%
+  );
+
+  border-radius: 50%;
+  z-index: -1;
+}
+
+/* ================================
+   DESKTOP SIDEBAR
+================================ */
+
+@media (min-width: 900px) {
 
   .bottom-tab-bar {
-    position: fixed;
     top: 0;
     left: 0;
+    bottom: auto;
     transform: none;
 
     width: 220px;
     height: 100vh;
 
     flex-direction: column;
-    justify-content: flex-start;
     align-items: flex-start;
+    justify-content: flex-start;
 
     padding: 20px 10px;
     border-radius: 0;
@@ -473,8 +506,8 @@ body {
     flex-direction: row;
     width: 100%;
     padding: 12px 16px;
-    border-radius: 14px;
     gap: 12px;
+    border-radius: 14px;
   }
 
   .tab-label {
@@ -482,30 +515,47 @@ body {
   }
 
   .tab-item.active {
+    transform: none;
+
     background: linear-gradient(
       135deg,
       rgba(126, 102, 190, 0.25),
       rgba(120, 180, 255, 0.25)
     );
-    transform: none;
+
+    border: 1px solid rgba(255, 255, 255, 0.4);
   }
 
+  /* Mascot */
   .sidebar-mascot {
-    display: block;
     width: 100%;
     text-align: center;
-    margin-bottom: 20px;
-    padding: 10px;
+    margin-bottom: 30px;
   }
 
   .sidebar-mascot img {
-    width: 140px; /* 👈 200 was too big */
+    width: 140px;
+
+    transform: translateX(20px);
+    filter: drop-shadow(0 10px 20px rgba(0,0,0,0.15));
+
+    animation: floatMascot 4s ease-in-out infinite;
   }
 
+  @keyframes floatMascot {
+    0%, 100% { transform: translateX(20px) translateY(0); }
+    50% { transform: translateX(20px) translateY(-8px); }
+  }
+
+  /* Push content */
   body:not(.landing-page, .auth-page) {
     margin-left: 220px;
   }
 }
+
+/* ================================
+   MOBILE ONLY FIXES
+================================ */
 
 @media (max-width: 899px) {
   .sidebar-mascot {
