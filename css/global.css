@@ -122,6 +122,7 @@ a {
 
 html,
 body {
+  overflow-x: hidden;
   height: auto;
 }
 
@@ -134,7 +135,6 @@ body {
   position: relative;
   padding-bottom: 80px;
   overflow-x: hidden;
-  padding-bottom: 100px;
 }
 /* =========================================
    SHARED BACKGROUND + GLASS UTILITIES
@@ -377,26 +377,32 @@ body {
 
 /* DEFAULT = MOBILE FLOATING (Telegram Style) */
 .bottom-tab-bar {
-  position: fixed !important;
-  bottom: 16px;
+  position: fixed ;
+  bottom: 14px;
   left: 50%;
   transform: translateX(-50%);
-  width: 90%;
-  max-width: 420px;
-  height: 65px;
+
+  width: 88%;
+  max-width: 380px;
+  height: 58px; /* 👈 smaller = cleaner */
 
   display: flex;
   justify-content: space-around;
   align-items: center;
 
-  background: rgba(255, 255, 255, 0.75);
-  backdrop-filter: blur(20px);
-  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
 
-  box-shadow: 0 8px 30px rgba(126, 102, 190, 0.15);
+  border-radius: 999px; /* 👈 perfect pill */
+
+  box-shadow:
+    0 6px 20px rgba(126, 102, 190, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4);
+
+  padding: 6px;
+
   z-index: 9999;
-
-  pointer-events: auto;
 }
 
 .tab-item {
@@ -404,7 +410,7 @@ body {
   flex-direction: column;
   align-items: center;
   text-decoration: none;
-  font-size: 12px;
+  font-size: 10px;
   opacity: 0.8;
   transition: opacity 0.3s ease;
 }
@@ -415,18 +421,19 @@ body {
 
 .tab-item.active {
   opacity: 1;
-  transform: translateY(-5px);
   filter: drop-shadow(0 0 8px var(--clr-primary));
+  transform: scale(0.92);
 }
 
-.material-symbols-rounded {
+.bottom-tab-bar .tab-item span.material-symbols-rounded {
   font-variation-settings:
     "FILL" 0,
-    "wght" 800,
+    "wght" 600,
     "grad" 0,
     "opsz" 24;
-  font-size: 2rem;
-  transition: all 0.3s ease;
+
+  font-size: 25px; /* 👈 sweet spot */
+  transition: all 0.25s ease;
   color: var(--clr-text-soft);
 }
 
@@ -439,7 +446,7 @@ body {
 
 @media (min-width: 600px) {
   .bottom-tab-bar {
-    max-width: 500px;
+    max-width: 600px;
   }
 }
 
@@ -494,7 +501,7 @@ body {
   }
 
   /* Push main content right */
-  body:not(.landing-page,.auth-page) {
+  body:not(.landing-page, .auth-page) {
     margin-left: 220px;
   }
 }
