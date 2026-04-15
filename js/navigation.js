@@ -19,10 +19,6 @@ document.addEventListener("DOMContentLoaded", () => {
             <span class="material-symbols-rounded">settings</span>
             <span class="tab-label">Settings</span>
         </a>
-        <a href="${prefix}profile.html" class="tab-item" data-match="profile">
-            <span class="material-symbols-rounded">account_circle</span>
-            <span class="tab-label">Profile</span>
-        </a>
     </footer>
     `;
 
@@ -50,10 +46,6 @@ document.addEventListener("DOMContentLoaded", () => {
       matchToken === "settings" &&
       (isInsideSettings || path.endsWith("settings.html"))
     ) {
-      tab.classList.add("active");
-    }
-    // Match 'profile' if the URL ends in profile.html
-    else if (matchToken === "profile" && path.endsWith("profile.html")) {
       tab.classList.add("active");
     }
   });
