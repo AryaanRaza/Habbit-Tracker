@@ -3,6 +3,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  scroll-behavior: smooth;
 }
 
 :root {
@@ -419,6 +420,9 @@ body {
   opacity: 1;
   filter: drop-shadow(0 0 8px var(--clr-primary));
   transform: scale(0.92);
+}
+.tab-item:active{
+    color: #634d9e !important; 
 }
 
 /* Default (inactive icons) */
