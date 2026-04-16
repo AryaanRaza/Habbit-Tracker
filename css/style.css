@@ -1019,10 +1019,21 @@ body.auth-page {
 
 .input-wrapper {
   display: flex;
-  gap: 0;
-  margin-top: 8px;
+  gap: 12px;
+  padding: 8px;
+  border-radius: var(--radius-xl);
+  transition: all 0.4s ease;
+  background: var(--border-glass);
+  border: 1px solid rgba(255, 255, 255, 0.35);
 }
 
+/* The Magic Trick: Glows when the input inside is clicked */
+.input-wrapper:focus-within {
+  background: var(--bg-card-strong);
+  box-shadow: 0 0 25px var(--clr-primary-glow);
+  transform: translateY(-2px);
+  border-color: var(--clr-primary-strong);
+}
 .habit-field {
   flex: 1;
   background: rgba(255, 255, 255, 0.82);
