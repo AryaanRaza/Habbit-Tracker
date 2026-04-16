@@ -1090,6 +1090,14 @@ body.auth-page {
   margin-bottom: 4px;
 }
 
+.habit-name::first-letter {
+  font-family: var(--font-brand);
+  font-size: x-large;
+  /* color: rebeccapurple; */
+  color: var(--clr-secondary-deep);
+  text-shadow: 2px 2px 4px rgba(142, 123, 255, 0.2); /* Soft purple glow */
+}
+
 .habit-stats {
   font-size: 0.8rem;
   color: var(--clr-text-soft);
@@ -1246,9 +1254,9 @@ body.auth-page {
     flex-shrink: 0;
   }
   .habit-mascot {
-  width: 40px;
-  height: 40px;
-}
+    width: 40px;
+    height: 40px;
+  }
 
   .btn-complete {
     min-width: 92px;
