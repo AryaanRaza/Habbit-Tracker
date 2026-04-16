@@ -33,7 +33,13 @@ initializeExistingHabits();
 
 // 4. Add Habit Function
 const addHabit = () => {
-    const habitText = habitInput.value.trim();
+    let habitText = habitInput.value.trim();
+
+    // --- CAPITALIZATION LOGIC START ---
+    if (habitText.length > 0) {
+        habitText = habitText.charAt(0).toUpperCase() + habitText.slice(1);
+    }
+    // --- CAPITALIZATION LOGIC END ---
 
     // Empty validation
     if (habitText === "") {

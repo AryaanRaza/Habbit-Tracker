@@ -1047,9 +1047,11 @@ body.auth-page {
 
 .habit-field:focus {
   color: var(--clr-secondary-deep); /* Changes to purple when typing */
+  font-weight: 600;
   background: #ffffff;
   border-color: rgba(142, 123, 255, 0.55);
   box-shadow: 0 0 0 4px rgba(142, 123, 255, 0.12);
+  text-transform: capitalize;
 }
 
 
