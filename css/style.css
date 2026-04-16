@@ -1046,13 +1046,18 @@ body.auth-page {
 }
 
 .habit-field:focus {
+  color: var(--clr-secondary-deep); /* Changes to purple when typing */
   background: #ffffff;
   border-color: rgba(142, 123, 255, 0.55);
   box-shadow: 0 0 0 4px rgba(142, 123, 255, 0.12);
 }
 
+
 .habit-field::placeholder {
-  color: #9d9ab0;
+  color: var(--clr-text-soft);
+  font-style: italic;
+  opacity: 0.6;
+  transition: opacity 0.3s ease;
 }
 
 .btn-add-habit {
