@@ -555,6 +555,7 @@ body {
   body:not(.landing-page, .auth-page) {
     margin-left: 220px;
   }
+}
 
 @media (max-width: 899px) {
   .sidebar-mascot {
