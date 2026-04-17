@@ -3,6 +3,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  scroll-behavior: smooth;
 }
 
 :root {
@@ -118,6 +119,12 @@
 /* Global reset for all links in HabitFlow */
 a {
   text-decoration: none;
+}
+
+html,
+body {
+  overflow-x: hidden;
+  height: auto;
 }
 
 body {
@@ -369,22 +376,34 @@ body {
 
 /* FOOTER */
 
+/* DEFAULT = MOBILE FLOATING (Telegram Style) */
 .bottom-tab-bar {
-  background: rgba(255, 255, 255, 0.72);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border-top: 1px solid var(--border-glass);
-  box-shadow: 0 -6px 20px rgba(126, 102, 190, 0.08);
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 70px;
-  display: flex !important;
+  position: fixed ;
+  bottom: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  width: 88%;
+  max-width: 380px;
+  height: 58px; /* 👈 smaller = cleaner */
+
+  display: flex;
   justify-content: space-around;
   align-items: center;
-  border-top: 1px solid rgba(146, 17, 17, 0.05);
-  z-index: 100;
+
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+
+  border-radius: 999px; /* 👈 perfect pill */
+
+  box-shadow:
+    0 6px 20px rgba(126, 102, 190, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4);
+
+  padding: 6px;
+
+  z-index: 9999;
 }
 
 .tab-item {
@@ -392,35 +411,103 @@ body {
   flex-direction: column;
   align-items: center;
   text-decoration: none;
-  font-size: 12px;
+  font-size: 10px;
   opacity: 0.8;
   transition: opacity 0.3s ease;
-}
-/* Controls size of icon */
-.tab-item span:first-child {
-  font-size: 30px;
 }
 
 .tab-item.active {
   opacity: 1;
-  transform: translateY(-5px);
   filter: drop-shadow(0 0 8px var(--clr-primary));
+  transform: scale(0.92);
+}
+.tab-item:active{
+    color: #634d9e !important; 
 }
 
-.material-symbols-rounded {
+/* Default (inactive icons) */
+.bottom-tab-bar .material-symbols-rounded {
+  font-size: 24px;
+  color: var(--clr-text-soft);
+
   font-variation-settings:
     "FILL" 0,
-    "wght" 800,
-    "grad" 0,
+    "wght" 500,
+    "GRAD" 0,
     "opsz" 24;
-  font-size: 2rem;
-  transition: all 0.3s ease;
-  color: var(--clr-text-soft);
+
+  transition: all 0.25s ease;
 }
 
+/* Active icon (FILLED + purple) */
 .tab-item.active .material-symbols-rounded {
+  color: var(--clr-secondary-deep);
+
   font-variation-settings:
     "FILL" 1,
-    "wght" 600;
-  color: var(--clr-secondary-deep);
+    "wght" 700,
+    "GRAD" 0,
+    "opsz" 24;
+}
+
+@media (min-width: 600px) {
+  .bottom-tab-bar {
+    max-width: 600px;
+  }
+}
+
+@media (min-width: 900px) {
+  /* Move container to LEFT */
+  .bottom-tab-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    transform: none;
+
+    width: 220px;
+    height: 100vh;
+
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+
+    padding: 20px 10px;
+    border-radius: 0;
+
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(20px);
+  }
+
+  /* Tabs become row items */
+  .tab-item {
+    flex-direction: row;
+    width: 100%;
+    padding: 12px 16px;
+    border-radius: 14px;
+    gap: 12px;
+  }
+
+  .tab-label {
+    font-size: 14px;
+  }
+
+  /* Active tab highlight like your mock */
+  .tab-item.active {
+    background: linear-gradient(
+      135deg,
+      rgba(126, 102, 190, 0.25),
+      rgba(120, 180, 255, 0.25)
+    );
+    transform: none;
+  }
+
+  /* Hide bottom indicator on desktop */
+  .tab-indicator {
+    display: none;
+  }
+
+  /* Push main content right */
+  body:not(.landing-page, .auth-page) {
+    margin-left: 220px;
+  }
 }
