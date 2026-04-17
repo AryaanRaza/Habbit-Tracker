@@ -1019,10 +1019,21 @@ body.auth-page {
 
 .input-wrapper {
   display: flex;
-  gap: 0;
-  margin-top: 8px;
+  gap: 12px;
+  padding: 8px;
+  border-radius: var(--radius-xl);
+  transition: all 0.4s ease;
+  background: var(--border-glass);
+  border: 1px solid rgba(255, 255, 255, 0.35);
 }
 
+/* The Magic Trick: Glows when the input inside is clicked */
+.input-wrapper:focus-within {
+  background: var(--bg-card-strong);
+  box-shadow: 0 0 25px var(--clr-primary-glow);
+  transform: translateY(-2px);
+  border-color: var(--clr-primary-strong);
+}
 .habit-field {
   flex: 1;
   background: rgba(255, 255, 255, 0.82);
@@ -1035,13 +1046,20 @@ body.auth-page {
 }
 
 .habit-field:focus {
+  color: var(--clr-secondary-deep); /* Changes to purple when typing */
+  font-weight: 600;
   background: #ffffff;
   border-color: rgba(142, 123, 255, 0.55);
   box-shadow: 0 0 0 4px rgba(142, 123, 255, 0.12);
+  text-transform: capitalize;
 }
 
+
 .habit-field::placeholder {
-  color: #9d9ab0;
+  color: var(--clr-text-soft);
+  font-style: italic;
+  opacity: 0.6;
+  transition: opacity 0.3s ease;
 }
 
 .btn-add-habit {
@@ -1076,8 +1094,14 @@ body.auth-page {
   border-radius: 30px;
   padding: 18px 20px;
   box-shadow: 0 8px 20px rgba(140, 120, 220, 0.08);
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
 }
-
+/* Add this class via JS before removing */
+.habit-card.deleting {
+    transform: translateX(100px) rotate(5deg);
+    opacity: 0;
+    pointer-events: none;
+}
 .habit-info {
   flex: 1;
   min-width: 0;
@@ -1088,6 +1112,14 @@ body.auth-page {
   font-weight: 800;
   color: var(--clr-text-main);
   margin-bottom: 4px;
+}
+
+.habit-name::first-letter {
+  font-family: var(--font-brand);
+  font-size: x-large;
+  /* color: rebeccapurple; */
+  color: var(--clr-secondary-deep);
+  text-shadow: 2px 2px 4px rgba(142, 123, 255, 0.2); /* Soft purple glow */
 }
 
 .habit-stats {
@@ -1246,9 +1278,9 @@ body.auth-page {
     flex-shrink: 0;
   }
   .habit-mascot {
-  width: 40px;
-  height: 40px;
-}
+    width: 40px;
+    height: 40px;
+  }
 
   .btn-complete {
     min-width: 92px;

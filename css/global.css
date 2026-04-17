@@ -3,6 +3,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  scroll-behavior: smooth;
 }
 
 :root {
@@ -424,6 +425,9 @@ body {
 .tab-item:active {
   transform: scale(0.9);
 }
+.tab-item:active{
+    color: #634d9e !important; 
+}
 
 /* Icon base */
 .bottom-tab-bar .material-symbols-rounded {
@@ -551,11 +555,6 @@ body {
   body:not(.landing-page, .auth-page) {
     margin-left: 220px;
   }
-}
-
-/* ================================
-   MOBILE ONLY FIXES
-================================ */
 
 @media (max-width: 899px) {
   .sidebar-mascot {
