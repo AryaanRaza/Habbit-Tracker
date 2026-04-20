@@ -421,13 +421,7 @@ body {
   transition: all 0.2s ease;
 }
 
-/* Tap animation */
-.tab-item:active {
-  transform: scale(0.9);
-}
-.tab-item:active{
-    color: #634d9e !important; 
-}
+
 
 /* Icon base */
 .bottom-tab-bar .material-symbols-rounded {
@@ -447,7 +441,7 @@ body {
 .tab-item.active {
   opacity: 1;
   transform: scale(0.92);
-  filter: drop-shadow(0 0 8px var(--clr-primary));
+  /* filter: drop-shadow(0 0 8px var(--clr-primary)); */
 }
 
 /* Active icon */
@@ -483,7 +477,12 @@ body {
 /* ================================
    DESKTOP SIDEBAR
 ================================ */
-
+/* Hides side-bar mascor for smaller screens */
+@media (max-width: 899px) {
+  .sidebar-mascot {
+    display: none;
+  }
+}
 @media (min-width: 900px) {
 
   .bottom-tab-bar {
@@ -557,8 +556,3 @@ body {
   }
 }
 
-@media (max-width: 899px) {
-  .sidebar-mascot {
-    display: none;
-  }
-}
