@@ -109,7 +109,7 @@
   --shadow-soft: 0 8px 24px rgba(160, 140, 255, 0.14);
   --shadow-btn: 0 10px 24px rgba(123, 104, 255, 0.25);
   --shadow-glow: 0 0 40px rgba(200, 182, 255, 0.22);
-  --clr-primary-glow: rgba(243, 182, 218, 0.35); /* fixes your broken var */
+  --clr-primary-glow: rgba(243, 182, 218, 0.35);
 
   /* --- Radius --- */
   --radius-xl: 20px;

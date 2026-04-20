@@ -1027,7 +1027,6 @@ body.auth-page {
   border: 1px solid rgba(255, 255, 255, 0.35);
 }
 
-/* The Magic Trick: Glows when the input inside is clicked */
 .input-wrapper:focus-within {
   background: var(--bg-card-strong);
   box-shadow: 0 0 25px var(--clr-primary-glow);
