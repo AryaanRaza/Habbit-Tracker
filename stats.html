@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -8,6 +8,7 @@
     <title>Habit Tracker | Build Better Habits</title>
     <link rel="stylesheet" href="css/global.css">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/stats.css">
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 </head>
@@ -88,6 +89,169 @@
         </section>
     </main>
     <script src="js/navigation.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>  <!-- ADD -->
+    <script src="js/stats.js"></script>  <!-- ADD -->
 </body>
 
+</html>
+
+ -->
+
+
+
+
+/*************************************/
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HabitFlow | Insights</title>
+  <link rel="stylesheet" href="css/global.css" />
+  <link rel="stylesheet" href="css/stats.css" />
+</head>
+<body class="stats-page">
+ 
+  <main class="stats-main">
+ 
+    <!-- ── Header ──────────────────────────── -->
+    <header class="stats-header">
+      <div>
+        <p class="app-eyebrow">HabitFlow</p>
+        <h1 class="stats-title">Insights</h1>
+      </div>
+      <span class="stats-date" id="stats-date"></span>
+    </header>
+ 
+    <!-- ── Metric Cards ─────────────────────── -->
+    <div class="metrics-grid">
+      <div class="metric-card">
+        <span class="metric-label">Days active</span>
+        <span class="metric-value" id="m-days">28</span>
+      </div>
+      <div class="metric-card">
+        <span class="metric-label">Consistency</span>
+        <span class="metric-value" id="m-consistency">92%</span>
+      </div>
+      <div class="metric-card">
+        <span class="metric-label">Current streak</span>
+        <span class="metric-value" id="m-streak">12 <small>days</small></span>
+      </div>
+      <div class="metric-card">
+        <span class="metric-label">Habit score</span>
+        <span class="metric-value score-green" id="m-score">A+</span>
+      </div>
+    </div>
+ 
+    <!-- ── Charts Row ────────────────────────── -->
+    <div class="charts-row">
+ 
+      <!-- Bar Chart -->
+      <div class="chart-card chart-card--wide">
+        <p class="chart-label">Weekly progress</p>
+        <div class="chart-canvas-wrap">
+          <canvas id="barChart"
+            role="img"
+            aria-label="Bar chart showing habit completion by day of week">
+            Mon 60%, Tue 80%, Wed 40%, Thu 90%, Fri 100%, Sat 30%, Sun 50%
+          </canvas>
+        </div>
+      </div>
+ 
+      <!-- Donut Chart -->
+      <div class="chart-card">
+        <p class="chart-label">Category focus</p>
+        <div class="donut-legend">
+          <span class="legend-item"><span class="dot dot--purple"></span>Coding 45%</span>
+          <span class="legend-item"><span class="dot dot--teal"></span>Health 30%</span>
+          <span class="legend-item"><span class="dot dot--coral"></span>Reading 25%</span>
+        </div>
+        <div class="chart-canvas-wrap chart-canvas-wrap--donut">
+          <canvas id="donutChart"
+            role="img"
+            aria-label="Donut chart of habit categories">
+            Coding 45%, Health 30%, Reading 25%
+          </canvas>
+        </div>
+      </div>
+ 
+    </div>
+ 
+    <!-- ── Heatmap ───────────────────────────── -->
+    <section class="heatmap-card">
+      <p class="chart-label">Activity — last 12 weeks</p>
+      <div id="heatmap" class="heatmap-grid"></div>
+      <div class="heatmap-legend">
+        <span>Less</span>
+        <span id="hm0" class="hm-dot"></span>
+        <span id="hm1" class="hm-dot"></span>
+        <span id="hm2" class="hm-dot"></span>
+        <span id="hm3" class="hm-dot"></span>
+        <span id="hm4" class="hm-dot"></span>
+        <span>More</span>
+      </div>
+    </section>
+ 
+    <!-- ── Badges ───────────────────────────── -->
+    <section class="badges-card">
+      <p class="chart-label">Badges unlocked</p>
+      <div class="badge-row">
+        <span class="badge badge--green">7 day streak</span>
+        <span class="badge badge--purple">Habit master</span>
+        <span class="badge badge--locked">30 day king — locked</span>
+      </div>
+      <div class="badge-progress">
+        <div class="badge-progress__labels">
+          <span>Progress to 30 Day King</span>
+          <span id="streak-progress-label">12 / 30 days</span>
+        </div>
+        <div class="badge-progress__bar">
+          <div class="badge-progress__fill" id="streak-fill"></div>
+        </div>
+      </div>
+    </section>
+ 
+    <!-- ── AI Insights ───────────────────────── -->
+    <section class="ai-card">
+      <div class="ai-card__header">
+        <p class="chart-label" style="margin:0;">AI coach insights</p>
+        <button class="btn-primary" id="ins-btn" onclick="generateInsights()">
+          Generate insights
+        </button>
+      </div>
+      <div id="ins-area" class="ins-placeholder">
+        Get 3 personalized insights powered by Claude, based on your actual habit patterns.
+      </div>
+    </section>
+ 
+    <!-- ── AI Chat ───────────────────────────── -->
+    <section class="ai-card">
+      <p class="chart-label">Ask your habit coach</p>
+ 
+      <div id="chat-msgs" class="chat-messages"></div>
+ 
+      <div class="chat-input-row">
+        <input
+          type="text"
+          id="chat-in"
+          class="chat-input"
+          placeholder="e.g. Why do I struggle on Wednesdays?"
+          onkeydown="if(event.key==='Enter') sendChat()"
+        />
+        <button class="btn-primary" onclick="sendChat()">Ask</button>
+      </div>
+ 
+      <div class="quick-prompts">
+        <button class="quick-btn" onclick="quickAsk('What one habit should I focus on most this week?')">Focus this week</button>
+        <button class="quick-btn" onclick="quickAsk('Why am I so much weaker on Saturdays and Wednesdays?')">Weekend slump</button>
+        <button class="quick-btn" onclick="quickAsk('How close am I to a 30 day streak and what should I do?')">Streak check</button>
+      </div>
+    </section>
+ 
+  </main>
+ 
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <script src="js/navigation.js"></script>
+  <script src="js/stats.js"></script>
+</body>
 </html>

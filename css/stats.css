@@ -1,0 +1,378 @@
+
+
+/* ─────────────────────────────────────────────
+   stats.css  —  HabitFlow Insights Page
+   ───────────────────────────────────────────── */
+
+/* ── Layout ─────────────────────────────────── */
+.stats-page {
+  background: #a090a0c4;
+  color: #3b433c;
+  min-height: 100vh;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+}
+
+.stats-main {
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 2rem 1.25rem 4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* ── Header ─────────────────────────────────── */
+.stats-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 0.5rem;
+}
+
+.app-eyebrow {
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #666;
+  margin: 0 0 4px;
+}
+
+.stats-title {
+  font-size: 2rem;
+  font-weight: 600;
+  margin: 0;
+  color: #f0eeff;
+}
+
+.stats-date {
+  font-size: 12px;
+  color: #555;
+}
+
+/* ── Metric Cards ────────────────────────────── */
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+.metric-card {
+  background: #1a1a20;
+  border: 1px solid #2a2a35;
+  border-radius: 12px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.metric-label {
+  font-size: 11px;
+  color: #e31a1a;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.metric-value {
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: #dce9dd;
+  line-height: 1;
+}
+
+.metric-value small {
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: #666;
+}
+
+.score-green { color: #1D9E75; }
+
+/* ── Charts Row ──────────────────────────────── */
+.charts-row {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  gap: 10px;
+}
+
+.chart-card {
+  background: #1a1a20;
+  border: 1px solid #2a2a35;
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+}
+
+.chart-label {
+  font-size: 12px;
+  font-weight: 500;
+  color: #888;
+  margin: 0 0 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.chart-canvas-wrap {
+  position: relative;
+  height: 150px;
+}
+
+.chart-canvas-wrap--donut {
+  height: 120px;
+}
+
+/* ── Donut Legend ────────────────────────────── */
+.donut-legend {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  color: #666;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+  display: inline-block;
+  flex-shrink: 0;
+}
+.dot--purple { background: #7F77DD; }
+.dot--teal   { background: #1D9E75; }
+.dot--coral  { background: #D85A30; }
+
+/* ── Heatmap ─────────────────────────────────── */
+.heatmap-card {
+  background: #1a1a20;
+  border: 1px solid #2a2a35;
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+}
+
+.heatmap-grid {
+  display: grid;
+  grid-template-rows: repeat(7, 10px);
+  grid-template-columns: repeat(12, 1fr);
+  grid-auto-flow: column;
+  gap: 3px;
+}
+
+.hm-cell {
+  border-radius: 2px;
+}
+
+.heatmap-legend {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 10px;
+  font-size: 11px;
+  color: #555;
+}
+
+.hm-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 2px;
+  display: inline-block;
+}
+
+/* ── Badges ──────────────────────────────────── */
+.badges-card {
+  background: #1a1a20;
+  border: 1px solid #2a2a35;
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+}
+
+.badge-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+.badge {
+  display: inline-block;
+  padding: 6px 13px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 500;
+}
+.badge--green  { background: #0d2b1e; color: #1D9E75; }
+.badge--purple { background: #1c1835; color: #9d97e8; }
+.badge--locked { background: #1a1a20; color: #444; border: 1px solid #2a2a35; }
+
+.badge-progress__labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: #555;
+  margin-bottom: 5px;
+}
+
+.badge-progress__bar {
+  height: 5px;
+  background: #2a2a35;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.badge-progress__fill {
+  height: 100%;
+  background: #7F77DD;
+  border-radius: 4px;
+  transition: width 0.6s ease;
+}
+
+/* ── AI Cards ────────────────────────────────── */
+.ai-card {
+  background: #1a1a20;
+  border: 1px solid #2a2a35;
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+}
+
+.ai-card__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.ins-placeholder {
+  font-size: 13px;
+  color: #555;
+  line-height: 1.6;
+}
+
+.insight-row {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  padding: 9px 0;
+  border-bottom: 1px solid #2a2a35;
+}
+.insight-row:last-child { border-bottom: none; padding-bottom: 0; }
+
+.insight-num {
+  font-size: 11px;
+  font-weight: 600;
+  color: #9d97e8;
+  background: #1c1835;
+  border-radius: 4px;
+  padding: 2px 7px;
+  white-space: nowrap;
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
+.insight-text {
+  font-size: 13px;
+  margin: 0;
+  line-height: 1.6;
+  color: #ccc;
+}
+
+/* ── Chat ────────────────────────────────────── */
+.chat-messages {
+  min-height: 50px;
+  margin-bottom: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.chat-bubble-wrap {
+  display: flex;
+}
+.chat-bubble-wrap--user { justify-content: flex-end; }
+.chat-bubble-wrap--ai   { justify-content: flex-start; }
+
+.bubble-ai {
+  background: #252530;
+  border-radius: 0 10px 10px 10px;
+  padding: 9px 13px;
+  font-size: 13px;
+  line-height: 1.6;
+  max-width: 88%;
+  color: #ccc;
+}
+
+.bubble-user {
+  background: #1c1835;
+  color: #b0abf0;
+  border-radius: 10px 0 10px 10px;
+  padding: 9px 13px;
+  font-size: 13px;
+  line-height: 1.6;
+  max-width: 88%;
+}
+
+.bubble-loading { color: #555 !important; }
+
+.chat-input-row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.chat-input {
+  flex: 1;
+  background: #252530;
+  border: 1px solid #2a2a35;
+  border-radius: 8px;
+  color: #e8e6f0;
+  padding: 9px 13px;
+  font-size: 13px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+.chat-input::placeholder { color: #444; }
+.chat-input:focus { border-color: #534AB7; }
+
+.quick-prompts {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+/* ── Buttons ─────────────────────────────────── */
+.btn-primary {
+  background: #534AB7;
+  color: #e8e6f0;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 14px;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s, opacity 0.2s;
+  white-space: nowrap;
+}
+.btn-primary:hover   { background: #7F77DD; }
+.btn-primary:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.quick-btn {
+  background: #252530;
+  color: #888;
+  border: 1px solid #2a2a35;
+  border-radius: 20px;
+  padding: 5px 11px;
+  font-size: 11px;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+.quick-btn:hover { background: #2a2a40; color: #b0abf0; }
+
+/* ── Responsive ──────────────────────────────── */
+@media (max-width: 560px) {
+  .metrics-grid  { grid-template-columns: repeat(2, 1fr); }
+  .charts-row    { grid-template-columns: 1fr; }
+}
