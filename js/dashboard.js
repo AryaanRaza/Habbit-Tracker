@@ -1,94 +1,107 @@
-// 1. Select the Elements
-const habitInput = document.querySelector('.habit-field');
-const addBtn = document.querySelector('.btn-add-habit');
+// ============================================================
+//  dashboard.js  —  FULL REPLACEMENT for your existing file
+// ============================================================
+
+// 1. Selectors
+const habitInput     = document.querySelector('.habit-field');
+const addBtn         = document.querySelector('.btn-add-habit');
 const habitContainer = document.querySelector('.habit-list-container');
+const emptyState     = document.getElementById('empty-state');
+const progressFill   = document.getElementById('progress-fill');
+const progressCount  = document.getElementById('progress-count');
+const progressMotto  = document.getElementById('progress-motto');
+const habitCountLbl  = document.getElementById('habit-count-label');
 
 // 2. Data State
 let habits = [];
 
-// 3. Hydrate Existing Habits from HTML
+// 3. Set today's date in the header
+const dateEl = document.getElementById('today-date');
+if (dateEl) {
+    dateEl.textContent = new Date().toLocaleDateString('en-IN', {
+        weekday: 'long', month: 'long', day: 'numeric'
+    });
+}
+
+// 4. Progress bar + motto update
+const MOTTOS = [
+    "You're on a roll! 🔥",
+    "Stay consistent, stay unstoppable 💪",
+    "Every check-off counts ✨",
+    "Small steps, big results 🚀",
+    "Progress over perfection 🌟",
+];
+
+const updateProgress = () => {
+    const total = habits.length;
+    const done  = habits.filter(h => h.completedToday).length;
+    const pct   = total === 0 ? 0 : Math.round((done / total) * 100);
+
+    progressFill.style.width      = pct + '%';
+    progressCount.textContent     = `${done} / ${total} done`;
+    habitCountLbl.textContent     = total === 1 ? '1 habit' : `${total} habits`;
+    emptyState.style.display      = total === 0 ? 'block' : 'none';
+
+    if (total === 0) {
+        progressMotto.textContent = 'Add some habits to get started ✨';
+    } else if (done === 0) {
+        progressMotto.textContent = "Let's crush today's habits! 💥";
+    } else if (done === total) {
+        progressMotto.textContent = "Perfect day! All habits done! 🎉";
+    } else {
+        progressMotto.textContent = MOTTOS[done % MOTTOS.length];
+    }
+};
+
+// 5. Hydrate existing seed cards from HTML
 const initializeExistingHabits = () => {
     const existingCards = document.querySelectorAll('.habit-card');
 
     existingCards.forEach((card, index) => {
-        const name = card.querySelector('.habit-name').innerText;
-        const id = Date.now() + index;
+        const nameEl     = card.querySelector('.habit-name');
+        const streakChip = card.querySelector('.chip-streak');
+        const totalChip  = card.querySelector('.chip-total');
 
-        // Give each existing card an ID
+        if (!nameEl) return;
+
+        const id     = Date.now() + index;
+        const streak = streakChip ? parseInt(streakChip.textContent) || 0 : 0;
+        const total  = totalChip  ? parseInt(totalChip.textContent)  || 0 : 0;
+
         card.setAttribute('data-id', id);
-
-        // Add to JS array
-        habits.push({
-            id: id,
-            name: name,
-            streak: 0,
-            total: 0,
-            completedToday: false
-        });
+        habits.push({ id, name: nameEl.innerText, streak, total, completedToday: false });
     });
+
+    updateProgress();
 };
 
-// Run immediately
 initializeExistingHabits();
 
-// 4. Add Habit Function
-const addHabit = () => {
-    let habitText = habitInput.value.trim();
-
-    // --- CAPITALIZATION LOGIC START ---
-    if (habitText.length > 0) {
-        habitText = habitText.charAt(0).toUpperCase() + habitText.slice(1);
-    }
-    // --- CAPITALIZATION LOGIC END ---
-
-    // Empty validation
-    if (habitText === "") {
-        alert("Please enter a habit name!");
-        return;
-    }
-
-    // Duplicate validation
-    const isDuplicate = habits.some(
-        h => h.name.toLowerCase() === habitText.toLowerCase()
-    );
-
-    if (isDuplicate) {
-        alert("You're already crushing this habit! No need to add it twice. 🔥");
-        habitInput.value = "";
-        return;
-    }
-
-    // Create habit object
-    const newHabit = {
-        id: Date.now(),
-        name: habitText,
-        streak: 0,
-        total: 0,
-        completedToday: false
-    };
-
-    // Add to array
-    habits.push(newHabit);
-
-    // Render to UI
-    createHabitCard(newHabit);
-
-    // Reset input
-    habitInput.value = "";
-    habitInput.focus();
+// 6. Helper: refresh the chips on a card after state change
+const refreshChips = (card, habit) => {
+    const streakChip = card.querySelector('.chip-streak');
+    const totalChip  = card.querySelector('.chip-total');
+    if (streakChip) streakChip.textContent = `🔥 ${habit.streak} day streak`;
+    if (totalChip)  totalChip.textContent  = `✓ ${habit.total} total`;
 };
 
-// 5. Create Habit Card
+// 7. Create Habit Card
 const createHabitCard = (habit) => {
-    const habitCard = document.createElement('article');
-    habitCard.classList.add('habit-card');
-    habitCard.setAttribute('data-id', habit.id);
+    const card = document.createElement('article');
+    card.classList.add('habit-card');
+    card.setAttribute('data-id', habit.id);
 
-    habitCard.innerHTML = `
+    // Start invisible for the slide-in animation
+    card.style.opacity   = '0';
+    card.style.transform = 'translateY(10px)';
+
+    card.innerHTML = `
+        <span class="habit-dot"></span>
         <div class="habit-info">
             <h3 class="habit-name">${habit.name}</h3>
-            <div class="habit-meta">
-                <p class="habit-stats">Streak: ${habit.streak} days | Total: ${habit.total}</p>
+            <div class="habit-chips">
+                <span class="chip chip-streak">🔥 ${habit.streak} day streak</span>
+                <span class="chip chip-total">✓ ${habit.total} total</span>
             </div>
         </div>
         <div class="habit-actions">
@@ -99,10 +112,55 @@ const createHabitCard = (habit) => {
         </div>
     `;
 
-    habitContainer.appendChild(habitCard);
+    habitContainer.appendChild(card);
+
+    // Animate in
+    requestAnimationFrame(() => {
+        card.style.transition = 'opacity 0.35s ease, transform 0.35s cubic-bezier(0.4,0,0.2,1)';
+        card.style.opacity    = '1';
+        card.style.transform  = 'translateY(0)';
+    });
 };
 
-// 6. Add Habit Event Listeners
+// 8. Add Habit
+const addHabit = () => {
+    let habitText = habitInput.value.trim();
+
+    if (habitText.length > 0) {
+        habitText = habitText.charAt(0).toUpperCase() + habitText.slice(1);
+    }
+
+    if (habitText === "") {
+        alert("Please enter a habit name!");
+        return;
+    }
+
+    const isDuplicate = habits.some(
+        h => h.name.toLowerCase() === habitText.toLowerCase()
+    );
+
+    if (isDuplicate) {
+        alert("You're already crushing this habit! No need to add it twice. 🔥");
+        habitInput.value = "";
+        return;
+    }
+
+    const newHabit = {
+        id: Date.now(),
+        name: habitText,
+        streak: 0,
+        total: 0,
+        completedToday: false
+    };
+
+    habits.push(newHabit);
+    createHabitCard(newHabit);
+    habitInput.value = "";
+    habitInput.focus();
+    updateProgress();
+};
+
+// 9. Add Habit Event Listeners
 addBtn.addEventListener('click', (e) => {
     e.preventDefault();
     addHabit();
@@ -115,87 +173,68 @@ habitInput.addEventListener('keypress', (e) => {
     }
 });
 
-// 7. Main Click Event Delegation (Complete + Delete)
+// 10. Main Click Delegation (Complete + Delete)
 habitContainer.addEventListener('click', (e) => {
     const completeBtn = e.target.closest('.btn-complete');
-    const deleteBtn = e.target.closest('.btn-delete');
+    const deleteBtn   = e.target.closest('.btn-delete');
 
-    // MARK / UNMARK HABIT
+    // MARK / UNMARK
     if (completeBtn) {
-        const button = completeBtn;
-        const card = button.closest('.habit-card');
-        const habitId = card.getAttribute('data-id');
-        const habitIndex = habits.findIndex(h => h.id == habitId);
+        const card     = completeBtn.closest('.habit-card');
+        const habitId  = card.getAttribute('data-id');
+        const habit    = habits.find(h => h.id == habitId);
 
-        if (habitIndex !== -1) {
-            const habit = habits[habitIndex];
+        if (!habit) return;
 
-            if (!habit.completedToday) {
-                // Mark done
-                habit.completedToday = true;
-                habit.streak += 1;
-                habit.total += 1;
-                card.classList.add('is-completed');
-                button.innerText = 'Completed! 🔥';
-            } else {
-                // Undo
-                habit.completedToday = false;
-                habit.streak -= 1;
-                habit.total -= 1;
-                card.classList.remove('is-completed');
-                button.innerText = 'Mark as Done';
-            }
+        habit.completedToday = !habit.completedToday;
 
-            // Update stats text
-            const statsText = card.querySelector('.habit-stats');
-            statsText.innerText = `Streak: ${habit.streak} days | Total: ${habit.total}`;
+        if (habit.completedToday) {
+            habit.streak += 1;
+            habit.total  += 1;
+            card.classList.add('is-completed');
+            completeBtn.innerText = 'Completed! 🔥';
+        } else {
+            habit.streak = Math.max(0, habit.streak - 1);
+            habit.total  = Math.max(0, habit.total  - 1);
+            card.classList.remove('is-completed');
+            completeBtn.innerText = 'Mark as Done';
         }
 
-        return; // prevent accidental fall-through
+        refreshChips(card, habit);
+        updateProgress();
+        return;
     }
 
-    // DELETE HABIT
+    // DELETE
     if (deleteBtn) {
-        const card = deleteBtn.closest('.habit-card');
+        const card    = deleteBtn.closest('.habit-card');
         const habitId = card.getAttribute('data-id');
 
         if (confirm("Are you sure you want to delete this habit? 🌪️")) {
-            // Remove from array
             habits = habits.filter(h => h.id != habitId);
 
-            // Animate out
-            card.style.transform = "translateX(20px)";
-            card.style.opacity = "0";
-
+            card.classList.add('deleting');
             setTimeout(() => {
                 card.remove();
-            }, 300);
-
-            console.log("Habit deleted. Current list:", habits);
+                updateProgress();
+            }, 350);
         }
     }
 });
 
-// 8. Hover Effect: Show Undo on Completed Habit
+// 11. Hover: Show Undo on Completed Cards
 habitContainer.addEventListener('mouseover', (e) => {
-    const completeBtn = e.target.closest('.btn-complete');
-    if (!completeBtn) return;
-
-    const card = completeBtn.closest('.habit-card');
-
-    if (card.classList.contains('is-completed')) {
-        completeBtn.innerText = 'Undo? ↩️';
+    const btn = e.target.closest('.btn-complete');
+    if (!btn) return;
+    if (btn.closest('.habit-card').classList.contains('is-completed')) {
+        btn.innerText = 'Undo? ↩️';
     }
 });
 
-// 9. Hover Out: Restore Completed Text
 habitContainer.addEventListener('mouseout', (e) => {
-    const completeBtn = e.target.closest('.btn-complete');
-    if (!completeBtn) return;
-
-    const card = completeBtn.closest('.habit-card');
-
-    if (card.classList.contains('is-completed')) {
-        completeBtn.innerText = 'Completed! 🔥';
+    const btn = e.target.closest('.btn-complete');
+    if (!btn) return;
+    if (btn.closest('.habit-card').classList.contains('is-completed')) {
+        btn.innerText = 'Completed! 🔥';
     }
 });

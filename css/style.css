@@ -916,7 +916,21 @@ body.auth-page {
 /* =========================================
    4. DASHBOARD PAGE STYLES
    ========================================= */
+/* =========================================
+   HABITFLOW DASHBOARD — UPDATED STYLES
+   Add these to css/style.css
+   
+   These rules REPLACE the old "4. DASHBOARD PAGE STYLES" section.
+   Delete everything between the old === 4. DASHBOARD === comments
+   and paste this in instead.
+   ========================================= */
 
+/* ── Font override ──
+   In global.css, change --font-main to:
+   --font-main: "Plus Jakarta Sans", sans-serif;
+*/
+
+/* ── Page shell (keep your existing .dashboard-container) ── */
 .dashboard-container {
   background: var(--grad-page);
   min-height: 100vh;
@@ -924,9 +938,10 @@ body.auth-page {
   position: relative;
 }
 
+/* ── Header ── */
 .dash-header {
   width: 100%;
-  max-width: 1100px;
+  max-width: 780px;
   margin: 0 auto 24px;
   text-align: center;
   border-bottom: 1px solid rgba(255, 255, 255, 0.3);
@@ -938,21 +953,23 @@ body.auth-page {
 .dash-title {
   font-family: var(--font-brand);
   font-size: clamp(3.5rem, 8vw, 6rem);
-  color: var(--clr-text-main);
+  color: var(--clr-secondary-deep);
   line-height: 1;
 }
 
-.dash-tag {
-  font-family: var(--font-main);
-  font-size: 1rem;
-  color: var(--clr-text-dark);
-  font-weight: 600;
+.dash-date {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--clr-text-soft);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
   margin-top: 8px;
 }
 
+/* ── Main wrapper ── */
 .dash-wrapper {
   width: 100%;
-  max-width: 1100px;
+  max-width: 780px;
   margin: 0 auto;
   background: rgba(255, 255, 255, 0.18);
   backdrop-filter: blur(22px);
@@ -968,7 +985,61 @@ body.auth-page {
   gap: 22px;
 }
 
-/* Stats */
+/* ── Progress Banner (NEW) ── */
+.progress-banner {
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  border-radius: 20px;
+  padding: 18px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  box-shadow: 0 4px 16px rgba(140, 120, 220, 0.08);
+}
+
+.progress-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.progress-label {
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--clr-text-soft);
+}
+
+.progress-count {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--clr-secondary-deep);
+}
+
+.progress-track {
+  width: 100%;
+  height: 10px;
+  background: rgba(142, 123, 255, 0.15);
+  border-radius: 99px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  border-radius: 99px;
+  background: linear-gradient(90deg, var(--clr-secondary-deep), var(--clr-primary));
+  transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  width: 0%;
+}
+
+.progress-motto {
+  font-size: 0.8rem;
+  color: var(--clr-text-soft);
+  font-weight: 600;
+}
+
+/* ── Stats ── */
 .stats-overview {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -976,55 +1047,104 @@ body.auth-page {
 }
 
 .stat-card {
-  background: rgba(255, 255, 255, 0.62);
+  background: rgba(255, 255, 255, 0.72);
   border: 1px solid rgba(255, 255, 255, 0.4);
   border-radius: 18px;
-  padding: 16px 14px;
+  padding: 18px 14px 14px;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  box-shadow: 0 8px 20px rgba(140, 120, 220, 0.08);
+  flex-direction: column;
+  gap: 4px;
+  box-shadow: 0 4px 16px rgba(140, 120, 220, 0.08);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
-.stat-icon {
-  font-size: 1.4rem;
+.stat-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 28px rgba(140, 120, 220, 0.14);
+}
+
+/* Coloured top accent stripe */
+.stat-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  border-radius: 99px 99px 0 0;
+}
+.stat-card.s-streak::before { background: linear-gradient(90deg, #fb923c, #fbbf24); }
+.stat-card.s-best::before   { background: linear-gradient(90deg, #f472b6, #f9a8d4); }
+.stat-card.s-total::before  { background: linear-gradient(90deg, #2dd4bf, #5eead4); }
+
+.stat-emoji {
+  font-size: 1.3rem;
+  line-height: 1;
+  margin-bottom: 2px;
 }
 
 .stat-label p {
-  font-size: 0.72rem;
+  font-size: 0.68rem;
   font-weight: 800;
   text-transform: uppercase;
+  letter-spacing: 0.08em;
   color: var(--clr-text-soft);
   line-height: 1.2;
 }
 
 .stat-value strong {
-  font-size: 1rem;
+  font-size: 1.6rem;
+  font-weight: 800;
   color: var(--clr-text-main);
+  line-height: 1;
 }
 
-/* Section headings */
+.stat-sub {
+  font-size: 0.68rem;
+  color: var(--clr-text-soft);
+  font-weight: 600;
+}
+
+/* ── Section headings ── */
 .section-label {
   color: var(--clr-text-heading);
-  font-size: 1.1rem;
+  font-size: 0.75rem;
   font-weight: 800;
-  margin-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 12px;
 }
 
-/* Input */
+.section-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.section-head .section-label {
+  margin-bottom: 0;
+}
+
+.habit-count-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--clr-text-soft);
+}
+
+/* ── Input ── */
 .habit-input-area {
   margin-top: 0;
 }
 
 .input-wrapper {
   display: flex;
-  gap: 12px;
+  gap: 10px;
   padding: 8px;
   border-radius: var(--radius-xl);
-  transition: all 0.4s ease;
   background: var(--border-glass);
   border: 1px solid rgba(255, 255, 255, 0.35);
+  transition: all 0.4s ease;
 }
 
 .input-wrapper:focus-within {
@@ -1033,6 +1153,7 @@ body.auth-page {
   transform: translateY(-2px);
   border-color: var(--clr-primary-strong);
 }
+
 .habit-field {
   flex: 1;
   background: rgba(255, 255, 255, 0.82);
@@ -1042,10 +1163,11 @@ body.auth-page {
   font-size: 1rem;
   color: var(--clr-text-main);
   outline: none;
+  font-family: var(--font-main);
 }
 
 .habit-field:focus {
-  color: var(--clr-secondary-deep); /* Changes to purple when typing */
+  color: var(--clr-secondary-deep);
   font-weight: 600;
   background: #ffffff;
   border-color: rgba(142, 123, 255, 0.55);
@@ -1053,12 +1175,10 @@ body.auth-page {
   text-transform: capitalize;
 }
 
-
 .habit-field::placeholder {
   color: var(--clr-text-soft);
   font-style: italic;
-  opacity: 0.6;
-  transition: opacity 0.3s ease;
+  opacity: 0.7;
 }
 
 .btn-add-habit {
@@ -1069,184 +1189,246 @@ body.auth-page {
   font-weight: 700;
   border: none;
   box-shadow: var(--shadow-btn);
+  cursor: pointer;
+  font-family: var(--font-main);
+  font-size: 0.9rem;
+  transition: all 0.25s ease;
 }
 
 .btn-add-habit:hover {
-  transform: translateY(-1px);
-  filter: brightness(1.04);
+  transform: translateY(-2px);
+  filter: brightness(1.06);
+  box-shadow: 0 10px 28px rgba(123, 104, 255, 0.38);
 }
 
-/* Habit list */
+/* ── Habit list ── */
 .habit-list-container {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px;
 }
 
+/* ── Empty state ── */
+.empty-state {
+  text-align: center;
+  padding: 32px 20px;
+  color: var(--clr-text-soft);
+  font-size: 0.9rem;
+  font-weight: 500;
+  display: none;
+}
+.empty-state .empty-icon {
+  font-size: 2.2rem;
+  display: block;
+  margin-bottom: 8px;
+}
+
+/* ── Habit Card ── */
 .habit-card {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  gap: 16px;
-  background: rgba(255, 255, 255, 0.65);
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  border-radius: 30px;
-  padding: 18px 20px;
-  box-shadow: 0 8px 20px rgba(140, 120, 220, 0.08);
-  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
+  gap: 14px;
+  background: rgba(255, 255, 255, 0.82);
+  border: 1.5px solid rgba(255, 255, 255, 0.4);
+  border-radius: 20px;
+  padding: 14px 16px;
+  box-shadow: 0 4px 14px rgba(140, 120, 220, 0.07);
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+              opacity 0.3s ease,
+              border-color 0.25s ease,
+              box-shadow 0.25s ease;
 }
-/* Add this class via JS before removing */
-.habit-card.deleting {
-    transform: translateX(100px) rotate(5deg);
-    opacity: 0;
-    pointer-events: none;
+
+.habit-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px rgba(140, 120, 220, 0.13);
+  border-color: rgba(142, 123, 255, 0.35);
 }
+
+/* Left accent dot (NEW) */
+.habit-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--clr-secondary-deep);
+  flex-shrink: 0;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
 .habit-info {
   flex: 1;
   min-width: 0;
 }
 
 .habit-name {
-  font-size: 1rem;
-  font-weight: 800;
+  font-size: 0.97rem;
+  font-weight: 700;
   color: var(--clr-text-main);
-  margin-bottom: 4px;
+  margin-bottom: 5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .habit-name::first-letter {
   font-family: var(--font-brand);
-  font-size: x-large;
-  /* color: rebeccapurple; */
+  font-size: 1.25em;
   color: var(--clr-secondary-deep);
-  text-shadow: 2px 2px 4px rgba(142, 123, 255, 0.2); /* Soft purple glow */
+  text-shadow: 2px 2px 4px rgba(142, 123, 255, 0.2);
 }
 
-.habit-stats {
-  font-size: 0.8rem;
-  color: var(--clr-text-soft);
+/* Chips (NEW — replaces plain .habit-stats text) */
+.habit-chips {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 0.67rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 3px 9px;
+  border-radius: 99px;
+}
+
+.chip-streak {
+  background: #fff7ed;
+  color: #92400e;
+}
+
+.chip-total {
+  background: rgba(142, 123, 255, 0.12);
+  color: #4c1d95;
 }
 
 .habit-actions {
   display: flex;
   align-items: center;
-  gap: 10px;
-}
-
-.habit-mascot {
-  width: 80px;
-  height: 80px;
-  object-fit: contain;
+  gap: 8px;
   flex-shrink: 0;
-  display: block;
-  margin: 0 4px;
-  pointer-events: none;
 }
 
+/* ── Buttons ── */
 .btn-complete {
-  background: linear-gradient(135deg, #8df0ff 0%, #64d9ff 100%);
-  color: #2a2d55;
-  border: none;
-  padding: 10px 18px;
-  border-radius: 14px;
+  background: rgba(142, 123, 255, 0.12);
+  color: var(--clr-secondary-deep);
+  border: 1.5px solid rgba(142, 123, 255, 0.25);
+  padding: 8px 16px;
+  border-radius: 12px;
+  font-family: var(--font-main);
+  font-size: 0.78rem;
   font-weight: 800;
-  font-size: 0.82rem;
-  width: auto;
-  min-width: 128px;
-  flex-shrink: 1;
   cursor: pointer;
-  box-shadow: 0 10px 20px rgba(100, 217, 255, 0.18);
+  min-width: 118px;
+  text-align: center;
+  transition: all 0.25s ease;
+  white-space: nowrap;
 }
 
 .btn-complete:hover {
-  background: linear-gradient(135deg, #ffbfd9 0%, #f09cff 100%);
-  color: #2f2557;
+  background: var(--clr-secondary-deep);
+  color: #fff;
+  border-color: var(--clr-secondary-deep);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(142, 123, 255, 0.3);
 }
 
 .btn-delete {
   background: rgba(255, 255, 255, 0.5);
-  border: 1px solid rgba(255, 255, 255, 0.35);
+  border: 1.5px solid rgba(255, 255, 255, 0.35);
   display: inline-flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  padding: 10px;
-  color: #7d789b;
-  transition: all 0.25s ease;
-  border-radius: 14px;
-  opacity: 1;
+  width: 38px;
+  height: 38px;
+  padding: 0;
+  color: var(--clr-text-soft);
+  transition: all 0.2s ease;
+  border-radius: 12px;
   flex-shrink: 0;
 }
 
 .btn-delete .material-symbols-rounded {
-  font-size: 22px;
+  font-size: 20px;
   line-height: 1;
 }
 
 .btn-delete:hover {
-  color: #ff5f7e;
+  color: #ef4444;
+  background: #fee2e2;
+  border-color: #fca5a5;
   transform: scale(1.05);
-  background: rgba(255, 255, 255, 0.8);
 }
 
+/* ── Completed state ── */
 .habit-card.is-completed {
-  opacity: 0.58;
-  filter: grayscale(18%);
-  transition: all 0.3s ease;
+  opacity: 0.62;
+  border-color: #86efac;
+  background: rgba(240, 253, 244, 0.9);
 }
 
-.habit-card.is-completed:hover {
-  opacity: 0.85;
-  cursor: pointer;
+.habit-card.is-completed .habit-dot {
+  background: #22c55e;
+  transform: scale(1.25);
 }
 
 .habit-card.is-completed .btn-complete {
-  background: rgba(120, 120, 150, 0.85);
-  color: white;
+  background: #d1fae5;
+  color: #065f46;
+  border-color: #86efac;
 }
 
+.habit-card.is-completed:hover {
+  opacity: 0.88;
+  cursor: pointer;
+}
+
+/* ── Delete animation ── */
+.habit-card.deleting {
+  transform: translateX(60px) scale(0.95);
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ── Footer ── */
 .dash-footer {
   text-align: center;
-  padding-top: 8px;
+  padding-top: 6px;
 }
 
 .motivation-text {
   color: var(--clr-text-soft);
   font-weight: 700;
+  font-size: 0.85rem;
 }
 
-/* Responsive */
+/* ── Responsive ── */
 @media (max-width: 900px) {
   .stats-overview {
     grid-template-columns: 1fr;
-  }
-
-  .habit-card {
-    flex-direction: row;
-    align-items: center;
-    gap: 12px;
-  }
-
-  .habit-actions {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    flex-shrink: 0;
-  }
-
-  .btn-complete {
-    min-width: 112px;
-    padding: 10px 14px;
-    font-size: 0.78rem;
-  }
-
-  .btn-delete {
-    flex-shrink: 0;
   }
 }
 
 @media (max-width: 600px) {
   .dash-wrapper {
-    padding: 20px;
+    padding: 20px 16px;
+  }
+
+  .stats-overview {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .stats-overview .stat-card:last-child {
+    grid-column: 1 / -1;
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
   }
 
   .input-wrapper {
@@ -1259,44 +1441,26 @@ body.auth-page {
     border-radius: 16px;
     width: 100%;
   }
+
   .habit-card {
-    padding: 14px 16px;
+    padding: 12px 14px;
     gap: 10px;
   }
 
-  .habit-name {
-    font-size: 0.95rem;
-  }
-
-  .habit-stats {
-    font-size: 0.74rem;
-  }
-
-  .habit-actions {
-    gap: 6px;
-    flex-shrink: 0;
-  }
-  .habit-mascot {
-    width: 40px;
-    height: 40px;
-  }
-
   .btn-complete {
-    min-width: 92px;
-    padding: 8px 12px;
+    min-width: 90px;
+    padding: 8px 10px;
     font-size: 0.72rem;
-    white-space: nowrap;
-    border-radius: 12px;
+    border-radius: 10px;
   }
 
   .btn-delete {
-    width: 38px;
-    height: 38px;
-    padding: 0;
-    border-radius: 12px;
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
   }
 
   .btn-delete .material-symbols-rounded {
-    font-size: 20px;
+    font-size: 18px;
   }
 }
