@@ -953,7 +953,7 @@ body.auth-page {
 .dash-title {
   font-family: var(--font-brand);
   font-size: clamp(3.5rem, 8vw, 6rem);
-  color: var(--clr-secondary-deep);
+  color: var(--clr-secondary-main);
   line-height: 1;
 }
 
@@ -1028,7 +1028,11 @@ body.auth-page {
 .progress-fill {
   height: 100%;
   border-radius: 99px;
-  background: linear-gradient(90deg, var(--clr-secondary-deep), var(--clr-primary));
+  background: linear-gradient(
+    90deg,
+    var(--clr-secondary-deep),
+    var(--clr-primary)
+  );
   transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
   width: 0%;
 }
@@ -1057,7 +1061,9 @@ body.auth-page {
   box-shadow: 0 4px 16px rgba(140, 120, 220, 0.08);
   position: relative;
   overflow: hidden;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
 }
 
 .stat-card:hover {
@@ -1067,15 +1073,23 @@ body.auth-page {
 
 /* Coloured top accent stripe */
 .stat-card::before {
-  content: '';
+  content: "";
   position: absolute;
-  top: 0; left: 0; right: 0;
+  top: 0;
+  left: 0;
+  right: 0;
   height: 3px;
   border-radius: 99px 99px 0 0;
 }
-.stat-card.s-streak::before { background: linear-gradient(90deg, #fb923c, #fbbf24); }
-.stat-card.s-best::before   { background: linear-gradient(90deg, #f472b6, #f9a8d4); }
-.stat-card.s-total::before  { background: linear-gradient(90deg, #2dd4bf, #5eead4); }
+.stat-card.s-streak::before {
+  background: linear-gradient(90deg, #fb923c, #fbbf24);
+}
+.stat-card.s-best::before {
+  background: linear-gradient(90deg, #f472b6, #f9a8d4);
+}
+.stat-card.s-total::before {
+  background: linear-gradient(90deg, #2dd4bf, #5eead4);
+}
 
 .stat-emoji {
   font-size: 1.3rem;
@@ -1233,10 +1247,11 @@ body.auth-page {
   border-radius: 20px;
   padding: 14px 16px;
   box-shadow: 0 4px 14px rgba(140, 120, 220, 0.07);
-  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
-              opacity 0.3s ease,
-              border-color 0.25s ease,
-              box-shadow 0.25s ease;
+  transition:
+    transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.3s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
 }
 
 .habit-card:hover {
@@ -1252,7 +1267,9 @@ body.auth-page {
   border-radius: 50%;
   background: var(--clr-secondary-deep);
   flex-shrink: 0;
-  transition: background 0.3s ease, transform 0.3s ease;
+  transition:
+    background 0.3s ease,
+    transform 0.3s ease;
 }
 
 .habit-info {
@@ -1261,8 +1278,8 @@ body.auth-page {
 }
 
 .habit-name {
-  font-size: 0.97rem;
-  font-weight: 700;
+  font-size: 1rem;
+  font-weight: 800;
   color: var(--clr-text-main);
   margin-bottom: 5px;
   white-space: nowrap;
@@ -1272,7 +1289,7 @@ body.auth-page {
 
 .habit-name::first-letter {
   font-family: var(--font-brand);
-  font-size: 1.25em;
+  font-size: 1.25rem;
   color: var(--clr-secondary-deep);
   text-shadow: 2px 2px 4px rgba(142, 123, 255, 0.2);
 }
@@ -1408,13 +1425,6 @@ body.auth-page {
   font-size: 0.85rem;
 }
 
-/* ── Responsive ── */
-@media (max-width: 900px) {
-  .stats-overview {
-    grid-template-columns: 1fr;
-  }
-}
-
 @media (max-width: 600px) {
   .dash-wrapper {
     padding: 20px 16px;
@@ -1428,6 +1438,7 @@ body.auth-page {
     grid-column: 1 / -1;
     flex-direction: row;
     align-items: center;
+    justify-content: space-between;
     gap: 12px;
   }
 
