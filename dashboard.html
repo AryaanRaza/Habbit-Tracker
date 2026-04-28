@@ -1,195 +1,179 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#f8f4ff" />
-    <meta name="description" content="HabitFlow — a dreamy glassmorphism habit tracker" />
-    <title>HabitFlow • Build your streak</title>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Leckerli+One&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Akronim&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
-    />
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#f8f4ff" />
+  <meta name="description" content="HabitFlow — a dreamy glassmorphism habit tracker" />
+  <title>HabitFlow • Build your streak</title>
 
-    <link rel="stylesheet" href="css/global.css" />
-    <link rel="stylesheet" href="css/style.css" />
-  </head>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Leckerli+One&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Akronim&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 
-  <body class="dashboard-container" data-theme="light">
-    <noscript>You need to enable JavaScript to run HabitFlow.</noscript>
+  <link rel="stylesheet" href="css/global.css" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
 
-    <!-- Background ambient orbs -->
-    <div class="bg-orb orb-1" aria-hidden="true"></div>
-    <div class="bg-orb orb-2" aria-hidden="true"></div>
-    <div class="bg-orb orb-3" aria-hidden="true"></div>
+<body class="dashboard-container" data-theme="light">
+  <noscript>You need to enable JavaScript to run HabitFlow.</noscript>
 
-    <!-- Confetti canvas -->
-    <canvas id="confetti-canvas" aria-hidden="true"></canvas>
+  <!-- Background ambient orbs -->
+  <div class="bg-orb orb-1" aria-hidden="true"></div>
+  <div class="bg-orb orb-2" aria-hidden="true"></div>
+  <div class="bg-orb orb-3" aria-hidden="true"></div>
 
-    <!-- ========== HEADER ========== -->
-    <header class="dash-header">
-      <div class="header-top">
-        <div class="brand-block">
-          <h1 class="dash-title" data-testid="app-title">HabitFlow</h1>
-          <p class="dash-tagline">Small habits. Big magic. ✨</p>
-        </div>
-        <button
-          type="button"
-          class="theme-toggle"
-          id="theme-toggle"
-          title="Toggle theme"
-          data-testid="theme-toggle-btn"
-        >
-          <span class="material-symbols-rounded" id="theme-icon">dark_mode</span>
-        </button>
+  <!-- Confetti canvas -->
+  <canvas id="confetti-canvas" aria-hidden="true"></canvas>
+
+  <!-- ========== HEADER ========== -->
+  <header class="dash-header">
+    <div class="header-top">
+      <div class="brand-block">
+        <h1 class="dash-title" data-testid="app-title">HabitFlow</h1>
+        <p class="dash-tagline">Small habits. Big magic. ✨</p>
       </div>
-      <p class="dash-date" id="today-date" data-testid="today-date"></p>
-    </header>
+      <button type="button" class="theme-toggle" id="theme-toggle" title="Toggle theme" data-testid="theme-toggle-btn">
+        <span class="material-symbols-rounded" id="theme-icon">dark_mode</span>
+      </button>
+    </div>
+    <p class="dash-date" id="today-date" data-testid="today-date"></p>
+  </header>
 
-    <main class="dash-wrapper">
-      <!-- ========== PROGRESS BANNER ========== -->
-      <div class="progress-banner">
-        <div class="progress-top">
-          <span class="progress-label">Today's Progress</span>
-          <span class="progress-count" id="progress-count" data-testid="progress-count">0 / 0 done</span>
-        </div>
-        <div class="progress-track">
-          <div class="progress-fill" id="progress-fill"></div>
-        </div>
-        <p class="progress-motto" id="progress-motto" data-testid="progress-motto">
-          Add some habits to get started ✨
-        </p>
+  <main class="dash-wrapper">
+    <!-- ========== PROGRESS BANNER ========== -->
+    <div class="progress-banner">
+      <div class="progress-top">
+        <span class="progress-label">Today's Progress</span>
+        <span class="progress-count" id="progress-count" data-testid="progress-count">0 / 0 done</span>
       </div>
-
-      <!-- ========== STATS ========== -->
-      <section class="stats-overview">
-        <div class="stat-card s-streak">
-          <span class="stat-emoji">🔥</span>
-          <span class="stat-label"><p>Current Streak</p></span>
-          <span class="stat-value"><strong id="stat-streak" data-testid="stat-streak">0</strong></span>
-          <span class="stat-sub">days in a row</span>
-        </div>
-        <div class="stat-card s-best">
-          <span class="stat-emoji">🏆</span>
-          <span class="stat-label"><p>Best Streak</p></span>
-          <span class="stat-value"><strong id="stat-best" data-testid="stat-best">0</strong></span>
-          <span class="stat-sub">personal best</span>
-        </div>
-        <div class="stat-card s-total">
-          <span class="stat-emoji">✅</span>
-          <span class="stat-label"><p>Total Done</p></span>
-          <span class="stat-value"><strong id="stat-total" data-testid="stat-total">0</strong></span>
-          <span class="stat-sub">completions</span>
-        </div>
-      </section>
-
-      <!-- ========== ADD HABIT ========== -->
-      <section class="habit-input-area">
-        <h2 class="section-label">Add a New Habit</h2>
-        <div class="input-wrapper">
-          <input
-            type="text"
-            class="habit-field"
-            id="habit-field"
-            placeholder="e.g. Read for 20 minutes…"
-            maxlength="60"
-            data-testid="habit-input"
-          />
-          <div class="input-meta">
-            <select class="habit-category" id="habit-category" data-testid="habit-category">
-              <option value="health">💪 Health</option>
-              <option value="learning">📚 Learning</option>
-              <option value="fitness">🏃 Fitness</option>
-              <option value="mindfulness">🧘 Mindfulness</option>
-              <option value="creativity">🎨 Creativity</option>
-              <option value="work">💼 Work</option>
-              <option value="other" selected>✨ Other</option>
-            </select>
-            <input
-              type="time"
-              class="habit-time"
-              id="habit-time"
-              title="Reminder time (optional)"
-              data-testid="habit-time"
-            />
-            <button
-              type="button"
-              class="btn btn-add-habit"
-              id="btn-add-habit"
-              data-testid="add-habit-btn"
-            >
-              <span class="material-symbols-rounded">add</span>
-              Add
-            </button>
-          </div>
-        </div>
-      </section>
-
-      <!-- ========== HABIT LIST ========== -->
-      <section class="habit-list-section">
-        <div class="section-head">
-          <h2 class="section-label">My Habits</h2>
-          <span class="habit-count-label" id="habit-count-label" data-testid="habit-count">0 habits</span>
-        </div>
-
-        <!-- Filter tabs -->
-        <div class="filter-tabs" role="tablist" data-testid="filter-tabs">
-          <button class="filter-tab is-active" data-filter="all" data-testid="filter-all">All</button>
-          <button class="filter-tab" data-filter="active" data-testid="filter-active">Active</button>
-          <button class="filter-tab" data-filter="completed" data-testid="filter-completed">Completed</button>
-        </div>
-
-        <div class="habit-list-container" id="habit-list" data-testid="habit-list">
-          <!-- Cards injected here -->
-        </div>
-
-        <div class="empty-state" id="empty-state" data-testid="empty-state">
-          <span class="empty-icon">🌱</span>
-          <p class="empty-title">No habits yet</p>
-          <p class="empty-sub">Add one above to start your streak!</p>
-        </div>
-      </section>
-
-      <footer class="dash-footer">
-        <p class="motivation-text" id="motivation-text">Keep it up! Stay consistent!</p>
-      </footer>
-    </main>
-
-    <!-- Edit modal -->
-    <div class="modal-overlay" id="edit-modal" data-testid="edit-modal" hidden>
-      <div class="modal-card">
-        <h3 class="modal-title">Edit Habit</h3>
-        <label class="modal-label">Name</label>
-        <input type="text" class="modal-input" id="edit-name" maxlength="60" data-testid="edit-name" />
-        <label class="modal-label">Category</label>
-        <select class="modal-input" id="edit-category" data-testid="edit-category">
-          <option value="health">💪 Health</option>
-          <option value="learning">📚 Learning</option>
-          <option value="fitness">🏃 Fitness</option>
-          <option value="mindfulness">🧘 Mindfulness</option>
-          <option value="creativity">🎨 Creativity</option>
-          <option value="work">💼 Work</option>
-          <option value="other">✨ Other</option>
-        </select>
-        <label class="modal-label">Reminder time</label>
-        <input type="time" class="modal-input" id="edit-time" data-testid="edit-time" />
-        <div class="modal-actions">
-          <button class="btn btn-ghost" id="edit-cancel" data-testid="edit-cancel">Cancel</button>
-          <button class="btn btn-primary" id="edit-save" data-testid="edit-save">Save</button>
-        </div>
+      <div class="progress-track">
+        <div class="progress-fill" id="progress-fill"></div>
       </div>
+      <p class="progress-motto" id="progress-motto" data-testid="progress-motto">
+        Add some habits to get started ✨
+      </p>
     </div>
 
-    <!-- Toast -->
-    <div class="toast" id="toast" role="status" aria-live="polite" data-testid="toast"></div>
+    <!-- ========== STATS ========== -->
+    <section class="stats-overview">
+      <div class="stat-card s-streak">
+        <span class="stat-emoji">🔥</span>
+        <span class="stat-label">
+          <p>Current Streak</p>
+        </span>
+        <span class="stat-value"><strong id="stat-streak" data-testid="stat-streak">0</strong></span>
+        <span class="stat-sub">days in a row</span>
+      </div>
+      <div class="stat-card s-best">
+        <span class="stat-emoji">🏆</span>
+        <span class="stat-label">
+          <p>Best Streak</p>
+        </span>
+        <span class="stat-value"><strong id="stat-best" data-testid="stat-best">0</strong></span>
+        <span class="stat-sub">personal best</span>
+      </div>
+      <div class="stat-card s-total">
+        <span class="stat-emoji">✅</span>
+        <span class="stat-label">
+          <p>Total Done</p>
+        </span>
+        <span class="stat-value"><strong id="stat-total" data-testid="stat-total">0</strong></span>
+        <span class="stat-sub">completions</span>
+      </div>
+    </section>
 
-    <script src="js/dashboard.js"></script>
-  </body>
+    <!-- ========== ADD HABIT ========== -->
+    <section class="habit-input-area">
+      <h2 class="section-label">Add a New Habit</h2>
+      <div class="input-wrapper">
+        <input type="text" class="habit-field" id="habit-field" placeholder="e.g. Read for 20 minutes…" maxlength="60"
+          data-testid="habit-input" />
+        <div class="input-meta">
+          <select class="habit-category" id="habit-category" data-testid="habit-category">
+            <option value="health">💪 Health</option>
+            <option value="learning">📚 Learning</option>
+            <option value="fitness">🏃 Fitness</option>
+            <option value="mindfulness">🧘 Mindfulness</option>
+            <option value="creativity">🎨 Creativity</option>
+            <option value="work">💼 Work</option>
+            <option value="other" selected>✨ Other</option>
+          </select>
+          <input type="time" class="habit-time" id="habit-time" title="Reminder time (optional)"
+            data-testid="habit-time" />
+          <button type="button" class="btn btn-add-habit" id="btn-add-habit" data-testid="add-habit-btn">
+            <span class="material-symbols-rounded">add</span>
+            Add
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== HABIT LIST ========== -->
+    <section class="habit-list-section">
+      <div class="section-head">
+        <h2 class="section-label">My Habits</h2>
+        <span class="habit-count-label" id="habit-count-label" data-testid="habit-count">0 habits</span>
+      </div>
+
+      <!-- Filter tabs -->
+      <div class="filter-tabs" role="tablist" data-testid="filter-tabs">
+        <button class="filter-tab is-active" data-filter="all" data-testid="filter-all">All</button>
+        <button class="filter-tab" data-filter="active" data-testid="filter-active">Active</button>
+        <button class="filter-tab" data-filter="completed" data-testid="filter-completed">Completed</button>
+      </div>
+
+      <div class="habit-list-container" id="habit-list" data-testid="habit-list">
+        <!-- Cards injected here -->
+      </div>
+
+      <div class="empty-state" id="empty-state" data-testid="empty-state">
+        <span class="empty-icon">🌱</span>
+        <p class="empty-title">No habits yet</p>
+        <p class="empty-sub">Add one above to start your streak!</p>
+      </div>
+    </section>
+
+    <footer class="dash-footer">
+      <p class="motivation-text" id="motivation-text">Keep it up! Stay consistent!</p>
+    </footer>
+  </main>
+
+  <!-- Edit modal -->
+  <div class="modal-overlay" id="edit-modal" data-testid="edit-modal" hidden>
+    <div class="modal-card">
+      <h3 class="modal-title">Edit Habit</h3>
+      <label class="modal-label">Name</label>
+      <input type="text" class="modal-input" id="edit-name" maxlength="60" data-testid="edit-name" />
+      <label class="modal-label">Category</label>
+      <select class="modal-input" id="edit-category" data-testid="edit-category">
+        <option value="health">💪 Health</option>
+        <option value="learning">📚 Learning</option>
+        <option value="fitness">🏃 Fitness</option>
+        <option value="mindfulness">🧘 Mindfulness</option>
+        <option value="creativity">🎨 Creativity</option>
+        <option value="work">💼 Work</option>
+        <option value="other">✨ Other</option>
+      </select>
+      <label class="modal-label">Reminder time</label>
+      <input type="time" class="modal-input" id="edit-time" data-testid="edit-time" />
+      <div class="modal-actions">
+        <button class="btn btn-ghost" id="edit-cancel" data-testid="edit-cancel">Cancel</button>
+        <button class="btn btn-primary" id="edit-save" data-testid="edit-save">Save</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div class="toast" id="toast" role="status" aria-live="polite" data-testid="toast"></div>
+
+  <script src="js/navigation.js"></script>
+  <script src="js/dashboard.js"></script>
+</body>
+
 </html>
