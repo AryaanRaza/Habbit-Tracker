@@ -997,7 +997,7 @@ body.auth-page {
 .progress-banner {
   background: rgba(255, 255, 255, 0.6);
   border: 1px solid rgba(255, 255, 255, 0.45);
-  border-radius: 20px;
+  border-radius: var(--radius-xl);
   padding: 18px 20px;
   display: flex;
   flex-direction: column;
@@ -1008,7 +1008,7 @@ body.auth-page {
 .progress-top {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  /* align-items: center; */
 }
 
 .progress-label {
@@ -1115,7 +1115,7 @@ body.auth-page {
   top: 0;
   left: 0;
   right: 0;
-  height: 3px;
+  height: 5px;
   border-radius: 99px 99px 0 0;
 }
 .stat-card.s-streak::before {
@@ -1190,8 +1190,9 @@ body.auth-page {
 
 .input-wrapper {
   display: flex;
+  flex-direction: column;
   gap: 10px;
-  padding: 8px;
+  padding: 10px;
   border-radius: var(--radius-xl);
   background: var(--border-glass);
   border: 1px solid rgba(255, 255, 255, 0.35);
@@ -1208,13 +1209,15 @@ body.auth-page {
 .habit-field {
   flex: 1;
   background: rgba(255, 255, 255, 0.82);
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  border-radius: 16px 0 0 16px;
+  border: 1px solid var(--border-glass);
+  border-radius: 16px;
   padding: 14px 18px;
   font-size: 1rem;
   color: var(--clr-text-main);
   outline: none;
   font-family: var(--font-main);
+  width: 100%;
+  transition: background 0.25s ease, border-color 0.25s ease;
 }
 
 .habit-field:focus {
@@ -1231,14 +1234,39 @@ body.auth-page {
   font-style: italic;
   opacity: 0.7;
 }
-
+.input-meta {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr auto;
+  gap: 8px;
+}
+.habit-category,
+.habit-time {
+  background: var(--bg-glass-heavy);
+  border: 1px solid var(--border-glass);
+  border-radius: 12px;
+  padding: 12px 14px;
+  font-family: var(--font-main);
+  font-size: 0.86rem;
+  font-weight: 600;
+  color: var(--clr-text-main);
+  outline: none;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.habit-category:focus,
+.habit-time:focus {
+  border-color: var(--clr-secondary-deep);
+  box-shadow: 0 0 0 3px rgba(142, 123, 255, 0.15);
+}
 .btn-add-habit {
-  min-width: 140px;
-  border-radius: 0 16px 16px 0;
+  min-width: 100px;
+  border-radius: 16px;
   background: var(--grad-btn);
   color: var(--clr-text-white);
   font-weight: 700;
   border: none;
+   padding: 12px 18px;
+   gap: 4px;
   box-shadow: var(--shadow-btn);
   cursor: pointer;
   font-family: var(--font-main);

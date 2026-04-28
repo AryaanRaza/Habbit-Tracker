@@ -79,8 +79,26 @@
     <section class="habit-input-area">
       <h2 class="section-label">Add a New Habit</h2>
       <div class="input-wrapper">
-        <input type="text" class="habit-field" placeholder="e.g. Read for 20 minutes…">
-        <button type="button" class="btn btn-add-habit">+ Add Habit</button>
+        <input type="text" class="habit-field" placeholder="e.g. Read for 20 minutes…" maxlength="60"
+          data-testid="habit-input" />
+        <div class="input-meta">
+          <select class="habit-category" id="habit-category" data-testid="habit-category">
+            <option value="health">💪 Health</option>
+            <option value="learning">📚 Learning</option>
+            <option value="fitness">🏃 Fitness</option>
+            <option value="mindfulness">🧘 Mindfulness</option>
+            <option value="creativity">🎨 Creativity</option>
+            <option value="work">💼 Work</option>
+            <option value="other" selected>✨ Other</option>
+          </select>
+          <input type="time" class="habit-time" id="habit-time" title="Reminder time (optional)"
+            data-testid="habit-time" />
+          <button type="button" class="btn btn-add-habit" id="btn-add-habit" data-testid="add-habit-btn">
+            <span class="material-symbols-rounded">add</span>
+            Add
+          </button>
+        </div>
+        <!-- <button type="button" class="btn btn-add-habit">+ Add Habit</button> -->
       </div>
     </section>
 
