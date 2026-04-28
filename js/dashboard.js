@@ -16,11 +16,15 @@ const habitCountLbl  = document.getElementById('habit-count-label');
 let habits = [];
 
 // 3. Set today's date in the header
-const dateEl = document.getElementById('today-date');
-if (dateEl) {
-    dateEl.textContent = new Date().toLocaleDateString('en-IN', {
-        weekday: 'long', month: 'long', day: 'numeric'
-    });
+const todayEl = document.querySelector('#today-date');
+
+if (todayEl) {
+  todayEl.textContent = new Date().toLocaleDateString(undefined, {
+    weekday: 'long',
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric'
+  });
 }
 
 // 4. Progress bar + motto update

@@ -953,8 +953,16 @@ body.auth-page {
 .dash-title {
   font-family: var(--font-brand);
   font-size: clamp(3.5rem, 8vw, 6rem);
-  color: var(--clr-secondary-main);
+  color: var(--clr-text-main);
   line-height: 1;
+}
+
+.dash-tagline {
+  font-family: var(--font-main);
+  font-size: .8rem;
+  color: var(--clr-text-dark);
+  font-weight: 600;
+  margin-top: 8px;
 }
 
 .dash-date {
