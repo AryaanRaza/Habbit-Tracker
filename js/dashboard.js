@@ -1,6 +1,3 @@
-Here's the full content of `/app/frontend/public/js/dashboard.js`:
-
-```javascript
 // ============================================================
 //  HabitFlow — dashboard.js  (refined + features)
 //  • Categories, reminder time, inline edit, filter, heatmap
@@ -471,6 +468,3 @@ Here's the full content of `/app/frontend/public/js/dashboard.js`:
   // -------- Initial render --------
   renderAll();
 })();
-```
-
-That's the complete file. Want me to paste **`index.html`**, **`global.css`**, or **`style.css`** next? Or shall we move on to wiring up **localStorage persistence** so your habits survive a refresh? ✨

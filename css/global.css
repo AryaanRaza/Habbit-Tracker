@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Akronim&family=Leckerli+One&display=swap");
+
 * {
   margin: 0;
   padding: 0;
@@ -12,35 +13,40 @@
      ========================================= */
 
   /* --- Brand Core --- */
-  --clr-primary: #f3b6da; /* soft rose pink */
-  --clr-primary-strong: #ec8fc3; /* stronger pink accent */
-  --clr-primary-light: #f8eaff; /* pearl blush */
+  --clr-primary: #f3b6da;
+  --clr-primary-strong: #ec8fc3;
+  --clr-primary-light: #f8eaff;
 
-  --clr-secondary: #c7b8ff; /* pastel lavender */
-  --clr-secondary-deep: #8e7bff; /* richer dreamy purple */
+  --clr-secondary: #c7b8ff;
+  --clr-secondary-main: #8e7bff;
+  --clr-secondary-deep: #8e7bff;
 
-  --clr-accent-blue: #d7e8ff; /* powder blue */
-  --clr-accent-periwinkle: #bfd1ff; /* periwinkle */
-  --clr-accent-ice: #eef5ff; /* icy blue */
-  --clr-accent-neon: #9fe7ff; /* soft cyan glow */
+  --clr-accent-blue: #d7e8ff;
+  --clr-accent-periwinkle: #bfd1ff;
+  --clr-accent-ice: #eef5ff;
+  --clr-accent-neon: #9fe7ff;
+
+  /* --- Category accent colors --- */
+  --cat-health: #f472b6;
+  --cat-learning: #60a5fa;
+  --cat-fitness: #fb923c;
+  --cat-mindfulness: #a78bfa;
+  --cat-creativity: #f59e0b;
+  --cat-work: #2dd4bf;
+  --cat-other: #8e7bff;
 
   /* --- Typography --- */
   --font-brand: "Leckerli One", cursive;
   --font-tagline: "Akronim", system-ui;
-  --font-main: "Inter", sans-serif;
-
-  /* --- Font Sizes --- */
-  --fs-logo: clamp(4rem, 10vw, 10rem);
-  --fs-h1: 2.5rem;
-  --fs-h2: 1.5rem;
+  --font-main: "Plus Jakarta Sans", sans-serif;
 
   /* --- Text --- */
-  --clr-text-main: #2f2557; /* main readable text */
+  --clr-text-main: #2f2557;
   --clr-text-heading: #31265c;
   --clr-text-dark: #4f4678;
   --clr-text-soft: #7b739e;
   --clr-text-white: #ffffff;
-  --clr-text-wine: #7b4f88; /* kept for compatibility with your old classes */
+  --clr-text-wine: #7b4f88;
 
   /* --- Glass Surfaces --- */
   --bg-card: rgba(255, 255, 255, 0.22);
@@ -48,55 +54,29 @@
   --bg-glass: rgba(255, 255, 255, 0.28);
   --bg-glass-heavy: rgba(255, 255, 255, 0.4);
   --border-glass: rgba(255, 255, 255, 0.38);
-  --glass-border: rgba(255, 255, 255, 0.38); /* alias so old code works */
+  --glass-border: rgba(255, 255, 255, 0.38);
 
   /* --- Buttons --- */
   --clr-btn-base: #7b68ff;
   --clr-btn-hover: #6754f3;
   --clr-btn-gst: rgba(123, 104, 255, 0.22);
 
-  /* --- Backgrounds --- */
+  /* --- Page bg tokens (light theme default) --- */
   --bg-base: #f8f4ff;
   --bg-lilac: #eadfff;
   --bg-pink: #f8d4ea;
   --bg-blue: #dce9ff;
   --bg-periwinkle: #cabdff;
 
-  /* --- Main Page Gradient --- */
   --grad-page:
-    radial-gradient(
-      circle at 18% 22%,
-      rgba(255, 220, 239, 0.6),
-      transparent 26%
-    ),
-    radial-gradient(
-      circle at 82% 18%,
-      rgba(191, 216, 255, 0.55),
-      transparent 28%
-    ),
-    radial-gradient(
-      circle at 55% 78%,
-      rgba(217, 204, 255, 0.42),
-      transparent 30%
-    ),
-    radial-gradient(
-      circle at 25% 82%,
-      rgba(255, 255, 255, 0.2),
-      transparent 18%
-    ),
-    linear-gradient(
-      135deg,
-      #f8f4ff 0%,
-      #eadfff 28%,
-      #f7d2ea 55%,
-      #dbe9ff 82%,
-      #cabdff 100%
-    );
+    radial-gradient(circle at 18% 22%, rgba(255, 220, 239, 0.6), transparent 26%),
+    radial-gradient(circle at 82% 18%, rgba(191, 216, 255, 0.55), transparent 28%),
+    radial-gradient(circle at 55% 78%, rgba(217, 204, 255, 0.42), transparent 30%),
+    radial-gradient(circle at 25% 82%, rgba(255, 255, 255, 0.2), transparent 18%),
+    linear-gradient(135deg, #f8f4ff 0%, #eadfff 28%, #f7d2ea 55%, #dbe9ff 82%, #cabdff 100%);
 
-  /* --- CTA Gradient --- */
   --grad-btn: linear-gradient(135deg, #7b68ff 0%, #9c8bff 45%, #9fe7ff 100%);
 
-  /* --- Accent Gradient --- */
   --grad-accent: linear-gradient(
     135deg,
     rgba(243, 182, 218, 0.9),
@@ -104,21 +84,62 @@
     rgba(215, 232, 255, 0.9)
   );
 
-  /* --- Glow / Shadow --- */
   --shadow-ui: 0 12px 35px rgba(126, 102, 190, 0.12);
   --shadow-soft: 0 8px 24px rgba(160, 140, 255, 0.14);
   --shadow-btn: 0 10px 24px rgba(123, 104, 255, 0.25);
   --shadow-glow: 0 0 40px rgba(200, 182, 255, 0.22);
   --clr-primary-glow: rgba(243, 182, 218, 0.35);
 
-  /* --- Radius --- */
   --radius-xl: 20px;
   --radius-2xl: 28px;
   --radius-3xl: 36px;
 }
-/* Global reset for all links in HabitFlow */
+
+/* =========================================
+   DARK MODE
+   ========================================= */
+html[data-theme="dark"],
+body[data-theme="dark"] {
+  --clr-primary: #ff8ccf;
+  --clr-primary-strong: #ff6dbb;
+  --clr-primary-light: #3a1f3b;
+
+  --clr-secondary: #9b8bff;
+  --clr-secondary-main: #a898ff;
+  --clr-secondary-deep: #b9acff;
+
+  --clr-text-main: #ecdfff;
+  --clr-text-heading: #f3eaff;
+  --clr-text-dark: #d9caff;
+  --clr-text-soft: #9c8fc6;
+  --clr-text-wine: #ffb3de;
+
+  --bg-card: rgba(40, 24, 68, 0.4);
+  --bg-card-strong: rgba(50, 32, 82, 0.55);
+  --bg-glass: rgba(40, 24, 68, 0.35);
+  --bg-glass-heavy: rgba(50, 32, 82, 0.5);
+  --border-glass: rgba(180, 160, 240, 0.22);
+  --glass-border: rgba(180, 160, 240, 0.22);
+
+  --clr-primary-glow: rgba(139, 113, 255, 0.45);
+
+  --grad-page:
+    radial-gradient(circle at 18% 22%, rgba(180, 80, 200, 0.35), transparent 28%),
+    radial-gradient(circle at 82% 18%, rgba(110, 90, 220, 0.35), transparent 30%),
+    radial-gradient(circle at 55% 78%, rgba(140, 100, 220, 0.3), transparent 32%),
+    linear-gradient(135deg, #150a2c 0%, #1f0e3d 28%, #2a0f3e 55%, #1a1542 82%, #0f0a28 100%);
+
+  --grad-btn: linear-gradient(135deg, #8b71ff 0%, #b58bff 50%, #f47cc5 100%);
+
+  --shadow-ui: 0 12px 35px rgba(0, 0, 0, 0.45);
+  --shadow-soft: 0 8px 24px rgba(80, 40, 140, 0.35);
+  --shadow-btn: 0 10px 24px rgba(139, 113, 255, 0.45);
+  --shadow-glow: 0 0 50px rgba(180, 140, 255, 0.2);
+}
+
 a {
   text-decoration: none;
+  color: inherit;
 }
 
 html,
@@ -132,99 +153,68 @@ body {
   color: var(--clr-text-dark);
   font-family: var(--font-main);
   min-height: 100vh;
-
   position: relative;
   padding-bottom: 80px;
   overflow-x: hidden;
-}
-/* =========================================
-   SHARED BACKGROUND + GLASS UTILITIES
-   ========================================= */
-
-.page-shell,
-.auth-shell {
-  position: relative;
-  z-index: 2;
+  transition:
+    background 0.6s ease,
+    color 0.4s ease;
 }
 
-.page-shell {
-  min-height: 100vh;
-  width: 100%;
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 48px 20px 60px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.auth-shell {
-  min-height: 100vh;
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 40px 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.glass-panel {
-  background: rgba(255, 255, 255, 0.2);
-  border: 1px solid rgba(255, 255, 255, 0.35);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
-  box-shadow: var(--shadow-ui), var(--shadow-glow);
-  border-radius: 28px;
-}
-
-/* Floating dreamy background orbs */
+/* Ambient background orbs */
 .bg-orb {
   position: fixed;
   border-radius: 50%;
-  filter: blur(14px);
-  z-index: 0;
+  filter: blur(90px);
+  opacity: 0.55;
   pointer-events: none;
-  animation: orbFloat 12s ease-in-out infinite;
+  z-index: 0;
+  animation: float 18s ease-in-out infinite;
 }
-
 .orb-1 {
-  width: 220px;
-  height: 220px;
-  top: 8%;
-  left: 8%;
-  background: rgba(255, 192, 231, 0.45);
+  width: 380px;
+  height: 380px;
+  background: radial-gradient(circle, var(--clr-primary), transparent 70%);
+  top: -120px;
+  left: -120px;
 }
-
 .orb-2 {
-  width: 280px;
-  height: 280px;
-  top: 16%;
-  right: 10%;
-  background: rgba(188, 210, 255, 0.42);
-  animation-delay: 2s;
+  width: 460px;
+  height: 460px;
+  background: radial-gradient(circle, var(--clr-secondary), transparent 70%);
+  bottom: -160px;
+  right: -140px;
+  animation-delay: -6s;
 }
-
 .orb-3 {
-  width: 240px;
-  height: 240px;
-  bottom: 8%;
-  left: 50%;
-  transform: translateX(-50%);
-  background: rgba(202, 189, 255, 0.35);
-  animation-delay: 4s;
+  width: 320px;
+  height: 320px;
+  background: radial-gradient(circle, var(--clr-accent-neon), transparent 70%);
+  top: 40%;
+  left: 55%;
+  animation-delay: -12s;
+  opacity: 0.35;
 }
 
-@keyframes orbFloat {
-  0%,
-  100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-18px);
-  }
+@keyframes float {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50%      { transform: translate(30px, -40px) scale(1.05); }
 }
+
+/* Confetti canvas */
+#confetti-canvas {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9998;
+}
+
+/* Selection */
+::selection {
+  background: var(--clr-primary-strong);
+  color: #fff;
+}
+
 
 /* The Foundation */
 .btn {
