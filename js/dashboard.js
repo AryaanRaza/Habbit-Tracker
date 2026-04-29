@@ -232,6 +232,9 @@ function addHabit() {
     </div>
     </div>
     <div class="habit-actions">
+      <button class="btn-edit" title="Edit habit">
+          <span class="material-symbols-rounded">edit</span>
+      </button>
       <button class="btn btn-complete">Mark as Done</button>
       <button class="btn-delete" title="Delete Habit">
           <span class="material-symbols-rounded">delete</span>
