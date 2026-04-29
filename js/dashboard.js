@@ -221,10 +221,13 @@ function addHabit() {
     <span class="habit-dot"></span>
     <div class="habit-info">
       <h3 class="habit-name">${name}</h3>
-      <div class="habit-chips">
-        <span class="chip chip-streak">🔥 0 day streak</span>
-        <span class="chip chip-total">✓ 0 total</span>
-      </div>
+      <div class="habit-meta-row">
+        <div class="habit-chips">
+          <span class="chip chip-streak">🔥 5 day streak</span>
+          <span class="chip chip-total">✓ 14 total</span>
+          <span class="chip chip-time">⏰ 09:00 PM</span>
+        </div>
+    </div>
     </div>
     <div class="habit-actions">
       <button class="btn btn-complete">Mark as Done</button>
@@ -290,22 +293,22 @@ habitContainer.addEventListener("click", (e) => {
     return;
   }
 
-// DELETE
-if (deleteBtn) {
-  const card = deleteBtn.closest(".habit-card");
-  const id = card.getAttribute("data-id");
+  // DELETE
+  if (deleteBtn) {
+    const card = deleteBtn.closest(".habit-card");
+    const id = card.getAttribute("data-id");
 
-  habits = habits.filter((h) => h.id != id);
+    habits = habits.filter((h) => h.id != id);
 
-  // 👇 trigger animation first
-  card.classList.add("deleting");
+    // 👇 trigger animation first
+    card.classList.add("deleting");
 
-  // 👇 remove AFTER animation
-  setTimeout(() => {
-    card.remove();
-    updateProgress();
-  }, 350);
-}
+    // 👇 remove AFTER animation
+    setTimeout(() => {
+      card.remove();
+      updateProgress();
+    }, 350);
+  }
 });
 
 /* =========================
