@@ -160,7 +160,8 @@ function updateProgress() {
 (function init() {
   document.querySelectorAll(".habit-card").forEach((card, i) => {
     const name = card.querySelector(".habit-name")?.innerText;
-    const streak = parseInt(card.querySelector(".chip-streak")?.textContent) || 0;
+    const streak =
+      parseInt(card.querySelector(".chip-streak")?.textContent) || 0;
     const total = parseInt(card.querySelector(".chip-total")?.textContent) || 0;
 
     const id = Date.now() + i;
@@ -226,7 +227,9 @@ function addHabit() {
     </div>
     <div class="habit-actions">
       <button class="btn btn-complete">Mark as Done</button>
-      <button class="btn-delete">🗑</button>
+      <button class="btn-delete" title="Delete Habit">
+          <span class="material-symbols-rounded">delete</span>
+      </button>
     </div>
   `;
 
@@ -257,9 +260,7 @@ habitContainer.addEventListener("click", (e) => {
   // COMPLETE / UNDO
   if (completeBtn) {
     const card = completeBtn.closest(".habit-card");
-    const habit = habits.find(
-      (h) => h.id == card.getAttribute("data-id")
-    );
+    const habit = habits.find((h) => h.id == card.getAttribute("data-id"));
 
     if (!habit) return;
 
@@ -273,7 +274,6 @@ habitContainer.addEventListener("click", (e) => {
 
       card.classList.add("is-completed");
       completeBtn.innerText = "Completed! 🔥";
-
     } else {
       // UNDO
       habit.completedToday = false;
