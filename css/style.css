@@ -1384,27 +1384,26 @@ body.auth-page {
   flex-wrap: wrap;
 }
 
+/* Chips */
+.habit-chips {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
 .chip {
   display: inline-flex;
   align-items: center;
   gap: 3px;
-  font-size: 0.67rem;
-  font-weight: 700;
+  font-size: 0.66rem;
+  font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  padding: 3px 9px;
+  padding: 4px 9px;
   border-radius: 99px;
 }
-
-.chip-streak {
-  background: #fff7ed;
-  color: #92400e;
-}
-
-.chip-total {
-  background: rgba(142, 123, 255, 0.12);
-  color: #4c1d95;
-}
+.chip-streak { background: rgba(251, 146, 60, 0.18); color: #c2410c; }
+.chip-total  { background: rgba(142, 123, 255, 0.18); color: #4c1d95; }
+.chip-time   { background: rgba(45, 212, 191, 0.18); color: #0f766e; }
 
 .habit-actions {
   display: flex;
