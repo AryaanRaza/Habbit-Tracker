@@ -1429,7 +1429,7 @@ body.auth-page {
   display: inline-flex;
   align-items: center;
   gap: 3px;
-  font-size: 0.66rem;
+  font-size: 0.64rem;
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 0.05em;
