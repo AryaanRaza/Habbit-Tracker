@@ -1290,16 +1290,28 @@ body.auth-page {
 /* ── Empty state ── */
 .empty-state {
   text-align: center;
-  padding: 32px 20px;
+  padding: 40px 20px;
   color: var(--clr-text-soft);
-  font-size: 0.9rem;
-  font-weight: 500;
   display: none;
+  background: var(--bg-glass);
+  border: 1px dashed var(--border-glass);
+  border-radius: 20px;
 }
+.empty-state.is-visible { display: block; }
 .empty-state .empty-icon {
-  font-size: 2.2rem;
+  font-size: 2.4rem;
   display: block;
   margin-bottom: 8px;
+}
+.empty-state .empty-title {
+  font-weight: 800;
+  font-size: 1rem;
+  color: var(--clr-text-main);
+}
+.empty-state .empty-sub {
+  font-size: 0.85rem;
+  color: var(--clr-text-soft);
+  margin-top: 2px;
 }
 
 /* ── Habit Card ── */
