@@ -11,6 +11,7 @@ const habitContainer = document.querySelector(".habit-list-container");
 
 const emptyState = document.getElementById("empty-state");
 const progressFill = document.getElementById("progress-fill");
+const progressPct = document.getElementById("progress-pct");
 const progressCount = document.getElementById("progress-count");
 const progressMotto = document.getElementById("progress-motto");
 const habitCountLbl = document.getElementById("habit-count-label");
@@ -124,6 +125,7 @@ function updateProgress() {
   const total = habits.length;
   const done = habits.filter((h) => h.completedToday).length;
   const pct = total === 0 ? 0 : Math.round((done / total) * 100);
+  if (progressPct) progressPct.textContent = pct + "%";
 
   progressFill.style.width = pct + "%";
   progressCount.textContent = `${done} / ${total} done`;

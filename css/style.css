@@ -1008,7 +1008,7 @@ body.auth-page {
 .progress-top {
   display: flex;
   justify-content: space-between;
-  /* align-items: center; */
+  align-items: center;
 }
 
 .progress-label {
@@ -1019,10 +1019,11 @@ body.auth-page {
   color: var(--clr-text-soft);
 }
 
-.progress-count {
+.progress-pct {
   font-size: 0.82rem;
-  font-weight: 700;
+  font-weight: 800;
   color: var(--clr-secondary-deep);
+  transition: all 0.3s ease;
 }
 
 .progress-track {
@@ -1045,10 +1046,21 @@ body.auth-page {
   width: 0%;
 }
 
+.progress-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .progress-motto {
-  font-size: 0.8rem;
+  font-size: 0.78rem;
   color: var(--clr-text-soft);
   font-weight: 600;
+}
+.progress-count-text {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--clr-text-soft);
 }
 #confetti-canvas {
   position: fixed;
