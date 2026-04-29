@@ -218,6 +218,7 @@ function addHabit() {
   card.setAttribute("data-id", habit.id);
 
   card.innerHTML = `
+    <span class="habit-dot"></span>
     <div class="habit-info">
       <h3 class="habit-name">${name}</h3>
       <div class="habit-chips">
@@ -289,15 +290,22 @@ habitContainer.addEventListener("click", (e) => {
     return;
   }
 
-  // DELETE
-  if (deleteBtn) {
-    const card = deleteBtn.closest(".habit-card");
-    const id = card.getAttribute("data-id");
+// DELETE
+if (deleteBtn) {
+  const card = deleteBtn.closest(".habit-card");
+  const id = card.getAttribute("data-id");
 
-    habits = habits.filter((h) => h.id != id);
+  habits = habits.filter((h) => h.id != id);
+
+  // 👇 trigger animation first
+  card.classList.add("deleting");
+
+  // 👇 remove AFTER animation
+  setTimeout(() => {
     card.remove();
     updateProgress();
-  }
+  }, 350);
+}
 });
 
 /* =========================
