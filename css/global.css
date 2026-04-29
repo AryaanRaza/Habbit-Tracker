@@ -24,6 +24,17 @@
   --clr-accent-ice: #eef5ff; /* icy blue */
   --clr-accent-neon: #9fe7ff; /* soft cyan glow */
 
+
+    /* --- Category accent colors --- */
+  --cat-health: #f472b6;
+  --cat-learning: #60a5fa;
+  --cat-fitness: #fb923c;
+  --cat-mindfulness: #a78bfa;
+  --cat-creativity: #f59e0b;
+  --cat-work: #2dd4bf;
+  --cat-other: #8e7bff;
+
+  
   /* --- Typography --- */
   --font-brand: "Leckerli One", cursive;
   --font-tagline: "Akronim", system-ui;
