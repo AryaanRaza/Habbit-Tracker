@@ -959,7 +959,7 @@ body.auth-page {
 
 .dash-tagline {
   font-family: var(--font-main);
-  font-size: .8rem;
+  font-size: 0.8rem;
   color: var(--clr-text-dark);
   font-weight: 600;
   margin-top: 8px;
@@ -1217,7 +1217,9 @@ body.auth-page {
   outline: none;
   font-family: var(--font-main);
   width: 100%;
-  transition: background 0.25s ease, border-color 0.25s ease;
+  transition:
+    background 0.25s ease,
+    border-color 0.25s ease;
 }
 
 .habit-field:focus {
@@ -1251,7 +1253,10 @@ body.auth-page {
   color: var(--clr-text-main);
   outline: none;
   cursor: pointer;
-  transition: background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
 }
 .habit-category:focus,
 .habit-time:focus {
@@ -1265,8 +1270,8 @@ body.auth-page {
   color: var(--clr-text-white);
   font-weight: 700;
   border: none;
-   padding: 12px 18px;
-   gap: 4px;
+  padding: 12px 18px;
+  gap: 4px;
   box-shadow: var(--shadow-btn);
   cursor: pointer;
   font-family: var(--font-main);
@@ -1297,7 +1302,9 @@ body.auth-page {
   border: 1px dashed var(--border-glass);
   border-radius: 20px;
 }
-.empty-state.is-visible { display: block; }
+.empty-state.is-visible {
+  display: block;
+}
 .empty-state .empty-icon {
   font-size: 2.4rem;
   display: block;
@@ -1319,16 +1326,18 @@ body.auth-page {
   display: flex;
   align-items: center;
   gap: 14px;
-  background: rgba(255, 255, 255, 0.82);
-  border: 1.5px solid rgba(255, 255, 255, 0.4);
+  background: var(--bg-card-strong);
+  border: 1.5px solid var(--border-glass);
   border-radius: 20px;
   padding: 14px 16px;
-  box-shadow: 0 4px 14px rgba(140, 120, 220, 0.07);
+  box-shadow: var(--shadow-soft);
   transition:
     transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
     opacity 0.3s ease,
     border-color 0.25s ease,
     box-shadow 0.25s ease;
+  position: relative;
+  overflow: hidden;
 }
 
 .habit-card.deleting {
@@ -1343,16 +1352,25 @@ body.auth-page {
   border-color: rgba(142, 123, 255, 0.35);
 }
 
-/* Left accent dot (NEW) */
+/* Placeholder for habit type icon */
 .habit-dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: var(--clr-secondary-deep);
+  width: 38px;
+  height: 38px;
+  border-radius: 12px;
+  background: color-mix(
+    in srgb,
+    var(--cat-color, var(--clr-secondary-deep)) 18%,
+    transparent
+  );
+  color: var(--cat-color, var(--clr-secondary-deep));
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.15rem;
   flex-shrink: 0;
   transition:
-    background 0.3s ease,
-    transform 0.3s ease;
+    transform 0.3s ease,
+    background 0.3s ease;
 }
 
 .habit-info {
@@ -1368,8 +1386,15 @@ body.auth-page {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  cursor: pointer;
+  transition: color 0.2s ease;
 }
-
+.habit-name:hover { color: var(--clr-secondary-deep); }
+.habit-name::first-letter {
+  font-family: var(--font-brand);
+  font-size: 1.3rem;
+  color: var(--clr-secondary-deep);
+}
 .habit-name::first-letter {
   font-family: var(--font-brand);
   font-size: 1.25rem;
@@ -1401,9 +1426,18 @@ body.auth-page {
   padding: 4px 9px;
   border-radius: 99px;
 }
-.chip-streak { background: rgba(251, 146, 60, 0.18); color: #c2410c; }
-.chip-total  { background: rgba(142, 123, 255, 0.18); color: #4c1d95; }
-.chip-time   { background: rgba(45, 212, 191, 0.18); color: #0f766e; }
+.chip-streak {
+  background: rgba(251, 146, 60, 0.18);
+  color: #c2410c;
+}
+.chip-total {
+  background: rgba(142, 123, 255, 0.18);
+  color: #4c1d95;
+}
+.chip-time {
+  background: rgba(45, 212, 191, 0.18);
+  color: #0f766e;
+}
 
 .habit-actions {
   display: flex;
@@ -1437,6 +1471,7 @@ body.auth-page {
   box-shadow: 0 6px 18px rgba(142, 123, 255, 0.3);
 }
 
+.btn-edit,
 .btn-delete {
   background: rgba(255, 255, 255, 0.5);
   border: 1.5px solid rgba(255, 255, 255, 0.35);
@@ -1453,11 +1488,17 @@ body.auth-page {
   flex-shrink: 0;
 }
 
+.btn-edit .material-symbols-rounded ,
 .btn-delete .material-symbols-rounded {
   font-size: 20px;
   line-height: 1;
 }
-
+.btn-edit:hover {
+  color: var(--clr-secondary-deep);
+  background: rgba(142, 123, 255, 0.14);
+  border-color: rgba(142, 123, 255, 0.4);
+  transform: scale(1.05);
+}
 .btn-delete:hover {
   color: #ef4444;
   background: #fee2e2;
