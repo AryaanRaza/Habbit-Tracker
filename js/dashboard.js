@@ -8,6 +8,7 @@
 const habitInput = document.querySelector(".habit-field");
 const addBtn = document.querySelector(".btn-add-habit");
 const habitContainer = document.querySelector(".habit-list-container");
+const timeInput = document.getElementById("habit-time");
 
 const emptyState = document.getElementById("empty-state");
 const progressFill = document.getElementById("progress-fill");
@@ -221,6 +222,7 @@ const habit = {
   id: Date.now(),
   name,
   category: categorySelect.value || "other",
+  time: timeInput.value || "", 
   streak: 0,
   best: 0,
   total: 0,
@@ -243,7 +245,7 @@ const habit = {
         <div class="habit-chips">
           <span class="chip chip-streak">🔥 5 day streak</span>
           <span class="chip chip-total">✓ 14 total</span>
-          <span class="chip chip-time">⏰ 09:00 PM</span>
+          ${habit.time ? `<span class="chip chip-time">⏰ ${habit.time}</span>` : ""}
         </div>
     </div>
     </div>
@@ -260,6 +262,7 @@ const habit = {
 
   habitContainer.appendChild(card);
   habitInput.value = "";
+
   categorySelect.value = "other"; 
   updateProgress();
 }
