@@ -262,7 +262,7 @@ const habit = {
 
   habitContainer.appendChild(card);
   habitInput.value = "";
-
+  timeInput.value = "";
   categorySelect.value = "other"; 
   updateProgress();
 }
