@@ -973,7 +973,10 @@ body.auth-page {
   letter-spacing: 0.08em;
   margin-top: 8px;
 }
-
+#confetti-canvas,
+.bg-orb {
+  pointer-events: none;
+}
 /* ── Main wrapper ── */
 .dash-wrapper {
   width: 100%;
