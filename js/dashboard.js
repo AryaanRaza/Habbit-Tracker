@@ -258,6 +258,7 @@ const habit = {
 
   habitContainer.appendChild(card);
   habitInput.value = "";
+  categorySelect.value = "other"; 
   updateProgress();
 }
 
