@@ -217,14 +217,15 @@ function addHabit() {
     return alert("Already exists 🔥");
   }
 
-  const habit = {
-    id: Date.now(),
-    name,
-    streak: 0,
-    best: 0,
-    total: 0,
-    completedToday: false,
-  };
+const habit = {
+  id: Date.now(),
+  name,
+  category: categorySelect.value || "other",
+  streak: 0,
+  best: 0,
+  total: 0,
+  completedToday: false,
+};
 
   habits.push(habit);
 
