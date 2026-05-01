@@ -20,6 +20,8 @@ const statBest = document.getElementById("stat-best");
 const statStreak = document.getElementById("stat-streak");
 const statTotal = document.getElementById("stat-total");
 
+const categorySelect = document.getElementById("habit-category");
+
 
 const CATEGORIES = {
   health: "💪",
