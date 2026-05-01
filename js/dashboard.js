@@ -234,7 +234,7 @@ const habit = {
   card.setAttribute("data-id", habit.id);
 
   card.innerHTML = `
-    <span class="habit-dot"></span>
+    <span class="habit-dot">${CATEGORIES[habit.category]}</span>
     <div class="habit-info">
       <h3 class="habit-name">${name}</h3>
       <div class="habit-meta-row">
