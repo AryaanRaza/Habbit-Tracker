@@ -158,6 +158,31 @@
   <script src="js/navigation.js"></script>
   <script src="js/dashboard.js"></script>
   <div id="toast" class="toast"></div>
+
+  <div id="edit-modal" class="modal" hidden>
+  <div class="modal-content">
+    <h2>Edit Habit</h2>
+
+    <input type="text" id="edit-name" placeholder="Habit name" />
+
+    <select id="edit-category">
+      <option value="health">Health</option>
+      <option value="learning">Learning</option>
+      <option value="fitness">Fitness</option>
+      <option value="mindfulness">Mindfulness</option>
+      <option value="creativity">Creativity</option>
+      <option value="work">Work</option>
+      <option value="other">Other</option>
+    </select>
+
+    <input type="time" id="edit-time" />
+
+    <div class="modal-actions">
+      <button id="edit-cancel">Cancel</button>
+      <button id="edit-save">Save</button>
+    </div>
+  </div>
+</div>
 </body>
 
 </html>

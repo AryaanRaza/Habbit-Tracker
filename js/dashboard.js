@@ -243,8 +243,8 @@ const habit = {
       <h3 class="habit-name">${name}</h3>
       <div class="habit-meta-row">
         <div class="habit-chips">
-          <span class="chip chip-streak">🔥 5 day streak</span>
-          <span class="chip chip-total">✓ 14 total</span>
+          <span class="chip chip-streak">🔥 0 day streak</span>
+          <span class="chip chip-total">✓ 0 total</span>
           ${habit.time ? `<span class="chip chip-time">⏰ ${habit.time}</span>` : ""}
         </div>
     </div>
