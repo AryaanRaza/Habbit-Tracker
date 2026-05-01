@@ -230,6 +230,8 @@ const habit = {
   habits.push(habit);
 
   const card = document.createElement("article");
+  const cat = CATEGORIES[habit.category] || CATEGORIES.other;
+  card.style.setProperty('--cat-color', cat.color);
   card.className = "habit-card";
   card.setAttribute("data-id", habit.id);
 
