@@ -1411,7 +1411,9 @@ body.auth-page {
   cursor: pointer;
   transition: color 0.2s ease;
 }
-.habit-name:hover { color: var(--clr-secondary-deep); }
+.habit-name:hover {
+  color: var(--clr-secondary-deep);
+}
 .habit-name::first-letter {
   font-family: var(--font-brand);
   font-size: 1.3rem;

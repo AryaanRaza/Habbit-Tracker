@@ -26,13 +26,13 @@
 
 
     /* --- Category accent colors --- */
-  --cat-health: #f472b6;
-  --cat-learning: #60a5fa;
-  --cat-fitness: #fb923c;
-  --cat-mindfulness: #a78bfa;
-  --cat-creativity: #f59e0b;
-  --cat-work: #2dd4bf;
-  --cat-other: #8e7bff;
+--cat-health: #22c55e;      /* green (health = growth) */
+--cat-learning: #3b82f6;    /* blue */
+--cat-fitness: #f97316;     /* orange */
+--cat-mindfulness: #a78bfa; /* purple */
+--cat-creativity: #f59e0b;  /* amber */
+--cat-work: #06b6d4;        /* cyan */
+--cat-other: #8b5cf6;       /* violet */
 
   
   /* --- Typography --- */
