@@ -24,6 +24,14 @@ const statTotal = document.getElementById("stat-total");
 const categorySelect = document.getElementById("habit-category");
 
 
+
+const editModal = document.getElementById("edit-modal");
+const editName = document.getElementById("edit-name");
+const editCategory = document.getElementById("edit-category");
+const editTime = document.getElementById("edit-time");
+const editCancel = document.getElementById("edit-cancel");
+const editSave = document.getElementById("edit-save");
+
 const CATEGORIES = {
   health:      { icon: '💪', color: 'var(--cat-health)' },
   learning:    { icon: '📚', color: 'var(--cat-learning)' },
