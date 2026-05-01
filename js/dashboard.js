@@ -24,13 +24,13 @@ const categorySelect = document.getElementById("habit-category");
 
 
 const CATEGORIES = {
-  health: "💪",
-  learning: "📚",
-  fitness: "🏃",
-  work: "💼",
-  creativity: "🎨",
-  mindfulness: "🧘",
-  other: "✨",
+  health:      { icon: '💪', color: 'var(--cat-health)' },
+  learning:    { icon: '📚', color: 'var(--cat-learning)' },
+  fitness:     { icon: '🏃', color: 'var(--cat-fitness)' },
+  mindfulness: { icon: '🧘', color: 'var(--cat-mindfulness)' },
+  creativity:  { icon: '🎨', color: 'var(--cat-creativity)' },
+  work:        { icon: '💼', color: 'var(--cat-work)' },
+  other:       { icon: '✨', color: 'var(--cat-other)' },
 };
 
 /* =========================
