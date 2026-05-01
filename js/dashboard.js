@@ -48,6 +48,7 @@ const CATEGORIES = {
 let habits = [];
 let hasCelebrated = false;
 let toastTimer;
+let editingId = null;
 
 /* =========================
    3. DATE
@@ -364,3 +365,24 @@ habitContainer.addEventListener("mouseout", (e) => {
     btn.innerText = "Completed! 🔥";
   }
 });
+
+
+
+
+const editBtn = e.target.closest(".btn-edit");
+
+if (editBtn) {
+  const card = editBtn.closest(".habit-card");
+  const id = card.getAttribute("data-id");
+
+  const habit = habits.find(h => h.id == id);
+  if (!habit) return;
+
+  editingId = id;
+
+  editName.value = habit.name;
+  editCategory.value = habit.category;
+  editTime.value = habit.time || "";
+
+  editModal.hidden = false;
+}
