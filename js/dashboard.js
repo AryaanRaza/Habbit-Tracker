@@ -20,6 +20,17 @@ const statBest = document.getElementById("stat-best");
 const statStreak = document.getElementById("stat-streak");
 const statTotal = document.getElementById("stat-total");
 
+
+const CATEGORIES = {
+  health: "💪",
+  learning: "📚",
+  fitness: "🏃",
+  work: "💼",
+  creativity: "🎨",
+  mindfulness: "🧘",
+  other: "✨",
+};
+
 /* =========================
    2. STATE
 ========================= */
