@@ -201,43 +201,77 @@ document.addEventListener("DOMContentLoaded", () => {
   /* =========================
      9. EVENTS
   ========================= */
-  habitContainer.addEventListener("click", (e) => {
-    const card = e.target.closest(".habit-card");
-    if (!card) return;
+habitContainer.addEventListener("click", (e) => {
+  const card = e.target.closest(".habit-card");
+  if (!card) return;
 
-    const id = card.getAttribute("data-id");
-    const habit = habits.find(h => h.id == id);
-    if (!habit) return;
+  const id = card.getAttribute("data-id");
+  const habit = habits.find(h => h.id == id);
+  if (!habit) return;
 
-    // ===== COMPLETE =====
-    if (e.target.closest(".btn-complete")) {
-      const btn = card.querySelector(".btn-complete");
+  /* =====================
+     1. EDIT
+  ===================== */
+  if (e.target.closest(".btn-edit")) {
+    editingId = id;
 
-      if (!habit.completedToday) {
-        habit.completedToday = true;
-        habit.streak++;
-        habit.total++;
+    editName.value = habit.name;
+    editCategory.value = habit.category;
+    editTime.value = habit.time || "";
 
-        card.classList.add("is-completed");
-        btn.innerText = "Completed! 🔥";
+    editModal.hidden = false;
+    return;
+  }
 
-        showToast("Nice! Habit completed ✅");
-        fireConfetti(); // 🎉 trigger
-      } else {
-        habit.completedToday = false;
-        habit.streak--;
-        habit.total--;
+  /* =====================
+     2. COMPLETE
+  ===================== */
+  if (e.target.closest(".btn-complete")) {
+    const btn = card.querySelector(".btn-complete");
 
-        card.classList.remove("is-completed");
-        btn.innerText = "Mark as Done";
+    if (!habit.completedToday) {
+      habit.completedToday = true;
+      habit.streak++;
+      habit.total++;
+      habit.best = Math.max(habit.best, habit.streak);
 
-        showToast("Marked as not done ❌");
-      }
+      card.classList.add("is-completed");
+      btn.innerText = "Completed! 🔥";
 
-      refreshChips(card, habit);
-      updateProgress();
+      showToast("Nice! Habit completed ✅");
+      fireConfetti();
+    } else {
+      habit.completedToday = false;
+      habit.streak = Math.max(0, habit.streak - 1);
+      habit.total = Math.max(0, habit.total - 1);
+
+      card.classList.remove("is-completed");
+      btn.innerText = "Mark as Done";
+
+      showToast("Marked as not done ❌");
     }
-  });
+
+    refreshChips(card, habit);
+    updateProgress();
+    return;
+  }
+
+  /* =====================
+     3. DELETE
+  ===================== */
+  if (e.target.closest(".btn-delete")) {
+    habits = habits.filter(h => h.id != id);
+
+    card.classList.add("deleting");
+
+    setTimeout(() => {
+      card.remove();
+      updateProgress();
+    }, 250);
+
+    showToast("Habit deleted 🗑️");
+  }
+});
 
   /* =========================
      10. HOVER → UNDO TEXT
