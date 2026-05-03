@@ -53,6 +53,40 @@ document.addEventListener("DOMContentLoaded", () => {
   let editingId = null;
 
   /* =========================
+   3.1 LOAD EXISTING HABITS (FIX)
+========================= */
+function loadExistingHabits() {
+  const cards = document.querySelectorAll(".habit-card");
+
+  cards.forEach(card => {
+    const name = card.querySelector(".habit-name")?.textContent.trim();
+
+    // prevent duplicate loading
+    if (!name || habits.some(h => h.name === name)) return;
+
+    const id = Date.now() + Math.random(); // unique id
+    card.setAttribute("data-id", id);
+
+    const habit = {
+      id,
+      name,
+      category: "other", // fallback (since static card has no category info)
+      time: "",
+      streak: 0,
+      best: 0,
+      total: 0,
+      completedToday: false,
+    };
+
+    habits.push(habit);
+  });
+
+  updateProgress();
+}
+
+loadExistingHabits();
+
+  /* =========================
      4. DATE
   ========================= */
   const todayEl = document.querySelector("#today-date");
