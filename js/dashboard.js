@@ -1,8 +1,9 @@
 // ============================================================
-//  HabitFlow — dashboard.js (FINAL ENHANCED VERSION)
+//  HabitFlow — dashboard.js (FINAL STABLE VERSION)
 //  ✅ Fixes:
+//     - Edit modal save (robust UI update)
+//     - Confetti only at 100% completion
 //     - Undo hover text
-//     - Confetti celebration 🎉
 //     - Toast popup
 // ============================================================
 
@@ -20,7 +21,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const progressFill = document.getElementById("progress-fill");
   const progressPct = document.getElementById("progress-pct");
   const progressCount = document.getElementById("progress-count");
-  const progressMotto = document.getElementById("progress-motto");
   const habitCountLbl = document.getElementById("habit-count-label");
 
   const statBest = document.getElementById("stat-best");
@@ -28,7 +28,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const statTotal = document.getElementById("stat-total");
 
   const categorySelect = document.getElementById("habit-category");
-
   const toast = document.getElementById("toast");
 
   /* ===== EDIT MODAL ===== */
@@ -59,7 +58,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let editingId = null;
 
   /* =========================
-     3.1 LOAD EXISTING HABITS
+     LOAD EXISTING STATIC CARDS
   ========================= */
   function loadExistingHabits() {
     const cards = document.querySelectorAll(".habit-card");
@@ -89,43 +88,36 @@ document.addEventListener("DOMContentLoaded", () => {
   loadExistingHabits();
 
   /* =========================
-     4. TOAST
+     TOAST
   ========================= */
   function showToast(msg) {
     if (!toast) return;
     toast.textContent = msg;
     toast.classList.add("show");
 
-    setTimeout(() => {
-      toast.classList.remove("show");
-    }, 2000);
+    setTimeout(() => toast.classList.remove("show"), 2000);
   }
 
   /* =========================
-     5. CONFETTI 🎉
+     CONFETTI (100% ONLY)
   ========================= */
   function fireConfetti() {
-    const canvas = document.getElementById("confetti-canvas");
-    if (!canvas || !window.confetti) return;
+    if (!window.confetti) return;
 
     window.confetti({
-      particleCount: 120,
-      spread: 70,
+      particleCount: 150,
+      spread: 80,
       origin: { y: 0.6 },
     });
   }
 
   /* =========================
-     6. STATS + PROGRESS
+     STATS + PROGRESS
   ========================= */
   function updateStats() {
-    const best = habits.reduce((m, h) => Math.max(m, h.best), 0);
-    const current = habits.reduce((m, h) => Math.max(m, h.streak), 0);
-    const total = habits.reduce((s, h) => s + h.total, 0);
-
-    statBest.textContent = best;
-    statStreak.textContent = current;
-    statTotal.textContent = total;
+    statBest.textContent = Math.max(...habits.map(h => h.best), 0);
+    statStreak.textContent = Math.max(...habits.map(h => h.streak), 0);
+    statTotal.textContent = habits.reduce((s, h) => s + h.total, 0);
   }
 
   function updateProgress() {
@@ -140,10 +132,12 @@ document.addEventListener("DOMContentLoaded", () => {
     emptyState.style.display = total === 0 ? "block" : "none";
 
     updateStats();
+
+    return pct; // 🔥 IMPORTANT
   }
 
   /* =========================
-     7. HELPERS
+     HELPERS
   ========================= */
   function refreshChips(card, h) {
     card.querySelector(".chip-streak").textContent = `🔥 ${h.streak} day streak`;
@@ -151,7 +145,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* =========================
-     8. ADD HABIT
+     ADD HABIT
   ========================= */
   function addHabit() {
     let name = habitInput.value.trim();
@@ -171,8 +165,8 @@ document.addEventListener("DOMContentLoaded", () => {
     habits.push(habit);
 
     const cat = CATEGORIES[habit.category];
-    const card = document.createElement("article");
 
+    const card = document.createElement("article");
     card.className = "habit-card";
     card.setAttribute("data-id", habit.id);
 
@@ -199,82 +193,82 @@ document.addEventListener("DOMContentLoaded", () => {
   addBtn.addEventListener("click", addHabit);
 
   /* =========================
-     9. EVENTS
+     EVENTS
   ========================= */
-habitContainer.addEventListener("click", (e) => {
-  const card = e.target.closest(".habit-card");
-  if (!card) return;
+  habitContainer.addEventListener("click", (e) => {
+    const card = e.target.closest(".habit-card");
+    if (!card) return;
 
-  const id = card.getAttribute("data-id");
-  const habit = habits.find(h => h.id == id);
-  if (!habit) return;
+    const id = card.getAttribute("data-id");
+    const habit = habits.find(h => h.id == id);
+    if (!habit) return;
 
-  /* =====================
-     1. EDIT
-  ===================== */
-  if (e.target.closest(".btn-edit")) {
-    editingId = id;
+    // ===== EDIT =====
+    if (e.target.closest(".btn-edit")) {
+      editingId = id;
 
-    editName.value = habit.name;
-    editCategory.value = habit.category;
-    editTime.value = habit.time || "";
+      editName.value = habit.name;
+      editCategory.value = habit.category;
+      editTime.value = habit.time || "";
 
-    editModal.hidden = false;
-    return;
-  }
-
-  /* =====================
-     2. COMPLETE
-  ===================== */
-  if (e.target.closest(".btn-complete")) {
-    const btn = card.querySelector(".btn-complete");
-
-    if (!habit.completedToday) {
-      habit.completedToday = true;
-      habit.streak++;
-      habit.total++;
-      habit.best = Math.max(habit.best, habit.streak);
-
-      card.classList.add("is-completed");
-      btn.innerText = "Completed! 🔥";
-
-      showToast("Nice! Habit completed ✅");
-      fireConfetti();
-    } else {
-      habit.completedToday = false;
-      habit.streak = Math.max(0, habit.streak - 1);
-      habit.total = Math.max(0, habit.total - 1);
-
-      card.classList.remove("is-completed");
-      btn.innerText = "Mark as Done";
-
-      showToast("Marked as not done ❌");
+      editModal.hidden = false;
+      return;
     }
 
-    refreshChips(card, habit);
-    updateProgress();
-    return;
-  }
+    // ===== COMPLETE =====
+    if (e.target.closest(".btn-complete")) {
+      const btn = card.querySelector(".btn-complete");
 
-  /* =====================
-     3. DELETE
-  ===================== */
-  if (e.target.closest(".btn-delete")) {
-    habits = habits.filter(h => h.id != id);
+      if (!habit.completedToday) {
+        habit.completedToday = true;
+        habit.streak++;
+        habit.total++;
+        habit.best = Math.max(habit.best, habit.streak);
 
-    card.classList.add("deleting");
+        card.classList.add("is-completed");
+        btn.innerText = "Completed! 🔥";
 
-    setTimeout(() => {
-      card.remove();
-      updateProgress();
-    }, 250);
+        showToast("Nice! Habit completed ✅");
+      } else {
+        habit.completedToday = false;
+        habit.streak = Math.max(0, habit.streak - 1);
+        habit.total = Math.max(0, habit.total - 1);
 
-    showToast("Habit deleted 🗑️");
-  }
-});
+        card.classList.remove("is-completed");
+        btn.innerText = "Mark as Done";
+
+        showToast("Marked as not done ❌");
+      }
+
+      refreshChips(card, habit);
+
+      const pct = updateProgress();
+
+      // 🎉 ONLY when 100%
+      if (pct === 100) {
+        fireConfetti();
+        showToast("Perfect day! 🎉");
+      }
+
+      return;
+    }
+
+    // ===== DELETE =====
+    if (e.target.closest(".btn-delete")) {
+      habits = habits.filter(h => h.id != id);
+
+      card.classList.add("deleting");
+      setTimeout(() => {
+        card.remove();
+        updateProgress();
+      }, 250);
+
+      showToast("Habit deleted 🗑️");
+    }
+  });
 
   /* =========================
-     10. HOVER → UNDO TEXT
+     HOVER → UNDO TEXT
   ========================= */
   habitContainer.addEventListener("mouseover", (e) => {
     const btn = e.target.closest(".btn-complete");
@@ -294,6 +288,53 @@ habitContainer.addEventListener("click", (e) => {
     if (card.classList.contains("is-completed")) {
       btn.innerText = "Completed! 🔥";
     }
+  });
+
+  /* =========================
+     EDIT MODAL ACTIONS (FIXED)
+  ========================= */
+
+  editCancel.addEventListener("click", () => {
+    editModal.hidden = true;
+    editingId = null;
+  });
+
+  editSave.addEventListener("click", () => {
+    const habit = habits.find(h => h.id == editingId);
+    if (!habit) return;
+
+    habit.name = editName.value.trim();
+    habit.category = editCategory.value;
+    habit.time = editTime.value;
+
+    const card = document.querySelector(`[data-id="${editingId}"]`);
+    if (!card) return;
+
+    const cat = CATEGORIES[habit.category];
+
+    // SAFE UI UPDATE
+    card.querySelector(".habit-name").textContent = habit.name;
+    card.querySelector(".habit-dot").textContent = cat.icon;
+    card.style.setProperty("--cat-color", cat.color);
+
+    let chips = card.querySelector(".habit-chips");
+    let timeChip = card.querySelector(".chip-time");
+
+    if (habit.time) {
+      if (!timeChip) {
+        timeChip = document.createElement("span");
+        timeChip.className = "chip chip-time";
+        chips.appendChild(timeChip);
+      }
+      timeChip.textContent = `⏰ ${habit.time}`;
+    } else {
+      if (timeChip) timeChip.remove();
+    }
+
+    editModal.hidden = true;
+    editingId = null;
+
+    showToast("Habit updated ✨");
   });
 
 });
