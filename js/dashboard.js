@@ -195,6 +195,12 @@ document.addEventListener("DOMContentLoaded", () => {
     `;
 
     habitContainer.appendChild(card);
+
+    // 🔥 Reset inputs after adding
+    habitInput.value = "";
+    timeInput.value = "";          // ← THIS is your fix
+    categorySelect.value = "other";
+
     updateProgress();
   }
 
