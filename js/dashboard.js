@@ -374,5 +374,31 @@ document.addEventListener("DOMContentLoaded", () => {
   showToast("Habit updated ✨");
 });
 
+/* =========================
+   KEYBOARD SHORTCUTS (MODAL)
+========================= */
+document.addEventListener("keydown", (e) => {
+  // only work when modal is open
+  if (editModal.hidden) return;
+
+  // ESC → close modal
+  if (e.key === "Escape") {
+    editModal.hidden = true;
+    editingId = null;
+    initialEditState = null;
+    return;
+  }
+
+  // ENTER → save (but avoid textarea issues in future)
+  if (e.key === "Enter") {
+    e.preventDefault();
+
+    // prevent saving if disabled
+    if (!editSave.disabled) {
+      editSave.click();
+    }
+  }
+});
+
 
 });
