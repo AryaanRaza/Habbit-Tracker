@@ -1565,36 +1565,144 @@ body.auth-page {
 }
  /* edit modal pop up */
 
+/* ================= MODAL BACKDROP ================= */
 .modal {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.5);
+  inset: 0;
+  background: rgba(20, 10, 40, 0.45);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 1000;
+
+  animation: fadeIn 0.25s ease;
 }
 
 .modal[hidden] {
   display: none;
 }
 
+/* ================= MODAL CARD ================= */
 .modal-content {
-  background: white;
-  padding: 20px;
-  border-radius: 12px;
-  width: 300px;
+  width: 340px;
+  padding: 24px;
+
+  background: var(--bg-glass);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-2xl);
+
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+
+  box-shadow: var(--shadow-ui), var(--shadow-glow);
+
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 16px;
+
+  animation: scaleIn 0.25s ease;
 }
 
+/* ================= TITLE ================= */
+.modal-content h2 {
+  font-size: 1.4rem;
+  color: var(--clr-text-heading);
+  margin-bottom: 4px;
+}
+
+/* ================= INPUTS ================= */
+.modal-content input,
+.modal-content select {
+  width: 100%;
+  padding: 10px 12px;
+
+  border-radius: 12px;
+  border: 1px solid var(--border-glass);
+
+  background: rgba(255, 255, 255, 0.4);
+  color: var(--clr-text-main);
+
+  font-family: var(--font-main);
+  font-size: 0.95rem;
+
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+/* Focus glow */
+.modal-content input:focus,
+.modal-content select:focus {
+  border-color: var(--clr-secondary-deep);
+  box-shadow: 0 0 0 2px rgba(142, 123, 255, 0.25);
+  background: rgba(255, 255, 255, 0.55);
+}
+
+/* ================= ACTION BUTTONS ================= */
 .modal-actions {
   display: flex;
   justify-content: space-between;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+#edit-cancel {
+  padding: 8px 14px;
+  border-radius: 12px;
+
+  background: rgba(255, 255, 255, 0.25); /* stronger than before */
+  border: 1px solid rgba(255, 255, 255, 0.4);
+
+  color: var(--clr-text-main); /* 🔥 key fix */
+
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+/* Hover = more clarity */
+#edit-cancel:hover {
+  background: rgba(255, 255, 255, 0.45);
+  border-color: rgba(255, 255, 255, 0.6);
+  color: var(--clr-text-heading);
+}
+
+/* Save (primary CTA) */
+#edit-save {
+  padding: 8px 16px;
+  border-radius: 12px;
+
+  background: var(--grad-btn);
+  border: none;
+  color: white;
+
+  cursor: pointer;
+  font-weight: 500;
+
+  box-shadow: var(--shadow-btn);
+  transition: all 0.2s ease;
+}
+
+#edit-save:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 14px 28px rgba(123, 104, 255, 0.35);
+}
+
+/* ================= ANIMATIONS ================= */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 @media (max-width: 600px) {
