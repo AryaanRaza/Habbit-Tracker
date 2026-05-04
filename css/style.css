@@ -1683,10 +1683,17 @@ body.auth-page {
   transition: all 0.2s ease;
 }
 
+#edit-save:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
 #edit-save:hover {
   transform: translateY(-1px);
   box-shadow: 0 14px 28px rgba(123, 104, 255, 0.35);
 }
+
 
 /* ================= ANIMATIONS ================= */
 @keyframes fadeIn {

@@ -8,7 +8,6 @@
 // ============================================================
 
 document.addEventListener("DOMContentLoaded", () => {
-
   /* =========================
      1. SELECTORS
   ========================= */
@@ -42,13 +41,13 @@ document.addEventListener("DOMContentLoaded", () => {
      2. CONSTANTS
   ========================= */
   const CATEGORIES = {
-    health:      { icon: '💪', color: 'var(--cat-health)' },
-    learning:    { icon: '📚', color: 'var(--cat-learning)' },
-    fitness:     { icon: '🏃', color: 'var(--cat-fitness)' },
-    mindfulness: { icon: '🧘', color: 'var(--cat-mindfulness)' },
-    creativity:  { icon: '🎨', color: 'var(--cat-creativity)' },
-    work:        { icon: '💼', color: 'var(--cat-work)' },
-    other:       { icon: '✨', color: 'var(--cat-other)' },
+    health: { icon: "💪", color: "var(--cat-health)" },
+    learning: { icon: "📚", color: "var(--cat-learning)" },
+    fitness: { icon: "🏃", color: "var(--cat-fitness)" },
+    mindfulness: { icon: "🧘", color: "var(--cat-mindfulness)" },
+    creativity: { icon: "🎨", color: "var(--cat-creativity)" },
+    work: { icon: "💼", color: "var(--cat-work)" },
+    other: { icon: "✨", color: "var(--cat-other)" },
   };
 
   /* =========================
@@ -63,9 +62,9 @@ document.addEventListener("DOMContentLoaded", () => {
   function loadExistingHabits() {
     const cards = document.querySelectorAll(".habit-card");
 
-    cards.forEach(card => {
+    cards.forEach((card) => {
       const name = card.querySelector(".habit-name")?.textContent.trim();
-      if (!name || habits.some(h => h.name === name)) return;
+      if (!name || habits.some((h) => h.name === name)) return;
 
       const id = Date.now() + Math.random();
       card.setAttribute("data-id", id);
@@ -99,6 +98,19 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* =========================
+   SAVE BUTTON LOADING STATE
+    ========================= */
+  function setSaveLoading(isLoading) {
+    if (isLoading) {
+      editSave.disabled = true;
+      editSave.textContent = "Saving...";
+    } else {
+      editSave.disabled = false;
+      editSave.textContent = "Save";
+    }
+  }
+
+  /* =========================
      CONFETTI (100% ONLY)
   ========================= */
   function fireConfetti() {
@@ -115,14 +127,14 @@ document.addEventListener("DOMContentLoaded", () => {
      STATS + PROGRESS
   ========================= */
   function updateStats() {
-    statBest.textContent = Math.max(...habits.map(h => h.best), 0);
-    statStreak.textContent = Math.max(...habits.map(h => h.streak), 0);
+    statBest.textContent = Math.max(...habits.map((h) => h.best), 0);
+    statStreak.textContent = Math.max(...habits.map((h) => h.streak), 0);
     statTotal.textContent = habits.reduce((s, h) => s + h.total, 0);
   }
 
   function updateProgress() {
     const total = habits.length;
-    const done = habits.filter(h => h.completedToday).length;
+    const done = habits.filter((h) => h.completedToday).length;
     const pct = total === 0 ? 0 : Math.round((done / total) * 100);
 
     progressPct.textContent = pct + "%";
@@ -140,7 +152,8 @@ document.addEventListener("DOMContentLoaded", () => {
      HELPERS
   ========================= */
   function refreshChips(card, h) {
-    card.querySelector(".chip-streak").textContent = `🔥 ${h.streak} day streak`;
+    card.querySelector(".chip-streak").textContent =
+      `🔥 ${h.streak} day streak`;
     card.querySelector(".chip-total").textContent = `✓ ${h.total} total`;
   }
 
@@ -153,10 +166,10 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!name) return alert("Enter a habit!");
 
     // 🚫 Prevent duplicate habits
-    if (habits.some(h => h.name.toLowerCase() === name.toLowerCase())) {
-    showToast("Habit already exists ⚠️");
-    return;
-}
+    if (habits.some((h) => h.name.toLowerCase() === name.toLowerCase())) {
+      showToast("Habit already exists ⚠️");
+      return;
+    }
 
     const habit = {
       id: Date.now(),
@@ -198,7 +211,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // 🔥 Reset inputs after adding
     habitInput.value = "";
-    timeInput.value = "";          // ← THIS is your fix
+    timeInput.value = ""; // ← THIS is your fix
     categorySelect.value = "other";
 
     updateProgress();
@@ -214,7 +227,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!card) return;
 
     const id = card.getAttribute("data-id");
-    const habit = habits.find(h => h.id == id);
+    const habit = habits.find((h) => h.id == id);
     if (!habit) return;
 
     // ===== EDIT =====
@@ -269,7 +282,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // ===== DELETE =====
     if (e.target.closest(".btn-delete")) {
-      habits = habits.filter(h => h.id != id);
+      habits = habits.filter((h) => h.id != id);
 
       card.classList.add("deleting");
       setTimeout(() => {
@@ -305,7 +318,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   /* =========================
-     EDIT MODAL ACTIONS (FIXED)
+     EDIT MODAL ACTIONS 
   ========================= */
 
   editCancel.addEventListener("click", () => {
@@ -313,42 +326,53 @@ document.addEventListener("DOMContentLoaded", () => {
     editingId = null;
   });
 
-  editSave.addEventListener("click", () => {
-    const habit = habits.find(h => h.id == editingId);
-    if (!habit) return;
+  editSave.addEventListener("click", async () => {
+  const habit = habits.find(h => h.id == editingId);
+  if (!habit) return;
 
-    habit.name = editName.value.trim();
-    habit.category = editCategory.value;
-    habit.time = editTime.value;
+  setSaveLoading(true); // ✅ START LOADING
 
-    const card = document.querySelector(`[data-id="${editingId}"]`);
-    if (!card) return;
+  // simulate slight delay (feels real UX)
+  await new Promise(res => setTimeout(res, 400));
 
-    const cat = CATEGORIES[habit.category];
+  habit.name = editName.value.trim();
+  habit.category = editCategory.value;
+  habit.time = editTime.value;
 
-    // SAFE UI UPDATE
-    card.querySelector(".habit-name").textContent = habit.name;
-    card.querySelector(".habit-dot").textContent = cat.icon;
-    card.style.setProperty("--cat-color", cat.color);
+  const card = document.querySelector(`[data-id="${editingId}"]`);
+  if (!card) {
+    setSaveLoading(false);
+    return;
+  }
 
-    let chips = card.querySelector(".habit-chips");
-    let timeChip = card.querySelector(".chip-time");
+  const cat = CATEGORIES[habit.category];
 
-    if (habit.time) {
-      if (!timeChip) {
-        timeChip = document.createElement("span");
-        timeChip.className = "chip chip-time";
-        chips.appendChild(timeChip);
-      }
-      timeChip.textContent = `⏰ ${habit.time}`;
-    } else {
-      if (timeChip) timeChip.remove();
+  // SAFE UI UPDATE
+  card.querySelector(".habit-name").textContent = habit.name;
+  card.querySelector(".habit-dot").textContent = cat.icon;
+  card.style.setProperty("--cat-color", cat.color);
+
+  let chips = card.querySelector(".habit-chips");
+  let timeChip = card.querySelector(".chip-time");
+
+  if (habit.time) {
+    if (!timeChip) {
+      timeChip = document.createElement("span");
+      timeChip.className = "chip chip-time";
+      chips.appendChild(timeChip);
     }
+    timeChip.textContent = `⏰ ${habit.time}`;
+  } else {
+    if (timeChip) timeChip.remove();
+  }
 
-    editModal.hidden = true;
-    editingId = null;
+  setSaveLoading(false); // ✅ STOP LOADING
 
-    showToast("Habit updated ✨");
-  });
+  editModal.hidden = true;
+  editingId = null;
+
+  showToast("Habit updated ✨");
+});
+
 
 });
