@@ -149,7 +149,14 @@ document.addEventListener("DOMContentLoaded", () => {
   ========================= */
   function addHabit() {
     let name = habitInput.value.trim();
+    name = name.charAt(0).toUpperCase() + name.slice(1);
     if (!name) return alert("Enter a habit!");
+
+    // 🚫 Prevent duplicate habits
+    if (habits.some(h => h.name.toLowerCase() === name.toLowerCase())) {
+    showToast("Habit already exists ⚠️");
+    return;
+}
 
     const habit = {
       id: Date.now(),
@@ -177,6 +184,7 @@ document.addEventListener("DOMContentLoaded", () => {
         <div class="habit-chips">
           <span class="chip chip-streak">🔥 0 day streak</span>
           <span class="chip chip-total">✓ 0 total</span>
+          ${habit.time ? `<span class="chip chip-time">⏰ ${habit.time}</span>` : ""}
         </div>
       </div>
       <div class="habit-actions">
