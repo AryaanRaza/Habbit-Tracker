@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Leckerli+One&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Leckerli+One&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 * {
   margin: 0;
   padding: 0;
@@ -24,15 +24,17 @@
   --clr-accent-ice: #eef5ff; /* icy blue */
   --clr-accent-neon: #9fe7ff; /* soft cyan glow */
 
-  /* --- Category accent colors --- */
-  --cat-health: #22c55e; /* green (health = growth) */
-  --cat-learning: #3b82f6; /* blue */
-  --cat-fitness: #f97316; /* orange */
-  --cat-mindfulness: #a78bfa; /* purple */
-  --cat-creativity: #f59e0b; /* amber */
-  --cat-work: #06b6d4; /* cyan */
-  --cat-other: #8b5cf6; /* violet */
 
+    /* --- Category accent colors --- */
+--cat-health: #22c55e;      /* green (health = growth) */
+--cat-learning: #3b82f6;    /* blue */
+--cat-fitness: #f97316;     /* orange */
+--cat-mindfulness: #a78bfa; /* purple */
+--cat-creativity: #f59e0b;  /* amber */
+--cat-work: #06b6d4;        /* cyan */
+--cat-other: #8b5cf6;       /* violet */
+
+  
   /* --- Typography --- */
   --font-brand: "Leckerli One", cursive;
   --font-tagline: "Akronim", system-ui;
@@ -430,6 +432,8 @@ body {
   transition: all 0.2s ease;
 }
 
+
+
 /* Icon base */
 .bottom-tab-bar .material-symbols-rounded {
   font-size: 24px;
@@ -491,6 +495,7 @@ body {
   }
 }
 @media (min-width: 900px) {
+
   .bottom-tab-bar {
     top: 0;
     left: 0;
@@ -546,19 +551,14 @@ body {
     width: 140px;
 
     transform: translateX(20px);
-    filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.15));
+    filter: drop-shadow(0 10px 20px rgba(0,0,0,0.15));
 
     animation: floatMascot 4s ease-in-out infinite;
   }
 
   @keyframes floatMascot {
-    0%,
-    100% {
-      transform: translateX(20px) translateY(0);
-    }
-    50% {
-      transform: translateX(20px) translateY(-8px);
-    }
+    0%, 100% { transform: translateX(20px) translateY(0); }
+    50% { transform: translateX(20px) translateY(-8px); }
   }
 
   /* Push content */
@@ -566,3 +566,4 @@ body {
     margin-left: 220px;
   }
 }
+
