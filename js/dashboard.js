@@ -234,6 +234,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const card = document.createElement("article");
     card.className = "habit-card";
     card.setAttribute("data-id", habit.id);
+    card.style.setProperty("--cat-color", cat.color);
 
     card.innerHTML = `
       <span class="habit-dot">${cat.icon}</span>
