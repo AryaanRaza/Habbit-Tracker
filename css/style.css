@@ -1336,6 +1336,35 @@ body.auth-page {
   margin-top: 2px;
 }
 
+/* ── Filter tabs ── */
+.filter-tabs {
+  display: inline-flex;
+  gap: 4px;
+  background: var(--bg-glass);
+  border: 1px solid var(--border-glass);
+  padding: 4px;
+  border-radius: 99px;
+  margin-bottom: 14px;
+}
+.filter-tab {
+  border: none;
+  background: transparent;
+  color: var(--clr-text-soft);
+  font-family: var(--font-main);
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 8px 16px;
+  border-radius: 99px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+.filter-tab:hover { color: var(--clr-text-main); }
+.filter-tab.is-active {
+  background: var(--grad-btn);
+  color: #fff;
+  box-shadow: 0 4px 14px rgba(123, 104, 255, 0.3);
+}
+
 /* ── Habit Card ── */
 .habit-card {
   display: flex;

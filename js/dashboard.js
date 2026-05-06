@@ -36,6 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const editTime = document.getElementById("edit-time");
   const editCancel = document.getElementById("edit-cancel");
   const editSave = document.getElementById("edit-save");
+  const filterTabs = document.querySelectorAll(".filter-tab");
 
   /* =========================
      2. CONSTANTS
@@ -55,6 +56,7 @@ document.addEventListener("DOMContentLoaded", () => {
   ========================= */
   let habits = [];
   let editingId = null;
+  let currentFilter = "all";
 
   /* =========================
      LOAD EXISTING STATIC CARDS
@@ -158,6 +160,29 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* =========================
+   FILTER LOGIC
+========================= */
+  function applyFilter() {
+    const cards = document.querySelectorAll(".habit-card");
+
+    cards.forEach((card) => {
+      const id = card.getAttribute("data-id");
+      const habit = habits.find((h) => h.id == id);
+      if (!habit) return;
+
+      let show = true;
+
+      if (currentFilter === "active") {
+        show = !habit.completedToday;
+      } else if (currentFilter === "completed") {
+        show = habit.completedToday;
+      }
+
+      card.style.display = show ? "flex" : "none";
+    });
+  }
+
+  /* =========================
      ADD HABIT
   ========================= */
   function addHabit() {
@@ -215,16 +240,29 @@ document.addEventListener("DOMContentLoaded", () => {
     categorySelect.value = "other";
 
     updateProgress();
+    applyFilter();
   }
 
   addBtn.addEventListener("click", addHabit);
 
+  /* =========================
+   FILTER TAB EVENTS
+  ========================= */
+  filterTabs.forEach((tab) => {
+    tab.addEventListener("click", () => {
+      filterTabs.forEach((t) => t.classList.remove("is-active"));
+      tab.classList.add("is-active");
+      currentFilter = tab.dataset.filter;
+      applyFilter();
+    });
+  });
+
   habitInput.addEventListener("keydown", (e) => {
-  if (e.key === "Enter") {
-    e.preventDefault();
-    addHabit();
-  }
-});
+    if (e.key === "Enter") {
+      e.preventDefault();
+      addHabit();
+    }
+  });
 
   /* =========================
      EVENTS
@@ -277,6 +315,7 @@ document.addEventListener("DOMContentLoaded", () => {
       refreshChips(card, habit);
 
       const pct = updateProgress();
+      applyFilter();
 
       // 🎉 ONLY when 100%
       if (pct === 100) {
@@ -295,6 +334,7 @@ document.addEventListener("DOMContentLoaded", () => {
       setTimeout(() => {
         card.remove();
         updateProgress();
+        applyFilter();
       }, 250);
 
       showToast("Habit deleted 🗑️");
@@ -334,78 +374,76 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   editSave.addEventListener("click", async () => {
-  const habit = habits.find(h => h.id == editingId);
-  if (!habit) return;
+    const habit = habits.find((h) => h.id == editingId);
+    if (!habit) return;
 
-  setSaveLoading(true); // ✅ START LOADING
+    setSaveLoading(true); // ✅ START LOADING
 
-  // simulate slight delay (feels real UX)
-  await new Promise(res => setTimeout(res, 400));
+    // simulate slight delay (feels real UX)
+    await new Promise((res) => setTimeout(res, 400));
 
-  habit.name = editName.value.trim();
-  habit.category = editCategory.value;
-  habit.time = editTime.value;
+    habit.name = editName.value.trim();
+    habit.category = editCategory.value;
+    habit.time = editTime.value;
 
-  const card = document.querySelector(`[data-id="${editingId}"]`);
-  if (!card) {
-    setSaveLoading(false);
-    return;
-  }
-
-  const cat = CATEGORIES[habit.category];
-
-  // SAFE UI UPDATE
-  card.querySelector(".habit-name").textContent = habit.name;
-  card.querySelector(".habit-dot").textContent = cat.icon;
-  card.style.setProperty("--cat-color", cat.color);
-
-  let chips = card.querySelector(".habit-chips");
-  let timeChip = card.querySelector(".chip-time");
-
-  if (habit.time) {
-    if (!timeChip) {
-      timeChip = document.createElement("span");
-      timeChip.className = "chip chip-time";
-      chips.appendChild(timeChip);
+    const card = document.querySelector(`[data-id="${editingId}"]`);
+    if (!card) {
+      setSaveLoading(false);
+      return;
     }
-    timeChip.textContent = `⏰ ${habit.time}`;
-  } else {
-    if (timeChip) timeChip.remove();
-  }
 
-  setSaveLoading(false); // ✅ STOP LOADING
+    const cat = CATEGORIES[habit.category];
 
-  editModal.hidden = true;
-  editingId = null;
+    // SAFE UI UPDATE
+    card.querySelector(".habit-name").textContent = habit.name;
+    card.querySelector(".habit-dot").textContent = cat.icon;
+    card.style.setProperty("--cat-color", cat.color);
 
-  showToast("Habit updated ✨");
-});
+    let chips = card.querySelector(".habit-chips");
+    let timeChip = card.querySelector(".chip-time");
 
-/* =========================
-   KEYBOARD SHORTCUTS (MODAL)
-========================= */
-document.addEventListener("keydown", (e) => {
-  // only work when modal is open
-  if (editModal.hidden) return;
+    if (habit.time) {
+      if (!timeChip) {
+        timeChip = document.createElement("span");
+        timeChip.className = "chip chip-time";
+        chips.appendChild(timeChip);
+      }
+      timeChip.textContent = `⏰ ${habit.time}`;
+    } else {
+      if (timeChip) timeChip.remove();
+    }
 
-  // ESC → close modal
-  if (e.key === "Escape") {
+    setSaveLoading(false); // ✅ STOP LOADING
+
     editModal.hidden = true;
     editingId = null;
-    initialEditState = null;
-    return;
-  }
 
-  // ENTER → save (but avoid textarea issues in future)
-  if (e.key === "Enter") {
-    e.preventDefault();
+    showToast("Habit updated ✨");
+  });
 
-    // prevent saving if disabled
-    if (!editSave.disabled) {
-      editSave.click();
+  /* =========================
+   KEYBOARD SHORTCUTS (MODAL)
+========================= */
+  document.addEventListener("keydown", (e) => {
+    // only work when modal is open
+    if (editModal.hidden) return;
+
+    // ESC → close modal
+    if (e.key === "Escape") {
+      editModal.hidden = true;
+      editingId = null;
+      initialEditState = null;
+      return;
     }
-  }
-});
 
+    // ENTER → save (but avoid textarea issues in future)
+    if (e.key === "Enter") {
+      e.preventDefault();
 
+      // prevent saving if disabled
+      if (!editSave.disabled) {
+        editSave.click();
+      }
+    }
+  });
 });

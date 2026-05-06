@@ -109,10 +109,18 @@
     <!-- ═══════════════════════════════════
          HABIT LIST 
     ════════════════════════════════════ -->
+
     <section class="habit-list-section">
       <div class="section-head">
         <h2 class="section-label">My Habits</h2>
         <span class="habit-count-label" id="habit-count-label">1 habit</span>
+      </div>
+
+      <!-- Filter tabs -->
+      <div class="filter-tabs" role="tablist" data-testid="filter-tabs">
+        <button class="filter-tab is-active" data-filter="all" data-testid="filter-all">All</button>
+        <button class="filter-tab" data-filter="active" data-testid="filter-active">Active</button>
+        <button class="filter-tab" data-filter="completed" data-testid="filter-completed">Completed</button>
       </div>
 
       <div class="habit-list-container">
