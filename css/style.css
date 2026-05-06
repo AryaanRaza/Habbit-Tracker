@@ -1530,8 +1530,7 @@ body.auth-page {
 }
 
 .habit-card.is-completed .habit-dot {
-  background: #22c55e;
-  transform: scale(1.25);
+  background: rgb(169, 240, 172);
 }
 
 .habit-card.is-completed .btn-complete {

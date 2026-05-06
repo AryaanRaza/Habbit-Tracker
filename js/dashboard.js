@@ -219,6 +219,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
   addBtn.addEventListener("click", addHabit);
 
+  habitInput.addEventListener("keydown", (e) => {
+  if (e.key === "Enter") {
+    e.preventDefault();
+    addHabit();
+  }
+});
+
   /* =========================
      EVENTS
   ========================= */
