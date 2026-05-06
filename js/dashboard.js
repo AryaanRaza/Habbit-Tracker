@@ -87,6 +87,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   loadExistingHabits();
+  updateFilterCounts();
 
   /* =========================
      TOAST
@@ -161,7 +162,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   /* =========================
    FILTER LOGIC
-========================= */
+  ========================= */
   function applyFilter() {
     const cards = document.querySelectorAll(".habit-card");
 
@@ -179,6 +180,25 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       card.style.display = show ? "flex" : "none";
+    });
+  }
+  /* =========================
+   FILTER COUNTS
+  ========================= */
+  function updateFilterCounts() {
+    const all = habits.length;
+    const active = habits.filter((h) => !h.completedToday).length;
+    const completed = habits.filter((h) => h.completedToday).length;
+
+    filterTabs.forEach((tab) => {
+      const type = tab.dataset.filter;
+      const countEl = tab.querySelector(".count");
+
+      if (!countEl) return;
+
+      if (type === "all") countEl.textContent = all;
+      if (type === "active") countEl.textContent = active;
+      if (type === "completed") countEl.textContent = completed;
     });
   }
 
@@ -241,6 +261,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     updateProgress();
     applyFilter();
+    updateFilterCounts();
   }
 
   addBtn.addEventListener("click", addHabit);
@@ -316,6 +337,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const pct = updateProgress();
       applyFilter();
+      updateFilterCounts(); 
 
       // 🎉 ONLY when 100%
       if (pct === 100) {
@@ -335,6 +357,7 @@ document.addEventListener("DOMContentLoaded", () => {
         card.remove();
         updateProgress();
         applyFilter();
+        updateFilterCounts();
       }, 250);
 
       showToast("Habit deleted 🗑️");

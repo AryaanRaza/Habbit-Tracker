@@ -1358,6 +1358,7 @@ body.auth-page {
   cursor: pointer;
   transition: all 0.25s ease;
 }
+
 .filter-tab:hover { color: var(--clr-text-main); }
 .filter-tab.is-active {
   background: var(--grad-btn);

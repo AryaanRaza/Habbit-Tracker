@@ -118,9 +118,17 @@
 
       <!-- Filter tabs -->
       <div class="filter-tabs" role="tablist" data-testid="filter-tabs">
-        <button class="filter-tab is-active" data-filter="all" data-testid="filter-all">All</button>
-        <button class="filter-tab" data-filter="active" data-testid="filter-active">Active</button>
-        <button class="filter-tab" data-filter="completed" data-testid="filter-completed">Completed</button>
+        <button class="filter-tab is-active" data-filter="all">
+          All (<span class="count">0</span>)
+        </button>
+
+        <button class="filter-tab" data-filter="active">
+          Active (<span class="count">0</span>)
+        </button>
+
+        <button class="filter-tab" data-filter="completed">
+          Completed (<span class="count">0</span>)
+        </button>
       </div>
 
       <div class="habit-list-container">
