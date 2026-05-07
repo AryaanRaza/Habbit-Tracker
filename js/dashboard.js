@@ -11,6 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
   /* =========================
      1. SELECTORS
   ========================= */
+  const todayDate = document.getElementById("today-date");
   const habitInput = document.querySelector(".habit-field");
   const addBtn = document.querySelector(".btn-add-habit");
   const habitContainer = document.querySelector(".habit-list-container");
@@ -88,6 +89,25 @@ document.addEventListener("DOMContentLoaded", () => {
 
   loadExistingHabits();
   updateFilterCounts();
+
+    /* =========================
+      DATE
+  ========================= */
+
+  function renderTodayDate() {
+    const today = new Date();
+
+    const formatted = today.toLocaleDateString("en-US", {
+      weekday: "long",
+      day: "numeric",
+      month: "long",
+      year: "numeric",
+    });
+
+    todayDate.textContent = formatted;
+  }
+
+  renderTodayDate();
 
   /* =========================
      TOAST
@@ -338,7 +358,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const pct = updateProgress();
       applyFilter();
-      updateFilterCounts(); 
+      updateFilterCounts();
 
       // 🎉 ONLY when 100%
       if (pct === 100) {
