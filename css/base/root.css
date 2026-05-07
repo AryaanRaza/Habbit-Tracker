@@ -16,17 +16,15 @@
   --clr-accent-ice: #eef5ff; /* icy blue */
   --clr-accent-neon: #9fe7ff; /* soft cyan glow */
 
+  /* --- Category accent colors --- */
+  --cat-health: #22c55e; /* green (health = growth) */
+  --cat-learning: #3b82f6; /* blue */
+  --cat-fitness: #f97316; /* orange */
+  --cat-mindfulness:#ec4899; /* soft pink */
+  --cat-creativity: #f59e0b; /* amber */
+  --cat-work: #06b6d4; /* cyan */
+  --cat-other: #8b5cf6; /* violet */
 
-    /* --- Category accent colors --- */
---cat-health: #22c55e;      /* green (health = growth) */
---cat-learning: #3b82f6;    /* blue */
---cat-fitness: #f97316;     /* orange */
---cat-mindfulness: #a78bfa; /* purple */
---cat-creativity: #f59e0b;  /* amber */
---cat-work: #06b6d4;        /* cyan */
---cat-other: #8b5cf6;       /* violet */
-
-  
   /* --- Typography --- */
   --font-brand: "Leckerli One", cursive;
   --font-tagline: "Akronim", system-ui;
