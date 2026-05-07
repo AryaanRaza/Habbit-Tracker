@@ -1,0 +1,53 @@
+/* =========================
+   RESET.CSS
+   ========================= */
+
+/* Box model */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+/* Remove default spacing */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+/* Body defaults */
+html, body {
+  overflow-x: hidden;
+  height: auto;
+}
+
+
+/* Media elements */
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+}
+
+/* Forms */
+input, button, textarea, select {
+  font: inherit;
+}
+
+/* Buttons */
+button {
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+/* Links */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Lists */
+ul, ol {
+  list-style: none;
+}

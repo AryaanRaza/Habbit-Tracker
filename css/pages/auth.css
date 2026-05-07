@@ -1,0 +1,195 @@
+
+/* =========================================
+   2. AUTH PAGES
+   ========================================= */
+
+body.auth-page {
+  min-height: 100vh;
+}
+
+.auth-card {
+  background: rgba(255, 255, 255, 0.22);
+  box-shadow: var(--shadow-ui), var(--shadow-glow);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  padding: 34px 34px 30px;
+  border-radius: 28px;
+  width: 100%;
+  max-width: 600px;
+  position: relative;
+}
+
+.auth-mascot-wrap {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: -70px;
+  margin-bottom: 8px;
+}
+
+.mascot-auth {
+  position: static;
+  transform: none;
+  width: 120px;
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 8px 18px rgba(120, 90, 180, 0.18));
+  z-index: 10;
+  animation: authFloat 3s ease-in-out infinite;
+}
+
+.login-pos,
+.reg-pos {
+  top: auto;
+  width: 120px;
+}
+
+@keyframes authFloat {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.form-header {
+  padding-top: 0;
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.auth-card h1 {
+  font-family: var(--font-brand);
+  color: var(--clr-text-main);
+  font-size: 2.8rem;
+  margin-bottom: 4px;
+}
+
+.form-header h2 {
+  color: var(--clr-text-heading);
+  font-size: 1.45rem;
+  margin-bottom: 8px;
+}
+
+.form-header p,
+.switch-auth {
+  color: var(--clr-text-dark);
+  font-size: 0.92rem;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+/* Input Styling */
+.input-group {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.input-group label {
+  color: var(--clr-text-main);
+  font-weight: 600;
+  margin-bottom: 8px;
+  font-size: 0.9rem;
+}
+
+.input-group input {
+  padding: 15px;
+  border-radius: 14px;
+  border: 1px solid var(--border-glass);
+  background: rgba(255, 255, 255, 0.72);
+  color: var(--clr-text-main);
+  font-size: 1rem;
+  outline: none;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35);
+  transition:
+    border-color 0.25s ease,
+    box-shadow 0.25s ease,
+    background 0.25s ease;
+}
+
+.input-group input::placeholder {
+  color: var(--clr-text-soft);
+}
+
+.input-group input:focus {
+  border-color: rgba(142, 123, 255, 0.5);
+  background: rgba(255, 255, 255, 0.88);
+  box-shadow: 0 0 0 4px rgba(159, 231, 255, 0.18);
+}
+
+/* Controls and Buttons */
+.form-options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin: 10px 0 25px 0;
+  font-size: 0.9rem;
+}
+
+/* Styling the Checkbox and its Label */
+.remember-me {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--clr-text-soft);
+  cursor: pointer;
+}
+
+.remember-me input[type="checkbox"] {
+  accent-color: var(--clr-primary);
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+.forgot-link {
+  color: var(--clr-secondary);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.forgot-link:hover {
+  text-decoration: underline;
+}
+
+.input-group input {
+  padding: 14px 16px;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  background: rgba(255, 255, 255, 0.78);
+  color: var(--clr-text-main);
+  font-size: 1rem;
+  outline: none;
+}
+
+.input-group input:focus {
+  border-color: rgba(142, 123, 255, 0.55);
+  box-shadow: 0 0 0 4px rgba(142, 123, 255, 0.12);
+}
+
+.auth-card .btn {
+  width: 100%;
+  align-self: stretch;
+  margin-top: 8px;
+}
+
+.switch-auth {
+  text-align: center;
+  margin-top: 18px;
+  color: var(--clr-text-soft);
+}
+
+.switch-auth a {
+  color: var(--clr-secondary-deep);
+  font-weight: 700;
+  text-decoration: none;
+}

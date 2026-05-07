@@ -1,0 +1,82 @@
+.btn-add-habit {
+  min-width: 100px;
+  border-radius: 16px;
+  background: var(--grad-btn);
+  color: var(--clr-text-white);
+  font-weight: 700;
+  border: none;
+  padding: 12px 18px;
+  gap: 4px;
+  box-shadow: var(--shadow-btn);
+  cursor: pointer;
+  font-family: var(--font-main);
+  font-size: 0.9rem;
+  transition: all 0.25s ease;
+}
+
+.btn-add-habit:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.06);
+  box-shadow: 0 10px 28px rgba(123, 104, 255, 0.38);
+}
+
+
+/* ── Buttons ── */
+.btn-complete {
+  background: rgba(142, 123, 255, 0.12);
+  color: var(--clr-secondary-deep);
+  border: 1.5px solid rgba(142, 123, 255, 0.25);
+  padding: 8px 16px;
+  border-radius: 12px;
+  font-family: var(--font-main);
+  font-size: 0.78rem;
+  font-weight: 800;
+  cursor: pointer;
+  min-width: 118px;
+  text-align: center;
+  transition: all 0.25s ease;
+  white-space: nowrap;
+}
+
+.btn-complete:hover {
+  background: var(--clr-secondary-deep);
+  color: #fff;
+  border-color: var(--clr-secondary-deep);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(142, 123, 255, 0.3);
+}
+
+.btn-edit,
+.btn-delete {
+  background: rgba(255, 255, 255, 0.5);
+  border: 1.5px solid rgba(255, 255, 255, 0.35);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  width: 38px;
+  height: 38px;
+  padding: 0;
+  color: var(--clr-text-soft);
+  transition: all 0.2s ease;
+  border-radius: 12px;
+  flex-shrink: 0;
+}
+
+.btn-edit .material-symbols-rounded ,
+.btn-delete .material-symbols-rounded {
+  font-size: 20px;
+  line-height: 1;
+}
+.btn-edit:hover {
+  color: var(--clr-secondary-deep);
+  background: rgba(142, 123, 255, 0.14);
+  border-color: rgba(142, 123, 255, 0.4);
+  transform: scale(1.05);
+}
+.btn-delete:hover {
+  color: #ef4444;
+  background: #fee2e2;
+  border-color: #fca5a5;
+  transform: scale(1.05);
+}
