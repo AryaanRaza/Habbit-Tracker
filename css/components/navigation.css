@@ -1,0 +1,183 @@
+
+/* ================================
+   MOBILE DEFAULT (BOTTOM BAR)
+================================ */
+
+.bottom-tab-bar {
+  position: fixed;
+  bottom: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  width: 88%;
+  max-width: 380px;
+  height: 58px;
+
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+  padding: 6px;
+  border-radius: 999px;
+
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+
+  box-shadow:
+    0 10px 30px rgba(126, 102, 190, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.2);
+
+  z-index: 9999;
+}
+
+/* Tabs */
+.tab-item {
+  position: relative; /* needed for glow */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  font-size: 10px;
+  text-decoration: none;
+
+  opacity: 0.8;
+  transition: all 0.2s ease;
+}
+
+
+
+/* Icon base */
+.bottom-tab-bar .material-symbols-rounded {
+  font-size: 24px;
+  color: var(--clr-text-soft);
+
+  font-variation-settings:
+    "FILL" 0,
+    "wght" 500,
+    "GRAD" 0,
+    "opsz" 24;
+
+  transition: all 0.25s ease;
+}
+
+/* Active state */
+.tab-item.active {
+  opacity: 1;
+  transform: scale(0.92);
+  /* filter: drop-shadow(0 0 8px var(--clr-primary)); */
+}
+
+/* Active icon */
+.tab-item.active .material-symbols-rounded {
+  color: var(--clr-secondary-deep);
+
+  font-variation-settings:
+    "FILL" 1,
+    "wght" 700,
+    "GRAD" 0,
+    "opsz" 24;
+
+  transform: scale(1.15);
+}
+
+/* Glow behind active icon */
+.tab-item.active::before {
+  content: "";
+  position: absolute;
+  width: 40px;
+  height: 40px;
+
+  background: radial-gradient(
+    circle,
+    rgba(142, 123, 255, 0.3),
+    transparent 70%
+  );
+
+  border-radius: 50%;
+  z-index: -1;
+}
+
+/* ================================
+   DESKTOP SIDEBAR
+================================ */
+/* Hides side-bar mascor for smaller screens */
+@media (max-width: 899px) {
+  .sidebar-mascot {
+    display: none;
+  }
+}
+@media (min-width: 900px) {
+
+  .bottom-tab-bar {
+    top: 0;
+    left: 0;
+    bottom: auto;
+    transform: none;
+
+    width: 220px;
+    height: 100vh;
+
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+
+    padding: 20px 10px;
+    border-radius: 0;
+
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(20px);
+  }
+
+  .tab-item {
+    flex-direction: row;
+    width: 100%;
+    padding: 12px 16px;
+    gap: 12px;
+    border-radius: 14px;
+  }
+
+  .tab-label {
+    font-size: 14px;
+  }
+
+  .tab-item.active {
+    transform: none;
+
+    background: linear-gradient(
+      135deg,
+      rgba(126, 102, 190, 0.25),
+      rgba(120, 180, 255, 0.25)
+    );
+
+    border: 1px solid rgba(255, 255, 255, 0.4);
+  }
+
+  /* Mascot */
+  .sidebar-mascot {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 30px;
+  }
+
+  .sidebar-mascot img {
+    width: 140px;
+
+    transform: translateX(20px);
+    filter: drop-shadow(0 10px 20px rgba(0,0,0,0.15));
+
+    animation: floatMascot 4s ease-in-out infinite;
+  }
+
+  @keyframes floatMascot {
+    0%, 100% { transform: translateX(20px) translateY(0); }
+    50% { transform: translateX(20px) translateY(-8px); }
+  }
+
+  /* Push content */
+  body:not(.landing-page, .auth-page) {
+    margin-left: 220px;
+  }
+}
+

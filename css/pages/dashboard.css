@@ -1,0 +1,423 @@
+
+
+
+/* =========================================
+   4. DASHBOARD PAGE STYLES
+   ========================================= */
+/* =========================================
+   HABITFLOW DASHBOARD — UPDATED STYLES
+   Add these to css/style.css
+   
+   These rules REPLACE the old "4. DASHBOARD PAGE STYLES" section.
+   Delete everything between the old === 4. DASHBOARD === comments
+   and paste this in instead.
+   ========================================= */
+
+/* ── Font override ──
+   In global.css, change --font-main to:
+   --font-main: "Plus Jakarta Sans", sans-serif;
+*/
+
+/* ── Page shell (keep your existing .dashboard-container) ── */
+.dashboard-container {
+  background: var(--grad-page);
+  min-height: 100vh;
+  padding: 40px 20px 120px;
+  position: relative;
+}
+
+/* ── Header ── */
+.dash-header {
+  width: 100%;
+  max-width: 780px;
+  margin: 0 auto 24px;
+  text-align: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  padding-bottom: 16px;
+  position: relative;
+  z-index: 2;
+}
+
+.dash-title {
+  font-family: var(--font-brand);
+  font-size: clamp(3.5rem, 8vw, 6rem);
+  color: var(--clr-text-main);
+  line-height: 1;
+}
+
+.dash-tagline {
+  font-family: var(--font-main);
+  font-size: 0.8rem;
+  color: var(--clr-text-dark);
+  font-weight: 600;
+  margin-top: 8px;
+}
+
+.dash-date {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--clr-text-soft);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-top: 8px;
+}
+#confetti-canvas,
+.bg-orb {
+  pointer-events: none;
+}
+/* ── Main wrapper ── */
+.dash-wrapper {
+  width: 100%;
+  max-width: 780px;
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
+  border-radius: 28px;
+  padding: 28px;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  box-shadow: var(--shadow-ui), var(--shadow-glow);
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+/* ── Progress Banner (NEW) ── */
+.progress-banner {
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  border-radius: var(--radius-xl);
+  padding: 18px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  box-shadow: 0 4px 16px rgba(140, 120, 220, 0.08);
+}
+
+.progress-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.progress-label {
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--clr-text-soft);
+}
+
+.progress-pct {
+  font-size: 0.82rem;
+  font-weight: 800;
+  color: var(--clr-secondary-deep);
+  transition: all 0.3s ease;
+}
+
+.progress-track {
+  width: 100%;
+  height: 10px;
+  background: rgba(142, 123, 255, 0.15);
+  border-radius: 99px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  border-radius: 99px;
+  background: linear-gradient(
+    90deg,
+    var(--clr-secondary-deep),
+    var(--clr-primary)
+  );
+  transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  width: 0%;
+}
+
+.progress-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.progress-motto {
+  font-size: 0.78rem;
+  color: var(--clr-text-soft);
+  font-weight: 600;
+}
+.progress-count-text {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--clr-text-soft);
+}
+
+
+/* ── Stats ── */
+.stats-overview {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+
+/* ── Section headings ── */
+.section-label {
+  color: var(--clr-text-heading);
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 12px;
+}
+
+.section-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.section-head .section-label {
+  margin-bottom: 0;
+}
+
+.habit-count-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--clr-text-soft);
+}
+
+/******************── Input ── ***********************/
+.habit-input-area {
+  margin-top: 0;
+}
+
+.input-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px;
+  border-radius: var(--radius-xl);
+  background: var(--border-glass);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  transition: all 0.4s ease;
+}
+
+.input-wrapper:focus-within {
+  background: var(--bg-card-strong);
+  box-shadow: 0 0 25px var(--clr-primary-glow);
+  transform: translateY(-2px);
+  border-color: var(--clr-primary-strong);
+}
+
+.habit-field {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.82);
+  border: 1px solid var(--border-glass);
+  border-radius: 16px;
+  padding: 14px 18px;
+  font-size: 1rem;
+  color: var(--clr-text-main);
+  outline: none;
+  font-family: var(--font-main);
+  width: 100%;
+  transition:
+    background 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.habit-field:focus {
+  color: var(--clr-secondary-deep);
+  font-weight: 600;
+  background: #ffffff;
+  border-color: rgba(142, 123, 255, 0.55);
+  box-shadow: 0 0 0 4px rgba(142, 123, 255, 0.12);
+  text-transform: capitalize;
+}
+
+.habit-field::placeholder {
+  color: var(--clr-text-soft);
+  font-style: italic;
+  opacity: 0.7;
+}
+.input-meta {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr auto;
+  gap: 8px;
+}
+.habit-category,
+.habit-time {
+  background: var(--bg-glass-heavy);
+  border: 1px solid var(--border-glass);
+  border-radius: 12px;
+  padding: 12px 14px;
+  font-family: var(--font-main);
+  font-size: 0.86rem;
+  font-weight: 600;
+  color: var(--clr-text-main);
+  outline: none;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+.habit-category:focus,
+.habit-time:focus {
+  border-color: var(--clr-secondary-deep);
+  box-shadow: 0 0 0 3px rgba(142, 123, 255, 0.15);
+}
+
+
+
+/* ── Habit list ── */
+.habit-list-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* ── Empty state ── */
+.empty-state {
+  text-align: center;
+  padding: 40px 20px;
+  color: var(--clr-text-soft);
+  display: none;
+  background: var(--bg-glass);
+  border: 1px dashed var(--border-glass);
+  border-radius: 20px;
+}
+.empty-state.is-visible {
+  display: block;
+}
+.empty-state .empty-icon {
+  font-size: 2.4rem;
+  display: block;
+  margin-bottom: 8px;
+}
+.empty-state .empty-title {
+  font-weight: 800;
+  font-size: 1rem;
+  color: var(--clr-text-main);
+}
+.empty-state .empty-sub {
+  font-size: 0.85rem;
+  color: var(--clr-text-soft);
+  margin-top: 2px;
+}
+
+/* ── Filter tabs ── */
+.filter-tabs {
+  display: inline-flex;
+  gap: 4px;
+  background: var(--bg-glass);
+  border: 1px solid var(--border-glass);
+  padding: 4px;
+  border-radius: 99px;
+  margin-bottom: 14px;
+}
+.filter-tab {
+  border: none;
+  background: transparent;
+  color: var(--clr-text-soft);
+  font-family: var(--font-main);
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 8px 16px;
+  border-radius: 99px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.filter-tab:hover { color: var(--clr-text-main); }
+.filter-tab.is-active {
+  background: var(--grad-btn);
+  color: #fff;
+  box-shadow: 0 4px 14px rgba(123, 104, 255, 0.3);
+}
+
+
+
+/* ── Footer ── */
+.dash-footer {
+  text-align: center;
+  padding-top: 6px;
+}
+
+.motivation-text {
+  color: var(--clr-text-soft);
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+ /* edit modal pop up */
+
+
+/* ================= ANIMATIONS ================= */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@media (max-width: 600px) {
+  .dash-wrapper {
+    padding: 20px 16px;
+  }
+
+  .stats-overview {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .stats-overview .stat-card:last-child {
+    grid-column: 1 / -1;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  .input-wrapper {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .habit-field,
+  .btn-add-habit {
+    border-radius: 16px;
+    width: 100%;
+  }
+
+  .habit-card {
+    padding: 12px 14px;
+    gap: 10px;
+  }
+
+  .btn-complete {
+    min-width: 90px;
+    padding: 8px 10px;
+    font-size: 0.72rem;
+    border-radius: 10px;
+  }
+
+  .btn-delete {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+  }
+
+  .btn-delete .material-symbols-rounded {
+    font-size: 18px;
+  }
+}
