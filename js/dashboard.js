@@ -1,201 +1,473 @@
-// 1. Select the Elements
-const habitInput = document.querySelector('.habit-field');
-const addBtn = document.querySelector('.btn-add-habit');
-const habitContainer = document.querySelector('.habit-list-container');
+// ============================================================
+//  HabitFlow — dashboard.js (FINAL STABLE VERSION)
+//  ✅ Fixes:
+//     - Edit modal save (robust UI update)
+//     - Confetti only at 100% completion
+//     - Undo hover text
+//     - Toast popup
+// ============================================================
 
-// 2. Data State
-let habits = [];
+document.addEventListener("DOMContentLoaded", () => {
+  /* =========================
+     1. SELECTORS
+  ========================= */
+  const habitInput = document.querySelector(".habit-field");
+  const addBtn = document.querySelector(".btn-add-habit");
+  const habitContainer = document.querySelector(".habit-list-container");
+  const timeInput = document.getElementById("habit-time");
 
-// 3. Hydrate Existing Habits from HTML
-const initializeExistingHabits = () => {
-    const existingCards = document.querySelectorAll('.habit-card');
+  const emptyState = document.getElementById("empty-state");
+  const progressFill = document.getElementById("progress-fill");
+  const progressPct = document.getElementById("progress-pct");
+  const progressCount = document.getElementById("progress-count");
+  const habitCountLbl = document.getElementById("habit-count-label");
 
-    existingCards.forEach((card, index) => {
-        const name = card.querySelector('.habit-name').innerText;
-        const id = Date.now() + index;
+  const statBest = document.getElementById("stat-best");
+  const statStreak = document.getElementById("stat-streak");
+  const statTotal = document.getElementById("stat-total");
 
-        // Give each existing card an ID
-        card.setAttribute('data-id', id);
+  const categorySelect = document.getElementById("habit-category");
+  const toast = document.getElementById("toast");
 
-        // Add to JS array
-        habits.push({
-            id: id,
-            name: name,
-            streak: 0,
-            total: 0,
-            completedToday: false
-        });
-    });
-};
+  /* ===== EDIT MODAL ===== */
+  const editModal = document.getElementById("edit-modal");
+  const editName = document.getElementById("edit-name");
+  const editCategory = document.getElementById("edit-category");
+  const editTime = document.getElementById("edit-time");
+  const editCancel = document.getElementById("edit-cancel");
+  const editSave = document.getElementById("edit-save");
+  const filterTabs = document.querySelectorAll(".filter-tab");
 
-// Run immediately
-initializeExistingHabits();
+  /* =========================
+     2. CONSTANTS
+  ========================= */
+  const CATEGORIES = {
+    health: { icon: "💪", color: "var(--cat-health)" },
+    learning: { icon: "📚", color: "var(--cat-learning)" },
+    fitness: { icon: "🏃", color: "var(--cat-fitness)" },
+    mindfulness: { icon: "🧘", color: "var(--cat-mindfulness)" },
+    creativity: { icon: "🎨", color: "var(--cat-creativity)" },
+    work: { icon: "💼", color: "var(--cat-work)" },
+    other: { icon: "✨", color: "var(--cat-other)" },
+  };
 
-// 4. Add Habit Function
-const addHabit = () => {
-    let habitText = habitInput.value.trim();
+  /* =========================
+     3. STATE
+  ========================= */
+  let habits = [];
+  let editingId = null;
+  let currentFilter = "all";
 
-    // --- CAPITALIZATION LOGIC START ---
-    if (habitText.length > 0) {
-        habitText = habitText.charAt(0).toUpperCase() + habitText.slice(1);
-    }
-    // --- CAPITALIZATION LOGIC END ---
+  /* =========================
+     LOAD EXISTING STATIC CARDS
+  ========================= */
+  function loadExistingHabits() {
+    const cards = document.querySelectorAll(".habit-card");
 
-    // Empty validation
-    if (habitText === "") {
-        alert("Please enter a habit name!");
-        return;
-    }
+    cards.forEach((card) => {
+      const name = card.querySelector(".habit-name")?.textContent.trim();
+      if (!name || habits.some((h) => h.name === name)) return;
 
-    // Duplicate validation
-    const isDuplicate = habits.some(
-        h => h.name.toLowerCase() === habitText.toLowerCase()
-    );
+      const id = Date.now() + Math.random();
+      card.setAttribute("data-id", id);
 
-    if (isDuplicate) {
-        alert("You're already crushing this habit! No need to add it twice. 🔥");
-        habitInput.value = "";
-        return;
-    }
-
-    // Create habit object
-    const newHabit = {
-        id: Date.now(),
-        name: habitText,
+      habits.push({
+        id,
+        name,
+        category: "other",
+        time: "",
         streak: 0,
+        best: 0,
         total: 0,
-        completedToday: false
+        completedToday: false,
+      });
+    });
+
+    updateProgress();
+  }
+
+  loadExistingHabits();
+  updateFilterCounts();
+
+  /* =========================
+     TOAST
+  ========================= */
+  function showToast(msg) {
+    if (!toast) return;
+    toast.textContent = msg;
+    toast.classList.add("show");
+
+    setTimeout(() => toast.classList.remove("show"), 2000);
+  }
+
+  /* =========================
+   SAVE BUTTON LOADING STATE
+    ========================= */
+  function setSaveLoading(isLoading) {
+    if (isLoading) {
+      editSave.disabled = true;
+      editSave.textContent = "Saving...";
+    } else {
+      editSave.disabled = false;
+      editSave.textContent = "Save";
+    }
+  }
+
+  /* =========================
+     CONFETTI (100% ONLY)
+  ========================= */
+  function fireConfetti() {
+    if (!window.confetti) return;
+
+    window.confetti({
+      particleCount: 150,
+      spread: 80,
+      origin: { y: 0.6 },
+    });
+  }
+
+  /* =========================
+     STATS + PROGRESS
+  ========================= */
+  function updateStats() {
+    statBest.textContent = Math.max(...habits.map((h) => h.best), 0);
+    statStreak.textContent = Math.max(...habits.map((h) => h.streak), 0);
+    statTotal.textContent = habits.reduce((s, h) => s + h.total, 0);
+  }
+
+  function updateProgress() {
+    const total = habits.length;
+    const done = habits.filter((h) => h.completedToday).length;
+    const pct = total === 0 ? 0 : Math.round((done / total) * 100);
+
+    progressPct.textContent = pct + "%";
+    progressFill.style.width = pct + "%";
+    progressCount.textContent = `${done} / ${total} done`;
+    habitCountLbl.textContent = total === 1 ? "1 habit" : `${total} habits`;
+    emptyState.style.display = total === 0 ? "block" : "none";
+
+    updateStats();
+
+    return pct; // 🔥 IMPORTANT
+  }
+
+  /* =========================
+     HELPERS
+  ========================= */
+  function refreshChips(card, h) {
+    card.querySelector(".chip-streak").textContent =
+      `🔥 ${h.streak} day streak`;
+    card.querySelector(".chip-total").textContent = `✓ ${h.total} total`;
+  }
+
+  /* =========================
+   FILTER LOGIC
+  ========================= */
+  function applyFilter() {
+    const cards = document.querySelectorAll(".habit-card");
+
+    cards.forEach((card) => {
+      const id = card.getAttribute("data-id");
+      const habit = habits.find((h) => h.id == id);
+      if (!habit) return;
+
+      let show = true;
+
+      if (currentFilter === "active") {
+        show = !habit.completedToday;
+      } else if (currentFilter === "completed") {
+        show = habit.completedToday;
+      }
+
+      card.style.display = show ? "flex" : "none";
+    });
+  }
+  /* =========================
+   FILTER COUNTS
+  ========================= */
+  function updateFilterCounts() {
+    const all = habits.length;
+    const active = habits.filter((h) => !h.completedToday).length;
+    const completed = habits.filter((h) => h.completedToday).length;
+
+    filterTabs.forEach((tab) => {
+      const type = tab.dataset.filter;
+      const countEl = tab.querySelector(".count");
+
+      if (!countEl) return;
+
+      if (type === "all") countEl.textContent = all;
+      if (type === "active") countEl.textContent = active;
+      if (type === "completed") countEl.textContent = completed;
+    });
+  }
+
+  /* =========================
+     ADD HABIT
+  ========================= */
+  function addHabit() {
+    let name = habitInput.value.trim();
+    name = name.charAt(0).toUpperCase() + name.slice(1);
+    if (!name) return alert("Enter a habit!");
+
+    // 🚫 Prevent duplicate habits
+    if (habits.some((h) => h.name.toLowerCase() === name.toLowerCase())) {
+      showToast("Habit already exists ⚠️");
+      return;
+    }
+
+    const habit = {
+      id: Date.now(),
+      name,
+      category: categorySelect.value || "other",
+      time: timeInput.value || "",
+      streak: 0,
+      best: 0,
+      total: 0,
+      completedToday: false,
     };
 
-    // Add to array
-    habits.push(newHabit);
+    habits.push(habit);
 
-    // Render to UI
-    createHabitCard(newHabit);
+    const cat = CATEGORIES[habit.category];
 
-    // Reset input
-    habitInput.value = "";
-    habitInput.focus();
-};
+    const card = document.createElement("article");
+    card.className = "habit-card";
+    card.setAttribute("data-id", habit.id);
+    card.style.setProperty("--cat-color", cat.color);
 
-// 5. Create Habit Card
-const createHabitCard = (habit) => {
-    const habitCard = document.createElement('article');
-    habitCard.classList.add('habit-card');
-    habitCard.setAttribute('data-id', habit.id);
-
-    habitCard.innerHTML = `
-        <div class="habit-info">
-            <h3 class="habit-name">${habit.name}</h3>
-            <div class="habit-meta">
-                <p class="habit-stats">Streak: ${habit.streak} days | Total: ${habit.total}</p>
-            </div>
+    card.innerHTML = `
+      <span class="habit-dot">${cat.icon}</span>
+      <div class="habit-info">
+        <h3 class="habit-name">${name}</h3>
+        <div class="habit-chips">
+          <span class="chip chip-streak">🔥 0 day streak</span>
+          <span class="chip chip-total">✓ 0 total</span>
+          ${habit.time ? `<span class="chip chip-time">⏰ ${habit.time}</span>` : ""}
         </div>
-        <div class="habit-actions">
-            <button class="btn btn-complete">Mark as Done</button>
-            <button class="btn-delete" title="Delete Habit">
-                <span class="material-symbols-rounded">delete</span>
-            </button>
-        </div>
+      </div>
+      <div class="habit-actions">
+        <button class="btn-edit"><span class="material-symbols-rounded">edit</span></button>
+        <button class="btn btn-complete">Mark as Done</button>
+        <button class="btn-delete"><span class="material-symbols-rounded">delete</span></button>
+      </div>
     `;
 
-    habitContainer.appendChild(habitCard);
-};
+    habitContainer.appendChild(card);
 
-// 6. Add Habit Event Listeners
-addBtn.addEventListener('click', (e) => {
-    e.preventDefault();
-    addHabit();
-});
+    // 🔥 Reset inputs after adding
+    habitInput.value = "";
+    timeInput.value = ""; // ← THIS is your fix
+    categorySelect.value = "other";
 
-habitInput.addEventListener('keypress', (e) => {
-    if (e.key === 'Enter') {
-        e.preventDefault();
-        addHabit();
+    updateProgress();
+    applyFilter();
+    updateFilterCounts();
+  }
+
+  addBtn.addEventListener("click", addHabit);
+
+  /* =========================
+   FILTER TAB EVENTS
+  ========================= */
+  filterTabs.forEach((tab) => {
+    tab.addEventListener("click", () => {
+      filterTabs.forEach((t) => t.classList.remove("is-active"));
+      tab.classList.add("is-active");
+      currentFilter = tab.dataset.filter;
+      applyFilter();
+    });
+  });
+
+  habitInput.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      addHabit();
     }
-});
+  });
 
-// 7. Main Click Event Delegation (Complete + Delete)
-habitContainer.addEventListener('click', (e) => {
-    const completeBtn = e.target.closest('.btn-complete');
-    const deleteBtn = e.target.closest('.btn-delete');
+  /* =========================
+     EVENTS
+  ========================= */
+  habitContainer.addEventListener("click", (e) => {
+    const card = e.target.closest(".habit-card");
+    if (!card) return;
 
-    // MARK / UNMARK HABIT
-    if (completeBtn) {
-        const button = completeBtn;
-        const card = button.closest('.habit-card');
-        const habitId = card.getAttribute('data-id');
-        const habitIndex = habits.findIndex(h => h.id == habitId);
+    const id = card.getAttribute("data-id");
+    const habit = habits.find((h) => h.id == id);
+    if (!habit) return;
 
-        if (habitIndex !== -1) {
-            const habit = habits[habitIndex];
+    // ===== EDIT =====
+    if (e.target.closest(".btn-edit")) {
+      editingId = id;
 
-            if (!habit.completedToday) {
-                // Mark done
-                habit.completedToday = true;
-                habit.streak += 1;
-                habit.total += 1;
-                card.classList.add('is-completed');
-                button.innerText = 'Completed! 🔥';
-            } else {
-                // Undo
-                habit.completedToday = false;
-                habit.streak -= 1;
-                habit.total -= 1;
-                card.classList.remove('is-completed');
-                button.innerText = 'Mark as Done';
-            }
+      editName.value = habit.name;
+      editCategory.value = habit.category;
+      editTime.value = habit.time || "";
 
-            // Update stats text
-            const statsText = card.querySelector('.habit-stats');
-            statsText.innerText = `Streak: ${habit.streak} days | Total: ${habit.total}`;
-        }
-
-        return; // prevent accidental fall-through
+      editModal.hidden = false;
+      return;
     }
 
-    // DELETE HABIT
-    if (deleteBtn) {
-        const card = deleteBtn.closest('.habit-card');
-        const habitId = card.getAttribute('data-id');
+    // ===== COMPLETE =====
+    if (e.target.closest(".btn-complete")) {
+      const btn = card.querySelector(".btn-complete");
 
-        if (confirm("Are you sure you want to delete this habit? 🌪️")) {
-            // Remove from array
-            habits = habits.filter(h => h.id != habitId);
+      if (!habit.completedToday) {
+        habit.completedToday = true;
+        habit.streak++;
+        habit.total++;
+        habit.best = Math.max(habit.best, habit.streak);
 
-            // Animate out
-            card.style.transform = "translateX(20px)";
-            card.style.opacity = "0";
+        card.classList.add("is-completed");
+        btn.innerText = "Completed! 🔥";
 
-            setTimeout(() => {
-                card.remove();
-            }, 300);
+        showToast("Nice! Habit completed ✅");
+      } else {
+        habit.completedToday = false;
+        habit.streak = Math.max(0, habit.streak - 1);
+        habit.total = Math.max(0, habit.total - 1);
 
-            console.log("Habit deleted. Current list:", habits);
-        }
+        card.classList.remove("is-completed");
+        btn.innerText = "Mark as Done";
+
+        showToast("Marked as not done ❌");
+      }
+
+      refreshChips(card, habit);
+
+      const pct = updateProgress();
+      applyFilter();
+      updateFilterCounts(); 
+
+      // 🎉 ONLY when 100%
+      if (pct === 100) {
+        fireConfetti();
+        showToast("Perfect day! 🎉");
+      }
+
+      return;
     }
-});
 
-// 8. Hover Effect: Show Undo on Completed Habit
-habitContainer.addEventListener('mouseover', (e) => {
-    const completeBtn = e.target.closest('.btn-complete');
-    if (!completeBtn) return;
+    // ===== DELETE =====
+    if (e.target.closest(".btn-delete")) {
+      habits = habits.filter((h) => h.id != id);
 
-    const card = completeBtn.closest('.habit-card');
+      card.classList.add("deleting");
+      setTimeout(() => {
+        card.remove();
+        updateProgress();
+        applyFilter();
+        updateFilterCounts();
+      }, 250);
 
-    if (card.classList.contains('is-completed')) {
-        completeBtn.innerText = 'Undo? ↩️';
+      showToast("Habit deleted 🗑️");
     }
-});
+  });
 
-// 9. Hover Out: Restore Completed Text
-habitContainer.addEventListener('mouseout', (e) => {
-    const completeBtn = e.target.closest('.btn-complete');
-    if (!completeBtn) return;
+  /* =========================
+     HOVER → UNDO TEXT
+  ========================= */
+  habitContainer.addEventListener("mouseover", (e) => {
+    const btn = e.target.closest(".btn-complete");
+    if (!btn) return;
 
-    const card = completeBtn.closest('.habit-card');
-
-    if (card.classList.contains('is-completed')) {
-        completeBtn.innerText = 'Completed! 🔥';
+    const card = btn.closest(".habit-card");
+    if (card.classList.contains("is-completed")) {
+      btn.innerText = "Undo ❌";
     }
+  });
+
+  habitContainer.addEventListener("mouseout", (e) => {
+    const btn = e.target.closest(".btn-complete");
+    if (!btn) return;
+
+    const card = btn.closest(".habit-card");
+    if (card.classList.contains("is-completed")) {
+      btn.innerText = "Completed! 🔥";
+    }
+  });
+
+  /* =========================
+     EDIT MODAL ACTIONS 
+  ========================= */
+
+  editCancel.addEventListener("click", () => {
+    editModal.hidden = true;
+    editingId = null;
+  });
+
+  editSave.addEventListener("click", async () => {
+    const habit = habits.find((h) => h.id == editingId);
+    if (!habit) return;
+
+    setSaveLoading(true); // ✅ START LOADING
+
+    // simulate slight delay (feels real UX)
+    await new Promise((res) => setTimeout(res, 400));
+
+    habit.name = editName.value.trim();
+    habit.category = editCategory.value;
+    habit.time = editTime.value;
+
+    const card = document.querySelector(`[data-id="${editingId}"]`);
+    if (!card) {
+      setSaveLoading(false);
+      return;
+    }
+
+    const cat = CATEGORIES[habit.category];
+
+    // SAFE UI UPDATE
+    card.querySelector(".habit-name").textContent = habit.name;
+    card.querySelector(".habit-dot").textContent = cat.icon;
+    card.style.setProperty("--cat-color", cat.color);
+
+    let chips = card.querySelector(".habit-chips");
+    let timeChip = card.querySelector(".chip-time");
+
+    if (habit.time) {
+      if (!timeChip) {
+        timeChip = document.createElement("span");
+        timeChip.className = "chip chip-time";
+        chips.appendChild(timeChip);
+      }
+      timeChip.textContent = `⏰ ${habit.time}`;
+    } else {
+      if (timeChip) timeChip.remove();
+    }
+
+    setSaveLoading(false); // ✅ STOP LOADING
+
+    editModal.hidden = true;
+    editingId = null;
+
+    showToast("Habit updated ✨");
+  });
+
+  /* =========================
+   KEYBOARD SHORTCUTS (MODAL)
+========================= */
+  document.addEventListener("keydown", (e) => {
+    // only work when modal is open
+    if (editModal.hidden) return;
+
+    // ESC → close modal
+    if (e.key === "Escape") {
+      editModal.hidden = true;
+      editingId = null;
+      initialEditState = null;
+      return;
+    }
+
+    // ENTER → save (but avoid textarea issues in future)
+    if (e.key === "Enter") {
+      e.preventDefault();
+
+      // prevent saving if disabled
+      if (!editSave.disabled) {
+        editSave.click();
+      }
+    }
+  });
 });
