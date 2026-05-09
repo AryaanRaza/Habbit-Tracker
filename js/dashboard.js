@@ -114,7 +114,7 @@ document.addEventListener("DOMContentLoaded", () => {
   ========================= */
   function showToast(msg) {
     if (!toast) return;
-    toast.textContent = msg;
+    toast.innerHTML = msg;
     toast.classList.add("show");
 
     setTimeout(() => toast.classList.remove("show"), 2000);
@@ -381,7 +381,9 @@ document.addEventListener("DOMContentLoaded", () => {
         updateFilterCounts();
       }, 250);
 
-      showToast("Habit deleted 🗑️");
+      showToast(
+        `  <span class="material-symbols-rounded toast-icon">delete_sweep</span> Habit deleted`,
+      );
     }
   });
 

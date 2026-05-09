@@ -8,6 +8,9 @@
   z-index: 9999;
 }
 .toast {
+  display: flex;
+  align-items: center;
+  gap: 8px;
   position: fixed;
   bottom: 90px;
   left: 50%;
@@ -26,4 +29,14 @@
 .toast.show {
   opacity: 1;
   transform: translateX(-50%) translateY(0);
+}
+
+.toast-icon {
+  font-size: 12px;
+
+  font-variation-settings:
+    "FILL" 1,
+    "wght" 500,
+    "GRAD" 0,
+    "opsz" 24;
 }
