@@ -5,7 +5,7 @@
    ───────────────────────────────────────────── */
 
 /* ── Layout ─────────────────────────────────── */
-.stats-page {
+/* .stats-page {
   background: #a090a0c4;
   color: #3b433c;
   min-height: 100vh;
@@ -375,4 +375,4 @@
 @media (max-width: 560px) {
   .metrics-grid  { grid-template-columns: repeat(2, 1fr); }
   .charts-row    { grid-template-columns: 1fr; }
-}
+} 
