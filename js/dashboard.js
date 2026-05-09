@@ -417,7 +417,12 @@ document.addEventListener("DOMContentLoaded", () => {
     editingId = null;
   });
 
-
+  editModal.addEventListener("click", (e) => {
+    if (e.target === editModal) {
+      editModal.hidden = true;
+      editingId = null;
+    }
+  });
 
   editSave.addEventListener("click", async () => {
     const habit = habits.find((h) => h.id == editingId);
