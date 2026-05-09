@@ -394,7 +394,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const card = btn.closest(".habit-card");
     if (card.classList.contains("is-completed")) {
-      btn.innerText = "Undo ❌";
+      btn.innerText = "Undo ? ↩️";
     }
   });
 
