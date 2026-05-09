@@ -40,15 +40,15 @@ document.addEventListener("DOMContentLoaded", () => {
   const filterTabs = document.querySelectorAll(".filter-tab");
 
   /* =========================
-     2. CONSTANTS
-  ========================= */
+   2. CONSTANTS
+========================= */
   const CATEGORIES = {
-    health: { icon: "💪", color: "var(--cat-health)" },
+    health: { icon: "🌿", color: "var(--cat-health)" },
     learning: { icon: "📚", color: "var(--cat-learning)" },
-    fitness: { icon: "🏃", color: "var(--cat-fitness)" },
-    mindfulness: { icon: "🧘", color: "var(--cat-mindfulness)" },
+    fitness: { icon: "💪", color: "var(--cat-fitness)" },
+    mindfulness: { icon: "🧠", color: "var(--cat-mindfulness)" },
     creativity: { icon: "🎨", color: "var(--cat-creativity)" },
-    work: { icon: "💼", color: "var(--cat-work)" },
+    work: { icon: "💻", color: "var(--cat-work)" },
     other: { icon: "✨", color: "var(--cat-other)" },
   };
 
@@ -90,7 +90,7 @@ document.addEventListener("DOMContentLoaded", () => {
   loadExistingHabits();
   updateFilterCounts();
 
-    /* =========================
+  /* =========================
       DATE
   ========================= */
 
