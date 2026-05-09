@@ -417,6 +417,8 @@ document.addEventListener("DOMContentLoaded", () => {
     editingId = null;
   });
 
+
+
   editSave.addEventListener("click", async () => {
     const habit = habits.find((h) => h.id == editingId);
     if (!habit) return;
