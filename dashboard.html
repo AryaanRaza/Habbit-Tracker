@@ -197,19 +197,25 @@
     <div class="modal-content">
       <h2>✏️ Edit Habit</h2>
 
-      <input type="text" id="edit-name" placeholder="Habit name" />
+      <label class="modal-label">Name</label>
+      <input type="text" id="edit-name" />
 
-      <select id="edit-category">
-        <option value="health">🌿 Wellness</option>
-        <option value="learning">📚 Learning</option>
-        <option value="fitness">💪 Fitness</option>
-        <option value="mindfulness">🧠 Mindfulness</option>
-        <option value="creativity">🎨 Creativity</option>
-        <option value="work">💻 Productivity</option>
-        <option value="other" selected>✨ General</option>
-      </select>
 
+      <label class="modal-label">Category</label>
+        <select id="edit-category">
+          <option value="health">🌿 Wellness</option>
+          <option value="learning">📚 Learning</option>
+          <option value="fitness">💪 Fitness</option>
+          <option value="mindfulness">🧠 Mindfulness</option>
+          <option value="creativity">🎨 Creativity</option>
+          <option value="work">💻 Productivity</option>
+          <option value="other" selected>✨ General</option>
+        </select>
+
+
+      <label class="modal-label">Reminder Time</label>
       <input type="time" id="edit-time" />
+
 
       <div class="modal-actions">
         <button id="edit-cancel" type="button">Cancel</button>

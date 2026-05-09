@@ -42,7 +42,8 @@
   --clr-text-soft: #7b739e;
   --clr-text-white: #ffffff;
   --clr-text-wine: #7b4f88; /* kept for compatibility with your old classes */
-
+  --clr-modal-heading: #2a3441;
+  --clr-modal-label: #4b5563;
   /* --- Glass Surfaces --- */
   --bg-card: rgba(255, 255, 255, 0.22);
   --bg-card-strong: rgba(255, 255, 255, 0.34);
