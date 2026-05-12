@@ -38,6 +38,7 @@
   /* Gentle glow on the brand block */
   box-shadow: 0 4px 16px rgba(142, 123, 255, 0.1);
   transition: background 0.25s;
+  cursor: pointer;
 }
 .sidebar-brand:hover {
   background: rgba(142, 123, 255, 0.15);
