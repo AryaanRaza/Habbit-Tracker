@@ -337,7 +337,6 @@
 /* Active state for bottom nav */
 .bottom-tab-bar .tab-item.active {
   color: var(--clr-secondary-deep);
-  background: rgba(142, 123, 255, 0.12);
 }
 .bottom-tab-bar .tab-item.active .material-symbols-rounded {
   transform: scale(1.2);
