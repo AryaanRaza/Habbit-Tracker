@@ -73,15 +73,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
       <div class="quick-stats-grid">
 
-        <div class="quick-stat-box">
-          <div class="quick-stat-value">1</div>
-          <div class="quick-stat-label">STREAK</div>
-        </div>
+      <div class="quick-stat-box">
+        <div class="quick-stat-value" id="nav-best-streak">0</div>
+        <div class="quick-stat-label">STREAK</div>
+      </div>
 
-        <div class="quick-stat-box">
-          <div class="quick-stat-value">7</div>
-          <div class="quick-stat-label">HABITS</div>
-        </div>
+      <div class="quick-stat-box">
+        <div class="quick-stat-value" id="nav-total-habits">0</div>
+        <div class="quick-stat-label">HABITS</div>
+      </div>
 
       </div>
     </div>

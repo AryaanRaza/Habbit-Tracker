@@ -27,6 +27,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const statStreak = document.getElementById("stat-streak");
   const statTotal = document.getElementById("stat-total");
 
+  /* ===== SIDEBAR QUICK STATS ===== */
+  const navBestStreak = document.getElementById("nav-best-streak");
+  const navTotalHabits = document.getElementById("nav-total-habits");
+
   const categorySelect = document.getElementById("habit-category");
   const toast = document.getElementById("toast");
 
@@ -214,8 +218,25 @@ document.addEventListener("DOMContentLoaded", () => {
     emptyState.style.display = total === 0 ? "block" : "none";
 
     updateStats();
+    updateSidebarStats();
 
     return pct; // 🔥 IMPORTANT
+  }
+
+  /* =========================
+   SIDEBAR QUICK STATS
+   Syncs sidebar numbers with app state
+========================= */
+  function updateSidebarStats() {
+    // Highest streak across all habits
+    const bestStreak = Math.max(...habits.map((h) => h.best), 0);
+
+    // Total number of habits
+    const totalHabits = habits.length;
+
+    // Update sidebar UI
+    navBestStreak.textContent = bestStreak;
+    navTotalHabits.textContent = totalHabits;
   }
 
   /* =========================
