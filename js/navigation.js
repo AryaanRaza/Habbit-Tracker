@@ -36,33 +36,55 @@ document.addEventListener("DOMContentLoaded", () => {
     </div>
 
     <!-- Navigation -->
+    <!-- Primary Navigation -->
     <nav class="sidebar-links">
 
-      <a href="${prefix}dashboard.html"
-         class="sidebar-link"
-         data-match="dashboard">
+   <!-- Dashboard -->
+   <a href="${prefix}dashboard.html"
+     class="sidebar-link"
+     data-match="dashboard">
 
-        <span class="material-symbols-rounded">home</span>
-        <span>Dashboard</span>
-      </a>
+     <span class="material-symbols-rounded">home</span>
+     <span>Dashboard</span>
+   </a>
 
-      <a href="${prefix}stats.html"
-         class="sidebar-link"
-         data-match="stats">
+   <!-- Analytics -->
+   <a href="${prefix}analytics.html"
+     class="sidebar-link"
+     data-match="analytics">
 
-        <span class="material-symbols-rounded">leaderboard</span>
-        <span>Stats</span>
-      </a>
+     <span class="material-symbols-rounded">bar_chart</span>
+     <span>Analytics</span>
+   </a>
 
-      <a href="${prefix}settings.html"
-         class="sidebar-link"
-         data-match="settings">
+   <!-- All Habits -->
+   <a href="${prefix}habits.html"
+     class="sidebar-link"
+     data-match="habits">
 
-        <span class="material-symbols-rounded">settings</span>
-        <span>Settings</span>
-      </a>
+     <span class="material-symbols-rounded">checklist</span>
+     <span>All Habits</span>
+   </a>
 
-    </nav>
+    <!-- Achievements -->
+    <a href="${prefix}achievements.html"
+     class="sidebar-link"
+     data-match="achievements">
+
+    <span class="material-symbols-rounded">emoji_events</span>
+    <span>Achievements</span>
+  </a>
+
+   <!-- Settings -->
+   <a href="${prefix}settings.html"
+     class="sidebar-link"
+     data-match="settings">
+
+    <span class="material-symbols-rounded">settings</span>
+    <span>Settings</span>
+   </a>
+
+</nav>
 
     <!-- Quick Stats -->
     <div class="sidebar-quick-stats">
@@ -93,34 +115,55 @@ document.addEventListener("DOMContentLoaded", () => {
 
   </aside>
 
-  <!-- MOBILE FLOATING NAV -->
-  <footer class="bottom-tab-bar">
+<!-- MOBILE FLOATING NAV -->
+<footer class="bottom-tab-bar">
 
-      <a href="${prefix}dashboard.html"
-         class="tab-item"
-         data-match="dashboard">
+  <!-- Dashboard -->
+  <a href="${prefix}dashboard.html"
+     class="tab-item"
+     data-match="dashboard">
 
-          <span class="material-symbols-rounded">home</span>
-          <span class="tab-label">Home</span>
-      </a>
+    <span class="material-symbols-rounded">home</span>
+    <span>Home</span>
+  </a>
 
-      <a href="${prefix}stats.html"
-         class="tab-item"
-         data-match="stats">
+  <!-- Analytics -->
+  <a href="${prefix}analytics.html"
+     class="tab-item"
+     data-match="analytics">
 
-          <span class="material-symbols-rounded">leaderboard</span>
-          <span class="tab-label">Stats</span>
-      </a>
+    <span class="material-symbols-rounded">bar_chart</span>
+    <span>Stats</span>
+  </a>
 
-      <a href="${prefix}settings.html"
-         class="tab-item"
-         data-match="settings">
+  <!-- Habits -->
+  <a href="${prefix}habits.html"
+     class="tab-item"
+     data-match="habits">
 
-          <span class="material-symbols-rounded">settings</span>
-          <span class="tab-label">Settings</span>
-      </a>
+    <span class="material-symbols-rounded">checklist</span>
+    <span>Habits</span>
+  </a>
 
-  </footer>
+  <!-- Achievements -->
+  <a href="${prefix}achievements.html"
+     class="tab-item"
+     data-match="achievements">
+
+    <span class="material-symbols-rounded">emoji_events</span>
+    <span>Awards</span>
+  </a>
+
+  <!-- Settings -->
+  <a href="${prefix}settings.html"
+     class="tab-item"
+     data-match="settings">
+
+    <span class="material-symbols-rounded">settings</span>
+    <span>Settings</span>
+  </a>
+
+</footer>
 `;
 
   document.body.insertAdjacentHTML("beforeend", footerTemplate);
@@ -134,20 +177,24 @@ document.addEventListener("DOMContentLoaded", () => {
   tabs.forEach((tab) => {
     const matchToken = tab.getAttribute("data-match");
 
-    // Match 'dashboard' if the URL ends in dashboard.html
-    if (matchToken === "dashboard" && path.endsWith("dashboard.html")) {
-      tab.classList.add("active");
-    }
-    // Match 'stats' if the URL ends in stats.html
-    else if (matchToken === "stats" && path.endsWith("stats.html")) {
-      tab.classList.add("active");
-    }
-    // Match 'settings' if we are in the settings folder OR on settings.html
-    else if (
-      matchToken === "settings" &&
-      (isInsideSettings || path.endsWith("settings.html"))
-    ) {
-      tab.classList.add("active");
-    }
+    /* =========================
+   ACTIVE PAGE HIGHLIGHT
+   ========================= */
+    tabs.forEach((tab) => {
+      const matchToken = tab.getAttribute("data-match");
+
+      // Skip if no token exists
+      if (!matchToken) return;
+
+      // Match page from current URL
+      if (path.includes(`${matchToken}.html`)) {
+        tab.classList.add("active");
+      }
+
+      // Special handling for settings sub-pages
+      if (matchToken === "settings" && path.includes("/settings/")) {
+        tab.classList.add("active");
+      }
+    });
   });
 });
