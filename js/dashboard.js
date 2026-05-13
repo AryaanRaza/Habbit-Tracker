@@ -234,9 +234,19 @@ document.addEventListener("DOMContentLoaded", () => {
     // Total number of habits
     const totalHabits = habits.length;
 
-    // Update sidebar UI
+    /* ===== Update values ===== */
     navBestStreak.textContent = bestStreak;
     navTotalHabits.textContent = totalHabits;
+
+    /* ===== Trigger pop animation ===== */
+    navBestStreak.classList.add("pop");
+    navTotalHabits.classList.add("pop");
+
+    /* Remove class so animation can replay */
+    setTimeout(() => {
+      navBestStreak.classList.remove("pop");
+      navTotalHabits.classList.remove("pop");
+    }, 200);
   }
 
   /* =========================
