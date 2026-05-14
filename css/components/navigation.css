@@ -1,183 +1,370 @@
-
-/* ================================
-   MOBILE DEFAULT (BOTTOM BAR)
-================================ */
-
-.bottom-tab-bar {
+/* ═══════════════════════════════════════════════════════════════
+   4. SIDEBAR NAVIGATION
+   Fixed left panel visible on desktop (≥ 769 px).
+   Uses frosted glass (backdrop-filter: blur) for that soft look.
+════════════════════════════════════════════════════════════════ */
+.sidebar-desktop {
   position: fixed;
-  bottom: 14px;
-  left: 50%;
-  transform: translateX(-50%);
-
-  width: 88%;
-  max-width: 380px;
-  height: 58px;
-
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-
-  padding: 6px;
-  border-radius: 999px;
-
-  background: rgba(255, 255, 255, 0.65);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
-
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 260px;
+  background: rgba(255, 255, 255, 0.38);
+  backdrop-filter: blur(32px);
+  -webkit-backdrop-filter: blur(32px);
+  border-right: 1px solid rgba(255, 255, 255, 0.45);
+  padding: 28px 20px;
+  display: none;
+  flex-direction: column;
+  gap: 0;
+  z-index: 100;
+  /* Soft side-shadow to lift it off the page */
   box-shadow:
-    0 10px 30px rgba(126, 102, 190, 0.18),
-    inset 0 1px 0 rgba(255, 255, 255, 0.5),
-    inset 0 -1px 0 rgba(255, 255, 255, 0.2);
+    4px 0 32px rgba(140, 120, 220, 0.1),
+    inset -1px 0 0 rgba(255, 255, 255, 0.6);
+  transition: transform 0.3s ease;
+  animation: sidebarFadeIn 0.7s ease;
+}
+@keyframes sidebarFadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(-18px);
+  }
 
-  z-index: 9999;
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
-/* Tabs */
-.tab-item {
-  position: relative; /* needed for glow */
+/* ── Brand logo row ── */
+.sidebar-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  margin-bottom: 8px;
+  background: rgba(142, 123, 255, 0.1);
+  border-radius: 16px;
+  border: 1px solid rgba(142, 123, 255, 0.18);
+  /* Gentle glow on the brand block */
+  box-shadow: 0 4px 16px rgba(142, 123, 255, 0.1);
+  transition: background 0.25s;
+  cursor: pointer;
+}
+.sidebar-brand:hover {
+  background: rgba(142, 123, 255, 0.15);
+}
+
+.brand-icon {
+  font-size: 2rem;
+  line-height: 1;
+  filter: drop-shadow(0 2px 8px rgba(142, 123, 255, 0.35));
+  /* Subtle slow spin on hover for delight */
+  transition: transform 0.6s ease;
+}
+.sidebar-brand:hover .brand-icon {
+  transform: rotate(20deg);
+}
+
+.brand-text {
+  font-family: var(--font-brand);
+  font-size: 1.6rem;
+  color: var(--clr-secondary-deep);
+  line-height: 1;
+  text-shadow: 0 2px 8px rgba(142, 123, 255, 0.2);
+}
+
+/* ── User profile card inside sidebar ── */
+.sidebar-profile {
+  background: rgba(255, 255, 255, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  border-radius: 18px;
+  padding: 16px 14px;
+  margin: 16px 0 24px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: 0 4px 16px rgba(140, 120, 220, 0.08);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+.sidebar-profile:hover {
+  background: rgba(255, 255, 255, 0.75);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(140, 120, 220, 0.14);
+}
+
+/* Avatar circle with a pink→purple gradient */
+.profile-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #f472b6, #a78bfa);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  flex-shrink: 0;
+  box-shadow: 0 4px 12px rgba(142, 123, 255, 0.3);
+}
+
+.profile-details {
+  flex: 1;
+  min-width: 0;
+}
+.profile-name {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--clr-text-main);
+  line-height: 1.3;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.profile-streak {
+  font-size: 0.7rem;
+  color: var(--clr-text-soft);
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 2px;
+}
+
+/* Green "online" dot */
+.status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #22c55e;
+  display: inline-block;
+  /* Pulsing animation to make it feel alive */
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+@keyframes pulse-dot {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 0 4px rgba(34, 197, 94, 0);
+  }
+}
+
+/* ── Section heading label inside sidebar ── */
+.sidebar-section-title {
+  font-size: 0.65rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--clr-text-soft);
+  padding: 0 14px 8px;
+  margin-top: 4px;
+}
+
+/* ── Navigation links ── */
+.sidebar-links {
   display: flex;
   flex-direction: column;
+  gap: 4px;
+  flex: 1; /* pushes quick-stats to bottom */
+}
+
+/* Shared nav-item base (used in sidebar AND bottom-nav) */
+.sidebar-desktop .sidebar-link {
+  display: flex;
   align-items: center;
-
-  font-size: 10px;
-  text-decoration: none;
-
-  opacity: 0.8;
-  transition: all 0.2s ease;
-}
-
-
-
-/* Icon base */
-.bottom-tab-bar .material-symbols-rounded {
-  font-size: 24px;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: 14px;
   color: var(--clr-text-soft);
-
-  font-variation-settings:
-    "FILL" 0,
-    "wght" 500,
-    "GRAD" 0,
-    "opsz" 24;
-
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.92rem;
   transition: all 0.25s ease;
+  position: relative;
+  /* Prevent text selection on click */
+  user-select: none;
 }
-
-/* Active state */
-.tab-item.active {
-  opacity: 1;
-  transform: scale(0.92);
-  /* filter: drop-shadow(0 0 8px var(--clr-primary)); */
+.sidebar-desktop .sidebar-link .material-symbols-rounded {
+  font-size: 22px;
+  transition: transform 0.25s ease;
 }
-
-/* Active icon */
-.tab-item.active .material-symbols-rounded {
+.sidebar-desktop .sidebar-link:hover {
+  background: rgba(142, 123, 255, 0.1);
   color: var(--clr-secondary-deep);
+  transform: translateX(4px);
+}
+.sidebar-desktop .sidebar-link:hover .material-symbols-rounded {
+  transform: scale(1.18) rotate(-6deg);
+}
 
+/* Active link highlight */
+.sidebar-desktop .sidebar-link.active {
+  background: linear-gradient(
+    135deg,
+    rgba(142, 123, 255, 0.18),
+    rgba(244, 114, 182, 0.12)
+  );
+  color: var(--clr-secondary-deep);
+  font-weight: 700;
+  box-shadow: 0 4px 14px rgba(142, 123, 255, 0.15);
+}
+/* Left accent bar on active item */
+.sidebar-desktop .sidebar-link.active::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 4px;
+  height: 65%;
+  background: linear-gradient(180deg, var(--clr-secondary-deep), #f472b6);
+  border-radius: 0 99px 99px 0;
+  box-shadow: 0 0 12px rgba(142, 123, 255, 0.45);
+}
+
+/* ── Quick stats block at the bottom of the sidebar ── */
+.sidebar-quick-stats {
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  border-radius: 16px;
+  padding: 14px 16px;
+  margin-top: auto;
+  margin-bottom: 12px;
+  box-shadow: 0 4px 16px rgba(140, 120, 220, 0.08);
+}
+.quick-stats-title {
+  font-size: 0.68rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--clr-text-soft);
+  margin-bottom: 10px;
+}
+.quick-stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.quick-stat-box {
+  text-align: center;
+}
+.quick-stat-value {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--clr-secondary-deep);
+  line-height: 1;
+  display: block;
+  /* Number "pop" animation triggered by JS */
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.quick-stat-value.pop {
+  transform: scale(1.25);
+}
+.quick-stat-label {
+  font-size: 0.65rem;
+  color: var(--clr-text-soft);
+  font-weight: 600;
+  margin-top: 3px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.sidebar-footer {
+  padding: 10px 14px;
+  text-align: center;
+}
+.sidebar-version {
+  font-size: 0.68rem;
+  color: var(--clr-text-soft);
+  font-weight: 600;
+}
+
+.bottom-tab-bar .tab-item.active .material-symbols-rounded {
   font-variation-settings:
     "FILL" 1,
     "wght" 700,
     "GRAD" 0,
     "opsz" 24;
-
-  transform: scale(1.15);
 }
 
-/* Glow behind active icon */
-.tab-item.active::before {
-  content: "";
-  position: absolute;
-  width: 40px;
-  height: 40px;
+/* ═══════════════════════════════════════════════════════════════
+   5. MOBILE BOTTOM NAVIGATION
+   Replaces the sidebar on small screens. Floats above page content.
+════════════════════════════════════════════════════════════════ */
+.bottom-tab-bar {
+  position: fixed;
+  bottom: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 88%;
+  max-width: 380px;
+  border-radius: 999px;
 
-  background: radial-gradient(
-    circle,
-    rgba(142, 123, 255, 0.3),
-    transparent 70%
-  );
-
-  border-radius: 50%;
-  z-index: -1;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(32px);
+  -webkit-backdrop-filter: blur(32px);
+  padding: 8px 12px;
+  height: 58px;
+  display: none; /* shown via media query below */
+  justify-content: space-around;
+  align-items: center;
+  z-index: 100;
+  box-shadow: 0 -4px 28px rgba(140, 120, 220, 0.15);
 }
 
-/* ================================
-   DESKTOP SIDEBAR
-================================ */
-/* Hides side-bar mascor for smaller screens */
+.bottom-tab-bar .tab-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1px;
+  padding: 6px 8px;
+  font-size: 0.62rem;
+  border-radius: 14px;
+  color: var(--clr-text-soft);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.68rem;
+  transition: all 0.25s ease;
+  min-width: 60px;
+  user-select: none;
+}
+.bottom-tab-bar .tab-item .material-symbols-rounded {
+  font-size: 22px;
+  transition: transform 0.25s ease;
+}
+/* Active state for bottom nav */
+.bottom-tab-bar .tab-item.active {
+  color: var(--clr-secondary-deep);
+}
+.bottom-tab-bar .tab-item.active .material-symbols-rounded {
+  transform: scale(1.2);
+}
+.tab-label {
+  line-height: 1;
+}
 @media (max-width: 899px) {
-  .sidebar-mascot {
+  .sidebar-desktop {
     display: none;
   }
 }
+
 @media (min-width: 900px) {
-
+  .sidebar-desktop {
+    display: flex;
+  }
   .bottom-tab-bar {
-    top: 0;
-    left: 0;
-    bottom: auto;
-    transform: none;
-
-    width: 220px;
-    height: 100vh;
-
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-start;
-
-    padding: 20px 10px;
-    border-radius: 0;
-
-    background: rgba(255, 255, 255, 0.6);
-    backdrop-filter: blur(20px);
+    display: none;
   }
 
-  .tab-item {
-    flex-direction: row;
-    width: 100%;
-    padding: 12px 16px;
-    gap: 12px;
-    border-radius: 14px;
-  }
-
-  .tab-label {
-    font-size: 14px;
-  }
-
-  .tab-item.active {
-    transform: none;
-
-    background: linear-gradient(
-      135deg,
-      rgba(126, 102, 190, 0.25),
-      rgba(120, 180, 255, 0.25)
-    );
-
-    border: 1px solid rgba(255, 255, 255, 0.4);
-  }
-
-  /* Mascot */
-  .sidebar-mascot {
-    width: 100%;
-    text-align: center;
-    margin-bottom: 30px;
-  }
-
-  .sidebar-mascot img {
-    width: 140px;
-
-    transform: translateX(20px);
-    filter: drop-shadow(0 10px 20px rgba(0,0,0,0.15));
-
-    animation: floatMascot 4s ease-in-out infinite;
-  }
-
-  @keyframes floatMascot {
-    0%, 100% { transform: translateX(20px) translateY(0); }
-    50% { transform: translateX(20px) translateY(-8px); }
-  }
-
-  /* Push content */
   body:not(.landing-page, .auth-page) {
-    margin-left: 220px;
+    margin-left: 260px;
   }
 }
 
+@media (max-width: 899px) {
+  .bottom-tab-bar {
+    display: flex;
+  }
+}
