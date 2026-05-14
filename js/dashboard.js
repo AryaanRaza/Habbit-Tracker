@@ -27,6 +27,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const statStreak = document.getElementById("stat-streak");
   const statTotal = document.getElementById("stat-total");
 
+  /* ===== SIDEBAR QUICK STATS ===== */
+  const navBestStreak = document.getElementById("nav-best-streak");
+  const navTotalHabits = document.getElementById("nav-total-habits");
+
   const categorySelect = document.getElementById("habit-category");
   const toast = document.getElementById("toast");
 
@@ -60,35 +64,82 @@ document.addEventListener("DOMContentLoaded", () => {
   let currentFilter = "all";
 
   /* =========================
-     LOAD EXISTING STATIC CARDS
+     LOCAL STORAGE
   ========================= */
-  function loadExistingHabits() {
-    const cards = document.querySelectorAll(".habit-card");
+  const STORAGE_KEY = "habitflow-habits";
 
-    cards.forEach((card) => {
-      const name = card.querySelector(".habit-name")?.textContent.trim();
-      if (!name || habits.some((h) => h.name === name)) return;
-
-      const id = Date.now() + Math.random();
-      card.setAttribute("data-id", id);
-
-      habits.push({
-        id,
-        name,
-        category: "other",
-        time: "",
-        streak: 0,
-        best: 0,
-        total: 0,
-        completedToday: false,
-      });
-    });
-
-    updateProgress();
+  function saveHabits() {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(habits));
   }
 
-  loadExistingHabits();
-  updateFilterCounts();
+  function loadHabits() {
+    const storedHabits = localStorage.getItem(STORAGE_KEY);
+
+    if (!storedHabits) return [];
+
+    try {
+      return JSON.parse(storedHabits);
+    } catch (error) {
+      console.error("Failed to load habits:", error);
+      return [];
+    }
+  }
+
+  /* =========================
+   LOAD STARTER DEMO HABITS
+   Only runs on first app launch
+========================= */
+  function loadExistingHabits() {
+    const starterHabits = [
+      {
+        id: Date.now() + 1,
+        name: "Morning Workout",
+        category: "fitness",
+        time: "07:00",
+        streak: 2,
+        best: 2,
+        total: 2,
+        completedToday: false,
+      },
+
+      {
+        id: Date.now() + 2,
+        name: "Read 10 Pages",
+        category: "learning",
+        time: "21:00",
+        streak: 4,
+        best: 4,
+        total: 4,
+        completedToday: false,
+      },
+    ];
+
+    // Store demo habits into app state
+    habits = starterHabits;
+
+    // Render all starter habits into UI
+    habits.forEach(renderHabitCard);
+
+    // Update dashboard stats/progress
+    updateProgress();
+    updateFilterCounts();
+
+    // Save starter habits into localStorage
+    saveHabits();
+  }
+
+  habits = loadHabits();
+
+  if (habits.length > 0) {
+    habits.forEach(renderHabitCard);
+
+    updateProgress();
+    updateFilterCounts();
+    applyFilter();
+  } else {
+    loadExistingHabits();
+    updateFilterCounts();
+  }
 
   /* =========================
       DATE
@@ -167,8 +218,35 @@ document.addEventListener("DOMContentLoaded", () => {
     emptyState.style.display = total === 0 ? "block" : "none";
 
     updateStats();
+    updateSidebarStats();
 
     return pct; // 🔥 IMPORTANT
+  }
+
+  /* =========================
+   SIDEBAR QUICK STATS
+   Syncs sidebar numbers with app state
+========================= */
+  function updateSidebarStats() {
+    // Highest streak across all habits
+    const bestStreak = Math.max(...habits.map((h) => h.best), 0);
+
+    // Total number of habits
+    const totalHabits = habits.length;
+
+    /* ===== Update values ===== */
+    navBestStreak.textContent = bestStreak;
+    navTotalHabits.textContent = totalHabits;
+
+    /* ===== Trigger pop animation ===== */
+    navBestStreak.classList.add("pop");
+    navTotalHabits.classList.add("pop");
+
+    /* Remove class so animation can replay */
+    setTimeout(() => {
+      navBestStreak.classList.remove("pop");
+      navTotalHabits.classList.remove("pop");
+    }, 200);
   }
 
   /* =========================
@@ -223,6 +301,101 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* =========================
+     RENDER HABIT CARD
+     Creates and injects a habit card into the UI.
+     Used for:
+     - loading saved habits
+     - adding new habits
+  ========================= */
+  function renderHabitCard(habit) {
+    // Get category styling + emoji/icon
+    const cat = CATEGORIES[habit.category];
+
+    // Create card element
+    const card = document.createElement("article");
+
+    // Base card class
+    card.className = "habit-card";
+
+    // If already completed today,
+    // restore completed visual state
+    if (habit.completedToday) {
+      card.classList.add("is-completed");
+    }
+
+    // Attach unique ID to card
+    card.setAttribute("data-id", habit.id);
+
+    // Set category accent color
+    card.style.setProperty("--cat-color", cat.color);
+
+    /* =========================
+       CARD HTML STRUCTURE
+    ========================= */
+    card.innerHTML = `
+      
+      <!-- Left emoji/icon -->
+      <span class="habit-dot">${cat.icon}</span>
+
+      <!-- Habit content -->
+      <div class="habit-info">
+
+        <!-- Habit title -->
+        <h3 class="habit-name">${habit.name}</h3>
+
+        <!-- Habit metadata chips -->
+        <div class="habit-chips">
+
+          <!-- Current streak -->
+          <span class="chip chip-streak">
+            🔥 ${habit.streak} day streak
+          </span>
+
+          <!-- Total completions -->
+          <span class="chip chip-total">
+            ✓ ${habit.total} total
+          </span>
+
+          <!-- Optional reminder time -->
+          ${
+            habit.time
+              ? `<span class="chip chip-time">⏰ ${habit.time}</span>`
+              : ""
+          }
+
+        </div>
+      </div>
+
+      <!-- Action buttons -->
+      <div class="habit-actions">
+
+        <!-- Edit button -->
+        <button class="btn-edit">
+          <span class="material-symbols-rounded">
+            edit
+          </span>
+        </button>
+
+        <!-- Complete / Undo button -->
+        <button class="btn btn-complete">
+          ${habit.completedToday ? "Completed! 🔥" : "Mark as Done"}
+        </button>
+
+        <!-- Delete button -->
+        <button class="btn-delete">
+          <span class="material-symbols-rounded">
+            delete
+          </span>
+        </button>
+
+      </div>
+    `;
+
+    // Finally inject card into DOM
+    habitContainer.appendChild(card);
+  }
+
+  /* =========================
      ADD HABIT
   ========================= */
   function addHabit() {
@@ -249,31 +422,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     habits.push(habit);
 
-    const cat = CATEGORIES[habit.category];
+    // Render the new habit card into UI
+    renderHabitCard(habit);
 
-    const card = document.createElement("article");
-    card.className = "habit-card";
-    card.setAttribute("data-id", habit.id);
-    card.style.setProperty("--cat-color", cat.color);
-
-    card.innerHTML = `
-      <span class="habit-dot">${cat.icon}</span>
-      <div class="habit-info">
-        <h3 class="habit-name">${name}</h3>
-        <div class="habit-chips">
-          <span class="chip chip-streak">🔥 0 day streak</span>
-          <span class="chip chip-total">✓ 0 total</span>
-          ${habit.time ? `<span class="chip chip-time">⏰ ${habit.time}</span>` : ""}
-        </div>
-      </div>
-      <div class="habit-actions">
-        <button class="btn-edit"><span class="material-symbols-rounded">edit</span></button>
-        <button class="btn btn-complete">Mark as Done</button>
-        <button class="btn-delete"><span class="material-symbols-rounded">delete</span></button>
-      </div>
-    `;
-
-    habitContainer.appendChild(card);
+    // Save updated habits to localStorage
+    saveHabits();
 
     // 🔥 Reset inputs after adding
     habitInput.value = "";
@@ -356,6 +509,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
       refreshChips(card, habit);
 
+      // Save updated completion state
+      saveHabits();
+
       const pct = updateProgress();
       applyFilter();
       updateFilterCounts();
@@ -372,6 +528,9 @@ document.addEventListener("DOMContentLoaded", () => {
     // ===== DELETE =====
     if (e.target.closest(".btn-delete")) {
       habits = habits.filter((h) => h.id != id);
+
+      // Save updated habits after deletion
+      saveHabits();
 
       card.classList.add("deleting");
       setTimeout(() => {
@@ -435,7 +594,15 @@ document.addEventListener("DOMContentLoaded", () => {
     // simulate slight delay (feels real UX)
     await new Promise((res) => setTimeout(res, 400));
 
-    habit.name = editName.value.trim();
+    const updatedName = editName.value.trim();
+
+    if (!updatedName) {
+      showToast("Habit name cannot be empty");
+      setSaveLoading(false);
+      return;
+    }
+
+    habit.name = updatedName;
     habit.category = editCategory.value;
     habit.time = editTime.value;
 
@@ -470,6 +637,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     editModal.hidden = true;
     editingId = null;
+
+    // Save edited habit changes
+    saveHabits();
 
     showToast("Habit updated ✨");
   });
