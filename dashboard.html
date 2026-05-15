@@ -21,6 +21,7 @@
   <link rel="stylesheet" href="css/components/modal.css">
   <link rel="stylesheet" href="css/components/toast.css">
   <link rel="stylesheet" href="css/components/navigation.css">
+  <link rel="stylesheet" href="css/components/quote.css">
 
   <!-- PAGE -->
   <link rel="stylesheet" href="css/pages/dashboard.css">
@@ -155,6 +156,27 @@
 
       </div>
 
+      <!-- Daily Motivation Quote -->
+      <div class="quote-widget">
+        <div class="quote-icon">
+          <span class="material-symbols-rounded">
+            format_quote
+          </span>
+        </div>
+
+        <p class="quote-text" id="quote-text">
+          "A habit is a formula our brain automatically follows."
+          <span class="quote-author">
+            — Charles Duhigg
+          </span>
+        </p>
+
+        <button class="quote-refresh" id="quote-refresh" aria-label="New quote">
+          <span class="material-symbols-rounded">
+            refresh
+          </span>
+        </button>
+      </div>
       <!-- Empty state (hidden by default, shown via JS) -->
       <div class="empty-state" id="empty-state" data-testid="empty-state">
         <span class="empty-icon">🌱</span>
