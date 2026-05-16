@@ -2,10 +2,19 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login | Habit Tracker</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login | Habit Tracker</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Leckerli+One&family=Akronim&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
   <!-- BASE -->
   <link rel="stylesheet" href="css/base/reset.css">
   <link rel="stylesheet" href="css/base/root.css">
@@ -28,44 +37,89 @@
   <div class="bg-orb orb-3"></div>
 
   <main class="auth-shell">
-    <div class="auth-card">
+    <div class="auth-card" id="auth-card">
+
+      <!-- ── Mascot peeks above the card ── -->
       <div class="auth-mascot-wrap">
         <img src="img/streakasaur-welcome.png" class="mascot-auth login-pos" alt="Streakasaur"
           title="Streakasaur missed you! Ready to log today's progress?">
       </div>
 
+      <!-- ── Brand + headings ── -->
       <header class="form-header">
-        <h1>HabitFlow</h1>
-        <h2>Welcome Back</h2>
-        <p>Enter your details to continue</p>
+        <h1 class="auth-brand">HabitFlow</h1>
+        <h2 class="auth-title">Welcome Back</h2>
+        <p class="auth-sub">Enter your details to continue your streak</p>
       </header>
 
-      <form action="#" class="auth-form">
+      <!-- ── Login Form ── -->
+      <form action="#" class="auth-form" id="login-form" novalidate>
+
+        <!-- Email -->
         <div class="input-group">
           <label for="email">Email Address</label>
-          <input type="email" id="email" placeholder="name@example.com" required>
+          <div class="input-wrap">
+            <span class="input-icon material-symbols-rounded">alternate_email</span>
+            <input type="email" id="email" placeholder="name@example.com" autocomplete="email" required>
+          </div>
         </div>
 
+        <!-- Password -->
         <div class="input-group">
           <label for="password">Password</label>
-          <input type="password" id="password" placeholder="••••••••" required>
+          <div class="input-wrap">
+            <input type="password" id="password" placeholder="••••••••" autocomplete="current-password" required>
+            <!-- Show / hide toggle -->
+            <button type="button" class="pw-toggle" data-target="password" title="Show/hide password">
+              <span class="material-symbols-rounded">visibility</span>
+            </button>
+          </div>
         </div>
 
+        <!-- Remember me + Forgot -->
         <div class="form-options">
           <label class="remember-me">
-            <input type="checkbox"> Remember me
+            <input type="checkbox" />
+            <span class="custom-check"></span>
+            Remember me
           </label>
           <a href="#" class="forgot-link">Forgot Password?</a>
         </div>
 
-        <button type="submit" class="btn btn-glow">Login</button>
+        <!-- Submit -->
+        <button type="submit" class="btn-auth">
+          <span>Login</span>
+          <span class="btn-auth-icon material-symbols-rounded">arrow_forward</span>
+        </button>
 
+        <!-- Divider -->
+        <div class="auth-divider">
+          <span></span>
+          <p>or</p><span></span>
+        </div>
+
+        <!-- Social buttons (styled — not wired) -->
+        <div class="social-row">
+          <button type="button" class="btn-social">
+            <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google" width="18" />
+            <span>Google</span>
+          </button>
+          <button type="button" class="btn-social">
+            <span style="font-size:1.1rem;">🍎</span>
+            <span>Apple</span>
+          </button>
+        </div>
+
+        <!-- Switch to register -->
         <p class="switch-auth">
-          Don't have an account? <a href="register.html">Register</a>
+          Don't have an account?
+          <a href="register.html">Create one →</a>
         </p>
+
       </form>
     </div>
   </main>
+  <script src="js/auth.js"></script>
 </body>
 
 </html>
