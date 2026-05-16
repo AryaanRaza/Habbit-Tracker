@@ -86,59 +86,36 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* =========================
-   LOAD STARTER DEMO HABITS
-   Only runs on first app launch
+   INITIAL EMPTY STATE
 ========================= */
   function loadExistingHabits() {
-    const starterHabits = [
-      {
-        id: Date.now() + 1,
-        name: "Morning Workout",
-        category: "fitness",
-        time: "07:00",
-        streak: 2,
-        best: 2,
-        total: 2,
-        completedToday: false,
-      },
+    habits = [];
 
-      {
-        id: Date.now() + 2,
-        name: "Read 10 Pages",
-        category: "learning",
-        time: "21:00",
-        streak: 4,
-        best: 4,
-        total: 4,
-        completedToday: false,
-      },
-    ];
-
-    // Store demo habits into app state
-    habits = starterHabits;
-
-    // Render all starter habits into UI
-    habits.forEach(renderHabitCard);
-
-    // Update dashboard stats/progress
     updateProgress();
     updateFilterCounts();
 
-    // Save starter habits into localStorage
     saveHabits();
   }
 
-  habits = loadHabits();
+  /* =========================
+   INITIAL APP LOAD
+========================= */
+  const storedHabits = localStorage.getItem(STORAGE_KEY);
 
-  if (habits.length > 0) {
+  // FIRST EVER VISIT
+  if (storedHabits === null) {
+    loadExistingHabits();
+  }
+
+  // Existing saved habits
+  else {
+    habits = loadHabits();
+
     habits.forEach(renderHabitCard);
 
     updateProgress();
     updateFilterCounts();
     applyFilter();
-  } else {
-    loadExistingHabits();
-    updateFilterCounts();
   }
 
   /* =========================
