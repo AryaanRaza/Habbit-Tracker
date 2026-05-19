@@ -1,6 +1,16 @@
 document.addEventListener("DOMContentLoaded", () => {
   const path = window.location.pathname.toLowerCase();
 
+  // Read URL query parameters
+  const params = new URLSearchParams(window.location.search);
+
+  // Detect where user came from
+  const from = params.get("from");
+
+  // Hide navigation on auth-opened legal pages
+  const hideNav =
+    (from === "register" || from === "login") && path.includes("/settings/");
+
   // 1. Better detection: Check if 'settings/' is anywhere in the URL
   const isInsideSettings = path.includes("/settings/");
   const prefix = isInsideSettings ? "../" : "";
@@ -166,11 +176,16 @@ document.addEventListener("DOMContentLoaded", () => {
 </footer>
 `;
 
-  document.body.insertAdjacentHTML("beforeend", footerTemplate);
-  // Force layout recalculation after footer is added
-  requestAnimationFrame(() => {
-    window.dispatchEvent(new Event("resize"));
-  });
+  // Only inject navigation if allowed
+  if (!hideNav) {
+    document.body.insertAdjacentHTML("beforeend", footerTemplate);
+
+    // Force layout recalculation after footer is added
+    requestAnimationFrame(() => {
+      window.dispatchEvent(new Event("resize"));
+    });
+  }
+
 
   // 2. Updated Active Tab Logic
   const tabs = document.querySelectorAll(".tab-item, .sidebar-link");

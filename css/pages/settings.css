@@ -251,56 +251,7 @@
   text-align: center;
   width: 100%;
 }
-.back-btn {
-  position: absolute;
-  /* Adjust top/left to ensure it doesn't overlap your centered branding */
-  top: 20px;
-  left: 20px;
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 48px;
-  height: 48px;
-
-  /* Use a stronger glass effect */
-  background: var(--bg-card-strong);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-radius: 50%;
-  text-decoration: none;
-  border: 1px solid var(--border-glass);
-
-  /* Use your UI shadow for depth */
-  box-shadow: var(--shadow-ui);
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  z-index: 10;
-}
-
-.back-btn span {
-  /* FIX: Changed from primary-glow (transparent) to primary-strong (solid) */
-  color: var(--clr-primary-strong);
-  font-size: 1.4rem !important;
-  font-weight: 900;
-  transition: color 0.3s ease;
-}
-
-/* Hover Effect: The "HabitGlow" special */
-.back-btn:hover {
-  /* Gradient background on hover to match your brand */
-  background: var(--grad-btn);
-  transform: scale(1.15) rotate(-5deg);
-  border-color: rgba(255, 255, 255, 0.5);
-  box-shadow:
-    0 0 20px var(--clr-primary-glow),
-    var(--shadow-btn);
-}
-
-.back-btn:hover span {
-  color: var(--clr-text-heading);
-  /* Add a little text shadow to the arrow for extra polish */
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
 
 /* =========================
    SUB SETTINGS PAGES
