@@ -213,3 +213,84 @@
   opacity: 0;
   pointer-events: none;
 }
+
+/* ═══════════════════════════════════════
+   MOBILE RESPONSIVE FIXES
+═══════════════════════════════════════ */
+
+@media (max-width: 768px) {
+  .input-meta {
+    flex-wrap: wrap;
+  }
+
+  .habit-list-section {
+    padding: 18px 14px;
+  }
+
+  .habit-category,
+  .habit-time,
+  .btn-add-habit {
+    width: 100%;
+  }
+
+  .habit-card {
+    flex-direction: row;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 16px;
+  }
+
+  .habit-info {
+    flex: 1;
+  }
+
+  .habit-name {
+    white-space: normal;
+    overflow: visible;
+    text-overflow: unset;
+    word-break: break-word;
+  }
+
+  .habit-chips {
+    flex-wrap: wrap;
+  }
+
+  .habit-actions {
+    width: 100%;
+    justify-content: space-between;
+    gap: 10px;
+  }
+
+  .habit-actions {
+    display: grid;
+    grid-template-columns: 52px 1fr 52px;
+    width: 100%;
+    gap: 10px;
+  }
+
+  .btn-edit,
+  .btn-delete {
+    width: 52px;
+    height: 46px;
+  }
+
+  .btn-complete {
+    width: 100%;
+  }
+
+  .btn-complete,
+  .btn-edit,
+  .btn-delete {
+    padding: 10px;
+    font-size: 0.82rem;
+  }
+
+  .btn-complete,
+  .btn-edit,
+  .btn-delete {
+    padding: 10px;
+    font-size: 0.82rem;
+    height: 42px;
+  }
+}
