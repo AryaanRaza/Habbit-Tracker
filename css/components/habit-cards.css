@@ -185,6 +185,9 @@
     gap: 10px;
 
     padding: 14px;
+
+    touch-action: pan-y;
+    will-change: transform;
   }
 
   /* Bring active dropdown card above others */

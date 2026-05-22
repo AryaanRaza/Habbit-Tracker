@@ -708,6 +708,104 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
   });
+    /* =========================
+     MOBILE SWIPE TO COMPLETE
+  ========================= */
+  let touchStartX = 0;
+  let touchCurrentX = 0;
+
+  habitContainer.addEventListener(
+    "touchstart",
+    (e) => {
+      const card = e.target.closest(".habit-card");
+      if (!card) return;
+
+      touchStartX = e.touches[0].clientX;
+
+      card.style.transition = "none";
+    },
+    { passive: true }
+  );
+
+  habitContainer.addEventListener(
+    "touchmove",
+    (e) => {
+      const card = e.target.closest(".habit-card");
+      if (!card) return;
+
+      touchCurrentX = e.touches[0].clientX;
+
+      const diffX = touchCurrentX - touchStartX;
+
+      // only allow right swipe
+      if (diffX > 0) {
+        card.style.transform = `translateX(${diffX}px)`;
+      }
+    },
+    { passive: true }
+  );
+
+  habitContainer.addEventListener("touchend", (e) => {
+    const card = e.target.closest(".habit-card");
+    if (!card) return;
+
+    const diffX = touchCurrentX - touchStartX;
+
+    card.style.transition = "transform 0.25s ease";
+
+    // swipe threshold
+    if (diffX > 120) {
+      const id = card.getAttribute("data-id");
+      const habit = habits.find((h) => h.id == id);
+
+      if (!habit || habit.completedToday) {
+        card.style.transform = "translateX(0)";
+        return;
+      }
+
+      // COMPLETE HABIT
+      habit.completedToday = true;
+      habit.streak++;
+      habit.total++;
+      habit.best = Math.max(habit.best, habit.streak);
+
+      card.classList.add("is-completed");
+
+      const btn = card.querySelector(".btn-complete");
+      if (btn) {
+        btn.innerText = "Completed! 🔥";
+      }
+
+      refreshChips(card, habit);
+
+      saveHabits();
+
+      const pct = updateProgress();
+
+      applyFilter();
+      updateFilterCounts();
+
+      showToast("Habit completed via swipe 👉");
+
+      if (pct === 100) {
+        fireConfetti();
+        showToast("Perfect day! 🎉");
+      }
+
+      // finish swipe animation
+      card.style.transform = "translateX(100px)";
+
+      setTimeout(() => {
+        card.style.transform = "translateX(0)";
+      }, 180);
+    } else {
+      // reset if swipe too small
+      card.style.transform = "translateX(0)";
+    }
+
+    touchStartX = 0;
+    touchCurrentX = 0;
+  });
   // Close dropdown when clicking outside
   document.addEventListener("click", () => {
     document
