@@ -363,7 +363,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   <!-- ⋯ More menu (mobile only) -->
   <button class="btn-more" aria-label="More options">
-    ⋯
+    <span class="material-symbols-rounded">more_horiz</span>
     <div class="habit-dropdown">
       <div class="habit-dropdown-item btn-edit-trigger">
         <span class="material-symbols-rounded" style="font-size:16px">edit</span> Edit
