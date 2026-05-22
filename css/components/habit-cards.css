@@ -154,7 +154,10 @@
    Desktop styles above are unchanged
 ═══════════════════════════════════════ */
 @media (max-width: 768px) {
-
+  .habit-info {
+    flex: 1;
+    min-width: 0;
+  }
   .habit-list-section {
     padding: 18px 14px;
   }
@@ -171,16 +174,20 @@
 
   /* Card: single compact row, no wrapping */
   .habit-card {
+    position: relative;
     flex-direction: row;
-    flex-wrap: nowrap;
-    align-items: center;
+    align-items: flex-start;
     gap: 10px;
-    padding: 12px 14px;
+    padding: 14px;
   }
 
   /* Chips: compact — just icon + number */
-  .chip-streak::before { content: "🔥"; }
-  .chip-total::before  { content: "✓ "; }
+  .chip-streak::before {
+    content: "🔥";
+  }
+  .chip-total::before {
+    content: "✓ ";
+  }
 
   .chip-streak,
   .chip-total {
@@ -189,8 +196,12 @@
   }
 
   /* Hide the long text inside chips, keep just the number */
-  .chip-streak { font-size: 0.6rem; }
-  .chip-total  { font-size: 0.6rem; }
+  .chip-streak {
+    font-size: 0.6rem;
+  }
+  .chip-total {
+    font-size: 0.6rem;
+  }
 
   /* Habit name: back to single line */
   .habit-name {
@@ -202,6 +213,7 @@
 
   /* Actions: icon-only ⋯ menu + done button */
   .habit-actions {
+    position: relative;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -216,13 +228,11 @@
     display: none;
   }
 
-  /* Done button — compact */
   .btn-complete {
     white-space: nowrap;
-    padding: 7px 12px;
-    font-size: 0.75rem;
-    height: auto;
-    width: auto;
+    padding: 6px 10px;
+    font-size: 0.68rem;
+    flex-shrink: 0;
   }
 
   /* ⋯ menu button */
@@ -246,7 +256,7 @@
   .habit-dropdown {
     display: none;
     position: absolute;
-    top: 38px;
+    top: calc(100% + 8px);
     right: 0;
     background: rgba(255, 255, 255, 0.97);
     border: 1px solid rgba(142, 123, 255, 0.2);
@@ -279,4 +289,8 @@
   .habit-dropdown-item.is-delete {
     color: #b91c1c;
   }
+
+  .habit-list-container {
+  overflow: visible;
+}
 }
