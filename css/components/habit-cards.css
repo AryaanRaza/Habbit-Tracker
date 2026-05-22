@@ -151,7 +151,6 @@
    HabitFlow — Compact Mobile Layout
 ═══════════════════════════════════════ */
 @media (max-width: 768px) {
-
   /* ═══════════════════════════════════════
      SECTION LAYOUT
   ═══════════════════════════════════════ */
@@ -210,22 +209,60 @@
   }
 
   /* ═══════════════════════════════════════
-     CHIPS
-  ═══════════════════════════════════════ */
+   MOBILE INLINE CHIPS
+═══════════════════════════════════════ */
 
-  /* Compact chip icons */
-  .chip-streak::before {
-    content: "🔥";
+  .habit-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+
+    min-width: 0;
   }
 
-  .chip-total::before {
-    content: "✓ ";
+  /* Left side */
+  .habit-name {
+    flex: 1;
+    margin-bottom: 0;
   }
 
-  .chip-streak,
-  .chip-total {
+  /* Chips inline on right */
+  .habit-chips {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+
+    flex-wrap: nowrap;
+    flex-shrink: 0;
+  }
+
+  /* Compact chips */
+  .chip {
     padding: 3px 7px;
-    font-size: 0.6rem;
+
+    font-size: 0.58rem;
+    font-weight: 800;
+
+    gap: 4px;
+  }
+
+  /* Hide text labels on mobile */
+  .chip-label {
+    display: none;
+  }
+
+  /* Keep icons + numbers aligned */
+  .chip-icon,
+  .chip-value {
+    display: inline-flex;
+    align-items: center;
+  }
+
+  /* Optional: slightly smaller time chip */
+  .chip-time {
+    padding: 3px 6px;
+    font-size: 0.56rem;
   }
 
   /* ═══════════════════════════════════════
@@ -302,8 +339,7 @@
 
     background: rgba(255, 255, 255, 0.4);
 
-    box-shadow:
-      0 6px 18px rgba(123, 104, 255, 0.16);
+    box-shadow: 0 6px 18px rgba(123, 104, 255, 0.16);
   }
 
   /* ═══════════════════════════════════════
@@ -324,7 +360,7 @@
     border-radius: 18px;
 
     /* dreamy glass surface */
-    background: rgba(255, 255, 255, 0.827);
+    background: rgb(255, 255, 255);
 
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
@@ -395,13 +431,12 @@
 
   /* Hover */
   .habit-dropdown-item:hover {
-    background:
-      linear-gradient(
-        135deg,
-        rgba(243, 182, 218, 0.16),
-        rgba(199, 184, 255, 0.18),
-        rgba(215, 232, 255, 0.18)
-      );
+    background: linear-gradient(
+      135deg,
+      rgba(243, 182, 218, 0.16),
+      rgba(199, 184, 255, 0.18),
+      rgba(215, 232, 255, 0.18)
+    );
 
     color: var(--clr-secondary-deep);
   }
@@ -419,5 +454,8 @@
   .habit-dropdown-item.is-delete:hover {
     background: rgba(255, 80, 80, 0.1);
     color: #b91c1c;
+  }
+  .btn-complete {
+    display: none;
   }
 }

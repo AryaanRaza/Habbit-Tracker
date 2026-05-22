@@ -325,13 +325,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
           <!-- Current streak -->
           <span class="chip chip-streak">
-            🔥 ${habit.streak} day streak
+            <span class="chip-icon">🔥</span>
+            <span class="chip-value">${habit.streak}</span>
+            <span class="chip-label">day streak</span>            
           </span>
 
           <!-- Total completions -->
           <span class="chip chip-total">
-            ✓ ${habit.total} total
+            <span class="chip-icon">✓</span>
+            <span class="chip-value">${habit.total}</span>
+            <span class="chip-label">total</span>
           </span>
+
 
           <!-- Optional reminder time -->
           ${
