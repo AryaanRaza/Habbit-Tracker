@@ -141,18 +141,26 @@
   opacity: 0;
   pointer-events: none;
 }
+/* Hide ⋯ menu on desktop */
+.btn-more {
+  display: none;
+}
 
 /* ═══════════════════════════════════════
    MOBILE RESPONSIVE FIXES
 ═══════════════════════════════════════ */
-
+/* ═══════════════════════════════════════
+   MOBILE — Option B (compact chips + ⋯ menu)
+   Desktop styles above are unchanged
+═══════════════════════════════════════ */
 @media (max-width: 768px) {
-  .input-meta {
-    flex-wrap: wrap;
-  }
 
   .habit-list-section {
     padding: 18px 14px;
+  }
+
+  .input-meta {
+    flex-wrap: wrap;
   }
 
   .habit-category,
@@ -161,64 +169,114 @@
     width: 100%;
   }
 
+  /* Card: single compact row, no wrapping */
   .habit-card {
     flex-direction: row;
-    align-items: flex-start;
-    flex-wrap: wrap;
-    gap: 8px;
-    padding: 16px;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 14px;
   }
 
-  .habit-info {
-    flex: 1;
+  /* Chips: compact — just icon + number */
+  .chip-streak::before { content: "🔥"; }
+  .chip-total::before  { content: "✓ "; }
+
+  .chip-streak,
+  .chip-total {
+    font-size: 0.58rem;
+    padding: 3px 7px;
   }
 
+  /* Hide the long text inside chips, keep just the number */
+  .chip-streak { font-size: 0.6rem; }
+  .chip-total  { font-size: 0.6rem; }
+
+  /* Habit name: back to single line */
   .habit-name {
-    white-space: normal;
-    overflow: visible;
-    text-overflow: unset;
-    word-break: break-word;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: 4px;
   }
 
-  .habit-chips {
-    flex-wrap: wrap;
-  }
-
+  /* Actions: icon-only ⋯ menu + done button */
   .habit-actions {
-    width: 100%;
-    justify-content: space-between;
-    gap: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+    width: auto;
+    flex-shrink: 0;
   }
 
-  .habit-actions {
-    display: grid;
-    grid-template-columns: 52px 1fr 52px;
-    width: 100%;
-    gap: 10px;
-  }
-
+  /* Hide edit + delete buttons on mobile — moved to ⋯ menu */
   .btn-edit,
   .btn-delete {
-    width: 52px;
-    height: 46px;
+    display: none;
   }
 
+  /* Done button — compact */
   .btn-complete {
-    width: 100%;
+    white-space: nowrap;
+    padding: 7px 12px;
+    font-size: 0.75rem;
+    height: auto;
+    width: auto;
   }
 
-  .btn-complete,
-  .btn-edit,
-  .btn-delete {
-    padding: 10px;
-    font-size: 0.82rem;
+  /* ⋯ menu button */
+  .btn-more {
+    width: 34px;
+    height: 34px;
+    border-radius: 10px;
+    border: 1.5px solid var(--border-glass);
+    background: var(--bg-card-strong);
+    color: var(--clr-text-soft);
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    position: relative;
+    flex-shrink: 0;
   }
 
-  .btn-complete,
-  .btn-edit,
-  .btn-delete {
-    padding: 10px;
-    font-size: 0.82rem;
-    height: 42px;
+  /* Dropdown */
+  .habit-dropdown {
+    display: none;
+    position: absolute;
+    top: 38px;
+    right: 0;
+    background: rgba(255, 255, 255, 0.97);
+    border: 1px solid rgba(142, 123, 255, 0.2);
+    border-radius: 14px;
+    box-shadow: 0 8px 24px rgba(160, 140, 255, 0.18);
+    z-index: 100;
+    min-width: 130px;
+    overflow: hidden;
+  }
+
+  .habit-dropdown.open {
+    display: block;
+  }
+
+  .habit-dropdown-item {
+    padding: 10px 16px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--clr-text-dark);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .habit-dropdown-item:hover {
+    background: rgba(142, 123, 255, 0.08);
+  }
+
+  .habit-dropdown-item.is-delete {
+    color: #b91c1c;
   }
 }

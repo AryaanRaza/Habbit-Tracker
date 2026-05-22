@@ -344,28 +344,39 @@ document.addEventListener("DOMContentLoaded", () => {
       </div>
 
       <!-- Action buttons -->
-      <div class="habit-actions">
+<div class="habit-actions">
 
-        <!-- Edit button -->
-        <button class="btn-edit">
-          <span class="material-symbols-rounded">
-            edit
-          </span>
-        </button>
+  <!-- Complete / Undo button -->
+  <button class="btn btn-complete">
+    ${habit.completedToday ? "Completed! 🔥" : "Mark as Done"}
+  </button>
 
-        <!-- Complete / Undo button -->
-        <button class="btn btn-complete">
-          ${habit.completedToday ? "Completed! 🔥" : "Mark as Done"}
-        </button>
+  <!-- Edit button (desktop only) -->
+  <button class="btn-edit">
+    <span class="material-symbols-rounded">edit</span>
+  </button>
 
-        <!-- Delete button -->
-        <button class="btn-delete">
-          <span class="material-symbols-rounded">
-            delete
-          </span>
-        </button>
+  <!-- Delete button (desktop only) -->
+  <button class="btn-delete">
+    <span class="material-symbols-rounded">delete</span>
+  </button>
 
+  <!-- ⋯ More menu (mobile only) -->
+  <button class="btn-more" aria-label="More options">
+    ⋯
+    <div class="habit-dropdown">
+      <div class="habit-dropdown-item btn-edit-trigger">
+        <span class="material-symbols-rounded" style="font-size:16px">edit</span> Edit
       </div>
+      <div class="habit-dropdown-item btn-delete-trigger is-delete">
+        <span class="material-symbols-rounded" style="font-size:16px">delete</span> Delete
+      </div>
+    </div>
+  </button>
+
+</div>
+
+
     `;
 
     // Finally inject card into DOM
@@ -439,6 +450,39 @@ document.addEventListener("DOMContentLoaded", () => {
   /* =========================
      EVENTS
   ========================= */
+  function openEditModal(habit, id) {
+    editingId = id;
+
+    editName.value = habit.name;
+    editCategory.value = habit.category;
+    editTime.value = habit.time || "";
+
+    editModal.hidden = false;
+  }
+
+  function deleteHabit(card, id) {
+    habits = habits.filter((h) => h.id != id);
+
+    saveHabits();
+
+    card.classList.add("deleting");
+
+    setTimeout(() => {
+      card.remove();
+
+      updateProgress();
+      applyFilter();
+      updateFilterCounts();
+    }, 250);
+
+    showToast(`
+    <span class="material-symbols-rounded toast-icon">
+      delete_sweep
+    </span>
+    Habit deleted
+  `);
+  }
+
   habitContainer.addEventListener("click", (e) => {
     const card = e.target.closest(".habit-card");
     if (!card) return;
@@ -447,15 +491,43 @@ document.addEventListener("DOMContentLoaded", () => {
     const habit = habits.find((h) => h.id == id);
     if (!habit) return;
 
+    // ===== MOBILE EDIT =====
+    if (e.target.closest(".btn-edit-trigger")) {
+      openEditModal(habit, id);
+
+      card.querySelector(".habit-dropdown")?.classList.remove("open");
+
+      return;
+    }
+
+    // ===== MOBILE DELETE =====
+    if (e.target.closest(".btn-delete-trigger")) {
+      deleteHabit(card, id);
+
+      card.querySelector(".habit-dropdown")?.classList.remove("open");
+
+      return;
+    }
+
+    // ===== MOBILE MORE MENU =====
+    if (e.target.closest(".btn-more")) {
+      e.stopPropagation();
+
+      const dropdown = card.querySelector(".habit-dropdown");
+
+      document.querySelectorAll(".habit-dropdown.open").forEach((d) => {
+        if (d !== dropdown) {
+          d.classList.remove("open");
+        }
+      });
+
+      dropdown.classList.toggle("open");
+      return;
+    }
+
     // ===== EDIT =====
     if (e.target.closest(".btn-edit")) {
-      editingId = id;
-
-      editName.value = habit.name;
-      editCategory.value = habit.category;
-      editTime.value = habit.time || "";
-
-      editModal.hidden = false;
+      openEditModal(habit, id);
       return;
     }
 
@@ -502,24 +574,9 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    // ===== DELETE =====
     if (e.target.closest(".btn-delete")) {
-      habits = habits.filter((h) => h.id != id);
-
-      // Save updated habits after deletion
-      saveHabits();
-
-      card.classList.add("deleting");
-      setTimeout(() => {
-        card.remove();
-        updateProgress();
-        applyFilter();
-        updateFilterCounts();
-      }, 250);
-
-      showToast(
-        `  <span class="material-symbols-rounded toast-icon">delete_sweep</span> Habit deleted`,
-      );
+      deleteHabit(card, id);
+      return;
     }
   });
 
@@ -645,5 +702,11 @@ document.addEventListener("DOMContentLoaded", () => {
         editSave.click();
       }
     }
+  });
+  // Close dropdown when clicking outside
+  document.addEventListener("click", () => {
+    document
+      .querySelectorAll(".habit-dropdown.open")
+      .forEach((d) => d.classList.remove("open"));
   });
 });
