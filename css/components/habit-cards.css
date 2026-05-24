@@ -215,58 +215,59 @@
    MOBILE INLINE CHIPS
 ═══════════════════════════════════════ */
 
-  .habit-info {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 10px;
 
-    min-width: 0;
-  }
+.habit-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 
-  /* Left side */
-  .habit-name {
-    flex: 1;
-    margin-bottom: 0;
-  }
+  gap: 6px;
+  min-width: 0;
+}
 
-  /* Chips inline on right */
-  .habit-chips {
-    display: flex;
-    align-items: center;
-    gap: 5px;
+/* Habit title */
+.habit-name {
+  margin-bottom: 0;
 
-    flex-wrap: nowrap;
-    flex-shrink: 0;
-  }
+  width: 100%;
+}
 
-  /* Compact chips */
-  .chip {
-    padding: 3px 7px;
+/* Chips row below title */
+.habit-chips {
+  display: flex;
+  align-items: center;
+  gap: 6px;
 
-    font-size: 0.58rem;
-    font-weight: 800;
+  flex-wrap: wrap;
+}
 
-    gap: 4px;
-  }
+/* Compact mobile chips */
+.chip {
+  padding: 4px 8px;
 
-  /* Hide text labels on mobile */
-  .chip-label {
-    display: none;
-  }
+  font-size: 0.56rem;
+  font-weight: 800;
 
-  /* Keep icons + numbers aligned */
-  .chip-icon,
-  .chip-value {
-    display: inline-flex;
-    align-items: center;
-  }
+  gap: 4px;
+}
 
-  /* Optional: slightly smaller time chip */
-  .chip-time {
-    padding: 3px 6px;
-    font-size: 0.56rem;
-  }
+/* Show labels again */
+.chip-label {
+  display: inline;
+}
+
+/* Keep icon alignment clean */
+.chip-icon,
+.chip-value {
+  display: inline-flex;
+  align-items: center;
+}
+
+/* Time chip */
+.chip-time {
+  padding: 4px 7px;
+  font-size: 0.55rem;
+}
 
   /* ═══════════════════════════════════════
      ACTIONS AREA
