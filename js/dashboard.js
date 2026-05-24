@@ -230,9 +230,17 @@ document.addEventListener("DOMContentLoaded", () => {
      HELPERS
   ========================= */
   function refreshChips(card, h) {
-    card.querySelector(".chip-streak").textContent =
-      `🔥 ${h.streak} day streak`;
-    card.querySelector(".chip-total").textContent = `✓ ${h.total} total`;
+    const streakValue = card.querySelector(".chip-streak .chip-value");
+
+    const totalValue = card.querySelector(".chip-total .chip-value");
+
+    if (streakValue) {
+      streakValue.textContent = h.streak;
+    }
+
+    if (totalValue) {
+      totalValue.textContent = h.total;
+    }
   }
 
   /* =========================
@@ -708,7 +716,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
   });
-    /* =========================
+  /* =========================
      MOBILE SWIPE TO COMPLETE
   ========================= */
   let touchStartX = 0;
@@ -724,7 +732,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       card.style.transition = "none";
     },
-    { passive: true }
+    { passive: true },
   );
 
   habitContainer.addEventListener(
@@ -742,7 +750,7 @@ document.addEventListener("DOMContentLoaded", () => {
         card.style.transform = `translateX(${diffX}px)`;
       }
     },
-    { passive: true }
+    { passive: true },
   );
 
   habitContainer.addEventListener("touchend", (e) => {
