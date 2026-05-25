@@ -727,6 +727,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let isSwiping = false;
 
+  let touchStartTime = 0;
+  let touchEndTime = 0;
+
   habitContainer.addEventListener(
     "touchstart",
     (e) => {
@@ -740,6 +743,7 @@ document.addEventListener("DOMContentLoaded", () => {
       touchStartY = e.touches[0].clientY;
 
       isSwiping = false;
+      touchStartTime = Date.now();
 
       card.style.transition = "none";
     },
@@ -817,6 +821,13 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!card) return;
 
     const diffX = touchCurrentX - touchStartX;
+
+    touchEndTime = Date.now();
+
+    const swipeTime = touchEndTime - touchStartTime;
+
+    // pixels per ms
+    const swipeVelocity = Math.abs(diffX) / swipeTime;
     if (!isSwiping) {
       return;
     }
@@ -824,7 +835,7 @@ document.addEventListener("DOMContentLoaded", () => {
     card.style.transition = "transform 0.25s ease, opacity 0.25s ease";
 
     // ===== SWIPE RIGHT → COMPLETE =====
-    if (diffX > 120) {
+    if (diffX > 120 || (diffX > 0 && swipeVelocity > 0.65)) {
       const id = card.getAttribute("data-id");
 
       const habit = habits.find((h) => h.id == id);
@@ -900,7 +911,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // ===== SWIPE LEFT → UNDO =====
-    else if (diffX < -120) {
+    else if (diffX < -120 || (diffX < 0 && swipeVelocity > 0.65)) {
       const id = card.getAttribute("data-id");
 
       const habit = habits.find((h) => h.id == id);
