@@ -745,10 +745,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const diffX = touchCurrentX - touchStartX;
 
-      // only allow right swipe
-      if (diffX > 0) {
-        card.style.transform = `translateX(${diffX}px)`;
-      }
+      // allow both directions
+      card.style.transform = `translateX(${diffX}px)`;
     },
     { passive: true },
   );
@@ -761,12 +759,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
     card.style.transition = "transform 0.25s ease";
 
-    // swipe threshold
+    // ===== SWIPE RIGHT → COMPLETE =====
     if (diffX > 120) {
       const id = card.getAttribute("data-id");
       const habit = habits.find((h) => h.id == id);
 
-      if (!habit || habit.completedToday) {
+      if (!habit) {
+        card.style.transform = "translateX(0)";
+        return;
+      }
+
+      // already completed
+      if (habit.completedToday) {
         card.style.transform = "translateX(0)";
         return;
       }
@@ -780,6 +784,7 @@ document.addEventListener("DOMContentLoaded", () => {
       card.classList.add("is-completed");
 
       const btn = card.querySelector(".btn-complete");
+
       if (btn) {
         btn.innerText = "Completed! 🔥";
       }
@@ -793,21 +798,73 @@ document.addEventListener("DOMContentLoaded", () => {
       applyFilter();
       updateFilterCounts();
 
-      showToast("Habit completed via swipe 👉");
+      showToast("Nice! Habit completed ✅");
 
       if (pct === 100) {
         fireConfetti();
         showToast("Perfect day! 🎉");
       }
 
-      // finish swipe animation
-      card.style.transform = "translateX(100px)";
+      // swipe finish animation
+      card.style.transform = "translateX(90px)";
 
       setTimeout(() => {
         card.style.transform = "translateX(0)";
       }, 180);
-    } else {
-      // reset if swipe too small
+    }
+
+    // ===== SWIPE LEFT → UNDO =====
+    else if (diffX < -120) {
+      const id = card.getAttribute("data-id");
+      const habit = habits.find((h) => h.id == id);
+
+      if (!habit) {
+        card.style.transform = "translateX(0)";
+        return;
+      }
+
+      // not completed yet
+      if (!habit.completedToday) {
+        card.style.transform = "translateX(0)";
+        return;
+      }
+
+      // UNDO HABIT
+      habit.completedToday = false;
+
+      habit.streak = Math.max(0, habit.streak - 1);
+
+      habit.total = Math.max(0, habit.total - 1);
+
+      card.classList.remove("is-completed");
+
+      const btn = card.querySelector(".btn-complete");
+
+      if (btn) {
+        btn.innerText = "Mark as Done";
+      }
+
+      refreshChips(card, habit);
+
+      saveHabits();
+
+      updateProgress();
+
+      applyFilter();
+      updateFilterCounts();
+
+      showToast("Marked as not done ❌");
+
+      // swipe finish animation
+      card.style.transform = "translateX(-90px)";
+
+      setTimeout(() => {
+        card.style.transform = "translateX(0)";
+      }, 180);
+    }
+
+    // ===== SMALL SWIPE → RESET =====
+    else {
       card.style.transform = "translateX(0)";
     }
 

@@ -198,59 +198,58 @@
    MOBILE INLINE CHIPS
 ═══════════════════════════════════════ */
 
+  .habit-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
 
-.habit-info {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+    gap: 10px;
+    min-width: 0;
+  }
 
-  gap: 10px;
-  min-width: 0;
-}
+  /* Habit title */
+  .habit-name {
+    margin-bottom: 0;
 
-/* Habit title */
-.habit-name {
-  margin-bottom: 0;
+    width: 100%;
+  }
 
-  width: 100%;
-}
+  /* Chips row below title */
+  .habit-chips {
+    display: flex;
+    align-items: center;
+    gap: 6px;
 
-/* Chips row below title */
-.habit-chips {
-  display: flex;
-  align-items: center;
-  gap: 6px;
+    flex-wrap: wrap;
+  }
 
-  flex-wrap: wrap;
-}
+  /* Compact mobile chips */
+  .chip {
+    padding: 4px 8px;
 
-/* Compact mobile chips */
-.chip {
-  padding: 4px 8px;
+    font-size: 0.56rem;
+    font-weight: 800;
 
-  font-size: 0.56rem;
-  font-weight: 800;
+    gap: 4px;
+  }
 
-  gap: 4px;
-}
+  /* Show labels again */
+  .chip-label {
+    display: inline;
+  }
 
-/* Show labels again */
-.chip-label {
-  display: inline;
-}
+  /* Keep icon alignment clean */
+  .chip-icon,
+  .chip-value {
+    display: inline-flex;
+    align-items: center;
+  }
 
-/* Keep icon alignment clean */
-.chip-icon,
-.chip-value {
-  display: inline-flex;
-  align-items: center;
-}
-
-/* Time chip */
-.chip-time {
-  padding: 4px 7px;
-  font-size: 0.55rem;
-}
+  /* Time chip */
+  .chip-time {
+    padding: 4px 7px;
+    font-size: 0.55rem;
+  }
 
   /* ═══════════════════════════════════════
      ACTIONS AREA
@@ -284,6 +283,11 @@
     font-size: 0.68rem;
 
     flex-shrink: 0;
+  }
+
+  /* Prevent toast text from breaking into 2 lines */
+  .toast {
+    white-space: nowrap;
   }
 
   /* ═══════════════════════════════════════
