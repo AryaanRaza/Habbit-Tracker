@@ -717,8 +717,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
   /* =========================
-     MOBILE SWIPE TO COMPLETE
-  ========================= */
+   MOBILE SWIPE TO COMPLETE
+========================= */
   let touchStartX = 0;
   let touchCurrentX = 0;
 
@@ -730,6 +730,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       touchStartX = e.touches[0].clientX;
 
+      // disable transition while dragging
       card.style.transition = "none";
     },
     { passive: true },
@@ -745,8 +746,29 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const diffX = touchCurrentX - touchStartX;
 
-      // allow both directions
-      card.style.transform = `translateX(${diffX}px)`;
+      /* =========================
+       FULL CARD ROTATION
+    ========================= */
+
+      // stronger rotation
+      const rotate = diffX * 0.08;
+
+      // slight scale effect
+      const scale = 1 - Math.min(Math.abs(diffX) / 1200, 0.04);
+
+      // live opacity
+      const opacity = 1 - Math.min(Math.abs(diffX) / 450, 0.18);
+
+      /* =========================
+       MOVE + ROTATE + SCALE
+    ========================= */
+      card.style.transform = `
+      translateX(${diffX}px)
+      rotate(${rotate}deg)
+      scale(${scale})
+    `;
+
+      card.style.opacity = opacity;
     },
     { passive: true },
   );
@@ -757,28 +779,38 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const diffX = touchCurrentX - touchStartX;
 
-    card.style.transition = "transform 0.25s ease";
+    card.style.transition = "transform 0.25s ease, opacity 0.25s ease";
 
     // ===== SWIPE RIGHT → COMPLETE =====
     if (diffX > 120) {
       const id = card.getAttribute("data-id");
+
       const habit = habits.find((h) => h.id == id);
 
       if (!habit) {
-        card.style.transform = "translateX(0)";
+        card.style.transform = "translateX(0) rotate(0deg) scale(1)";
+
+        card.style.opacity = "1";
         return;
       }
 
       // already completed
       if (habit.completedToday) {
-        card.style.transform = "translateX(0)";
+        card.style.transform = "translateX(0) rotate(0deg) scale(1)";
+
+        card.style.opacity = "1";
         return;
       }
 
-      // COMPLETE HABIT
+      /* =========================
+       COMPLETE HABIT
+    ========================= */
       habit.completedToday = true;
+
       habit.streak++;
+
       habit.total++;
+
       habit.best = Math.max(habit.best, habit.streak);
 
       card.classList.add("is-completed");
@@ -796,40 +828,55 @@ document.addEventListener("DOMContentLoaded", () => {
       const pct = updateProgress();
 
       applyFilter();
+
       updateFilterCounts();
 
       showToast("Nice! Habit completed ✅");
 
       if (pct === 100) {
         fireConfetti();
+
         showToast("Perfect day! 🎉");
       }
 
-      // swipe finish animation
-      card.style.transform = "translateX(90px)";
+      /* =========================
+       FINISH SWIPE ANIMATION
+    ========================= */
+      card.style.transform = "translateX(90px) rotate(8deg) scale(0.96)";
 
       setTimeout(() => {
-        card.style.transform = "translateX(0)";
+        card.style.transform = "translateX(0) rotate(0deg) scale(1)";
+
+        card.style.opacity = "1";
       }, 180);
     }
 
     // ===== SWIPE LEFT → UNDO =====
     else if (diffX < -120) {
       const id = card.getAttribute("data-id");
+
       const habit = habits.find((h) => h.id == id);
 
       if (!habit) {
-        card.style.transform = "translateX(0)";
+        card.style.transform = "translateX(0) rotate(0deg) scale(1)";
+
+        card.style.opacity = "1";
+
         return;
       }
 
       // not completed yet
       if (!habit.completedToday) {
-        card.style.transform = "translateX(0)";
+        card.style.transform = "translateX(0) rotate(0deg) scale(1)";
+
+        card.style.opacity = "1";
+
         return;
       }
 
-      // UNDO HABIT
+      /* =========================
+       UNDO HABIT
+    ========================= */
       habit.completedToday = false;
 
       habit.streak = Math.max(0, habit.streak - 1);
@@ -851,30 +898,31 @@ document.addEventListener("DOMContentLoaded", () => {
       updateProgress();
 
       applyFilter();
+
       updateFilterCounts();
 
       showToast("Marked as not done ❌");
 
-      // swipe finish animation
-      card.style.transform = "translateX(-90px)";
+      /* =========================
+       FINISH SWIPE ANIMATION
+    ========================= */
+      card.style.transform = "translateX(-90px) rotate(-8deg) scale(0.96)";
 
       setTimeout(() => {
-        card.style.transform = "translateX(0)";
+        card.style.transform = "translateX(0) rotate(0deg) scale(1)";
+
+        card.style.opacity = "1";
       }, 180);
     }
 
     // ===== SMALL SWIPE → RESET =====
     else {
-      card.style.transform = "translateX(0)";
+      card.style.transform = "translateX(0) rotate(0deg) scale(1)";
+
+      card.style.opacity = "1";
     }
 
     touchStartX = 0;
     touchCurrentX = 0;
-  });
-  // Close dropdown when clicking outside
-  document.addEventListener("click", () => {
-    document
-      .querySelectorAll(".habit-dropdown.open")
-      .forEach((d) => d.classList.remove("open"));
   });
 });
