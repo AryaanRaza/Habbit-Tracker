@@ -1,89 +1,114 @@
-/* ═══════════════════════════════════════════════════════════════
-   auth.js — HabitFlow Login & Register
-   Shared by login.html and register.html.
+// ============================================
+// HabitFlow — auth.js
+// Fake Frontend Authentication System
+// ============================================
 
-   HANDLES:
-     1. Password visibility toggles
-     2. Password strength meter  (register only)
-     3. Password match check     (register only)
-═══════════════════════════════════════════════════════════════ */
+// Get current logged in user
+function getCurrentUser() {
+  return Storage.get(STORAGE_KEYS.CURRENT_USER);
+}
 
-document.addEventListener('DOMContentLoaded', () => {
+// Check auth state
+function isAuthenticated() {
+  return !!getCurrentUser();
+}
 
-  /* ─────────────────────────────────────────
-     1. PASSWORD VISIBILITY TOGGLES
-     Every .pw-toggle button shows/hides its
-     paired input (matched via data-target id).
-  ───────────────────────────────────────── */
-  document.querySelectorAll('.pw-toggle').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const input = document.getElementById(btn.dataset.target);
-      if (!input) return;
-      const isHidden = input.type === 'password';
-      input.type = isHidden ? 'text' : 'password';
-      const icon = btn.querySelector('.material-symbols-rounded');
-      if (icon) icon.textContent = isHidden ? 'visibility_off' : 'visibility';
-    });
-  });
+// Save current session
+function saveSession(user) {
+  Storage.set(STORAGE_KEYS.CURRENT_USER, user);
+}
 
+// Logout user
+function logoutUser() {
+  Storage.remove(STORAGE_KEYS.CURRENT_USER);
 
-  /* ─────────────────────────────────────────
-     2. PASSWORD STRENGTH METER  (register)
-  ───────────────────────────────────────── */
-  const passwordInput   = document.getElementById('password');
-  const strengthFill    = document.getElementById('pw-strength-fill');
-  const strengthLabel   = document.getElementById('pw-strength-label');
+  window.location.href = "index.html";
+}
 
-  /**
-   * Scores a password and returns a strength level + label.
-   * @param {string} pw
-   * @returns {{ level: string, label: string }}
-   */
-  function getStrength(pw) {
-    if (!pw) return { level: '', label: '' };
-    let score = 0;
-    if (pw.length >= 8)                        score++;
-    if (pw.length >= 12)                       score++;
-    if (/[A-Z]/.test(pw) && /[a-z]/.test(pw)) score++;
-    if (/\d/.test(pw))                         score++;
-    if (/[^A-Za-z0-9]/.test(pw))              score++;
-    if (score <= 1) return { level: 'weak',   label: 'Weak'   };
-    if (score <= 2) return { level: 'fair',   label: 'Fair'   };
-    if (score <= 3) return { level: 'good',   label: 'Good'   };
-                    return { level: 'strong', label: 'Strong' };
+// ============================================
+// REGISTER
+// ============================================
+
+function registerUser(username, email, password) {
+  const users =
+    Storage.get(STORAGE_KEYS.USERS) || [];
+
+  // Check if email already exists
+  const userExists = users.some(
+    (user) => user.email === email
+  );
+
+  if (userExists) {
+    return {
+      success: false,
+      message: "User already exists"
+    };
   }
 
-  if (passwordInput && strengthFill && strengthLabel) {
-    passwordInput.addEventListener('input', () => {
-      const { level, label } = getStrength(passwordInput.value);
-      strengthFill.dataset.strength = level;
-      strengthLabel.textContent     = label;
-    });
+  const newUser = {
+    id: Date.now(),
+    username,
+    email,
+    password,
+    habits: [],
+    createdAt: new Date().toISOString()
+  };
+
+  users.push(newUser);
+
+  Storage.set(STORAGE_KEYS.USERS, users);
+
+  saveSession(newUser);
+
+  return {
+    success: true,
+    user: newUser
+  };
+}
+
+// ============================================
+// LOGIN
+// ============================================
+
+function loginUser(email, password) {
+  const users =
+    Storage.get(STORAGE_KEYS.USERS) || [];
+
+  const foundUser = users.find(
+    (user) =>
+      user.email === email &&
+      user.password === password
+  );
+
+  if (!foundUser) {
+    return {
+      success: false,
+      message: "Invalid credentials"
+    };
   }
 
+  saveSession(foundUser);
 
-  /* ─────────────────────────────────────────
-     3. PASSWORD MATCH CHECK  (register)
-  ───────────────────────────────────────── */
-  const confirmInput = document.getElementById('confirmPassword');
-  const matchMsg     = document.getElementById('pw-match-msg');
+  return {
+    success: true,
+    user: foundUser
+  };
+}
 
-  function checkMatch() {
-    if (!confirmInput || !matchMsg || !passwordInput) return;
-    const pw      = passwordInput.value;
-    const confirm = confirmInput.value;
-    if (!confirm) { matchMsg.classList.add('hidden'); return; }
-    matchMsg.classList.remove('hidden');
-    if (pw === confirm) {
-      matchMsg.textContent = '✓ Passwords match';
-      matchMsg.className   = 'pw-match-msg match';
-    } else {
-      matchMsg.textContent = '✗ Passwords do not match';
-      matchMsg.className   = 'pw-match-msg no-match';
-    }
-  }
+// ============================================
+// GUEST LOGIN
+// ============================================
 
-  confirmInput?.addEventListener('input', checkMatch);
-  passwordInput?.addEventListener('input', checkMatch);
+function loginAsGuest() {
+  const guestUser = {
+    id: "guest",
+    username: "Guest",
+    email: null,
+    habits: [],
+    isGuest: true
+  };
 
-});
+  saveSession(guestUser);
+
+  return guestUser;
+}
