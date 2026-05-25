@@ -769,6 +769,17 @@ document.addEventListener("DOMContentLoaded", () => {
     `;
 
       card.style.opacity = opacity;
+      /* =========================
+   SWIPE GLOW
+========================= */
+
+      if (diffX > 0) {
+        card.style.boxShadow = "0 14px 32px rgba(34,197,94,0.22)";
+      } else if (diffX < 0) {
+        card.style.boxShadow = "0 14px 32px rgba(239,68,68,0.22)";
+      } else {
+        card.style.boxShadow = "";
+      }
     },
     { passive: true },
   );
@@ -791,6 +802,7 @@ document.addEventListener("DOMContentLoaded", () => {
         card.style.transform = "translateX(0) rotate(0deg) scale(1)";
 
         card.style.opacity = "1";
+        card.style.boxShadow = "";
         return;
       }
 
@@ -799,6 +811,7 @@ document.addEventListener("DOMContentLoaded", () => {
         card.style.transform = "translateX(0) rotate(0deg) scale(1)";
 
         card.style.opacity = "1";
+        card.style.boxShadow = "";
         return;
       }
 
@@ -848,6 +861,7 @@ document.addEventListener("DOMContentLoaded", () => {
         card.style.transform = "translateX(0) rotate(0deg) scale(1)";
 
         card.style.opacity = "1";
+        card.style.boxShadow = "";
       }, 180);
     }
 
@@ -861,6 +875,7 @@ document.addEventListener("DOMContentLoaded", () => {
         card.style.transform = "translateX(0) rotate(0deg) scale(1)";
 
         card.style.opacity = "1";
+        card.style.boxShadow = "";
 
         return;
       }
@@ -870,6 +885,7 @@ document.addEventListener("DOMContentLoaded", () => {
         card.style.transform = "translateX(0) rotate(0deg) scale(1)";
 
         card.style.opacity = "1";
+        card.style.boxShadow = "";
 
         return;
       }
@@ -912,6 +928,7 @@ document.addEventListener("DOMContentLoaded", () => {
         card.style.transform = "translateX(0) rotate(0deg) scale(1)";
 
         card.style.opacity = "1";
+        card.style.boxShadow = "";
       }, 180);
     }
 
@@ -920,6 +937,7 @@ document.addEventListener("DOMContentLoaded", () => {
       card.style.transform = "translateX(0) rotate(0deg) scale(1)";
 
       card.style.opacity = "1";
+      card.style.boxShadow = "";
     }
 
     touchStartX = 0;
