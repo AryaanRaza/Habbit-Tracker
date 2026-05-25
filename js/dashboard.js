@@ -722,15 +722,25 @@ document.addEventListener("DOMContentLoaded", () => {
   let touchStartX = 0;
   let touchCurrentX = 0;
 
+  let touchStartY = 0;
+  let touchCurrentY = 0;
+
+  let isSwiping = false;
+
   habitContainer.addEventListener(
     "touchstart",
     (e) => {
       const card = e.target.closest(".habit-card");
       if (!card) return;
 
-      touchStartX = e.touches[0].clientX;
+      // ignore multitouch
+      if (e.touches.length > 1) return;
 
-      // disable transition while dragging
+      touchStartX = e.touches[0].clientX;
+      touchStartY = e.touches[0].clientY;
+
+      isSwiping = false;
+
       card.style.transition = "none";
     },
     { passive: true },
@@ -743,8 +753,24 @@ document.addEventListener("DOMContentLoaded", () => {
       if (!card) return;
 
       touchCurrentX = e.touches[0].clientX;
+      touchCurrentY = e.touches[0].clientY;
 
       const diffX = touchCurrentX - touchStartX;
+      const diffY = touchCurrentY - touchStartY;
+
+      /* =========================
+       VERTICAL SCROLL PROTECTION
+    ========================= */
+
+      if (!isSwiping) {
+        // user is scrolling vertically
+        if (Math.abs(diffY) > Math.abs(diffX)) {
+          return;
+        }
+
+        // user intends horizontal swipe
+        isSwiping = true;
+      }
 
       /* =========================
        FULL CARD ROTATION
@@ -762,6 +788,7 @@ document.addEventListener("DOMContentLoaded", () => {
       /* =========================
        MOVE + ROTATE + SCALE
     ========================= */
+
       card.style.transform = `
       translateX(${diffX}px)
       rotate(${rotate}deg)
@@ -769,9 +796,10 @@ document.addEventListener("DOMContentLoaded", () => {
     `;
 
       card.style.opacity = opacity;
+
       /* =========================
-   SWIPE GLOW
-========================= */
+       SWIPE GLOW
+    ========================= */
 
       if (diffX > 0) {
         card.style.boxShadow = "0 14px 32px rgba(34,197,94,0.22)";
@@ -789,6 +817,9 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!card) return;
 
     const diffX = touchCurrentX - touchStartX;
+    if (!isSwiping) {
+      return;
+    }
 
     card.style.transition = "transform 0.25s ease, opacity 0.25s ease";
 
