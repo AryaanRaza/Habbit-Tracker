@@ -736,6 +736,28 @@ document.addEventListener("DOMContentLoaded", () => {
       const card = e.target.closest(".habit-card");
       if (!card) return;
 
+      /* =========================
+   DISABLE SWIPE IF DROPDOWN OPEN
+========================= */
+
+      const dropdown = card.querySelector(".habit-dropdown");
+
+      if (dropdown?.classList.contains("open")) {
+        // fully reset swipe state
+        touchStartX = 0;
+        touchCurrentX = 0;
+
+        touchStartY = 0;
+        touchCurrentY = 0;
+
+        touchStartTime = 0;
+        touchEndTime = 0;
+
+        isSwiping = false;
+
+        return;
+      }
+
       // ignore multitouch
       if (e.touches.length > 1) return;
 
@@ -755,6 +777,9 @@ document.addEventListener("DOMContentLoaded", () => {
     (e) => {
       const card = e.target.closest(".habit-card");
       if (!card) return;
+
+      // ignore if swipe never started
+      if (touchStartX === 0) return;
 
       touchCurrentX = e.touches[0].clientX;
       touchCurrentY = e.touches[0].clientY;
@@ -819,6 +844,11 @@ document.addEventListener("DOMContentLoaded", () => {
   habitContainer.addEventListener("touchend", (e) => {
     const card = e.target.closest(".habit-card");
     if (!card) return;
+
+    // swipe never actually started
+    if (touchStartX === 0) {
+      return;
+    }
 
     const diffX = touchCurrentX - touchStartX;
 
@@ -891,6 +921,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
       showToast("Nice! Habit completed ✅");
 
+      isSwiping = false;
+
       if (pct === 100) {
         fireConfetti();
 
@@ -933,6 +965,8 @@ document.addEventListener("DOMContentLoaded", () => {
         card.style.boxShadow = "";
 
         showToast("Habit is already incomplete ✨");
+
+        isSwiping = false;
 
         return;
       }
@@ -989,5 +1023,28 @@ document.addEventListener("DOMContentLoaded", () => {
 
     touchStartX = 0;
     touchCurrentX = 0;
+
+    touchStartY = 0;
+    touchCurrentY = 0;
+
+    touchStartTime = 0;
+    touchEndTime = 0;
+
+    isSwiping = false;
+  });
+
+  /* =========================
+   CLOSE DROPDOWN ON OUTSIDE CLICK
+========================= */
+  document.addEventListener("click", (e) => {
+    // clicked inside dropdown or more button
+    if (e.target.closest(".btn-more") || e.target.closest(".habit-dropdown")) {
+      return;
+    }
+
+    // close all open dropdowns
+    document.querySelectorAll(".habit-dropdown.open").forEach((dropdown) => {
+      dropdown.classList.remove("open");
+    });
   });
 });
