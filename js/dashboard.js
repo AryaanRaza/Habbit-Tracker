@@ -812,6 +812,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
         card.style.opacity = "1";
         card.style.boxShadow = "";
+
+        showToast("Habit already completed ✅");
+
         return;
       }
 
@@ -886,6 +889,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
         card.style.opacity = "1";
         card.style.boxShadow = "";
+
+        showToast("Habit is already incomplete ✨");
 
         return;
       }
