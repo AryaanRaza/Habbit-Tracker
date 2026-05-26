@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
       <div class="profile-avatar">👤</div>
 
       <div class="profile-details">
-        <div class="profile-name">Aryaan</div>
+        <div class="profile-name" id="nav-username">User</div>
 
         <div class="profile-streak">
           <span class="status-dot"></span>
@@ -186,7 +186,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-
   // 2. Updated Active Tab Logic
   const tabs = document.querySelectorAll(".tab-item, .sidebar-link");
   tabs.forEach((tab) => {
@@ -211,5 +210,16 @@ document.addEventListener("DOMContentLoaded", () => {
         tab.classList.add("active");
       }
     });
+    // ============================================
+    // LOAD CURRENT USER NAME
+    // ============================================
+
+    const currentUser = Storage.get(STORAGE_KEYS.CURRENT_USER);
+
+    const navUsername = document.getElementById("nav-username");
+
+    if (currentUser && navUsername) {
+      navUsername.textContent = currentUser.username;
+    }
   });
 });
