@@ -114,3 +114,88 @@ guestBtn?.addEventListener("click", () => {
 
   window.location.href = "dashboard.html";
 });
+
+// ============================================
+// REGISTER FORM
+// ============================================
+
+const registerForm = document.getElementById("register-form");
+
+registerForm?.addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  const firstName = document.getElementById("firstName")?.value.trim();
+
+  const lastName = document.getElementById("lastName")?.value.trim();
+
+  const email = document.getElementById("email")?.value.trim();
+
+  const password = document.getElementById("password")?.value;
+
+  const confirmPassword = document.getElementById("confirmPassword")?.value;
+
+  // Basic validation
+  if (!firstName || !lastName || !email || !password) {
+    alert("Please fill all fields");
+    return;
+  }
+
+  // Password match check
+  if (password !== confirmPassword) {
+    alert("Passwords do not match");
+    return;
+  }
+
+  const username = `${firstName} ${lastName}`;
+
+  const result = registerUser(username, email, password);
+
+  if (!result.success) {
+    alert(result.message);
+    return;
+  }
+
+  // Redirect after success
+  window.location.href = "dashboard.html";
+});
+
+// ============================================
+// LOGIN FORM
+// ============================================
+
+const loginForm = document.getElementById("login-form");
+
+loginForm?.addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  const email = document.getElementById("email")?.value.trim();
+
+  const password = document.getElementById("password")?.value;
+
+  if (!email || !password) {
+    alert("Please enter email and password");
+    return;
+  }
+
+  const result = loginUser(email, password);
+
+  if (!result.success) {
+    alert(result.message);
+    return;
+  }
+
+  // Success redirect
+  window.location.href = "dashboard.html";
+});
+
+// ============================================
+// GUEST LOGIN
+// ============================================
+
+const guestBtn = document.getElementById("guestBtn");
+
+guestBtn?.addEventListener("click", () => {
+  loginAsGuest();
+
+  window.location.href = "dashboard.html";
+});
