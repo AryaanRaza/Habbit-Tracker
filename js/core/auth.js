@@ -188,14 +188,3 @@ loginForm?.addEventListener("submit", (e) => {
   window.location.href = "dashboard.html";
 });
 
-// ============================================
-// GUEST LOGIN
-// ============================================
-
-const guestBtn = document.getElementById("guestBtn");
-
-guestBtn?.addEventListener("click", () => {
-  loginAsGuest();
-
-  window.location.href = "dashboard.html";
-});

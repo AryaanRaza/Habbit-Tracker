@@ -42,3 +42,6 @@ const STORAGE_KEYS = {
   SETTINGS: "habitflow_settings"
 };
 
+function getHabitsKey() {}
+function saveUserHabits() {}
+function loadUserHabits() {}
