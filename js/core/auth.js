@@ -30,18 +30,15 @@ function logoutUser() {
 // ============================================
 
 function registerUser(username, email, password) {
-  const users =
-    Storage.get(STORAGE_KEYS.USERS) || [];
+  const users = Storage.get(STORAGE_KEYS.USERS) || [];
 
   // Check if email already exists
-  const userExists = users.some(
-    (user) => user.email === email
-  );
+  const userExists = users.some((user) => user.email === email);
 
   if (userExists) {
     return {
       success: false,
-      message: "User already exists"
+      message: "User already exists",
     };
   }
 
@@ -51,7 +48,7 @@ function registerUser(username, email, password) {
     email,
     password,
     habits: [],
-    createdAt: new Date().toISOString()
+    createdAt: new Date().toISOString(),
   };
 
   users.push(newUser);
@@ -62,7 +59,7 @@ function registerUser(username, email, password) {
 
   return {
     success: true,
-    user: newUser
+    user: newUser,
   };
 }
 
@@ -71,19 +68,16 @@ function registerUser(username, email, password) {
 // ============================================
 
 function loginUser(email, password) {
-  const users =
-    Storage.get(STORAGE_KEYS.USERS) || [];
+  const users = Storage.get(STORAGE_KEYS.USERS) || [];
 
   const foundUser = users.find(
-    (user) =>
-      user.email === email &&
-      user.password === password
+    (user) => user.email === email && user.password === password,
   );
 
   if (!foundUser) {
     return {
       success: false,
-      message: "Invalid credentials"
+      message: "Invalid credentials",
     };
   }
 
@@ -91,7 +85,7 @@ function loginUser(email, password) {
 
   return {
     success: true,
-    user: foundUser
+    user: foundUser,
   };
 }
 
@@ -105,10 +99,18 @@ function loginAsGuest() {
     username: "Guest",
     email: null,
     habits: [],
-    isGuest: true
+    isGuest: true,
   };
 
   saveSession(guestUser);
 
   return guestUser;
 }
+
+const guestBtn = document.getElementById("guestBtn");
+
+guestBtn?.addEventListener("click", () => {
+  loginAsGuest();
+
+  window.location.href = "dashboard.html";
+});
