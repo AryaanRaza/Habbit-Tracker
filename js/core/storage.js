@@ -42,6 +42,31 @@ const STORAGE_KEYS = {
   SETTINGS: "habitflow_settings"
 };
 
-function getHabitsKey() {}
-function saveUserHabits() {}
-function loadUserHabits() {}
+// ============================================
+// USER-SPECIFIC HABIT STORAGE
+// ============================================
+
+function getHabitsKey() {
+  const currentUser = Storage.get(STORAGE_KEYS.CURRENT_USER);
+
+  // fallback for safety
+  if (!currentUser) {
+    return "habitflow_habits_guest";
+  }
+
+  return `habitflow_habits_${currentUser.id}`;
+}
+
+// Save habits for current user
+function saveUserHabits(habits) {
+  const key = getHabitsKey();
+
+  Storage.set(key, habits);
+}
+
+// Load habits for current user
+function loadUserHabits() {
+  const key = getHabitsKey();
+
+  return Storage.get(key) || [];
+}
