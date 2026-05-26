@@ -23,7 +23,7 @@ function showToast(message, type = "info") {
   }
 
   toast.innerHTML = `
-    <span class="material-symbols-rounded toast-icon-auth">
+    <span class="material-symbols-rounded toast-icon toast-icon-auth">
       ${icon}
     </span>
     ${message}
