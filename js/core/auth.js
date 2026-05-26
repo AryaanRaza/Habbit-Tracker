@@ -3,6 +3,39 @@
 // Fake Frontend Authentication System
 // ============================================
 
+// ============================================
+// TOAST
+// ============================================
+
+function showToast(message, type = "info") {
+  const toast = document.getElementById("toast");
+
+  if (!toast) return;
+
+  let icon = "info";
+
+  if (type === "success") {
+    icon = "check_circle";
+  }
+
+  if (type === "error") {
+    icon = "error";
+  }
+
+  toast.innerHTML = `
+    <span class="material-symbols-rounded toast-icon-auth">
+      ${icon}
+    </span>
+    ${message}
+  `;
+
+  toast.classList.add("show");
+
+  setTimeout(() => {
+    toast.classList.remove("show");
+  }, 2500);
+}
+
 // Get current logged in user
 function getCurrentUser() {
   return Storage.get(STORAGE_KEYS.CURRENT_USER);
@@ -136,13 +169,13 @@ registerForm?.addEventListener("submit", (e) => {
 
   // Basic validation
   if (!firstName || !lastName || !email || !password) {
-    alert("Please fill all fields");
+    showToast("Please fill all fields", "error");
     return;
   }
 
   // Password match check
   if (password !== confirmPassword) {
-    alert("Passwords do not match");
+    showToast("Passwords do not match", "error");
     return;
   }
 
@@ -151,12 +184,15 @@ registerForm?.addEventListener("submit", (e) => {
   const result = registerUser(username, email, password);
 
   if (!result.success) {
-    alert(result.message);
+    showToast(result.message, "error");
     return;
   }
 
-  // Redirect after success
-  window.location.href = "dashboard.html";
+  showToast("Account created successfully ✨", "success");
+
+  setTimeout(() => {
+    window.location.href = "dashboard.html";
+  }, 1200);
 });
 
 // ============================================
@@ -173,18 +209,20 @@ loginForm?.addEventListener("submit", (e) => {
   const password = document.getElementById("password")?.value;
 
   if (!email || !password) {
-    alert("Please enter email and password");
+    showToast("Please enter email and password", "error");
     return;
   }
 
   const result = loginUser(email, password);
 
   if (!result.success) {
-    alert(result.message);
+    showToast(result.message, "error");
     return;
   }
 
-  // Success redirect
-  window.location.href = "dashboard.html";
-});
+  showToast("Welcome back ✨", "success");
 
+  setTimeout(() => {
+    window.location.href = "dashboard.html";
+  }, 1200);
+});
