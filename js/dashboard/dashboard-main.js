@@ -17,22 +17,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const habitContainer = document.querySelector(".habit-list-container");
   const timeInput = document.getElementById("habit-time");
 
-  const emptyState = document.getElementById("empty-state");
-  const progressFill = document.getElementById("progress-fill");
-  const progressPct = document.getElementById("progress-pct");
-  const progressCount = document.getElementById("progress-count");
-  const habitCountLbl = document.getElementById("habit-count-label");
+ 
 
-  const statBest = document.getElementById("stat-best");
-  const statStreak = document.getElementById("stat-streak");
-  const statTotal = document.getElementById("stat-total");
-
-  /* ===== SIDEBAR QUICK STATS ===== */
-  const navBestStreak = document.getElementById("nav-best-streak");
-  const navTotalHabits = document.getElementById("nav-total-habits");
 
   const categorySelect = document.getElementById("habit-category");
-  const toast = document.getElementById("toast");
 
   /* ===== EDIT MODAL ===== */
   const editModal = document.getElementById("edit-modal");
@@ -57,47 +45,19 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   /* =========================
-     3. STATE
-  ========================= */
-  let habits = [];
-  let editingId = null;
-  let currentFilter = "all";
-  
-  function saveHabits() {
-    saveUserHabits(habits);
-  }
-  /* =========================
-   INITIAL EMPTY STATE
-========================= */
-  function loadExistingHabits() {
-    habits = [];
-
-    updateProgress();
-    updateFilterCounts();
-
-    saveHabits();
-  }
-
-  /* =========================
    INITIAL APP LOAD
 ========================= */
-  const storedHabits = loadUserHabits();
 
-  // FIRST EVER VISIT
-  if (storedHabits.length === 0) {
-    loadExistingHabits();
-  }
 
-  // Existing saved habits
-  else {
-    habits = loadUserHabits();
+  loadHabits();
 
-    habits.forEach(renderHabitCard);
+  initFilters();
 
-    updateProgress();
-    updateFilterCounts();
-    applyFilter();
-  }
+  window.habits.forEach(renderHabitCard);
+
+  updateProgress();
+  updateFilterCounts();
+  applyFilter();
 
   /* =========================
       DATE
@@ -118,16 +78,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   renderTodayDate();
 
-  /* =========================
-     TOAST
-  ========================= */
-  function showToast(msg) {
-    if (!toast) return;
-    toast.innerHTML = msg;
-    toast.classList.add("show");
 
-    setTimeout(() => toast.classList.remove("show"), 2000);
-  }
 
   /* =========================
    SAVE BUTTON LOADING STATE
@@ -140,130 +91,6 @@ document.addEventListener("DOMContentLoaded", () => {
       editSave.disabled = false;
       editSave.textContent = "Save";
     }
-  }
-
-  /* =========================
-     CONFETTI (100% ONLY)
-  ========================= */
-  function fireConfetti() {
-    if (!window.confetti) return;
-
-    window.confetti({
-      particleCount: 150,
-      spread: 80,
-      origin: { y: 0.6 },
-    });
-  }
-
-  /* =========================
-     STATS + PROGRESS
-  ========================= */
-  function updateStats() {
-    statBest.textContent = Math.max(...habits.map((h) => h.best), 0);
-    statStreak.textContent = Math.max(...habits.map((h) => h.streak), 0);
-    statTotal.textContent = habits.reduce((s, h) => s + h.total, 0);
-  }
-
-  function updateProgress() {
-    const total = habits.length;
-    const done = habits.filter((h) => h.completedToday).length;
-    const pct = total === 0 ? 0 : Math.round((done / total) * 100);
-
-    progressPct.textContent = pct + "%";
-    progressFill.style.width = pct + "%";
-    progressCount.textContent = `${done} / ${total} done`;
-    habitCountLbl.textContent = total === 1 ? "1 habit" : `${total} habits`;
-    emptyState.style.display = total === 0 ? "block" : "none";
-
-    updateStats();
-    updateSidebarStats();
-
-    return pct; // 🔥 IMPORTANT
-  }
-
-  /* =========================
-   SIDEBAR QUICK STATS
-   Syncs sidebar numbers with app state
-========================= */
-  function updateSidebarStats() {
-    // Highest streak across all habits
-    const bestStreak = Math.max(...habits.map((h) => h.best), 0);
-
-    // Total number of habits
-    const totalHabits = habits.length;
-
-    /* ===== Update values ===== */
-    navBestStreak.textContent = bestStreak;
-    navTotalHabits.textContent = totalHabits;
-
-    /* ===== Trigger pop animation ===== */
-    navBestStreak.classList.add("pop");
-    navTotalHabits.classList.add("pop");
-
-    /* Remove class so animation can replay */
-    setTimeout(() => {
-      navBestStreak.classList.remove("pop");
-      navTotalHabits.classList.remove("pop");
-    }, 200);
-  }
-
-  /* =========================
-     HELPERS
-  ========================= */
-  function refreshChips(card, h) {
-    const streakValue = card.querySelector(".chip-streak .chip-value");
-
-    const totalValue = card.querySelector(".chip-total .chip-value");
-
-    if (streakValue) {
-      streakValue.textContent = h.streak;
-    }
-
-    if (totalValue) {
-      totalValue.textContent = h.total;
-    }
-  }
-
-  /* =========================
-   FILTER LOGIC
-  ========================= */
-  function applyFilter() {
-    const cards = document.querySelectorAll(".habit-card");
-
-    cards.forEach((card) => {
-      const id = card.getAttribute("data-id");
-      const habit = habits.find((h) => h.id == id);
-      if (!habit) return;
-
-      let show = true;
-
-      if (currentFilter === "active") {
-        show = !habit.completedToday;
-      } else if (currentFilter === "completed") {
-        show = habit.completedToday;
-      }
-
-      card.style.display = show ? "flex" : "none";
-    });
-  }
-  /* =========================
-   FILTER COUNTS
-  ========================= */
-  function updateFilterCounts() {
-    const all = habits.length;
-    const active = habits.filter((h) => !h.completedToday).length;
-    const completed = habits.filter((h) => h.completedToday).length;
-
-    filterTabs.forEach((tab) => {
-      const type = tab.dataset.filter;
-      const countEl = tab.querySelector(".count");
-
-      if (!countEl) return;
-
-      if (type === "all") countEl.textContent = all;
-      if (type === "active") countEl.textContent = active;
-      if (type === "completed") countEl.textContent = completed;
-    });
   }
 
   /* =========================
@@ -386,7 +213,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!name) return alert("Enter a habit!");
 
     // 🚫 Prevent duplicate habits
-    if (habits.some((h) => h.name.toLowerCase() === name.toLowerCase())) {
+    if (window.habits.some((h) => h.name.toLowerCase() === name.toLowerCase())) {
       showToast("Habit already exists ⚠️");
       return;
     }
@@ -402,7 +229,7 @@ document.addEventListener("DOMContentLoaded", () => {
       completedToday: false,
     };
 
-    habits.push(habit);
+    window.habits.push(habit);
 
     // Render the new habit card into UI
     renderHabitCard(habit);
@@ -422,24 +249,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   addBtn.addEventListener("click", addHabit);
 
-  /* =========================
-   FILTER TAB EVENTS
-  ========================= */
-  filterTabs.forEach((tab) => {
-    tab.addEventListener("click", () => {
-      filterTabs.forEach((t) => t.classList.remove("is-active"));
-      tab.classList.add("is-active");
-      currentFilter = tab.dataset.filter;
-      applyFilter();
-    });
-  });
 
-  habitInput.addEventListener("keydown", (e) => {
-    if (e.key === "Enter") {
-      e.preventDefault();
-      addHabit();
-    }
-  });
 
   /* =========================
      EVENTS
@@ -455,7 +265,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function deleteHabit(card, id) {
-    habits = habits.filter((h) => h.id != id);
+    window.habits = window.habits.filter((h) => h.id != id);
 
     saveHabits();
 
@@ -482,7 +292,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!card) return;
 
     const id = card.getAttribute("data-id");
-    const habit = habits.find((h) => h.id == id);
+    const habit = window.habits.find((h) => h.id == id);
     if (!habit) return;
 
     // ===== MOBILE EDIT =====
@@ -614,7 +424,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   editSave.addEventListener("click", async () => {
-    const habit = habits.find((h) => h.id == editingId);
+    const habit = window.habits.find((h) => h.id == editingId);
     if (!habit) return;
 
     setSaveLoading(true); // ✅ START LOADING
@@ -849,7 +659,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (diffX > 120 || (diffX > 0 && swipeVelocity > 0.65)) {
       const id = card.getAttribute("data-id");
 
-      const habit = habits.find((h) => h.id == id);
+      const habit = window.habits.find((h) => h.id == id);
 
       if (!habit) {
         card.style.transform = "translateX(0) rotate(0deg) scale(1)";
@@ -927,7 +737,7 @@ document.addEventListener("DOMContentLoaded", () => {
     else if (diffX < -120 || (diffX < 0 && swipeVelocity > 0.65)) {
       const id = card.getAttribute("data-id");
 
-      const habit = habits.find((h) => h.id == id);
+      const habit = window.habits.find((h) => h.id == id);
 
       if (!habit) {
         card.style.transform = "translateX(0) rotate(0deg) scale(1)";
