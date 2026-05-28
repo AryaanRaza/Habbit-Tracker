@@ -1,9 +1,10 @@
 /* =========================
    MOBILE SWIPE TO COMPLETE
 ========================= */
-const habitContainer = document.querySelector(".habit-list-container");
+document.addEventListener("DOMContentLoaded", () => {
+  const habitContainer = document.querySelector(".habit-list-container");
 
-if (habitContainer) {
+  if (!habitContainer) return;
   let touchStartX = 0;
   let touchCurrentX = 0;
 
@@ -173,7 +174,6 @@ if (habitContainer) {
        COMPLETE HABIT
     ========================= */
       completeHabit(card, habit);
-      setHabitCompletedUI(card);
 
       isSwiping = false;
 
@@ -215,7 +215,6 @@ if (habitContainer) {
     ========================= */
 
       undoHabit(card, habit);
-      setHabitUndoUI(card);
       /* =========================
        FINISH SWIPE ANIMATION
     ========================= */
@@ -257,4 +256,4 @@ if (habitContainer) {
       dropdown.classList.remove("open");
     });
   });
-}
+});
