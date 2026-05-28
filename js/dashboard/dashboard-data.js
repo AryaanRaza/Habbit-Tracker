@@ -4,7 +4,7 @@
 
 window.habits = [];
 
-let editingId = null;
+window.editingId = null;
 window.currentFilter = "all";
 
 window.saveHabits = function () {
