@@ -308,43 +308,15 @@ document.addEventListener("DOMContentLoaded", () => {
     if (e.target.closest(".btn-complete")) {
       const btn = card.querySelector(".btn-complete");
 
-      if (!habit.completedToday) {
-        habit.completedToday = true;
-        habit.streak++;
-        habit.total++;
-        habit.best = Math.max(habit.best, habit.streak);
+      if (e.target.closest(".btn-complete")) {
+        if (!habit.completedToday) {
+          completeHabit(card, habit);
+        } else {
+          undoHabit(card, habit);
+        }
 
-        card.classList.add("is-completed");
-        btn.innerText = "Completed! 🔥";
-
-        showToast("Nice! Habit completed ✅");
-      } else {
-        habit.completedToday = false;
-        habit.streak = Math.max(0, habit.streak - 1);
-        habit.total = Math.max(0, habit.total - 1);
-
-        card.classList.remove("is-completed");
-        btn.innerText = "Mark as Done";
-
-        showToast("Marked as not done ❌");
+        return;
       }
-
-      refreshChips(card, habit);
-
-      // Save updated completion state
-      saveHabits();
-
-      const pct = updateProgress();
-      applyFilter();
-      updateFilterCounts();
-
-      // 🎉 ONLY when 100%
-      if (pct === 100) {
-        fireConfetti();
-        showToast("Perfect day! 🎉");
-      }
-
-      return;
     }
 
     if (e.target.closest(".btn-delete")) {
