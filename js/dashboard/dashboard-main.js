@@ -7,18 +7,7 @@
 //     - Toast popup
 // ============================================================
 
-/* =========================
-    CONSTANTS
-========================= */
-window.CATEGORIES = {
-  health: { icon: "🌿", color: "var(--cat-health)" },
-  learning: { icon: "📚", color: "var(--cat-learning)" },
-  fitness: { icon: "💪", color: "var(--cat-fitness)" },
-  mindfulness: { icon: "🧠", color: "var(--cat-mindfulness)" },
-  creativity: { icon: "🎨", color: "var(--cat-creativity)" },
-  work: { icon: "💻", color: "var(--cat-work)" },
-  other: { icon: "✨", color: "var(--cat-other)" },
-};
+
 
 document.addEventListener("DOMContentLoaded", () => {
   /* =========================
@@ -31,6 +20,19 @@ document.addEventListener("DOMContentLoaded", () => {
   const timeInput = document.getElementById("habit-time");
 
   const categorySelect = document.getElementById("habit-category");
+
+  /* =========================
+    CONSTANTS
+========================= */
+window.CATEGORIES = {
+  health: { icon: "🌿", color: "var(--cat-health)" },
+  learning: { icon: "📚", color: "var(--cat-learning)" },
+  fitness: { icon: "💪", color: "var(--cat-fitness)" },
+  mindfulness: { icon: "🧠", color: "var(--cat-mindfulness)" },
+  creativity: { icon: "🎨", color: "var(--cat-creativity)" },
+  work: { icon: "💻", color: "var(--cat-work)" },
+  other: { icon: "✨", color: "var(--cat-other)" },
+};
 
   /* =========================
    INITIAL APP LOAD

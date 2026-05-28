@@ -15,15 +15,6 @@ if (habitContainer) {
   let touchStartTime = 0;
   let touchEndTime = 0;
 
-  /* =========================
-   RESET CARD STATE
-========================= */
-  function resetCard(card) {
-    card.style.transform = "translateX(0) rotate(0deg) scale(1)";
-    card.style.opacity = "1";
-    card.style.boxShadow = "";
-  }
-
   habitContainer.addEventListener(
     "touchstart",
     (e) => {
@@ -165,13 +156,13 @@ if (habitContainer) {
       const habit = window.habits.find((h) => h.id == id);
 
       if (!habit) {
-        resetCard(card);
+        resetCardUI(card);
         return;
       }
 
       // already completed
       if (habit.completedToday) {
-        resetCard(card);
+        resetCardUI(card);
 
         showToast("Habit already completed ✅");
 
@@ -182,6 +173,7 @@ if (habitContainer) {
        COMPLETE HABIT
     ========================= */
       completeHabit(card, habit);
+      setHabitCompletedUI(card);
 
       isSwiping = false;
 
@@ -191,7 +183,7 @@ if (habitContainer) {
       card.style.transform = "translateX(90px) rotate(8deg) scale(0.96)";
 
       setTimeout(() => {
-        resetCard(card);
+        resetCardUI(card);
       }, 180);
     }
 
@@ -202,14 +194,14 @@ if (habitContainer) {
       const habit = window.habits.find((h) => h.id == id);
 
       if (!habit) {
-        resetCard(card);
+        resetCardUI(card);
 
         return;
       }
 
       // not completed yet
       if (!habit.completedToday) {
-        resetCard(card);
+        resetCardUI(card);
 
         showToast("Habit is already incomplete ✨");
 
@@ -223,19 +215,20 @@ if (habitContainer) {
     ========================= */
 
       undoHabit(card, habit);
+      setHabitUndoUI(card);
       /* =========================
        FINISH SWIPE ANIMATION
     ========================= */
       card.style.transform = "translateX(-90px) rotate(-8deg) scale(0.96)";
 
       setTimeout(() => {
-        resetCard(card);
+        resetCardUI(card);
       }, 180);
     }
 
     // ===== SMALL SWIPE → RESET =====
     else {
-      resetCard(card);
+      resetCardUI(card);
     }
 
     touchStartX = 0;

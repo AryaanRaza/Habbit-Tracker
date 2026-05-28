@@ -4,40 +4,26 @@
 window.completeHabit = function (card, habit) {
 
   habit.completedToday = true;
-
   habit.streak++;
-
   habit.total++;
-
   habit.best = Math.max(habit.best, habit.streak);
 
-  card.classList.add("is-completed");
+  saveHabits();
 
-  const btn = card.querySelector(".btn-complete");
-
-  if (btn) {
-    btn.innerText = "Completed! 🔥";
-  }
+  setHabitCompletedUI(card);   // 👈 UI layer
 
   refreshChips(card, habit);
-
-  saveHabits();
 
   const pct = updateProgress();
 
   applyFilter();
-
   updateFilterCounts();
 
   showToast("Nice! Habit completed ✅");
 
-  if (pct === 100) {
-
-    fireConfetti();
-
-    showToast("Perfect day! 🎉");
-  }
+  if (pct === 100) fireConfetti();
 };
+
 
 /* =========================
    UNDO HABIT
@@ -45,27 +31,17 @@ window.completeHabit = function (card, habit) {
 window.undoHabit = function (card, habit) {
 
   habit.completedToday = false;
-
   habit.streak = Math.max(0, habit.streak - 1);
-
   habit.total = Math.max(0, habit.total - 1);
-
-  card.classList.remove("is-completed");
-
-  const btn = card.querySelector(".btn-complete");
-
-  if (btn) {
-    btn.innerText = "Mark as Done";
-  }
-
-  refreshChips(card, habit);
 
   saveHabits();
 
+  setHabitUndoUI(card);   // 👈 UI layer
+
+  refreshChips(card, habit);
+
   updateProgress();
-
   applyFilter();
-
   updateFilterCounts();
 
   showToast("Marked as not done ❌");
