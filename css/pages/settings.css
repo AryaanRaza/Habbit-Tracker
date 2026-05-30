@@ -12,7 +12,7 @@
 }
 
 .settings-layout {
-  width: min(94vw, 1100px);
+  width: min(94vw, 1200px);
   margin-inline: auto; /* This pushes the left and right margins equally, centering it */
   position: relative;
   z-index: 2;
@@ -25,12 +25,12 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  margin-bottom: 2rem;
+  margin-bottom: 2.5rem;
   gap: 1rem;
 }
 
 .header-content h1 {
-  font-size: 2.4rem;
+  font-size: clamp(2.3rem, 3vw, 2.8rem);
   font-weight: 800;
   color: var(--clr-text-main);
   margin-bottom: 0.35rem;
@@ -43,8 +43,8 @@
 }
 
 .header-avatar {
-  width: 56px;
-  height: 56px;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
 
   display: flex;
@@ -58,6 +58,8 @@
   font-weight: 700;
 
   flex-shrink: 0;
+
+  box-shadow: var(--shadow-soft);
 }
 /* =========================
    SETTINGS SECTIONS
@@ -69,6 +71,10 @@
 
 .settings-section:last-child {
   margin-bottom: 0;
+}
+
+.settings-section + .settings-section {
+  padding-top: 0.5rem;
 }
 
 .section-label {
@@ -85,7 +91,7 @@
 
 /* Card is narrower than layout, centered inside */
 .settings-card {
-  width: min(100%, 860px);
+  width: min(100%, 800px);
   margin: 0 auto;
   border-radius: 32px;
   padding: 32px;
