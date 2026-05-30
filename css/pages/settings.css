@@ -1,4 +1,3 @@
-
 /* =========================================
    3. SETTINGS MAIN MENU 
    ========================================= */
@@ -60,6 +59,10 @@
   flex-shrink: 0;
 
   box-shadow: var(--shadow-soft);
+}
+
+.mobile-user-info {
+  display: none;
 }
 /* =========================
    SETTINGS SECTIONS
@@ -129,7 +132,6 @@
       transparent 24%
     );
 }
-
 
 .settings-header h2 {
   margin: 0;
@@ -238,25 +240,48 @@
   .settings-layout {
     width: 100%;
   }
-
-  .settings-branding {
-    margin-bottom: 14px;
+  .settings-page-header {
+    align-items: flex-start;
+    margin-bottom: 2rem;
   }
 
-  .settings-branding h1 {
-    font-size: clamp(2.6rem, 11vw, 3.6rem);
+  .desktop-subtitle {
+    display: none;
   }
 
-  .settings-branding p {
+  .mobile-user-info {
+    display: flex;
+    flex-direction: column;
+    margin-top: 1rem;
+  }
+
+  .mobile-user-info h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--clr-text-main);
+    margin-bottom: 0.25rem;
+  }
+
+  .mobile-user-info span {
     font-size: 0.95rem;
-    max-width: 100%;
+    color: var(--clr-text-soft);
+  }
+
+  .header-avatar {
+    width: 52px;
+    height: 52px;
+    font-size: 1.1rem;
   }
 
   .settings-card {
     width: 100%;
-    padding: 22px 18px;
+    padding: 22px;
     border-radius: 24px;
   }
+
+  .settings-section {
+  margin-bottom: 1.4rem;
+}
 
   .settings-item {
     padding: 16px 14px;
@@ -304,7 +329,6 @@
   text-align: center;
   width: 100%;
 }
-
 
 /* =========================
    SUB SETTINGS PAGES
