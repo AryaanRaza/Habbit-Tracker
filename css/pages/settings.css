@@ -237,12 +237,17 @@
     padding: 14px 14px 90px;
   }
 
+  .header-content h1 {
+    font-size: 3rem;
+  }
+
   .settings-layout {
     width: 100%;
   }
   .settings-page-header {
     align-items: flex-start;
     margin-bottom: 2rem;
+    position: relative;
   }
 
   .desktop-subtitle {
@@ -271,6 +276,7 @@
     width: 52px;
     height: 52px;
     font-size: 1.1rem;
+    margin-top: 4px;
   }
 
   .settings-card {
@@ -280,8 +286,8 @@
   }
 
   .settings-section {
-  margin-bottom: 1.4rem;
-}
+    margin-bottom: 1.4rem;
+  }
 
   .settings-item {
     padding: 16px 14px;
