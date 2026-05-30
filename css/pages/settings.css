@@ -59,13 +59,36 @@
 
   flex-shrink: 0;
 }
+/* =========================
+   SETTINGS SECTIONS
+========================= */
+
+.settings-section {
+  margin-bottom: 1.75rem;
+}
+
+.settings-section:last-child {
+  margin-bottom: 0;
+}
+
+.section-label {
+  margin-bottom: 0.85rem;
+
+  font-size: 0.9rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+
+  color: var(--clr-text-soft);
+
+  text-transform: uppercase;
+}
 
 /* Card is narrower than layout, centered inside */
 .settings-card {
   width: min(100%, 860px);
   margin: 0 auto;
   border-radius: 32px;
-  padding: 28px 24px;
+  padding: 32px;
   background: rgba(255, 255, 255, 0.14);
   border: 1px solid rgba(255, 255, 255, 0.22);
   backdrop-filter: blur(22px);
@@ -112,7 +135,7 @@
 /* Settings list */
 .settings-list {
   display: grid;
-  gap: 14px;
+  gap: 10px;
   position: relative;
   z-index: 1;
 }
