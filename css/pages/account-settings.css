@@ -1,0 +1,165 @@
+.account-hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+
+  padding: 2rem 1.5rem;
+  margin-bottom: 2rem;
+
+  position: relative;
+  z-index: 2;
+}
+
+.avatar-wrapper {
+  position: relative;
+  margin-bottom: 1rem;
+}
+
+.profile-avatar {
+  width: 120px;
+  height: 120px;
+
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 3rem;
+  font-weight: 800;
+
+  color: var(--clr-text-main);
+
+  background: linear-gradient(
+    135deg,
+    rgba(243, 182, 218, 0.55),
+    rgba(199, 184, 255, 0.45),
+    rgba(215, 232, 255, 0.45)
+  );
+
+  border: 3px solid rgba(255,255,255,0.5);
+
+  box-shadow:
+    0 12px 30px rgba(123,104,255,0.18),
+    inset 0 1px 0 rgba(255,255,255,0.5);
+}
+
+.avatar-edit-btn {
+  position: absolute;
+
+  right: 0;
+  bottom: 6px;
+
+  width: 36px;
+  height: 36px;
+
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: var(--clr-btn-base);
+  color: white;
+
+  box-shadow: var(--shadow-btn);
+
+  transition: transform 0.25s ease;
+}
+
+.avatar-edit-btn:hover {
+  transform: scale(1.08);
+}
+
+.avatar-edit-btn .material-symbols-rounded {
+  font-size: 18px;
+}
+
+.profile-name {
+  font-family: var(--font-brand);
+
+  font-size: 2.4rem;
+
+  margin-bottom: 0.75rem;
+
+  color: var(--clr-text-main);
+}
+
+.profile-streak {
+  padding: 0.45rem 1rem;
+
+  border-radius: 999px;
+
+  margin-bottom: 1.5rem;
+
+  font-weight: 700;
+
+  color: #a04c17;
+
+  background: rgba(255, 190, 120, 0.25);
+
+  border: 1px solid rgba(255,190,120,0.4);
+}
+
+.profile-stats {
+  width: 100%;
+  max-width: 420px;
+
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+
+  background: rgba(255,255,255,0.28);
+
+  border-radius: 22px;
+
+  padding: 1rem;
+
+  border: 1px solid rgba(255,255,255,0.3);
+}
+
+.profile-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.stat-number {
+  font-size: 1.8rem;
+  font-weight: 800;
+
+  color: var(--clr-secondary-deep);
+}
+
+.stat-label {
+  font-size: 0.75rem;
+
+  text-transform: uppercase;
+  letter-spacing: 1px;
+
+  color: var(--clr-text-soft);
+}
+
+.profile-stat:not(:last-child) {
+  border-right: 1px solid rgba(255,255,255,0.35);
+}
+
+@media (max-width: 768px) {
+  .profile-avatar {
+    width: 95px;
+    height: 95px;
+    font-size: 2.3rem;
+  }
+
+  .profile-name {
+    font-size: 2rem;
+  }
+
+  .profile-stats {
+    padding: 0.8rem;
+  }
+
+  .stat-number {
+    font-size: 1.5rem;
+  }
+}
