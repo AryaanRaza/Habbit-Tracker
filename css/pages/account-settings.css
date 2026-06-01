@@ -163,3 +163,67 @@
     font-size: 1.5rem;
   }
 }
+
+.account-sections {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.account-section {
+  padding: 1.5rem;
+
+  border-radius: 24px;
+
+  background: rgba(255,255,255,0.18);
+
+  border: 1px solid rgba(255,255,255,0.25);
+
+  backdrop-filter: blur(18px);
+
+  position: relative;
+
+  overflow: hidden;
+}
+
+.account-section::before {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  pointer-events: none;
+
+  background:
+    radial-gradient(
+      circle at top right,
+      rgba(255,255,255,0.16),
+      transparent 28%
+    );
+}
+
+.section-heading {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+
+  margin-bottom: 1.25rem;
+
+  font-size: 1.05rem;
+  font-weight: 700;
+
+  color: var(--clr-text-main);
+}
+
+.section-heading .material-symbols-rounded {
+  font-size: 20px;
+
+  color: var(--clr-secondary-deep);
+}
+
+.account-section .form-grid {
+  gap: 1rem;
+}
+
+.update-form .btn-glow {
+  margin-top: 1.5rem;
+}

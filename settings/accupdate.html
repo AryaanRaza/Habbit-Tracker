@@ -97,66 +97,81 @@
             <div class="sub-page-content">
                 <form action="#" class="auth-form update-form">
 
-                    <section class="account-section">
+                    <div class="account-sections">
 
-                        <h3 class="section-heading">
-                            Personal Info
-                        </h3>
+                        <section class="account-section">
 
-                        <div class="form-grid">
-                            <div class="input-group">
-                                <label for="firstName">First Name</label>
-                                <input type="text" name="firstName" id="firstName" placeholder="Jane" required
-                                    autofocus>
+                            <h3 class="section-heading">
+                                <span class="material-symbols-rounded">
+                                    person
+                                </span>
+
+                                Personal Info
+                            </h3>
+
+                            <div class="form-grid">
+                                <div class="input-group">
+                                    <label for="firstName">First Name</label>
+                                    <input type="text" name="firstName" id="firstName" placeholder="Jane" required
+                                        autofocus>
+                                </div>
+
+                                <div class="input-group">
+                                    <label for="lastName">Last Name</label>
+                                    <input type="text" name="lastName" id="lastName" placeholder="Doe" required>
+                                </div>
                             </div>
 
                             <div class="input-group">
-                                <label for="lastName">Last Name</label>
-                                <input type="text" name="lastName" id="lastName" placeholder="Doe" required>
+                                <label for="dob">Date of Birth</label>
+                                <input type="date" id="dob">
                             </div>
-                        </div>
 
-                        <div class="input-group">
-                            <label for="dob">Date of Birth</label>
-                            <input type="date" id="dob">
-                        </div>
-
-                    </section>
+                        </section>
 
 
 
-                    <section class="account-section">
+                        <section class="account-section">
 
-                        <h3 class="section-heading">
-                            Contact
-                        </h3>
+                            <h3 class="section-heading">
+                                <span class="material-symbols-rounded">
+                                    mail
+                                </span>
 
-                        <div class="input-group">
-                            <label for="email">Email Address</label>
-                            <input type="email" id="email" placeholder="name@example.com" required>
-                        </div>
-
-                    </section>
-
-                    <section class="account-section">
-
-                        <h3 class="section-heading">
-                            Security
-                        </h3>
-
-                        <div class="form-grid">
-                            <div class="input-group">
-                                <label for="password">New Password</label>
-                                <input type="password" id="password" placeholder="••••••••">
-                            </div>
+                                Contact
+                            </h3>
 
                             <div class="input-group">
-                                <label for="confirm-password">Confirm Password</label>
-                                <input type="password" id="confirm-password" placeholder="••••••••">
+                                <label for="email">Email Address</label>
+                                <input type="email" id="email" placeholder="name@example.com" required>
                             </div>
-                        </div>
 
-                    </section>
+                        </section>
+
+                        <section class="account-section">
+
+                            <h3 class="section-heading">
+                                <span class="material-symbols-rounded">
+                                    lock
+                                </span>
+
+                                Security
+                            </h3>
+
+                            <div class="form-grid">
+                                <div class="input-group">
+                                    <label for="password">New Password</label>
+                                    <input type="password" id="password" placeholder="••••••••">
+                                </div>
+
+                                <div class="input-group">
+                                    <label for="confirm-password">Confirm Password</label>
+                                    <input type="password" id="confirm-password" placeholder="••••••••">
+                                </div>
+                            </div>
+
+                        </section>
+                    </div>
 
                     <button type="submit" class="btn btn-glow">Save Changes</button>
                 </form>
