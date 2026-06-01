@@ -40,48 +40,112 @@
         </header>
 
         <section class="sub-settings-card glass-panel">
-            <header class="sub-page-header">
-                <div class="sub-page-title">
-                    <h2>Update Account</h2>
-                    <p>Modify your personal details below.</p>
+            <section class="account-hero">
+
+                <div class="avatar-wrapper">
+                    <div class="profile-avatar">
+                        H
+                    </div>
+
+                    <button type="button" class="avatar-edit-btn">
+                        <span class="material-symbols-rounded">
+                            edit
+                        </span>
+                    </button>
                 </div>
-            </header>
+
+                <h2 class="profile-name">
+                    Homelander
+                </h2>
+
+                <div class="profile-streak">
+                    🔥 1 day streak
+                </div>
+
+                <div class="profile-stats">
+
+                    <div class="profile-stat">
+                        <span class="stat-number">7</span>
+                        <span class="stat-label">Habits</span>
+                    </div>
+
+                    <div class="profile-stat">
+                        <span class="stat-number">6</span>
+                        <span class="stat-label">Completions</span>
+                    </div>
+
+                    <div class="profile-stat">
+                        <span class="stat-number">1</span>
+                        <span class="stat-label">Best Streak</span>
+                    </div>
+
+                </div>
+
+            </section>
 
             <div class="sub-page-content">
                 <form action="#" class="auth-form update-form">
-                    <div class="form-grid">
-                        <div class="input-group">
-                            <label for="firstName">First Name</label>
-                            <input type="text" name="firstName" id="firstName" placeholder="Jane" required autofocus>
+
+                    <section class="account-section">
+
+                        <h3 class="section-heading">
+                            Personal Info
+                        </h3>
+
+                        <div class="form-grid">
+                            <div class="input-group">
+                                <label for="firstName">First Name</label>
+                                <input type="text" name="firstName" id="firstName" placeholder="Jane" required
+                                    autofocus>
+                            </div>
+
+                            <div class="input-group">
+                                <label for="lastName">Last Name</label>
+                                <input type="text" name="lastName" id="lastName" placeholder="Doe" required>
+                            </div>
                         </div>
 
                         <div class="input-group">
-                            <label for="lastName">Last Name</label>
-                            <input type="text" name="lastName" id="lastName" placeholder="Doe" required>
+                            <label for="dob">Date of Birth</label>
+                            <input type="date" id="dob">
                         </div>
-                    </div>
 
-                    <div class="input-group">
-                        <label for="dob">Date of Birth</label>
-                        <input type="date" id="dob">
-                    </div>
+                    </section>
 
-                    <div class="input-group">
-                        <label for="email">Email Address</label>
-                        <input type="email" id="email" placeholder="name@example.com" required>
-                    </div>
 
-                    <div class="form-grid">
-                        <div class="input-group">
-                            <label for="password">New Password</label>
-                            <input type="password" id="password" placeholder="••••••••">
-                        </div>
+
+                    <section class="account-section">
+
+                        <h3 class="section-heading">
+                            Contact
+                        </h3>
 
                         <div class="input-group">
-                            <label for="confirm-password">Confirm Password</label>
-                            <input type="password" id="confirm-password" placeholder="••••••••">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" placeholder="name@example.com" required>
                         </div>
-                    </div>
+
+                    </section>
+
+                    <section class="account-section">
+
+                        <h3 class="section-heading">
+                            Security
+                        </h3>
+
+                        <div class="form-grid">
+                            <div class="input-group">
+                                <label for="password">New Password</label>
+                                <input type="password" id="password" placeholder="••••••••">
+                            </div>
+
+                            <div class="input-group">
+                                <label for="confirm-password">Confirm Password</label>
+                                <input type="password" id="confirm-password" placeholder="••••••••">
+                            </div>
+                        </div>
+
+                    </section>
 
                     <button type="submit" class="btn btn-glow">Save Changes</button>
                 </form>
