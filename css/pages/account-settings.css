@@ -526,3 +526,13 @@
   box-shadow:
     0 0 0 4px rgba(142,123,255,.08);
 }
+
+.account-avatar {
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.account-avatar.avatar-pop {
+  transform: scale(1.12);
+}
