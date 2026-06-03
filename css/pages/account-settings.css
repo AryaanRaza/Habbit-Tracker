@@ -38,11 +38,11 @@
     rgba(215, 232, 255, 0.45)
   );
 
-  border: 3px solid rgba(255,255,255,0.5);
+  border: 3px solid rgba(255, 255, 255, 0.5);
 
   box-shadow:
-    0 12px 30px rgba(123,104,255,0.18),
-    inset 0 1px 0 rgba(255,255,255,0.5);
+    0 12px 30px rgba(123, 104, 255, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
 }
 
 .avatar-edit-btn {
@@ -99,7 +99,7 @@
 
   background: rgba(255, 190, 120, 0.25);
 
-  border: 1px solid rgba(255,190,120,0.4);
+  border: 1px solid rgba(255, 190, 120, 0.4);
 }
 
 .account-stats {
@@ -109,13 +109,13 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
 
-  background: rgba(255,255,255,0.28);
+  background: rgba(255, 255, 255, 0.28);
 
   border-radius: 22px;
 
   padding: 1rem;
 
-  border: 1px solid rgba(255,255,255,0.3);
+  border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 .account-stat {
@@ -141,7 +141,7 @@
 }
 
 .account-stat:not(:last-child) {
-  border-right: 1px solid rgba(255,255,255,0.35);
+  border-right: 1px solid rgba(255, 255, 255, 0.35);
 }
 
 @media (max-width: 768px) {
@@ -174,9 +174,9 @@
 
   border-radius: 24px;
 
-  background: rgba(255,255,255,0.18);
+  background: rgba(255, 255, 255, 0.18);
 
-  border: 1px solid rgba(255,255,255,0.25);
+  border: 1px solid rgba(255, 255, 255, 0.25);
 
   backdrop-filter: blur(18px);
 
@@ -193,12 +193,11 @@
 
   pointer-events: none;
 
-  background:
-    radial-gradient(
-      circle at top right,
-      rgba(255,255,255,0.16),
-      transparent 28%
-    );
+  background: radial-gradient(
+    circle at top right,
+    rgba(255, 255, 255, 0.16),
+    transparent 28%
+  );
 }
 
 .section-heading {
@@ -259,9 +258,9 @@
 
   border-radius: 16px;
 
-  border: 1px solid rgba(255,255,255,0.35);
+  border: 1px solid rgba(255, 255, 255, 0.35);
 
-  background: rgba(255,255,255,0.35);
+  background: rgba(255, 255, 255, 0.35);
 
   color: var(--clr-text-main);
 
@@ -282,10 +281,9 @@
 
   border-color: var(--clr-secondary-deep);
 
-  background: rgba(255,255,255,0.55);
+  background: rgba(255, 255, 255, 0.55);
 
-  box-shadow:
-    0 0 0 4px rgba(142,123,255,0.12);
+  box-shadow: 0 0 0 4px rgba(142, 123, 255, 0.12);
 }
 
 .account-section .form-grid {
@@ -461,4 +459,70 @@
     height: 64px;
     font-size: 1.8rem;
   }
+}
+
+
+.hidden {
+  display: none;
+}
+
+.avatar-picker {
+  margin-top: 28px;
+  padding-top: 28px;
+
+  border-top: 1px solid rgba(255,255,255,0.18);
+
+  animation: fadeInUp .3s ease;
+}
+
+.avatar-picker-title {
+  margin-bottom: 18px;
+
+  font-size: .9rem;
+  font-weight: 700;
+
+  text-transform: uppercase;
+  letter-spacing: .08em;
+
+  color: var(--clr-text-soft);
+}
+
+.avatar-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.avatar-option {
+  width: 60px;
+  height: 60px;
+
+  border-radius: 18px;
+
+  border: none;
+
+  cursor: pointer;
+
+  font-size: 1.7rem;
+
+  background: rgba(255,255,255,.45);
+
+  transition: all .25s ease;
+}
+
+.avatar-option:hover {
+  transform: translateY(-3px);
+
+  background: rgba(255,255,255,.75);
+
+  box-shadow: 0 10px 25px rgba(142,123,255,.15);
+}
+
+.avatar-option.active {
+  border: 2px solid var(--clr-secondary-deep);
+
+  background: rgba(142,123,255,.12);
+
+  box-shadow:
+    0 0 0 4px rgba(142,123,255,.08);
 }
