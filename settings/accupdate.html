@@ -54,11 +54,11 @@
             <section class="account-hero">
 
                 <div class="avatar-wrapper">
-                    <div class="account-avatar">
+                    <div class="account-avatar" id="account-avatar" data-avatar="initial">
                         H
                     </div>
 
-                    <button type="button" class="avatar-edit-btn">
+                    <button type="button" class="avatar-edit-btn" id="open-avatar-picker">
                         <span class="material-symbols-rounded">
                             edit
                         </span>
@@ -197,6 +197,75 @@
                 </form>
             </div>
         </section>
+        <div class="avatar-modal-overlay">
+
+            <div class="avatar-modal">
+
+                <div class="avatar-modal-header">
+
+                    <h3>Choose Avatar</h3>
+
+                    <button type="button" class="avatar-modal-close">
+
+                        <span class="material-symbols-rounded">
+                            close
+                        </span>
+
+                    </button>
+
+                </div>
+
+                <div class="avatar-grid">
+
+                    <button type="button" class="avatar-option active">
+                        🐼
+                    </button>
+
+                    <button type="button" class="avatar-option">
+                        🦁
+                    </button>
+
+                    <button type="button" class="avatar-option">
+                        🦊
+                    </button>
+
+                    <button type="button" class="avatar-option">
+                        🐸
+                    </button>
+
+                    <button type="button" class="avatar-option">
+                        🐙
+                    </button>
+
+                    <button type="button" class="avatar-option">
+                        🦋
+                    </button>
+
+                    <button type="button" class="avatar-option">
+                        🌻
+                    </button>
+
+                    <button type="button" class="avatar-option">
+                        🐬
+                    </button>
+
+                    <button type="button" class="avatar-option">
+                        🦄
+                    </button>
+
+                    <button type="button" class="avatar-option">
+                        🦕
+                    </button>
+
+                    <button type="button" class="avatar-option">
+                        ⭐
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
     </main>
 
     <script src="../js/shared/navigation.js"></script>
