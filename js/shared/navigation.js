@@ -222,4 +222,20 @@ document.addEventListener("DOMContentLoaded", () => {
       navUsername.textContent = currentUser.username;
     }
   });
+
+  /* =========================
+   SIDEBAR STATS (NON-DASHBOARD)
+========================= */
+
+  const navBestStreak = document.getElementById("nav-best-streak");
+  const navTotalHabits = document.getElementById("nav-total-habits");
+
+  if (typeof loadUserHabits === "function" && navBestStreak && navTotalHabits) {
+    const habits = loadUserHabits();
+
+    const bestStreak = Math.max(...habits.map((h) => h.best || 0), 0);
+
+    navBestStreak.textContent = bestStreak;
+    navTotalHabits.textContent = habits.length;
+  }
 });
