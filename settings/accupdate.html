@@ -58,7 +58,7 @@
                         H
                     </div>
 
-                    <button type="button" class="avatar-edit-btn" id="open-avatar-picker">
+                    <button type="button" class="avatar-edit-btn" id="avatar-toggle-btn">
                         <span class="material-symbols-rounded">
                             edit
                         </span>
@@ -253,7 +253,7 @@
                 </form>
             </div>
         </section>
-        <div class="avatar-modal-overlay">
+        <div class="avatar-modal-overlay" id="avatar-modal">
 
             <div class="avatar-modal">
 
@@ -261,7 +261,7 @@
 
                     <h3>Choose Avatar</h3>
 
-                    <button type="button" class="avatar-modal-close">
+                    <button type="button" class="avatar-modal-close" id="close-avatar-modal">
 
                         <span class="material-symbols-rounded">
                             close
@@ -326,6 +326,7 @@
 
     <script src="../js/shared/navigation.js"></script>
     <script src="../js/shared/smart-back.js"></script>
+    <script src="../js/settings/account-settings.js"></script>
 </body>
 
 </html>
