@@ -120,25 +120,19 @@ function saveProfile(e) {
 
   if (currentPassword || newPassword || confirmPassword) {
     if (!currentPassword || !newPassword || !confirmPassword) {
-      saveStatus.textContent = "Fill all password fields";
-
-      saveStatus.classList.add("show");
+      showToast("Fill all password fields", "error");
 
       return;
     }
 
     if (currentPassword !== currentUser.password) {
-      saveStatus.textContent = "Current password is incorrect";
-
-      saveStatus.classList.add("show");
+      showToast("Current password is incorrect", "error");
 
       return;
     }
 
     if (newPassword !== confirmPassword) {
-      saveStatus.textContent = "Passwords do not match";
-
-      saveStatus.classList.add("show");
+      showToast("Passwords do not match", "error");
 
       return;
     }
