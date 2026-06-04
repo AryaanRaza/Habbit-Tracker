@@ -20,6 +20,9 @@ const lastNameInput = document.getElementById("lastName");
 const emailInput = document.getElementById("email");
 const dobInput = document.getElementById("dob");
 
+const currentPasswordInput = document.getElementById("current-password");
+const passwordInput = document.getElementById("password");
+const confirmPasswordInput = document.getElementById("confirm-password");
 
 const accountForm = document.getElementById("accountForm");
 const saveStatus = document.getElementById("saveStatus");
@@ -95,114 +98,115 @@ function loadProfile() {
 function saveProfile(e) {
   e.preventDefault();
 
-  const firstName =
-    firstNameInput.value.trim();
+  const firstName = firstNameInput.value.trim();
 
-  const lastName =
-    lastNameInput.value.trim();
+  const lastName = lastNameInput.value.trim();
 
-  const email =
-    emailInput.value.trim();
+  const email = emailInput.value.trim();
 
-  const dob =
-    dobInput.value;
+  const dob = dobInput.value;
 
-  const avatar =
-    avatarDisplay.dataset.avatar;
+  const avatar = avatarDisplay.dataset.avatar;
 
-  const fullName =
-    `${firstName} ${lastName}`.trim();
+  const currentPassword = currentPasswordInput?.value.trim();
+  const newPassword = passwordInput?.value.trim();
+  const confirmPassword = confirmPasswordInput?.value.trim();
 
+  const fullName = `${firstName} ${lastName}`.trim();
+
+  // --------------------------------
+  // PASSWORD VALIDATION
+  // --------------------------------
+
+  if (currentPassword || newPassword || confirmPassword) {
+    if (!currentPassword || !newPassword || !confirmPassword) {
+      saveStatus.textContent = "Fill all password fields";
+
+      saveStatus.classList.add("show");
+
+      return;
+    }
+
+    if (currentPassword !== currentUser.password) {
+      saveStatus.textContent = "Current password is incorrect";
+
+      saveStatus.classList.add("show");
+
+      return;
+    }
+
+    if (newPassword !== confirmPassword) {
+      saveStatus.textContent = "Passwords do not match";
+
+      saveStatus.classList.add("show");
+
+      return;
+    }
+  }
   // --------------------------------
   // Update Current User
   // --------------------------------
 
-  currentUser.firstName =
-    firstName;
+  currentUser.firstName = firstName;
 
-  currentUser.lastName =
-    lastName;
+  currentUser.lastName = lastName;
 
-  currentUser.username =
-    fullName;
+  currentUser.username = fullName;
 
-  currentUser.email =
-    email;
+  currentUser.email = email;
 
-  currentUser.dob =
-    dob;
+  currentUser.dob = dob;
 
-  currentUser.avatar =
-    avatar === "initial"
-      ? ""
-      : avatar;
+  currentUser.avatar = avatar === "initial" ? "" : avatar;
 
   // --------------------------------
   // Update Session
   // --------------------------------
 
-  Storage.set(
-    STORAGE_KEYS.CURRENT_USER,
-    currentUser
-  );
+  Storage.set(STORAGE_KEYS.CURRENT_USER, currentUser);
 
   // --------------------------------
   // Update Users Array
   // --------------------------------
 
-  const users =
-    Storage.get(STORAGE_KEYS.USERS) || [];
+  const users = Storage.get(STORAGE_KEYS.USERS) || [];
 
-  const updatedUsers =
-    users.map((user) => {
-      if (user.id === currentUser.id) {
-        return {
-          ...user,
-          ...currentUser,
-        };
-      }
+  const updatedUsers = users.map((user) => {
+    if (user.id === currentUser.id) {
+      return {
+        ...user,
+        ...currentUser,
+      };
+    }
 
-      return user;
-    });
+    return user;
+  });
 
-  Storage.set(
-    STORAGE_KEYS.USERS,
-    updatedUsers
-  );
+  Storage.set(STORAGE_KEYS.USERS, updatedUsers);
 
   // --------------------------------
   // Live UI Updates
   // --------------------------------
 
-  profileName.textContent =
-    fullName;
+  profileName.textContent = fullName;
 
-  const navUsername =
-    document.getElementById(
-      "nav-username"
-    );
+  const navUsername = document.getElementById("nav-username");
 
   if (navUsername) {
-    navUsername.textContent =
-      fullName;
+    navUsername.textContent = fullName;
   }
 
   // --------------------------------
   // Save Feedback
   // --------------------------------
 
-  saveStatus.textContent =
-    "Changes saved ✓";
+  saveStatus.textContent = "Changes saved ✓";
 
-  saveStatus.classList.add(
-    "show"
-  );
+  saveStatus.classList.add("show");
 
   setTimeout(() => {
     saveStatus.textContent = "";
-    saveStatus.classList.remove(
-      "show"
-    );
+    saveStatus.classList.remove("show");
   }, 2500);
 }
 
@@ -271,10 +275,7 @@ avatarOptions.forEach((option) => {
    INITIALIZE PAGE
 ============================================================ */
 if (accountForm) {
-  accountForm.addEventListener(
-    "submit",
-    saveProfile
-  );
+  accountForm.addEventListener("submit", saveProfile);
 }
 
 loadProfile();
