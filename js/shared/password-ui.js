@@ -149,3 +149,19 @@ function initPasswordMatch(passwordInput, confirmInput, matchMsg) {
 
   confirmInput.addEventListener("input", checkMatch);
 }
+
+const passwordInput = document.getElementById("password");
+
+const confirmInput = document.getElementById("confirmPassword");
+
+const strengthFill = document.getElementById("pw-strength-fill");
+
+const strengthLabel = document.getElementById("pw-strength-label");
+
+const matchMsg = document.getElementById("pw-match-msg");
+
+initPasswordToggle();
+
+initPasswordStrength(passwordInput, strengthFill, strengthLabel);
+
+initPasswordMatch(passwordInput, confirmInput, matchMsg);
