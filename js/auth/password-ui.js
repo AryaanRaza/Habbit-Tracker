@@ -68,27 +68,36 @@ document.addEventListener("DOMContentLoaded", () => {
   /* ─────────────────────────────────────────
      3. PASSWORD MATCH CHECK  (register)
   ───────────────────────────────────────── */
-  const confirmInput = document.getElementById("confirmPassword");
-  const matchMsg = document.getElementById("pw-match-msg");
-
-  function checkMatch() {
-    if (!confirmInput || !matchMsg || !passwordInput) return;
-    const pw = passwordInput.value;
-    const confirm = confirmInput.value;
-    if (!confirm) {
-      matchMsg.classList.add("hidden");
+  function initPasswordMatch(passwordInput, confirmInput, matchMsg) {
+    if (!passwordInput || !confirmInput || !matchMsg) {
       return;
     }
-    matchMsg.classList.remove("hidden");
-    if (pw === confirm) {
-      matchMsg.textContent = "✓ Passwords match";
-      matchMsg.className = "pw-match-msg match";
-    } else {
-      matchMsg.textContent = "✗ Passwords do not match";
-      matchMsg.className = "pw-match-msg no-match";
-    }
-  }
 
-  confirmInput?.addEventListener("input", checkMatch);
-  passwordInput?.addEventListener("input", checkMatch);
+    function checkMatch() {
+      const password = passwordInput.value;
+
+      const confirm = confirmInput.value;
+
+      if (!confirm) {
+        matchMsg.classList.add("hidden");
+        return;
+      }
+
+      matchMsg.classList.remove("hidden");
+
+      if (password === confirm) {
+        matchMsg.textContent = "✓ Passwords match";
+
+        matchMsg.className = "pw-match-msg match";
+      } else {
+        matchMsg.textContent = "✗ Passwords do not match";
+
+        matchMsg.className = "pw-match-msg no-match";
+      }
+    }
+
+    passwordInput.addEventListener("input", checkMatch);
+
+    confirmInput.addEventListener("input", checkMatch);
+  }
 });
