@@ -24,6 +24,10 @@ const currentPasswordInput = document.getElementById("current-password");
 const passwordInput = document.getElementById("password");
 const confirmPasswordInput = document.getElementById("confirm-password");
 
+const strengthFill = document.getElementById("pw-strength-fill");
+const strengthLabel = document.getElementById("pw-strength-label");
+const matchMsg = document.getElementById("pw-match-msg");
+
 const accountForm = document.getElementById("accountForm");
 const saveStatus = document.getElementById("saveStatus");
 
@@ -278,5 +282,27 @@ avatarOptions.forEach((option) => {
 if (accountForm) {
   accountForm.addEventListener("submit", saveProfile);
 }
+
+/* ============================================================
+   PASSWORD UI
+============================================================ */
+
+initPasswordToggle();
+
+initPasswordStrength(
+  passwordInput,
+  strengthFill,
+  strengthLabel
+);
+
+initPasswordMatch(
+  passwordInput,
+  confirmPasswordInput,
+  matchMsg
+);
+
+/* ============================================================
+   INITIAL LOAD
+============================================================ */
 
 loadProfile();
