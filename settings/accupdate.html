@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="../css/components/navigation.css">
     <link rel="stylesheet" href="../css/components/back-button.css">
     <link rel="stylesheet" href="../css/components/toast.css">
+    <link rel="stylesheet" href="css/components/password-strength.css">
     <!-- PAGE -->
     <link rel="stylesheet" href="../css/pages/settings-main.css">
     <link rel="stylesheet" href="../css/pages/settings-subpages.css">
@@ -239,11 +240,28 @@
                             <div class="form-grid">
 
                                 <div class="input-group">
+
                                     <label for="password">
                                         New Password
                                     </label>
 
                                     <input type="password" id="password" placeholder="••••••••">
+
+                                    <!-- Password strength -->
+                                    <div class="pw-strength" id="pw-strength">
+
+                                        <div class="pw-strength-track">
+
+                                            <div class="pw-strength-fill" id="pw-strength-fill">
+                                            </div>
+
+                                        </div>
+
+                                        <span class="pw-strength-label" id="pw-strength-label">
+                                        </span>
+
+                                    </div>
+
                                 </div>
 
                                 <div class="input-group">
@@ -253,6 +271,8 @@
 
                                     <input type="password" id="confirm-password" placeholder="••••••••">
                                 </div>
+                                <p class="pw-match-msg hidden" id="pw-match-msg">
+                                </p>
 
                             </div>
 
@@ -260,7 +280,6 @@
                     </div>
 
                     <div class="save-actions">
-                        <p class="save-status" id="saveStatus"></p>
                         <button type="submit" class="btn btn-glow">
                             <span class="material-symbols-rounded">check_circle</span>
                             &nbsp;Save Changes

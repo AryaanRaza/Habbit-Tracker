@@ -138,6 +138,13 @@ function saveProfile(e) {
     }
   }
   // --------------------------------
+  // UPDATE PASSWORD
+  // --------------------------------
+
+  if (newPassword) {
+    currentUser.password = newPassword;
+  }
+  // --------------------------------
   // Update Current User
   // --------------------------------
 
@@ -194,7 +201,7 @@ function saveProfile(e) {
   // Save Feedback
   // --------------------------------
 
-  saveStatus.textContent = "Changes saved ✓";
+  showToast("Changes saved successfully", "success");
 
   saveStatus.classList.add("show");
 

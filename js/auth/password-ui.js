@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════════════════════
-   auth.js — HabitFlow Login & Register
+   password-ui.js — HabitFlow Login & Register
    Shared by login.html and register.html.
 
    HANDLES:
@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
    * @param {string} pw
    * @returns {{ level: string, label: string }}
    */
-  function getStrength(pw) {
+  function getPasswordStrength(pw) {
     if (!pw) return { level: '', label: '' };
     let score = 0;
     if (pw.length >= 8)                        score++;
@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (passwordInput && strengthFill && strengthLabel) {
     passwordInput.addEventListener('input', () => {
-      const { level, label } = getStrength(passwordInput.value);
+      const { level, label } = getPasswordStrength(passwordInput.value);
       strengthFill.dataset.strength = level;
       strengthLabel.textContent     = label;
     });
