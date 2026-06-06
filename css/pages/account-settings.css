@@ -1,3 +1,49 @@
+/* ==============================================
+   ACCOUNT SETTINGS — account-settings.css
+   
+   Table of Contents:
+   
+   1. ACCOUNT HERO
+      1a. Hero Layout
+      1b. Avatar Display
+      1c. Avatar Edit Button
+      1d. Profile Name
+      1e. Streak Badge
+      1f. Stats Row
+   
+   2. INLINE AVATAR PICKER
+      (non-modal fallback inside .account-hero)
+   
+   3. FORM SECTIONS
+      3a. Sections Grid Wrapper
+      3b. Individual Section Card
+      3c. Section Header & Description
+      3d. Form Inputs
+      3e. Save Actions Button Row
+   
+   4. AVATAR PICKER MODAL
+      4a. Overlay
+      4b. Modal Card
+      4c. Modal Header
+      4d. Close Button
+      4e. Avatar Grid & Options (modal)
+   
+   5. AVATAR ANIMATION & FEEDBACK
+   
+   6. SAVE STATUS INDICATOR
+   
+   7. UTILITIES
+   
+   8. RESPONSIVE (max-width: 768px)
+   ============================================== */
+
+
+/* ==============================================
+   1. ACCOUNT HERO
+   ============================================== */
+
+/* 1a. Hero Layout
+   ------------------------------------------------ */
 .account-hero {
   display: flex;
   flex-direction: column;
@@ -11,6 +57,8 @@
   z-index: 2;
 }
 
+/* 1b. Avatar Display
+   ------------------------------------------------ */
 .avatar-wrapper {
   position: relative;
   margin-bottom: 1rem;
@@ -43,11 +91,17 @@
   box-shadow:
     0 12px 30px rgba(123, 104, 255, 0.18),
     inset 0 1px 0 rgba(255, 255, 255, 0.5);
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
 }
 
+/* 1c. Avatar Edit Button
+   Positioned bottom-right of the avatar circle
+   ------------------------------------------------ */
 .avatar-edit-btn {
   position: absolute;
-
   right: 0;
   bottom: 6px;
 
@@ -76,32 +130,34 @@
   font-size: 18px;
 }
 
+/* 1d. Profile Name
+   Populated dynamically via JS from stored user data
+   ------------------------------------------------ */
 .account-name {
   font-family: var(--font-brand);
-
   font-size: 2.4rem;
-
   margin-bottom: 0.75rem;
-
   color: var(--clr-text-main);
 }
 
+/* 1e. Streak Badge
+   ------------------------------------------------ */
 .account-streak {
   padding: 0.45rem 1rem;
 
   border-radius: 999px;
-
   margin-bottom: 1.5rem;
 
   font-weight: 700;
-
   color: #a04c17;
 
   background: rgba(255, 190, 120, 0.25);
-
   border: 1px solid rgba(255, 190, 120, 0.4);
 }
 
+/* 1f. Stats Row
+   Three-column grid: Habits / Completions / Best Streak
+   ------------------------------------------------ */
 .account-stats {
   width: 100%;
   max-width: 420px;
@@ -110,12 +166,10 @@
   grid-template-columns: repeat(3, 1fr);
 
   background: rgba(255, 255, 255, 0.28);
-
   border-radius: 22px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
 
   padding: 1rem;
-
-  border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 .account-stat {
@@ -124,347 +178,30 @@
   gap: 0.35rem;
 }
 
+/* Divider between stat columns */
+.account-stat:not(:last-child) {
+  border-right: 1px solid rgba(255, 255, 255, 0.35);
+}
+
 .stat-number {
   font-size: 1.8rem;
   font-weight: 800;
-
   color: var(--clr-secondary-deep);
 }
 
 .stat-label {
   font-size: 0.75rem;
-
   text-transform: uppercase;
   letter-spacing: 1px;
-
   color: var(--clr-text-soft);
 }
 
-.account-stat:not(:last-child) {
-  border-right: 1px solid rgba(255, 255, 255, 0.35);
-}
 
-@media (max-width: 768px) {
-  .account-avatar {
-    width: 95px;
-    height: 95px;
-    font-size: 2.3rem;
-  }
-
-  .account-name {
-    font-size: 2rem;
-  }
-
-  .account-stats {
-    padding: 0.8rem;
-  }
-
-  .stat-number {
-    font-size: 1.5rem;
-  }
-}
-
-.account-sections {
-  display: grid;
-  gap: 1.25rem;
-}
-
-.account-section {
-  padding: 1.5rem;
-
-  border-radius: 24px;
-
-  background: rgba(255, 255, 255, 0.18);
-
-  border: 1px solid rgba(255, 255, 255, 0.25);
-
-  backdrop-filter: blur(18px);
-
-  position: relative;
-
-  overflow: hidden;
-}
-
-.account-section::before {
-  content: "";
-
-  position: absolute;
-  inset: 0;
-
-  pointer-events: none;
-
-  background: radial-gradient(
-    circle at top right,
-    rgba(255, 255, 255, 0.16),
-    transparent 28%
-  );
-}
-
-.section-heading {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-
-  margin-bottom: 1.25rem;
-
-  font-size: 1.05rem;
-  font-weight: 700;
-
-  color: var(--clr-text-main);
-}
-
-.section-heading .material-symbols-rounded {
-  font-size: 20px;
-
-  color: var(--clr-secondary-deep);
-}
-
-.account-section .form-grid {
-  gap: 1rem;
-}
-
-.update-form .btn-glow {
-  margin-top: 1.5rem;
-}
-
-.section-header {
-  margin-bottom: 1.25rem;
-}
-
-.section-description {
-  margin-top: 0.35rem;
-
-  color: var(--clr-text-soft);
-
-  font-size: 0.9rem;
-
-  line-height: 1.5;
-}
-
-.account-section label {
-  display: block;
-
-  margin-bottom: 0.45rem;
-
-  font-weight: 600;
-
-  color: var(--clr-text-dark);
-}
-
-.account-section input {
-  width: 100%;
-
-  padding: 0.95rem 1rem;
-
-  border-radius: 16px;
-
-  border: 1px solid rgba(255, 255, 255, 0.35);
-
-  background: rgba(255, 255, 255, 0.35);
-
-  color: var(--clr-text-main);
-
-  backdrop-filter: blur(12px);
-
-  transition:
-    border-color 0.25s ease,
-    box-shadow 0.25s ease,
-    background 0.25s ease;
-}
-
-.account-section input::placeholder {
-  color: var(--clr-text-soft);
-}
-
-.account-section input:focus {
-  outline: none;
-
-  border-color: var(--clr-secondary-deep);
-
-  background: rgba(255, 255, 255, 0.55);
-
-  box-shadow: 0 0 0 4px rgba(142, 123, 255, 0.12);
-}
-
-.account-section .form-grid {
-  display: grid;
-
-  grid-template-columns: repeat(2, 1fr);
-
-  gap: 1rem;
-}
-
-@media (max-width: 768px) {
-  .account-section .form-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-.save-actions {
-  display: flex;
-  justify-content: center;
-
-  margin-top: 2rem;
-}
-
-.avatar-modal-overlay {
-  position: fixed;
-  inset: 0;
-
-  background: rgba(16, 10, 30, 0.45);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  opacity: 0;
-  visibility: hidden;
-
-  transition: 0.3s ease;
-
-  z-index: 9999;
-}
-
-.avatar-modal-overlay.show {
-  opacity: 1;
-  visibility: visible;
-}
-
-.avatar-modal {
-  width: min(92vw, 580px);
-
-  border-radius: 30px;
-
-  padding: 28px;
-
-  background: rgba(255, 255, 255, 0.14);
-
-  border: 1px solid rgba(255, 255, 255, 0.2);
-
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-
-  box-shadow:
-    0 25px 80px rgba(0, 0, 0, 0.25),
-    inset 0 1px 0 rgba(255, 255, 255, 0.25);
-
-  transform: translateY(20px);
-
-  transition: 0.3s ease;
-}
-
-.avatar-modal-overlay.show .avatar-modal {
-  transform: translateY(0);
-}
-
-.avatar-modal-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  margin-bottom: 24px;
-}
-
-.avatar-modal-header h3 {
-  margin: 0;
-
-  font-size: 1.3rem;
-
-  color: var(--clr-text-main);
-}
-
-.avatar-modal-close {
-  width: 42px;
-  height: 42px;
-
-  border: none;
-
-  border-radius: 14px;
-
-  cursor: pointer;
-
-  display: grid;
-  place-items: center;
-
-  background: rgba(255, 255, 255, 0.12);
-
-  color: var(--clr-text-main);
-
-  transition: 0.25s ease;
-}
-
-.avatar-modal-close:hover {
-  transform: rotate(90deg);
-
-  background: rgba(255, 255, 255, 0.2);
-}
-
-.avatar-grid {
-  display: grid;
-
-  grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
-
-  gap: 14px;
-}
-
-.avatar-option {
-  height: 72px;
-
-  border: none;
-
-  border-radius: 20px;
-
-  cursor: pointer;
-
-  font-size: 2rem;
-
-  background: rgba(255, 255, 255, 0.12);
-
-  border: 1px solid rgba(255, 255, 255, 0.15);
-
-  transition: 0.25s ease;
-}
-
-.avatar-option:hover {
-  transform: translateY(-4px) scale(1.06);
-
-  background: rgba(255, 255, 255, 0.2);
-
-  box-shadow: 0 10px 25px rgba(142, 123, 255, 0.18);
-}
-
-.avatar-option.active {
-  border: 2px solid var(--clr-secondary-deep);
-
-  background: rgba(142, 123, 255, 0.18);
-
-  box-shadow:
-    0 0 0 4px rgba(142, 123, 255, 0.12),
-    0 10px 30px rgba(142, 123, 255, 0.2);
-}
-
-@media (max-width: 768px) {
-  .avatar-modal {
-    padding: 22px;
-    border-radius: 24px;
-  }
-
-  .avatar-grid {
-    grid-template-columns: repeat(4, 1fr);
-  }
-
-  .avatar-option {
-    height: 64px;
-    font-size: 1.8rem;
-  }
-}
-
-.hidden {
-  display: none;
-}
-
+/* ==============================================
+   2. INLINE AVATAR PICKER
+   Non-modal fallback rendered inside .account-hero.
+   Hidden by default; toggled by JS via .hidden.
+   ============================================== */
 .avatar-picker {
   margin-top: 28px;
   padding-top: 28px;
@@ -486,20 +223,19 @@
   color: var(--clr-text-soft);
 }
 
-.avatar-grid {
+/* Inline picker: flex wrap layout (vs modal's CSS grid) */
+.avatar-picker .avatar-grid {
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
 }
 
-.avatar-option {
+.avatar-picker .avatar-option {
   width: 60px;
   height: 60px;
 
   border-radius: 18px;
-
   border: none;
-
   cursor: pointer;
 
   font-size: 1.7rem;
@@ -509,38 +245,309 @@
   transition: all 0.25s ease;
 }
 
-.avatar-option:hover {
+.avatar-picker .avatar-option:hover {
   transform: translateY(-3px);
-
   background: rgba(255, 255, 255, 0.75);
-
   box-shadow: 0 10px 25px rgba(142, 123, 255, 0.15);
 }
 
-.avatar-option.active {
+.avatar-picker .avatar-option.active {
   border: 2px solid var(--clr-secondary-deep);
-
   background: rgba(142, 123, 255, 0.12);
-
   box-shadow: 0 0 0 4px rgba(142, 123, 255, 0.08);
 }
 
-.account-avatar {
-  transition:
-    transform 0.25s ease,
-    box-shadow 0.25s ease;
+
+/* ==============================================
+   3. FORM SECTIONS
+   ============================================== */
+
+/* 3a. Sections Grid Wrapper
+   ------------------------------------------------ */
+.account-sections {
+  display: grid;
+  gap: 1.25rem;
 }
 
+/* 3b. Individual Section Card
+   Glassmorphism card with a subtle radial highlight
+   ------------------------------------------------ */
+.account-section {
+  padding: 1.5rem;
+
+  border-radius: 24px;
+
+  background: rgba(255, 255, 255, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(18px);
+
+  position: relative;
+  overflow: hidden;
+}
+
+/* Decorative radial glow in the top-right corner */
+.account-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    circle at top right,
+    rgba(255, 255, 255, 0.16),
+    transparent 28%
+  );
+}
+
+/* 3c. Section Header & Description
+   ------------------------------------------------ */
+.section-header {
+  margin-bottom: 1.25rem;
+}
+
+.section-heading {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+
+  margin-bottom: 1.25rem;
+
+  font-size: 1.05rem;
+  font-weight: 700;
+
+  color: var(--clr-text-main);
+}
+
+.section-heading .material-symbols-rounded {
+  font-size: 20px;
+  color: var(--clr-secondary-deep);
+}
+
+.section-description {
+  margin-top: 0.35rem;
+
+  font-size: 0.9rem;
+  line-height: 1.5;
+
+  color: var(--clr-text-soft);
+}
+
+/* 3d. Form Inputs
+   Two-column grid for name / password pairs; collapses on mobile
+   ------------------------------------------------ */
+.account-section .form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.account-section label {
+  display: block;
+  margin-bottom: 0.45rem;
+  font-weight: 600;
+  color: var(--clr-text-dark);
+}
+
+.account-section input {
+  width: 100%;
+  padding: 0.95rem 1rem;
+
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+
+  background: rgba(255, 255, 255, 0.35);
+  backdrop-filter: blur(12px);
+
+  color: var(--clr-text-main);
+
+  transition:
+    border-color 0.25s ease,
+    box-shadow 0.25s ease,
+    background 0.25s ease;
+}
+
+.account-section input::placeholder {
+  color: var(--clr-text-soft);
+}
+
+.account-section input:focus {
+  outline: none;
+  border-color: var(--clr-secondary-deep);
+  background: rgba(255, 255, 255, 0.55);
+  box-shadow: 0 0 0 4px rgba(142, 123, 255, 0.12);
+}
+
+/* 3e. Save Actions Button Row
+   ------------------------------------------------ */
+.save-actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.update-form .btn-glow {
+  margin-top: 1.5rem;
+}
+
+
+/* ==============================================
+   4. AVATAR PICKER MODAL
+   Full-screen overlay; toggled via .show class by JS
+   ============================================== */
+
+/* 4a. Overlay
+   ------------------------------------------------ */
+.avatar-modal-overlay {
+  position: fixed;
+  inset: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: rgba(16, 10, 30, 0.45);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  opacity: 0;
+  visibility: hidden;
+
+  transition: 0.3s ease;
+
+  z-index: 9999;
+}
+
+.avatar-modal-overlay.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* 4b. Modal Card
+   ------------------------------------------------ */
+.avatar-modal {
+  width: min(92vw, 580px);
+
+  padding: 28px;
+  border-radius: 30px;
+
+  background: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+
+  box-shadow:
+    0 25px 80px rgba(0, 0, 0, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25);
+
+  transform: translateY(20px);
+  transition: 0.3s ease;
+}
+
+/* Slide up when overlay becomes visible */
+.avatar-modal-overlay.show .avatar-modal {
+  transform: translateY(0);
+}
+
+/* 4c. Modal Header
+   ------------------------------------------------ */
+.avatar-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-bottom: 24px;
+}
+
+.avatar-modal-header h3 {
+  margin: 0;
+  font-size: 1.3rem;
+  color: var(--clr-text-main);
+}
+
+/* 4d. Close Button
+   Rotates 90° on hover for a satisfying micro-interaction
+   ------------------------------------------------ */
+.avatar-modal-close {
+  width: 42px;
+  height: 42px;
+
+  border: none;
+  border-radius: 14px;
+
+  cursor: pointer;
+
+  display: grid;
+  place-items: center;
+
+  background: rgba(255, 255, 255, 0.12);
+  color: var(--clr-text-main);
+
+  transition: 0.25s ease;
+}
+
+.avatar-modal-close:hover {
+  transform: rotate(90deg);
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* 4e. Avatar Grid & Options (modal context)
+   CSS grid layout; distinct from the inline picker's flex layout
+   ------------------------------------------------ */
+.avatar-modal .avatar-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
+  gap: 14px;
+}
+
+.avatar-modal .avatar-option {
+  height: 72px;
+
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  cursor: pointer;
+
+  font-size: 2rem;
+
+  background: rgba(255, 255, 255, 0.12);
+
+  transition: 0.25s ease;
+}
+
+.avatar-modal .avatar-option:hover {
+  transform: translateY(-4px) scale(1.06);
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 10px 25px rgba(142, 123, 255, 0.18);
+}
+
+.avatar-modal .avatar-option.active {
+  border: 2px solid var(--clr-secondary-deep);
+  background: rgba(142, 123, 255, 0.18);
+  box-shadow:
+    0 0 0 4px rgba(142, 123, 255, 0.12),
+    0 10px 30px rgba(142, 123, 255, 0.2);
+}
+
+
+/* ==============================================
+   5. AVATAR ANIMATION & FEEDBACK
+   JS adds .avatar-pop for a scale-bounce on selection
+   ============================================== */
 .account-avatar.avatar-pop {
   transform: scale(1.12);
 }
 
+
+/* ==============================================
+   6. SAVE STATUS INDICATOR
+   Shown briefly after a successful save action
+   ============================================== */
 .save-status {
   min-height: 22px;
   text-align: center;
+
   font-size: 0.9rem;
   font-weight: 600;
   color: #22c55e;
+
   opacity: 0;
   transform: translateY(4px);
   transition: all 0.3s ease;
@@ -549,4 +556,61 @@
 .save-status.show {
   opacity: 1;
   transform: translateY(0);
+}
+
+
+/* ==============================================
+   7. UTILITIES
+   ============================================== */
+
+/* Hides elements; toggled by JS (avatar picker, match msg, etc.) */
+.hidden {
+  display: none;
+}
+
+
+/* ==============================================
+   8. RESPONSIVE — max-width: 768px
+   ============================================== */
+@media (max-width: 768px) {
+
+  /* Hero: shrink avatar and name */
+  .account-avatar {
+    width: 95px;
+    height: 95px;
+    font-size: 2.3rem;
+  }
+
+  .account-name {
+    font-size: 2rem;
+  }
+
+  /* Stats row: tighter padding and smaller numbers */
+  .account-stats {
+    padding: 0.8rem;
+  }
+
+  .stat-number {
+    font-size: 1.5rem;
+  }
+
+  /* Form: collapse two-column grids to single column */
+  .account-section .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Modal: tighter padding, fixed 4-column avatar grid */
+  .avatar-modal {
+    padding: 22px;
+    border-radius: 24px;
+  }
+
+  .avatar-modal .avatar-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .avatar-modal .avatar-option {
+    height: 64px;
+    font-size: 1.8rem;
+  }
 }
