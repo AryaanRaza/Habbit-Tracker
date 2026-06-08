@@ -62,29 +62,10 @@ document.addEventListener("DOMContentLoaded", () => {
   let habits = [];
   let editingId = null;
   let currentFilter = "all";
-
-  /* =========================
-     LOCAL STORAGE
-  ========================= */
-  const STORAGE_KEY = "habitflow-habits";
-
+  
   function saveHabits() {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(habits));
+    saveUserHabits(habits);
   }
-
-  function loadHabits() {
-    const storedHabits = localStorage.getItem(STORAGE_KEY);
-
-    if (!storedHabits) return [];
-
-    try {
-      return JSON.parse(storedHabits);
-    } catch (error) {
-      console.error("Failed to load habits:", error);
-      return [];
-    }
-  }
-
   /* =========================
    INITIAL EMPTY STATE
 ========================= */
@@ -100,16 +81,16 @@ document.addEventListener("DOMContentLoaded", () => {
   /* =========================
    INITIAL APP LOAD
 ========================= */
-  const storedHabits = localStorage.getItem(STORAGE_KEY);
+  const storedHabits = loadUserHabits();
 
   // FIRST EVER VISIT
-  if (storedHabits === null) {
+  if (storedHabits.length === 0) {
     loadExistingHabits();
   }
 
   // Existing saved habits
   else {
-    habits = loadHabits();
+    habits = loadUserHabits();
 
     habits.forEach(renderHabitCard);
 
