@@ -11,6 +11,7 @@ const openBtn = document.getElementById("avatar-toggle-btn");
 const closeBtn = document.getElementById("close-avatar-modal");
 
 const avatarDisplay = document.getElementById("account-avatar");
+const avatarUpload = document.getElementById("avatar-upload");
 const avatarOptions = document.querySelectorAll(".avatar-option");
 
 const profileName = document.getElementById("profileName");
@@ -75,17 +76,15 @@ function loadProfile() {
   // --------------------------------
 
   if (currentUser.avatar) {
-    avatarDisplay.textContent = currentUser.avatar;
+    avatarDisplay.innerHTML = `
+    <img
+      src="${currentUser.avatar}"
+      alt="Avatar"
+      class="avatar-image"
+    >
+  `;
 
     avatarDisplay.dataset.avatar = currentUser.avatar;
-
-    // highlight active avatar
-    avatarOptions.forEach((option) => {
-      option.classList.toggle(
-        "active",
-        option.dataset.avatar === currentUser.avatar,
-      );
-    });
   } else {
     const initial = currentUser.firstName?.charAt(0).toUpperCase() || "U";
 
@@ -219,11 +218,9 @@ function saveProfile(e) {
    AVATAR MODAL
 ============================================================ */
 
-if (avatarModal && openBtn) {
-  openBtn.addEventListener("click", () => {
-    avatarModal.classList.add("show");
-  });
-}
+openBtn?.addEventListener("click", () => {
+  avatarUpload?.click();
+});
 
 if (closeBtn) {
   closeBtn.addEventListener("click", () => {
@@ -276,13 +273,40 @@ avatarOptions.forEach((option) => {
   });
 });
 /* ============================================================
+   AVATAR UPLOAD
+============================================================ */
+
+avatarUpload?.addEventListener("change", (e) => {
+  const file = e.target.files[0];
+
+  if (!file) return;
+
+  const reader = new FileReader();
+
+  reader.onload = function (event) {
+    const imageData = event.target.result;
+
+    avatarDisplay.innerHTML = `
+      <img
+        src="${imageData}"
+        alt="Avatar"
+        class="avatar-image"
+      >
+    `;
+
+    avatarDisplay.dataset.avatar = imageData;
+  };
+
+  reader.readAsDataURL(file);
+});
+/* ============================================================
    ACCOUNT HERO STATS
 ============================================================ */
 
 function updateAccountStats() {
   const totalHabitsEl = document.getElementById("settings-total-habits");
   const totalCompletionsEl = document.getElementById(
-    "settings-total-completions"
+    "settings-total-completions",
   );
   const bestStreakEl = document.getElementById("settings-best-streak");
 
@@ -292,13 +316,10 @@ function updateAccountStats() {
 
   const totalCompletions = habits.reduce(
     (sum, habit) => sum + (habit.total || 0),
-    0
+    0,
   );
 
-  const bestStreak = Math.max(
-    ...habits.map((habit) => habit.best || 0),
-    0
-  );
+  const bestStreak = Math.max(...habits.map((habit) => habit.best || 0), 0);
 
   if (totalHabitsEl) {
     totalHabitsEl.textContent = totalHabits;
@@ -325,17 +346,9 @@ if (accountForm) {
 
 initPasswordToggle();
 
-initPasswordStrength(
-  passwordInput,
-  strengthFill,
-  strengthLabel
-);
+initPasswordStrength(passwordInput, strengthFill, strengthLabel);
 
-initPasswordMatch(
-  passwordInput,
-  confirmPasswordInput,
-  matchMsg
-);
+initPasswordMatch(passwordInput, confirmPasswordInput, matchMsg);
 
 /* ============================================================
    INITIAL LOAD
