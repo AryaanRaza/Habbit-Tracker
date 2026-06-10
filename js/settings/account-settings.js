@@ -275,7 +275,43 @@ avatarOptions.forEach((option) => {
     avatarModal.classList.remove("show");
   });
 });
+/* ============================================================
+   ACCOUNT HERO STATS
+============================================================ */
 
+function updateAccountStats() {
+  const totalHabitsEl = document.getElementById("settings-total-habits");
+  const totalCompletionsEl = document.getElementById(
+    "settings-total-completions"
+  );
+  const bestStreakEl = document.getElementById("settings-best-streak");
+
+  const habits = loadUserHabits();
+
+  const totalHabits = habits.length;
+
+  const totalCompletions = habits.reduce(
+    (sum, habit) => sum + (habit.total || 0),
+    0
+  );
+
+  const bestStreak = Math.max(
+    ...habits.map((habit) => habit.best || 0),
+    0
+  );
+
+  if (totalHabitsEl) {
+    totalHabitsEl.textContent = totalHabits;
+  }
+
+  if (totalCompletionsEl) {
+    totalCompletionsEl.textContent = totalCompletions;
+  }
+
+  if (bestStreakEl) {
+    bestStreakEl.textContent = bestStreak;
+  }
+}
 /* ============================================================
    INITIALIZE PAGE
 ============================================================ */
@@ -306,3 +342,4 @@ initPasswordMatch(
 ============================================================ */
 
 loadProfile();
+updateAccountStats();
