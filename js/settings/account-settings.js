@@ -68,7 +68,7 @@ function loadProfile() {
   // Hero Name
   // --------------------------------
 
-  profileName.textContent = currentUser.username || "User";
+  profileName.textContent = getUserDisplayName(currentUser);
 
   // --------------------------------
   // Avatar
@@ -186,8 +186,7 @@ function saveProfile(e) {
   // Live UI Updates
   // --------------------------------
 
-  profileName.textContent = fullName;
-
+  profileName.textContent = getUserDisplayName(currentUser);
   const navUsername = document.getElementById("nav-username");
 
   if (navUsername) {
