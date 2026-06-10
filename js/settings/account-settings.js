@@ -185,6 +185,11 @@ function saveProfile(e) {
   // --------------------------------
   // Live UI Updates
   // --------------------------------
+  const avatarData = getUserAvatar(currentUser);
+
+  avatarDisplay.textContent = avatarData.text;
+
+  avatarDisplay.dataset.avatar = currentUser.avatar || "initial";
 
   profileName.textContent = getUserDisplayName(currentUser);
   const navUsername = document.getElementById("nav-username");
