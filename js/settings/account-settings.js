@@ -11,7 +11,6 @@ const openBtn = document.getElementById("avatar-toggle-btn");
 const closeBtn = document.getElementById("close-avatar-modal");
 
 const avatarDisplay = document.getElementById("account-avatar");
-const avatarUpload = document.getElementById("avatar-upload");
 const avatarOptions = document.querySelectorAll(".avatar-option");
 
 const profileName = document.getElementById("profileName");
@@ -75,23 +74,18 @@ function loadProfile() {
   // Avatar
   // --------------------------------
 
-  if (currentUser.avatar) {
-    avatarDisplay.innerHTML = `
-    <img
-      src="${currentUser.avatar}"
-      alt="Avatar"
-      class="avatar-image"
-    >
-  `;
+  const avatarData = getUserAvatar(currentUser);
 
-    avatarDisplay.dataset.avatar = currentUser.avatar;
-  } else {
-    const initial = currentUser.firstName?.charAt(0).toUpperCase() || "U";
+  avatarDisplay.textContent = avatarData.text;
 
-    avatarDisplay.textContent = initial;
+  avatarDisplay.dataset.avatar = currentUser.avatar || "initial";
 
-    avatarDisplay.dataset.avatar = "initial";
-  }
+  avatarOptions.forEach((option) => {
+    option.classList.toggle(
+      "active",
+      option.dataset.avatar === currentUser.avatar,
+    );
+  });
 }
 
 /* ============================================================
@@ -218,9 +212,11 @@ function saveProfile(e) {
    AVATAR MODAL
 ============================================================ */
 
-openBtn?.addEventListener("click", () => {
-  avatarUpload?.click();
-});
+if (avatarModal && openBtn) {
+  openBtn.addEventListener("click", () => {
+    avatarModal.classList.add("show");
+  });
+}
 
 if (closeBtn) {
   closeBtn.addEventListener("click", () => {
@@ -272,33 +268,7 @@ avatarOptions.forEach((option) => {
     avatarModal.classList.remove("show");
   });
 });
-/* ============================================================
-   AVATAR UPLOAD
-============================================================ */
 
-avatarUpload?.addEventListener("change", (e) => {
-  const file = e.target.files[0];
-
-  if (!file) return;
-
-  const reader = new FileReader();
-
-  reader.onload = function (event) {
-    const imageData = event.target.result;
-
-    avatarDisplay.innerHTML = `
-      <img
-        src="${imageData}"
-        alt="Avatar"
-        class="avatar-image"
-      >
-    `;
-
-    avatarDisplay.dataset.avatar = imageData;
-  };
-
-  reader.readAsDataURL(file);
-});
 /* ============================================================
    ACCOUNT HERO STATS
 ============================================================ */
