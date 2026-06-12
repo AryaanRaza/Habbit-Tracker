@@ -32,3 +32,17 @@ function getUserAvatar(user) {
     isAvatar: false,
   };
 }
+
+function renderProfileAvatar(element, user) {
+  if (!element) return;
+
+  const avatarData = getUserAvatar(user);
+
+  element.textContent = avatarData.text;
+}
+
+function renderProfileName(element, user) {
+  if (!element) return;
+
+  element.textContent = getUserDisplayName(user);
+}

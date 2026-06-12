@@ -6,15 +6,9 @@ function renderNavigationProfile() {
 
   if (!currentUser) return;
 
-  if (navUsername) {
-    navUsername.textContent = getUserDisplayName(currentUser);
-  }
+  renderProfileName(navUsername, currentUser);
 
-  if (navAvatar) {
-    const avatarData = getUserAvatar(currentUser);
-
-    navAvatar.textContent = avatarData.text;
-  }
+  renderProfileAvatar(navAvatar, currentUser);
 }
 document.addEventListener("DOMContentLoaded", () => {
   const path = window.location.pathname.toLowerCase();
