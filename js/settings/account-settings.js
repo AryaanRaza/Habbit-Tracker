@@ -192,10 +192,8 @@ function saveProfile(e) {
   avatarDisplay.dataset.avatar = currentUser.avatar || "initial";
 
   profileName.textContent = getUserDisplayName(currentUser);
-  const navUsername = document.getElementById("nav-username");
-
-  if (navUsername) {
-    navUsername.textContent = fullName;
+  if (typeof renderNavigationProfile === "function") {
+    renderNavigationProfile();
   }
 
   // --------------------------------

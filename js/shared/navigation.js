@@ -1,3 +1,21 @@
+function renderNavigationProfile() {
+  const currentUser = Storage.get(STORAGE_KEYS.CURRENT_USER);
+
+  const navUsername = document.getElementById("nav-username");
+  const navAvatar = document.getElementById("nav-avatar");
+
+  if (!currentUser) return;
+
+  if (navUsername) {
+    navUsername.textContent = getUserDisplayName(currentUser);
+  }
+
+  if (navAvatar) {
+    const avatarData = getUserAvatar(currentUser);
+
+    navAvatar.textContent = avatarData.text;
+  }
+}
 document.addEventListener("DOMContentLoaded", () => {
   const path = window.location.pathname.toLowerCase();
 
@@ -215,28 +233,6 @@ document.addEventListener("DOMContentLoaded", () => {
     // ============================================
 
     const currentUser = Storage.get(STORAGE_KEYS.CURRENT_USER);
-
-    function renderNavigationProfile() {
-      const currentUser = Storage.get(STORAGE_KEYS.CURRENT_USER);
-
-      const navUsername = document.getElementById("nav-username");
-      const navAvatar = document.getElementById("nav-avatar");
-
-      if (!currentUser) return;
-
-      // Username
-      if (navUsername) {
-        navUsername.textContent = getUserDisplayName(currentUser);
-      }
-
-      // Avatar
-      if (navAvatar) {
-        const avatarData = getUserAvatar(currentUser);
-
-        navAvatar.textContent = avatarData.text;
-      }
-    }
-
     renderNavigationProfile();
   });
 
