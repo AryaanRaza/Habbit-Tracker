@@ -68,7 +68,7 @@ function loadProfile() {
   // Hero Name
   // --------------------------------
 
-  profileName.textContent = getUserDisplayName(currentUser);
+  renderProfileName(profileName, currentUser);
 
   // --------------------------------
   // Avatar
@@ -76,7 +76,7 @@ function loadProfile() {
 
   const avatarData = getUserAvatar(currentUser);
 
-  avatarDisplay.textContent = avatarData.text;
+  renderProfileAvatar(avatarDisplay, currentUser);
 
   avatarDisplay.dataset.avatar = currentUser.avatar || "initial";
 
@@ -187,14 +187,12 @@ function saveProfile(e) {
   // --------------------------------
   const avatarData = getUserAvatar(currentUser);
 
-  avatarDisplay.textContent = avatarData.text;
+  renderProfileAvatar(avatarDisplay, currentUser);
 
   avatarDisplay.dataset.avatar = currentUser.avatar || "initial";
 
-  profileName.textContent = getUserDisplayName(currentUser);
-  if (typeof renderNavigationProfile === "function") {
-    renderNavigationProfile();
-  }
+  renderProfileName(profileName, currentUser);
+  refreshProfileUI();
 
   // --------------------------------
   // Save Feedback

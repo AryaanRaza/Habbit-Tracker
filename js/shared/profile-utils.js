@@ -46,3 +46,13 @@ function renderProfileName(element, user) {
 
   element.textContent = getUserDisplayName(user);
 }
+
+function refreshProfileUI() {
+  if (typeof renderNavigationProfile === "function") {
+    renderNavigationProfile();
+  }
+
+  if (typeof renderSettingsProfile === "function") {
+    renderSettingsProfile();
+  }
+}
