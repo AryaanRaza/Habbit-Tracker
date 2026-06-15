@@ -25,25 +25,35 @@
 
 <body class="sub-settings-page">
     <main class="sub-settings-layout">
-        <header class="sub-settings-branding">
+
+        <!-- =============================================
+             PAGE HEADER
+             Back button + page title and description
+             ============================================= -->
+        <header class="sub-page-banner">
+
+            <!-- Back navigation: returns to main settings hub -->
             <div class="header-top">
-                <button class="back-btn smart-back">
+                <a href="../settings.html" class="back-btn">
                     <span class="material-symbols-rounded">
                         arrow_back_ios_new
                     </span>
-                </button>
+                </a>
             </div>
-            <h1>HabitFlow</h1>
-            <p>Review the terms that guide your habit journey.</p>
+
+            <!-- Page title block -->
+            <!-- Page title block -->
+            <div class="page-heading">
+                <h1>Terms & Conditions</h1>
+                <p>
+                    Review the rules, responsibilities, and conditions for using the app.
+                </p>
+            </div>
+
         </header>
 
         <section class="sub-settings-card glass-panel">
-            <header class="sub-page-header">
-                <div class="sub-page-title">
-                    <h2>Terms & Conditions</h2>
-                    <p>Simple, clear, and easy to understand.</p>
-                </div>
-            </header>
+
 
             <div class="sub-page-content legal-content">
                 <section class="content-block">
@@ -79,7 +89,7 @@
         </section>
     </main>
 
-     <script src="../js/shared/navigation.js"></script>
+    <script src="../js/shared/navigation.js"></script>
     <script src="../js/shared/smart-back.js"></script>
 </body>
 
