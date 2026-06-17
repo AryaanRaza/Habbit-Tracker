@@ -236,3 +236,21 @@ loginForm?.addEventListener("submit", (e) => {
     window.location.href = "dashboard.html";
   }, 1200);
 });
+
+/* ============================================================
+   PASSWORD UI
+============================================================ */
+
+const passwordInput = document.getElementById("password");
+const confirmPasswordInput = document.getElementById("confirmPassword");
+
+const strengthFill = document.getElementById("pw-strength-fill");
+const strengthLabel = document.getElementById("pw-strength-label");
+
+const matchMsg = document.getElementById("pw-match-msg");
+
+initPasswordToggle();
+
+initPasswordStrength(passwordInput, strengthFill, strengthLabel);
+
+initPasswordMatch(passwordInput, confirmPasswordInput, matchMsg);

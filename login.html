@@ -24,6 +24,7 @@
 
   <!-- COMPONENTS -->
   <link rel="stylesheet" href="css/components/toast.css">
+  <link rel="stylesheet" href="css/components/password-strength.css">
 
   <!-- PAGE -->
 
@@ -70,11 +71,12 @@
           <label for="password">Password</label>
           <div class="input-wrap">
             <span class="input-icon material-symbols-rounded">lock</span>
-            <input type="password" id="password" placeholder="••••••••" autocomplete="current-password" required />
-            <!-- Show / hide toggle -->
-            <button type="button" class="pw-toggle" data-target="password" title="Show/hide password">
+            <input type="password" id="password" name="password" placeholder="••••••••" autocomplete="new-password"
+              required>
+            <button type="button" class="pw-toggle" data-target="password" title="Show/hide">
               <span class="material-symbols-rounded">visibility</span>
             </button>
+
           </div>
         </div>
 
@@ -123,10 +125,10 @@
     <div id="toast" class="toast"></div>
   </main>
   <script src="js/core/storage.js"></script>
+  <script src="js/shared/password-ui.js"></script>
   <script src="js/core/auth.js"></script>
   <script src="js/core/redirect.js"></script>
 
-  <script src="js/auth/auth-ui.js"></script>
 </body>
 
 </html>
