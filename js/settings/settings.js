@@ -7,13 +7,9 @@ function renderSettingsProfile() {
 
   if (!currentUser) return;
 
-  const settingsName = document.getElementById(
-    "settings-profile-name",
-  );
+  const settingsName = document.getElementById("settings-profile-name");
 
-  const settingsAvatar = document.getElementById(
-    "settings-profile-avatar",
-  );
+  const settingsAvatar = document.getElementById("settings-profile-avatar");
 
   renderProfileName(settingsName, currentUser);
 
@@ -22,4 +18,33 @@ function renderSettingsProfile() {
 
 document.addEventListener("DOMContentLoaded", () => {
   renderSettingsProfile();
+});
+
+// ============================================
+// LOGOUT MODAL
+// ============================================
+
+const logoutTrigger = document.getElementById("logout-trigger");
+
+const logoutModal = document.getElementById("logout-modal");
+
+const logoutCancel = document.getElementById("logout-cancel");
+
+// Open modal
+logoutTrigger?.addEventListener("click", (e) => {
+  e.preventDefault();
+
+  logoutModal.hidden = false;
+});
+
+// Cancel button
+logoutCancel?.addEventListener("click", () => {
+  logoutModal.hidden = true;
+});
+
+// Click backdrop
+logoutModal?.addEventListener("click", (e) => {
+  if (e.target === logoutModal) {
+    logoutModal.hidden = true;
+  }
 });

@@ -283,7 +283,7 @@
 }
 
 .logout-modal p {
-  color: var(--clr-text-soft);
+   color: rgba(255, 255, 255, 0.82);
 
   line-height: 1.6;
 
