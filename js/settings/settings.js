@@ -48,3 +48,12 @@ logoutModal?.addEventListener("click", (e) => {
     logoutModal.hidden = true;
   }
 });
+
+const logoutConfirm = document.getElementById(
+  "logout-confirm",
+);
+
+// Confirm logout
+logoutConfirm?.addEventListener("click", () => {
+  logoutUser();
+});
