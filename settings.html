@@ -192,6 +192,26 @@
 
         </div>
     </main>
+    <!-- LOGOUT CONFIRMATION MODAL -->
+    <div class="logout-modal-overlay" id="logout-modal" hidden>
+        <div class="logout-modal">
+            <h2>Log Out?</h2>
+
+            <p>
+                Are you sure you want to sign out of HabitFlow?
+            </p>
+
+            <div class="logout-modal-actions">
+                <button type="button" class="logout-cancel-btn" id="logout-cancel">
+                    Cancel
+                </button>
+
+                <button type="button" class="logout-confirm-btn" id="logout-confirm">
+                    Log Out
+                </button>
+            </div>
+        </div>
+    </div>
 
     <script src="js/core/storage.js"></script>
     <script src="js/core/auth.js"></script>
