@@ -76,7 +76,13 @@
             <button type="button" class="pw-toggle" data-target="password" title="Show/hide">
               <span class="material-symbols-rounded">visibility</span>
             </button>
-
+          </div>
+          <!-- Password strength bar -->
+          <div class="pw-strength" id="pw-strength">
+            <div class="pw-strength-track">
+              <div class="pw-strength-fill" id="pw-strength-fill"></div>
+            </div>
+            <span class="pw-strength-label" id="pw-strength-label"></span>
           </div>
         </div>
 
@@ -126,6 +132,7 @@
   </main>
   <script src="js/core/storage.js"></script>
   <script src="js/shared/password-ui.js"></script>
+  <script src="js/shared/password-init.js"></script>
   <script src="js/core/auth.js"></script>
   <script src="js/core/redirect.js"></script>
 
