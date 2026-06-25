@@ -47,6 +47,16 @@ function renderProfileName(element, user) {
   element.textContent = getUserDisplayName(user);
 }
 
+function renderDashboardProfile() {
+  const currentUser = Storage.get(STORAGE_KEYS.CURRENT_USER);
+
+  if (!currentUser) return;
+
+  const dashboardName = document.getElementById("dashboard-profile-name");
+
+  renderProfileName(dashboardName, currentUser);
+}
+
 function refreshProfileUI() {
   if (typeof renderNavigationProfile === "function") {
     renderNavigationProfile();

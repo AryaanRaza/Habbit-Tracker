@@ -7,8 +7,6 @@
 //     - Toast popup
 // ============================================================
 
-
-
 document.addEventListener("DOMContentLoaded", () => {
   /* =========================
       SELECTORS
@@ -24,15 +22,15 @@ document.addEventListener("DOMContentLoaded", () => {
   /* =========================
     CONSTANTS
 ========================= */
-window.CATEGORIES = {
-  health: { icon: "🌿", color: "var(--cat-health)" },
-  learning: { icon: "📚", color: "var(--cat-learning)" },
-  fitness: { icon: "💪", color: "var(--cat-fitness)" },
-  mindfulness: { icon: "🧠", color: "var(--cat-mindfulness)" },
-  creativity: { icon: "🎨", color: "var(--cat-creativity)" },
-  work: { icon: "💻", color: "var(--cat-work)" },
-  other: { icon: "✨", color: "var(--cat-other)" },
-};
+  window.CATEGORIES = {
+    health: { icon: "🌿", color: "var(--cat-health)" },
+    learning: { icon: "📚", color: "var(--cat-learning)" },
+    fitness: { icon: "💪", color: "var(--cat-fitness)" },
+    mindfulness: { icon: "🧠", color: "var(--cat-mindfulness)" },
+    creativity: { icon: "🎨", color: "var(--cat-creativity)" },
+    work: { icon: "💻", color: "var(--cat-work)" },
+    other: { icon: "✨", color: "var(--cat-other)" },
+  };
 
   /* =========================
    INITIAL APP LOAD
@@ -41,6 +39,7 @@ window.CATEGORIES = {
   loadHabits();
 
   initFilters();
+  renderDashboardProfile();
 
   window.habits.forEach(renderHabitCard);
 
