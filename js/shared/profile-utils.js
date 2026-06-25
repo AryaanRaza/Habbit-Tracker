@@ -52,9 +52,17 @@ function renderDashboardProfile() {
 
   if (!currentUser) return;
 
-  const dashboardName = document.getElementById("dashboard-profile-name");
+  const dashboardName = document.getElementById(
+    "dashboard-profile-name",
+  );
+
+  const dashboardAvatar = document.getElementById(
+    "dashboard-profile-avatar",
+  );
 
   renderProfileName(dashboardName, currentUser);
+
+  renderProfileAvatar(dashboardAvatar, currentUser);
 }
 
 function refreshProfileUI() {
