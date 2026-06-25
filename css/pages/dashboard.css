@@ -35,6 +35,18 @@
   z-index: 2;
 }
 
+.dash-header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.dash-user-info {
+  text-align: left;
+  flex: 1;
+}
+
 .dash-title {
   font-family: var(--font-brand);
   font-size: clamp(3.5rem, 8vw, 6rem);
@@ -56,8 +68,40 @@
   color: var(--clr-text-soft);
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  margin-top: 8px;
+  margin-top: 6px;
 }
+.dash-greeting {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--clr-text-soft);
+  margin-bottom: 4px;
+}
+
+.dash-user-name {
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  font-weight: 800;
+  color: var(--clr-text-main);
+  line-height: 1.2;
+}
+.dash-avatar {
+  width: 64px;
+  height: 64px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  font-size: 1.5rem;
+  font-weight: 700;
+
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(10px);
+
+  flex-shrink: 0;
+}
+
 #confetti-canvas,
 .bg-orb {
   pointer-events: none;
