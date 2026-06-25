@@ -39,7 +39,13 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 16px;
+  gap: 24px;
+}
+
+.dash-user-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .dash-user-info {
@@ -71,10 +77,10 @@
   margin-top: 6px;
 }
 .dash-greeting {
-  font-size: 0.9rem;
+  font-size: 1rem;
   font-weight: 600;
   color: var(--clr-text-soft);
-  margin-bottom: 4px;
+  margin-bottom: 6px;
 }
 
 .dash-user-name {
@@ -84,8 +90,8 @@
   line-height: 1.2;
 }
 .dash-avatar {
-  width: 64px;
-  height: 64px;
+  width: 72px;
+  height: 72px;
 
   display: flex;
   align-items: center;
@@ -93,11 +99,13 @@
 
   border-radius: 50%;
 
-  font-size: 1.5rem;
+  font-size: 2rem;
   font-weight: 700;
 
   background: rgba(255, 255, 255, 0.25);
   backdrop-filter: blur(10px);
+
+  border: 1px solid rgba(255, 255, 255, 0.3);
 
   flex-shrink: 0;
 }
