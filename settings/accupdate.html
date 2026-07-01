@@ -6,89 +6,384 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Account Update | HabitFlow</title>
-    <!-- BASE -->
+
+    <!-- =============================================
+         STYLESHEETS
+         Base → Global → Components → Page-specific
+         ============================================= -->
+
+    <!-- BASE: CSS reset and design token variables -->
     <link rel="stylesheet" href="../css/base/reset.css">
     <link rel="stylesheet" href="../css/base/root.css">
 
-    <!-- GLOBAL -->
+    <!-- GLOBAL: Shared utility styles across all pages -->
     <link rel="stylesheet" href="../css/global.css">
 
-    <!-- COMPONENTS -->
+    <!-- COMPONENTS: Reusable UI elements -->
     <link rel="stylesheet" href="../css/components/navigation.css">
     <link rel="stylesheet" href="../css/components/back-button.css">
-    <!-- PAGE -->
-    <link rel="stylesheet" href="../css/pages/settings.css">
+    <link rel="stylesheet" href="../css/components/toast.css">
+    <link rel="stylesheet" href="../css/components/password-strength.css">
+
+    <!-- PAGE: Settings layout, subpage shell, and account-specific styles -->
+    <link rel="stylesheet" href="../css/pages/settings-main.css">
+    <link rel="stylesheet" href="../css/pages/settings-subpages.css">
+    <link rel="stylesheet" href="../css/pages/account-settings.css">
     <link rel="stylesheet" href="../css/pages/auth.css">
 
-
+    <!-- ICON FONT: Material Symbols (Rounded variant) -->
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 </head>
 
+<!-- Page modifier classes:
+     .sub-settings-page  → shared shell for all settings subpages
+     .update             → specific to the account update subpage -->
+
 <body class="sub-settings-page update">
     <main class="sub-settings-layout">
-        <header class="sub-settings-branding">
+
+        <!-- =============================================
+             PAGE HEADER
+             Back button + page title and description
+             ============================================= -->
+        <header class="sub-page-banner">
+
+            <!-- Back navigation: returns to main settings hub -->
             <div class="header-top">
                 <a href="../settings.html" class="back-btn">
-                    <span class="material-symbols-rounded">arrow_back_ios_new</span>
+                    <span class="material-symbols-rounded">
+                        arrow_back_ios_new
+                    </span>
                 </a>
             </div>
-            <h1>HabitFlow</h1>
-            <p>Keep your profile as sharp as your streaks.</p>
+
+            <!-- Page title block -->
+            <div class="page-heading">
+                <h1>Account Settings</h1>
+                <p>
+                    Manage your profile, avatar and account security.
+                </p>
+            </div>
+
         </header>
 
+
+        <!-- =============================================
+             MAIN CARD
+             Glassmorphism panel that wraps the full
+             account hero + all form sections
+             ============================================= -->
         <section class="sub-settings-card glass-panel">
-            <header class="sub-page-header">
-                <div class="sub-page-title">
-                    <h2>Update Account</h2>
-                    <p>Modify your personal details below.</p>
+
+            <!-- -----------------------------------------
+                 ACCOUNT HERO
+                 Profile avatar, display name, streak badge,
+                 stats row, and the inline avatar picker
+                 (hidden by default; shown on mobile or as
+                 fallback when the modal is not used)
+                 ----------------------------------------- -->
+            <section class="account-hero">
+
+                <!-- Avatar display + edit trigger button -->
+                <div class="avatar-wrapper">
+                    <!-- Avatar display: shows emoji or initial; data-avatar tracks current selection -->
+                    <div class="account-avatar" id="account-avatar" data-avatar="initial">
+                        H
+                    </div>
+
+                    <!-- Edit button: triggers the avatar picker modal (desktop) or inline picker (mobile) -->
+                    <button type="button" class="avatar-edit-btn" id="avatar-toggle-btn">
+                        <span class="material-symbols-rounded">
+                            edit
+                        </span>
+                    </button>
                 </div>
-            </header>
 
+                <!-- User's display name — populated dynamically via JS -->
+                <h2 class="account-profile-name" id="profileName"> </h2>
+
+                <!-- Current streak badge -->
+                <div class="account-streak">
+                    🔥 1 day streak
+                </div>
+
+                <!-- Quick stats row: habits count, completions, best streak -->
+                <div class="account-stats">
+                    <div class="account-stat">
+                        <span class="stat-number" id="settings-total-habits">0</span>
+                        <span class="stat-label">Habits</span>
+                    </div>
+
+                    <div class="account-stat">
+                        <span class="stat-number" id="settings-total-completions">0</span>
+                        <span class="stat-label">Completions</span>
+                    </div>
+
+                    <div class="account-stat">
+                        <span class="stat-number" id="settings-best-streak">0</span>
+                        <span class="stat-label">Best Streak</span>
+                    </div>
+                </div>
+
+                <!-- -----------------------------------------
+                     INLINE AVATAR PICKER
+                     Alternative picker rendered inside the hero
+                     section. Hidden by default (.hidden).
+                     Used as a non-modal fallback — JS toggles
+                     visibility via the edit button above.
+                     ----------------------------------------- -->
+                <div class="avatar-picker hidden">
+
+                    <h3 class="avatar-picker-title">
+                        Choose Your Avatar
+                    </h3>
+
+                    <!-- Grid of selectable emoji avatars -->
+                    <div class="avatar-grid">
+
+                        <!-- Each button carries a data-avatar attribute for JS selection logic -->
+                        <button type="button" class="avatar-option active" data-avatar="🐼">🐼</button>
+                        <button type="button" class="avatar-option" data-avatar="🦁">🦁</button>
+                        <button type="button" class="avatar-option" data-avatar="🦊">🦊</button>
+                        <button type="button" class="avatar-option" data-avatar="🐸">🐸</button>
+                        <button type="button" class="avatar-option" data-avatar="🐙">🐙</button>
+                        <button type="button" class="avatar-option" data-avatar="🦋">🦋</button>
+                        <button type="button" class="avatar-option" data-avatar="🌻">🌻</button>
+                        <button type="button" class="avatar-option" data-avatar="🐬">🐬</button>
+                        <button type="button" class="avatar-option" data-avatar="🦄">🦄</button>
+                        <button type="button" class="avatar-option" data-avatar="🦕">🦕</button>
+                        <button type="button" class="avatar-option" data-avatar="⭐">⭐</button>
+
+                    </div>
+
+                </div>
+
+            </section>
+            <!-- /account-hero -->
+
+
+            <!-- -----------------------------------------
+                 ACCOUNT FORM
+                 Three collapsible-style sections covering
+                 Personal Info, Contact, and Security.
+                 Wrapped in .sub-page-content for spacing.
+                 ----------------------------------------- -->
             <div class="sub-page-content">
-                <form action="#" class="auth-form update-form">
-                    <div class="form-grid">
-                        <div class="input-group">
-                            <label for="firstName">First Name</label>
-                            <input type="text" name="firstName" id="firstName" placeholder="Jane" required autofocus>
-                        </div>
+                <form action="#" class="auth-form update-form" id="accountForm">
 
-                        <div class="input-group">
-                            <label for="lastName">Last Name</label>
-                            <input type="text" name="lastName" id="lastName" placeholder="Doe" required>
-                        </div>
+                    <div class="account-sections">
+
+                        <!-- SECTION 1: Personal Info — first name, last name, date of birth -->
+                        <section class="account-section">
+
+                            <div class="section-header">
+                                <h3 class="section-heading">
+                                    <span class="material-symbols-rounded">person</span>
+                                    Personal Info
+                                </h3>
+                                <p class="section-description">
+                                    Update your name and personal details.
+                                </p>
+                            </div>
+
+                            <!-- Name fields in a two-column grid -->
+                            <div class="form-grid">
+                                <div class="input-group">
+                                    <label for="firstName">First Name</label>
+                                    <input type="text" name="firstName" id="firstName" placeholder="Jane" required
+                                        autofocus>
+                                </div>
+
+                                <div class="input-group">
+                                    <label for="lastName">Last Name</label>
+                                    <input type="text" name="lastName" id="lastName" placeholder="Doe" required>
+                                </div>
+                            </div>
+
+                            <!-- Date of birth — standalone full-width field -->
+                            <div class="input-group">
+                                <label for="dob">Date of Birth</label>
+                                <input type="date" id="dob">
+                            </div>
+
+                        </section>
+                        <!-- /Personal Info -->
+
+
+                        <!-- SECTION 2: Contact — email address only -->
+                        <section class="account-section">
+
+                            <div class="section-header">
+                                <h3 class="section-heading">
+                                    <span class="material-symbols-rounded">mail</span>
+                                    Contact
+                                </h3>
+                                <p class="section-description">
+                                    Manage how HabitFlow reaches you.
+                                </p>
+                            </div>
+
+                            <div class="input-group">
+                                <label for="email">Email Address</label>
+                                <input type="email" id="email" placeholder="name@example.com" required>
+                            </div>
+
+                        </section>
+                        <!-- /Contact -->
+
+
+                        <!-- SECTION 3: Security — current password, new password, confirm password -->
+                        <section class="account-section">
+
+                            <div class="section-header">
+                                <h3 class="section-heading">
+                                    <span class="material-symbols-rounded">lock</span>
+                                    Security
+                                </h3>
+                                <p class="section-description">
+                                    Change your password and protect your account.
+                                </p>
+                            </div>
+
+                            <!-- Current password — full-width, with visibility toggle -->
+                            <div class="input-group">
+                                <label for="current-password">Current Password</label>
+                                <div class="input-wrap">
+                                    <input type="password" id="current-password" placeholder="Enter current password">
+                                    <!-- Toggle button: switches input type between password/text -->
+                                    <button type="button" class="pw-toggle" data-target="current-password">
+                                        <span class="material-symbols-rounded">visibility</span>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- New password + confirm password in a two-column grid -->
+                            <div class="form-grid">
+
+                                <!-- New password with strength meter below the input -->
+                                <div class="input-group">
+                                    <label for="password">New Password</label>
+                                    <div class="input-wrap">
+                                        <input type="password" id="password" placeholder="••••••••">
+                                        <button type="button" class="pw-toggle" data-target="password">
+                                            <span class="material-symbols-rounded">visibility</span>
+                                        </button>
+                                    </div>
+
+                                    <!-- Password strength indicator: track bar + text label -->
+                                    <div class="pw-strength">
+                                        <div class="pw-strength-track">
+                                            <div class="pw-strength-fill" id="pw-strength-fill"></div>
+                                        </div>
+                                        <span class="pw-strength-label" id="pw-strength-label"></span>
+                                    </div>
+                                </div>
+
+                                <!-- Confirm password — must match new password (validated via JS) -->
+                                <div class="input-group">
+                                    <label for="confirm-password">Confirm Password</label>
+                                    <div class="input-wrap">
+                                        <input type="password" id="confirm-password" placeholder="••••••••">
+                                        <button type="button" class="pw-toggle" data-target="confirm-password">
+                                            <span class="material-symbols-rounded">visibility</span>
+                                        </button>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <!-- Password match validation message — shown/hidden by JS -->
+                            <p class="pw-match-msg hidden" id="pw-match-msg"></p>
+
+                        </section>
+                        <!-- /Security -->
+
+                    </div>
+                    <!-- /account-sections -->
+
+                    <!-- Form submit button — centred below all sections -->
+                    <div class="save-actions">
+                        <button type="submit" class="btn btn-glow">
+                            <span class="material-symbols-rounded">check_circle</span>
+                            &nbsp;Save Changes
+                        </button>
                     </div>
 
-                    <div class="input-group">
-                        <label for="dob">Date of Birth</label>
-                        <input type="date" id="dob">
-                    </div>
-
-                    <div class="input-group">
-                        <label for="email">Email Address</label>
-                        <input type="email" id="email" placeholder="name@example.com" required>
-                    </div>
-
-                    <div class="form-grid">
-                        <div class="input-group">
-                            <label for="password">New Password</label>
-                            <input type="password" id="password" placeholder="••••••••">
-                        </div>
-
-                        <div class="input-group">
-                            <label for="confirm-password">Confirm Password</label>
-                            <input type="password" id="confirm-password" placeholder="••••••••">
-                        </div>
-                    </div>
-
-                    <button type="submit" class="btn btn-glow">Save Changes</button>
                 </form>
             </div>
+            <!-- /sub-page-content -->
+
         </section>
+        <!-- /sub-settings-card -->
+
+
+        <!-- =============================================
+             AVATAR PICKER MODAL
+             Full-screen overlay with a glassmorphism card.
+             Triggered by the edit button in .avatar-wrapper.
+             JS toggles .show on .avatar-modal-overlay to
+             animate it in/out. Used on desktop; the inline
+             .avatar-picker above is the mobile fallback.
+             ============================================= -->
+        <div class="avatar-modal-overlay" id="avatar-modal">
+
+            <div class="avatar-modal">
+
+                <!-- Modal header: title + close button -->
+                <div class="avatar-modal-header">
+                    <h3>Choose Avatar</h3>
+                    <button type="button" class="avatar-modal-close" id="close-avatar-modal">
+                        <span class="material-symbols-rounded">close</span>
+                    </button>
+                </div>
+
+                <!-- Grid of selectable emoji avatars (mirrors the inline picker above) -->
+                <div class="avatar-grid">
+                    <button type="button" class="avatar-option active" data-avatar="🐼">🐼</button>
+                    <button type="button" class="avatar-option" data-avatar="🦁">🦁</button>
+                    <button type="button" class="avatar-option" data-avatar="🦊">🦊</button>
+                    <button type="button" class="avatar-option" data-avatar="🐸">🐸</button>
+                    <button type="button" class="avatar-option" data-avatar="🐙">🐙</button>
+                    <button type="button" class="avatar-option" data-avatar="🦋">🦋</button>
+                    <button type="button" class="avatar-option" data-avatar="🌻">🌻</button>
+                    <button type="button" class="avatar-option" data-avatar="🐬">🐬</button>
+                    <button type="button" class="avatar-option" data-avatar="🦄">🦄</button>
+                    <button type="button" class="avatar-option" data-avatar="🦕">🦕</button>
+                    <button type="button" class="avatar-option" data-avatar="⭐">⭐</button>
+                </div>
+
+            </div>
+
+        </div>
+        <!-- /avatar-modal-overlay -->
+
+        <!-- =============================================
+             TOAST NOTIFICATION
+             Populated and shown by JS after save actions
+             or validation feedback
+             ============================================= -->
+        <div class="toast" id="toast"></div>
+
     </main>
 
+    <!-- =============================================
+         SCRIPTS
+         Core → Shared utilities → Page-specific
+         ============================================= -->
+
+    <!-- CORE: Storage abstraction and auth guard -->
+    <script src="../js/core/storage.js"></script>
+    <script src="../js/core/auth.js"></script>
+
+    <!-- SHARED: Nav behaviour, back-button logic, password visibility toggle -->
     <script src="../js/shared/navigation.js"></script>
     <script src="../js/shared/smart-back.js"></script>
+    <script src="../js/shared/password-ui.js"></script>
+
+    <!-- PAGE: Account settings form logic, avatar picker, save/validation -->
+    <script src="../js/settings/account-settings.js"></script>
+
 </body>
 
 </html>

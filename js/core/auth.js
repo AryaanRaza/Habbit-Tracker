@@ -62,7 +62,7 @@ function logoutUser() {
 // REGISTER
 // ============================================
 
-function registerUser(username, email, password) {
+function registerUser(username, firstName, lastName, email, password) {
   const users = Storage.get(STORAGE_KEYS.USERS) || [];
 
   // Check if email already exists
@@ -77,10 +77,20 @@ function registerUser(username, email, password) {
 
   const newUser = {
     id: Date.now(),
+
     username,
+    firstName,
+    lastName,
+
     email,
     password,
+
+    dob: "",
+
+    avatar: "",
+
     habits: [],
+
     createdAt: new Date().toISOString(),
   };
 
@@ -181,7 +191,7 @@ registerForm?.addEventListener("submit", (e) => {
 
   const username = `${firstName} ${lastName}`;
 
-  const result = registerUser(username, email, password);
+  const result = registerUser(username, firstName, lastName, email, password);
 
   if (!result.success) {
     showToast(result.message, "error");
