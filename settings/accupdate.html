@@ -133,31 +133,7 @@
                      Used as a non-modal fallback — JS toggles
                      visibility via the edit button above.
                      ----------------------------------------- -->
-                <div class="avatar-picker hidden">
 
-                    <h3 class="avatar-picker-title">
-                        Choose Your Avatar
-                    </h3>
-
-                    <!-- Grid of selectable emoji avatars -->
-                    <div class="avatar-grid">
-
-                        <!-- Each button carries a data-avatar attribute for JS selection logic -->
-                        <button type="button" class="avatar-option active" data-avatar="🐼">🐼</button>
-                        <button type="button" class="avatar-option" data-avatar="🦁">🦁</button>
-                        <button type="button" class="avatar-option" data-avatar="🦊">🦊</button>
-                        <button type="button" class="avatar-option" data-avatar="🐸">🐸</button>
-                        <button type="button" class="avatar-option" data-avatar="🐙">🐙</button>
-                        <button type="button" class="avatar-option" data-avatar="🦋">🦋</button>
-                        <button type="button" class="avatar-option" data-avatar="🌻">🌻</button>
-                        <button type="button" class="avatar-option" data-avatar="🐬">🐬</button>
-                        <button type="button" class="avatar-option" data-avatar="🦄">🦄</button>
-                        <button type="button" class="avatar-option" data-avatar="🦕">🦕</button>
-                        <button type="button" class="avatar-option" data-avatar="⭐">⭐</button>
-
-                    </div>
-
-                </div>
 
             </section>
             <!-- /account-hero -->
@@ -377,6 +353,7 @@
     <script src="../js/core/auth.js"></script>
 
     <!-- SHARED: Nav behaviour, back-button logic, password visibility toggle -->
+     <script src="../js/shared/profile-utils.js"></script>
     <script src="../js/shared/navigation.js"></script>
     <script src="../js/shared/smart-back.js"></script>
     <script src="../js/shared/password-ui.js"></script>

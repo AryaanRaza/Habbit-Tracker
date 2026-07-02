@@ -68,31 +68,24 @@ function loadProfile() {
   // Hero Name
   // --------------------------------
 
-  profileName.textContent = currentUser.username || "User";
+  renderProfileName(profileName, currentUser);
 
   // --------------------------------
   // Avatar
   // --------------------------------
 
-  if (currentUser.avatar) {
-    avatarDisplay.textContent = currentUser.avatar;
+  const avatarData = getUserAvatar(currentUser);
 
-    avatarDisplay.dataset.avatar = currentUser.avatar;
+  renderProfileAvatar(avatarDisplay, currentUser);
 
-    // highlight active avatar
-    avatarOptions.forEach((option) => {
-      option.classList.toggle(
-        "active",
-        option.dataset.avatar === currentUser.avatar,
-      );
-    });
-  } else {
-    const initial = currentUser.firstName?.charAt(0).toUpperCase() || "U";
+  avatarDisplay.dataset.avatar = currentUser.avatar || "initial";
 
-    avatarDisplay.textContent = initial;
-
-    avatarDisplay.dataset.avatar = "initial";
-  }
+  avatarOptions.forEach((option) => {
+    option.classList.toggle(
+      "active",
+      option.dataset.avatar === currentUser.avatar,
+    );
+  });
 }
 
 /* ============================================================
@@ -192,14 +185,14 @@ function saveProfile(e) {
   // --------------------------------
   // Live UI Updates
   // --------------------------------
+  const avatarData = getUserAvatar(currentUser);
 
-  profileName.textContent = fullName;
+  renderProfileAvatar(avatarDisplay, currentUser);
 
-  const navUsername = document.getElementById("nav-username");
+  avatarDisplay.dataset.avatar = currentUser.avatar || "initial";
 
-  if (navUsername) {
-    navUsername.textContent = fullName;
-  }
+  renderProfileName(profileName, currentUser);
+  refreshProfileUI();
 
   // --------------------------------
   // Save Feedback
@@ -275,6 +268,7 @@ avatarOptions.forEach((option) => {
     avatarModal.classList.remove("show");
   });
 });
+
 /* ============================================================
    ACCOUNT HERO STATS
 ============================================================ */
@@ -282,7 +276,7 @@ avatarOptions.forEach((option) => {
 function updateAccountStats() {
   const totalHabitsEl = document.getElementById("settings-total-habits");
   const totalCompletionsEl = document.getElementById(
-    "settings-total-completions"
+    "settings-total-completions",
   );
   const bestStreakEl = document.getElementById("settings-best-streak");
 
@@ -292,13 +286,10 @@ function updateAccountStats() {
 
   const totalCompletions = habits.reduce(
     (sum, habit) => sum + (habit.total || 0),
-    0
+    0,
   );
 
-  const bestStreak = Math.max(
-    ...habits.map((habit) => habit.best || 0),
-    0
-  );
+  const bestStreak = Math.max(...habits.map((habit) => habit.best || 0), 0);
 
   if (totalHabitsEl) {
     totalHabitsEl.textContent = totalHabits;
@@ -325,17 +316,9 @@ if (accountForm) {
 
 initPasswordToggle();
 
-initPasswordStrength(
-  passwordInput,
-  strengthFill,
-  strengthLabel
-);
+initPasswordStrength(passwordInput, strengthFill, strengthLabel);
 
-initPasswordMatch(
-  passwordInput,
-  confirmPasswordInput,
-  matchMsg
-);
+initPasswordMatch(passwordInput, confirmPasswordInput, matchMsg);
 
 /* ============================================================
    INITIAL LOAD

@@ -1,3 +1,15 @@
+function renderNavigationProfile() {
+  const currentUser = Storage.get(STORAGE_KEYS.CURRENT_USER);
+
+  const navUsername = document.getElementById("nav-username");
+  const navAvatar = document.getElementById("nav-avatar");
+
+  if (!currentUser) return;
+
+  renderProfileName(navUsername, currentUser);
+
+  renderProfileAvatar(navAvatar, currentUser);
+}
 document.addEventListener("DOMContentLoaded", () => {
   const path = window.location.pathname.toLowerCase();
 
@@ -28,7 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     <!-- Profile Card -->
     <div class="sidebar-profile">
-      <div class="profile-avatar">👤</div>
+      <div class="profile-avatar" id="nav-avatar">👤</div>
 
       <div class="profile-details">
         <div class="profile-name" id="nav-username">User</div>
@@ -215,12 +227,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // ============================================
 
     const currentUser = Storage.get(STORAGE_KEYS.CURRENT_USER);
-
-    const navUsername = document.getElementById("nav-username");
-
-    if (currentUser && navUsername) {
-      navUsername.textContent = currentUser.username;
-    }
+    renderNavigationProfile();
   });
 
   /* =========================
