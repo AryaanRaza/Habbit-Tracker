@@ -220,13 +220,6 @@
   color: var(--clr-text-soft);
 }
 
-/* ── Stats ── */
-.stats-overview {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 14px;
-}
-
 /* ── Section headings ── */
 .section-label {
   color: var(--clr-text-heading);

@@ -1,6 +1,39 @@
-/* ═══════════════════════════════════════════════════════════════
-              STATS
-════════════════════════════════════════════════════════════════ */
+/* ═══════════════════════════════════════
+            QUICK STATS
+═══════════════════════════════════════ */
+
+.stats-overview {
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+
+  gap: 0;
+
+  margin: 20px 0 28px;
+
+  padding: 28px 18px;
+
+  background: rgba(255, 255, 255, 0.26);
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
+
+  border: 1px solid rgba(255, 255, 255, 0.38);
+  border-radius: 30px;
+
+  box-shadow:
+    var(--shadow-ui),
+    inset 0 1px 0 rgba(255, 255, 255, 0.35);
+
+  overflow: hidden;
+}
+
+.stat-divider {
+  width: 1px;
+  background: rgba(170, 160, 230, 0.25);
+  margin: 18px 6px;
+  flex-shrink: 0;
+}
+
 .stat-card {
   background: rgba(255, 255, 255, 0.72);
   border: 1px solid rgba(255, 255, 255, 0.4);
