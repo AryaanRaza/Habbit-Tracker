@@ -34,73 +34,107 @@
   flex-shrink: 0;
 }
 
-.stat-card {
-  background: rgba(255, 255, 255, 0.72);
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  border-radius: 18px;
-  padding: 18px 14px 14px;
+/* ==========================================
+   INDIVIDUAL STAT
+========================================== */
+
+.stat-item {
+  flex: 1;
+
   display: flex;
   flex-direction: column;
-  gap: 4px;
-  box-shadow: 0 4px 16px rgba(140, 120, 220, 0.08);
-  position: relative;
-  overflow: hidden;
-  transition:
-    transform 0.25s ease,
-    box-shadow 0.25s ease;
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+
+  padding: 4px 10px;
 }
 
-.stat-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 10px 28px rgba(140, 120, 220, 0.14);
+/* ---------- Icon ---------- */
+
+.stat-icon {
+  width: 52px;
+  height: 52px;
+
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 1.45rem;
+
+  margin-bottom: 12px;
+
+  background: rgba(255, 255, 255, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.55);
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.45),
+    0 8px 20px rgba(140, 120, 220, 0.12);
+
+  transition: 0.3s ease;
 }
 
-/* Coloured top accent stripe */
-.stat-card::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 5px;
-  border-radius: 99px 99px 0 0;
+/* ---------- Number ---------- */
+
+.stat-number {
+  font-size: 2rem;
+  font-weight: 800;
+
+  color: var(--clr-text-main);
+
+  line-height: 1;
 }
-.stat-card.s-streak::before {
+
+/* ---------- Label ---------- */
+
+.stat-title {
+  margin-top: 8px;
+
+  font-size: 0.72rem;
+
+  letter-spacing: 0.14em;
+
+  font-weight: 800;
+
+  color: var(--clr-text-soft);
+}
+
+/* ---------- Bottom Accent ---------- */
+
+.stat-line {
+  width: 42px;
+  height: 4px;
+
+  border-radius: 999px;
+
+  margin-top: 12px;
+}
+
+.s-streak .stat-line {
   background: linear-gradient(90deg, #fb923c, #fbbf24);
 }
-.stat-card.s-best::before {
+
+.s-best .stat-line {
   background: linear-gradient(90deg, #f472b6, #f9a8d4);
 }
-.stat-card.s-total::before {
+
+.s-total .stat-line {
   background: linear-gradient(90deg, #2dd4bf, #5eead4);
 }
 
-.stat-emoji {
-  font-size: 1.3rem;
-  line-height: 1;
-  margin-bottom: 2px;
+.s-streak .stat-icon {
+  background: rgba(251, 146, 60, 0.15);
 }
 
-.stat-label p {
-  font-size: 0.68rem;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--clr-text-soft);
-  line-height: 1.2;
+.s-best .stat-icon {
+  background: rgba(244, 114, 182, 0.15);
 }
 
-.stat-value strong {
-  font-size: 1.6rem;
-  font-weight: 800;
-  color: var(--clr-text-main);
-  line-height: 1;
-}
-
-.stat-sub {
-  font-size: 0.68rem;
-  color: var(--clr-text-soft);
-  font-weight: 600;
+.s-total .stat-icon {
+  background: rgba(45, 212, 191, 0.15);
 }
 
 @media (max-width: 768px) {
@@ -108,34 +142,5 @@
      2. STATS LAYOUT
   =================================== */
 
-  .stat-card {
-    padding: 10px 8px;
-    gap: 2px;
-  }
 
-  .stat-emoji {
-    font-size: 0.95rem;
-  }
-
-  .stat-label p {
-    font-size: 0.55rem;
-    line-height: 1.1;
-  }
-
-  .stat-value strong {
-    font-size: 1.25rem;
-  }
-
-  .stat-sub {
-    font-size: 0.55rem;
-  }
-
-  .stats-overview {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 8px;
-  }
-
-  .stats-overview .stat-card:last-child {
-    grid-column: auto;
-  }
 }
