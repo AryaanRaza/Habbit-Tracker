@@ -9,28 +9,43 @@
 
   gap: 0;
 
-  margin: 20px 0 28px;
+  margin: 22px 0 30px;
 
-  padding: 28px 18px;
+  padding: 36px 22px;
 
-  background: rgba(255, 255, 255, 0.26);
-  backdrop-filter: blur(22px);
-  -webkit-backdrop-filter: blur(22px);
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.34),
+    rgba(255, 255, 255, 0.18)
+  );
 
-  border: 1px solid rgba(255, 255, 255, 0.38);
-  border-radius: 30px;
+  backdrop-filter: blur(26px);
+  -webkit-backdrop-filter: blur(26px);
+
+  border: 1px solid rgba(255, 255, 255, 0.42);
+
+  border-radius: 32px;
 
   box-shadow:
-    var(--shadow-ui),
-    inset 0 1px 0 rgba(255, 255, 255, 0.35);
+    0 18px 40px rgba(126, 102, 190, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.55);
 
   overflow: hidden;
+
+  position: relative;
 }
 
 .stat-divider {
   width: 1px;
-  background: rgba(170, 160, 230, 0.25);
-  margin: 18px 6px;
+
+  margin: 24px 10px;
+
+  background: linear-gradient(
+    transparent,
+    rgba(180, 170, 240, 0.45),
+    transparent
+  );
+
   flex-shrink: 0;
 }
 
@@ -54,8 +69,8 @@
 /* ---------- Icon ---------- */
 
 .stat-icon {
-  width: 52px;
-  height: 52px;
+  width: 60px;
+  height: 60px;
 
   border-radius: 50%;
 
@@ -63,39 +78,38 @@
   align-items: center;
   justify-content: center;
 
-  font-size: 1.45rem;
+  font-size: 1.65rem;
 
-  margin-bottom: 12px;
+  margin-bottom: 16px;
 
-  background: rgba(255, 255, 255, 0.45);
   border: 1px solid rgba(255, 255, 255, 0.55);
 
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.45),
-    0 8px 20px rgba(140, 120, 220, 0.12);
+  backdrop-filter: blur(10px);
 
-  transition: 0.3s ease;
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease;
 }
 
 /* ---------- Number ---------- */
 
 .stat-number {
-  font-size: 2rem;
+  font-size: 2.45rem;
+
   font-weight: 800;
+
+  line-height: 1;
 
   color: var(--clr-text-main);
 
-  line-height: 1;
+  margin-bottom: 10px;
 }
 
 /* ---------- Label ---------- */
-
 .stat-title {
-  margin-top: 8px;
+  font-size: 0.74rem;
 
-  font-size: 0.72rem;
-
-  letter-spacing: 0.14em;
+  letter-spacing: 0.18em;
 
   font-weight: 800;
 
@@ -103,14 +117,14 @@
 }
 
 /* ---------- Bottom Accent ---------- */
-
 .stat-line {
-  width: 42px;
+  width: 48px;
+
   height: 4px;
 
-  border-radius: 999px;
+  margin-top: 16px;
 
-  margin-top: 12px;
+  border-radius: 999px;
 }
 
 .s-streak .stat-line {
@@ -125,22 +139,42 @@
   background: linear-gradient(90deg, #2dd4bf, #5eead4);
 }
 
+/* STREAK */
+
 .s-streak .stat-icon {
-  background: rgba(251, 146, 60, 0.15);
+  background: rgba(251, 146, 60, 0.16);
+  box-shadow: 0 0 22px rgba(251, 146, 60, 0.18);
 }
+
+/* BEST */
 
 .s-best .stat-icon {
-  background: rgba(244, 114, 182, 0.15);
+  background: rgba(244, 114, 182, 0.16);
+  box-shadow: 0 0 22px rgba(244, 114, 182, 0.18);
 }
 
+/* DONE */
+
 .s-total .stat-icon {
-  background: rgba(45, 212, 191, 0.15);
+  background: rgba(45, 212, 191, 0.16);
+  box-shadow: 0 0 22px rgba(45, 212, 191, 0.18);
+}
+
+/*Hover Animation */
+.stat-item {
+  transition: transform 0.35s ease;
+}
+
+.stat-item:hover {
+  transform: translateY(-6px);
+}
+
+.stat-item:hover .stat-icon {
+  transform: scale(1.08);
 }
 
 @media (max-width: 768px) {
   /* ===================================
      2. STATS LAYOUT
   =================================== */
-
-
 }
