@@ -37,12 +37,14 @@
 
 .stat-divider {
   width: 1px;
+  align-self: stretch;
 
-  margin: 16px 8px;
+  margin: 24px 10px;
 
   background: linear-gradient(
+    to bottom,
     transparent,
-    rgba(180, 170, 240, 0.45),
+    rgba(170, 160, 230, 0.35),
     transparent
   );
 
@@ -64,6 +66,21 @@
   text-align: center;
 
   padding: 4px 10px;
+
+  transition: transform 0.25s ease;
+}
+
+/*Hover Animation */
+.stat-item {
+  transition: transform 0.35s ease;
+}
+
+.stat-item:hover {
+  transform: translateY(-6px);
+}
+
+.stat-item:hover .stat-icon {
+  transform: scale(1.08);
 }
 
 /* ---------- Icon ---------- */
@@ -159,19 +176,6 @@
 .s-total .stat-icon {
   background: rgba(45, 212, 191, 0.16);
   box-shadow: 0 0 22px rgba(45, 212, 191, 0.18);
-}
-
-/*Hover Animation */
-.stat-item {
-  transition: transform 0.35s ease;
-}
-
-.stat-item:hover {
-  transform: translateY(-6px);
-}
-
-.stat-item:hover .stat-icon {
-  transform: scale(1.08);
 }
 
 @media (max-width: 768px) {
