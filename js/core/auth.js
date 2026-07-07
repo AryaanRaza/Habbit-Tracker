@@ -236,3 +236,4 @@ loginForm?.addEventListener("submit", (e) => {
     window.location.href = "dashboard.html";
   }, 1200);
 });
+

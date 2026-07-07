@@ -172,11 +172,69 @@
                         <span class="chevron">›</span>
                     </a>
 
+                    <!-- <a href="#" class="settings-item logout-item" id="logout-trigger">
+                        <div class="item-content">
+                            <span class="item-icon">🚪</span>
+
+                            <div class="item-details">
+                                <span class="item-text">Log Out</span>
+                                <span class="item-subtext">
+                                    Sign out from your account
+                                </span>
+                            </div>
+                        </div>
+
+                        <span class="chevron">›</span>
+                    </a> -->
+
                 </nav>
+            </section>
+
+            <!-- LOGOUT -->
+            <section class="logout-section">
+
+                <div class="logout-card">
+
+                    <div class="logout-icon">
+                        🚪
+                    </div>
+
+                    <h3>Log Out</h3>
+
+                    <p>
+                        End your current HabitFlow session and return to the welcome screen.
+                    </p>
+
+                    <button type="button" class="logout-card-btn" id="logout-trigger">
+                        Log Out
+                    </button>
+
+                </div>
+
             </section>
 
         </div>
     </main>
+    <!-- LOGOUT CONFIRMATION MODAL -->
+    <div class="logout-modal-overlay" id="logout-modal" hidden>
+        <div class="logout-modal">
+            <h2>Log Out?</h2>
+
+            <p>
+                Are you sure you want to sign out of HabitFlow?
+            </p>
+
+            <div class="logout-modal-actions">
+                <button type="button" class="logout-cancel-btn" id="logout-cancel">
+                    Cancel
+                </button>
+
+                <button type="button" class="logout-confirm-btn" id="logout-confirm">
+                    Log Out
+                </button>
+            </div>
+        </div>
+    </div>
 
     <script src="js/core/storage.js"></script>
     <script src="js/core/auth.js"></script>
@@ -185,6 +243,7 @@
     <script src="/js/shared/profile-utils.js"></script>
     <script src="js/shared/navigation.js"></script>
     <script src="js/shared/smart-back.js"></script>
+    <script src="js/shared/password-ui.js"></script>
 
     <script src="js/settings/settings.js"></script>
 </body>

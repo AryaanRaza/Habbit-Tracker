@@ -16,7 +16,6 @@
 /* ============================================================
    PASSWORD TOGGLE
 ============================================================ */
-
 function initPasswordToggle() {
   document.querySelectorAll(".pw-toggle").forEach((btn) => {
     btn.addEventListener("click", () => {
