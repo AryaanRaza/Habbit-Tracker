@@ -118,7 +118,38 @@ function refreshChips(card, h) {
     totalValue.textContent = h.total;
   }
 }
+/* =========================
+   GLOBAL DAILY STREAK
+========================= */
 
+function updateGlobalStreak() {
+  const today = new Date().toDateString();
+
+  // Already counted today
+  if (window.globalStreak.lastCompletedDate === today) {
+    return;
+  }
+
+  // Yesterday
+  const yesterday = new Date();
+
+  yesterday.setDate(yesterday.getDate() - 1);
+
+  if (window.globalStreak.lastCompletedDate === yesterday.toDateString()) {
+    window.globalStreak.current++;
+  } else {
+    window.globalStreak.current = 1;
+  }
+
+  window.globalStreak.best = Math.max(
+    window.globalStreak.best,
+    window.globalStreak.current,
+  );
+
+  window.globalStreak.lastCompletedDate = today;
+
+  saveUserStreak(window.globalStreak);
+}
 /* =========================
    GLOBAL EXPORTS
 ========================= */
@@ -126,3 +157,4 @@ window.updateStats = updateStats;
 window.updateProgress = updateProgress;
 window.updateSidebarStats = updateSidebarStats;
 window.refreshChips = refreshChips;
+window.updateGlobalStreak = updateGlobalStreak;

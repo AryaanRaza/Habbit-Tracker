@@ -7,6 +7,12 @@ window.habits = [];
 window.editingId = null;
 window.currentFilter = "all";
 
+window.globalStreak = {
+  current: 0,
+  best: 0,
+  lastCompletedDate: null,
+};
+
 window.saveHabits = function () {
   saveUserHabits(window.habits);
 };
@@ -36,6 +42,9 @@ function resetDailyHabits() {
 
 window.loadHabits = function () {
   const storedHabits = loadUserHabits();
+
+  // Load the user's global streak
+  window.globalStreak = loadUserStreak();
 
   if (storedHabits.length === 0) {
     window.habits = [];
