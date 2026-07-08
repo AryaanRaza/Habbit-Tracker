@@ -39,7 +39,8 @@ const STORAGE_KEYS = {
   USERS: "habitflow_users",
   CURRENT_USER: "habitflow_current_user",
   HABITS: "habitflow_habits",
-  SETTINGS: "habitflow_settings"
+  SETTINGS: "habitflow_settings",
+  LAST_ACTIVE_DATE: "habitflow_last_active_date"
 };
 
 // ============================================
