@@ -12,8 +12,10 @@ window.completeHabit = function (card, habit) {
 
   habit.best = Math.max(habit.best, habit.streak);
 
-  saveHabits();
+  // Update overall daily streak
+  updateGlobalStreak();
 
+  saveHabits();
   setHabitCompletedUI(card); // 👈 UI layer
 
   refreshChips(card, habit);
