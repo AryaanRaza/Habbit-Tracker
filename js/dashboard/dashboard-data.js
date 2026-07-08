@@ -40,6 +40,9 @@ function resetDailyHabits() {
   Storage.set(STORAGE_KEYS.LAST_ACTIVE_DATE, today);
 }
 
+/* =========================
+   LOAD HABIT 
+========================= */
 window.loadHabits = function () {
   const storedHabits = loadUserHabits();
 
