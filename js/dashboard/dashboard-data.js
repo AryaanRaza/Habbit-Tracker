@@ -23,8 +23,7 @@ window.saveHabits = function () {
 function resetDailyHabits() {
   const today = new Date().toDateString();
 
-  const lastActiveDate = Storage.get(STORAGE_KEYS.LAST_ACTIVE_DATE);
-
+  const lastActiveDate = loadLastActiveDate();
   // Same day → nothing to reset
   if (lastActiveDate === today) return;
 
@@ -37,7 +36,7 @@ function resetDailyHabits() {
   saveHabits();
 
   // Remember today's date
-  Storage.set(STORAGE_KEYS.LAST_ACTIVE_DATE, today);
+  saveLastActiveDate(today);
 }
 
 /* =========================
