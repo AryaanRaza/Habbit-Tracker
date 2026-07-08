@@ -27,6 +27,23 @@ function resetDailyHabits() {
   // Same day → nothing to reset
   if (lastActiveDate === today) return;
 
+  // Check if the user missed one or more full days
+  if (lastActiveDate) {
+    const lastDate = new Date(lastActiveDate);
+    const currentDate = new Date(today);
+
+    const daysPassed = Math.floor(
+      (currentDate - lastDate) / (1000 * 60 * 60 * 24),
+    );
+
+    // Missed at least one entire day
+    if (daysPassed > 1) {
+      window.globalStreak.current = 0;
+
+      saveUserStreak(window.globalStreak);
+    }
+  }
+
   // New day → reset completion state
   window.habits.forEach((habit) => {
     habit.completedToday = false;

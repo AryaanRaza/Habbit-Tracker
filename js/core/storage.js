@@ -99,3 +99,25 @@ function loadUserStreak() {
     }
   );
 }
+
+// ============================================
+// USER-SPECIFIC LAST ACTIVE DATE
+// ============================================
+
+function getLastActiveKey() {
+  const currentUser = Storage.get(STORAGE_KEYS.CURRENT_USER);
+
+  if (!currentUser) {
+    return "habitflow_last_active_guest";
+  }
+
+  return `habitflow_last_active_${currentUser.id}`;
+}
+
+function saveLastActiveDate(date) {
+  Storage.set(getLastActiveKey(), date);
+}
+
+function loadLastActiveDate() {
+  return Storage.get(getLastActiveKey());
+}
