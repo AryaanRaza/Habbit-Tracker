@@ -43,4 +43,7 @@ window.loadHabits = function () {
   } else {
     window.habits = storedHabits;
   }
+
+  // Reset completed habits if a new day has started
+  resetDailyHabits();
 };
