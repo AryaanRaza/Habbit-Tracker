@@ -27,12 +27,43 @@
 .dash-header {
   width: 100%;
   max-width: 780px;
-  margin: 0 auto 24px;
-  text-align: center;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-  padding-bottom: 16px;
+
+  margin: 0 auto 28px;
+  padding: 24px 28px;
+
   position: relative;
   z-index: 2;
+
+  background: var(--bg-card);
+  border: 1px solid var(--border-glass);
+
+  border-radius: var(--radius-2xl);
+
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+
+  box-shadow: var(--shadow-soft);
+}
+
+.dash-header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+
+  padding-bottom: 14px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+.dash-user-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.dash-user-info {
+  text-align: left;
+  flex: 1;
 }
 
 .dash-title {
@@ -51,13 +82,51 @@
 }
 
 .dash-date {
-  font-size: 0.78rem;
+  font-size: 0.82rem;
   font-weight: 700;
+
   color: var(--clr-text-soft);
+
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  margin-top: 8px;
+
+  margin-top: 14px;
 }
+.dash-greeting {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--clr-text-soft);
+  margin-bottom: 6px;
+}
+
+.dash-user-name {
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  font-weight: 800;
+  color: var(--clr-text-main);
+  line-height: 1.2;
+}
+.dash-avatar {
+  width: 76px;
+  height: 76px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  font-size: 2rem;
+  font-weight: 700;
+
+  background: var(--grad-accent);
+
+  border: 1px solid rgba(255, 255, 255, 0.4);
+
+  box-shadow: var(--shadow-soft);
+
+  flex-shrink: 0;
+}
+
 #confetti-canvas,
 .bg-orb {
   pointer-events: none;
@@ -400,20 +469,38 @@
     padding-right: 12px;
   }
   /* ===================================
-     2. KEEP YOUR STATS LAYOUT
-     (2 top + 1 bottom full width)
+     2. STATS LAYOUT
   =================================== */
 
+  .stat-card {
+    padding: 10px 8px;
+    gap: 2px;
+  }
+
+  .stat-emoji {
+    font-size: 0.95rem;
+  }
+
+  .stat-label p {
+    font-size: 0.55rem;
+    line-height: 1.1;
+  }
+
+  .stat-value strong {
+    font-size: 1.25rem;
+  }
+
+  .stat-sub {
+    font-size: 0.55rem;
+  }
+
   .stats-overview {
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
   }
 
   .stats-overview .stat-card:last-child {
-    grid-column: 1 / -1;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-evenly;
+    grid-column: auto;
   }
 
   /* ===================================

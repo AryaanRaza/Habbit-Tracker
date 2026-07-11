@@ -17,8 +17,6 @@
   <link rel="stylesheet" href="css/components/buttons.css">
   <link rel="stylesheet" href="css/components/habit-cards.css">
   <link rel="stylesheet" href="css/components/quick-stats.css">
-  <link rel="stylesheet" href="css/components/forms.css">
-  <link rel="stylesheet" href="css/components/chips.css">
   <link rel="stylesheet" href="css/components/modal.css">
   <link rel="stylesheet" href="css/components/toast.css">
   <link rel="stylesheet" href="css/components/navigation.css">
@@ -44,9 +42,29 @@
        HEADER  
   ════════════════════════════════════════ -->
   <header class="dash-header">
-    <h1 class="dash-title">HabitFlow</h1>
-    <p class="dash-tagline">Small habits. Big magic. ✨</p>
-    <p class="dash-date" id="today-date"></p>
+
+    <div class="dash-header-content">
+
+      <div class="dash-user-info">
+
+        <p class="dash-greeting" id="dashboard-greeting">
+          Good Morning, 👋
+        </p>
+
+        <h1 class="dash-user-name" id="dashboard-profile-name">
+          User
+        </h1>
+
+        <p class="dash-date" id="today-date"></p>
+
+      </div>
+
+      <div class="dash-avatar" id="dashboard-profile-avatar" aria-label="User avatar">
+        U
+      </div>
+
+    </div>
+
   </header>
 
   <main class="dash-wrapper">
@@ -238,11 +256,8 @@
   <script src="js/core/protect.js"></script>
 
   <!-- SHARED -->
-  <script src="/js/shared/profile-utils.js"></script>
+  <script src="js/shared/profile-utils.js"></script>
   <script src="js/shared/navigation.js"></script>
-
-  <!-- HABIT STORAGE -->
-  <script src="js/core/habits-storage.js"></script>
 
   <!-- DASHBOARD DATA / STATE -->
   <script src="js/dashboard/dashboard-data.js"></script>

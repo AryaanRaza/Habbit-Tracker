@@ -134,31 +134,6 @@
   z-index: 1;
 }
 
-.back-btn {
-  width: 42px;
-  height: 42px;
-  flex-shrink: 0;
-  display: grid;
-  place-items: center;
-  border-radius: 14px;
-  text-decoration: none;
-  color: var(--clr-text-main);
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  transition:
-    transform 0.25s ease,
-    background 0.25s ease;
-}
-
-.back-btn:hover {
-  transform: translateY(-2px);
-  background: rgba(255, 255, 255, 0.16);
-}
-
-.back-btn .material-symbols-rounded {
-  font-size: 20px;
-}
-
 .sub-page-title h2 {
   margin: 0 0 6px 0;
   font-size: 1.5rem;
@@ -212,58 +187,40 @@
 /* =========================
    MOBILE
 ========================= */
+@media (max-width:768px) {
 
-@media (max-width: 768px) {
-  .sub-settings-page {
-    padding: 14px 14px 90px;
+  .sub-page-banner{
+    position: relative;
+    padding-top: 18px;
   }
 
-  .sub-settings-layout {
-    width: 100%;
+  .back-btn{
+    top: 18px;
+    left: 18px;
+
+    width: 44px;
+    height: 44px;
+
+    border-radius: 14px;
   }
 
-  .sub-page-banner {
-    margin-bottom: 18px;
+  .back-btn span{
+    font-size: 1.15rem !important;
   }
 
-  .page-heading h1 {
-    font-size: 1.8rem;
+  /* Leave room for the back button */
+  .page-heading{
+    padding: 0 12px 0 58px;
   }
 
-  .page-heading p {
-    font-size: 0.92rem;
-    padding-inline: 12px;
+  .page-heading h1{
+    font-size: 1.75rem;
+    line-height: 1.15;
   }
 
-  .sub-settings-card.glass-panel {
-    width: 100%;
-    padding: 22px 18px;
-    border-radius: 24px;
+  .page-heading p{
+    margin-top: 10px;
+    padding-inline: 8px;
   }
 
-  .sub-page-header {
-    gap: 12px;
-    margin-bottom: 18px;
-  }
-
-  .back-btn {
-    width: 38px;
-    height: 38px;
-    border-radius: 12px;
-    top: 5px;
-  }
-
-  .sub-page-title h2 {
-    font-size: 1.3rem;
-  }
-
-  .sub-page-title p,
-  .content-block p {
-    font-size: 0.92rem;
-  }
-
-  .content-block {
-    padding: 16px 14px;
-    border-radius: 18px;
-  }
 }
