@@ -1,71 +1,185 @@
-/* ═══════════════════════════════════════════════════════════════
-              STATS
-════════════════════════════════════════════════════════════════ */
-.stat-card {
-  background: rgba(255, 255, 255, 0.72);
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  border-radius: 18px;
-  padding: 18px 14px 14px;
+/* ═══════════════════════════════════════
+            QUICK STATS
+═══════════════════════════════════════ */
+
+.stats-overview {
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+
+  gap: 0;
+
+  margin: 22px 0 30px;
+
+  padding: 20px 18px;
+
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.34),
+    rgba(255, 255, 255, 0.18)
+  );
+
+  backdrop-filter: blur(26px);
+  -webkit-backdrop-filter: blur(26px);
+
+  border: 1px solid rgba(255, 255, 255, 0.42);
+
+  border-radius: 32px;
+
+  box-shadow:
+    0 18px 40px rgba(126, 102, 190, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.55);
+
+  overflow: hidden;
+
+  position: relative;
+}
+
+.stat-divider {
+  width: 1px;
+  align-self: stretch;
+
+  margin: 24px 10px;
+
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(170, 160, 230, 0.35),
+    transparent
+  );
+
+  flex-shrink: 0;
+}
+
+/* ==========================================
+   INDIVIDUAL STAT
+========================================== */
+
+.stat-item {
+  flex: 1;
+
   display: flex;
   flex-direction: column;
-  gap: 4px;
-  box-shadow: 0 4px 16px rgba(140, 120, 220, 0.08);
-  position: relative;
-  overflow: hidden;
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+
+  padding: 4px 10px;
+
+  transition: transform 0.25s ease;
+}
+
+/*Hover Animation */
+.stat-item {
+  transition: transform 0.35s ease;
+}
+
+.stat-item:hover {
+  transform: translateY(-6px);
+}
+
+.stat-item:hover .stat-icon {
+  transform: scale(1.08);
+}
+
+/* ---------- Icon ---------- */
+
+.stat-icon {
+  width: 44px;
+  height: 44px;
+
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 1.2rem;
+
+  margin-bottom: 8px;
+
+  border: 1px solid rgba(255, 255, 255, 0.55);
+
+  backdrop-filter: blur(10px);
+
   transition:
-    transform 0.25s ease,
-    box-shadow 0.25s ease;
+    transform 0.35s ease,
+    box-shadow 0.35s ease;
 }
 
-.stat-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 10px 28px rgba(140, 120, 220, 0.14);
+/* ---------- Number ---------- */
+
+.stat-number {
+  font-size: 2rem;
+
+  font-weight: 800;
+
+  line-height: 1;
+
+  color: var(--clr-text-main);
+
+  margin-bottom: 10px;
 }
 
-/* Coloured top accent stripe */
-.stat-card::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 5px;
-  border-radius: 99px 99px 0 0;
+/* ---------- Label ---------- */
+.stat-title {
+  margin-top: 6px;
+  font-size: 0.72em;
+
+  letter-spacing: 0.16em;
+
+  font-weight: 800;
+
+  color: var(--clr-text-soft);
 }
-.stat-card.s-streak::before {
+
+/* ---------- Bottom Accent ---------- */
+.stat-line {
+  width: 36px;
+
+  height: 4px;
+
+  margin-top: 8px;
+
+  border-radius: 999px;
+}
+
+.s-streak .stat-line {
   background: linear-gradient(90deg, #fb923c, #fbbf24);
 }
-.stat-card.s-best::before {
+
+.s-best .stat-line {
   background: linear-gradient(90deg, #f472b6, #f9a8d4);
 }
-.stat-card.s-total::before {
+
+.s-total .stat-line {
   background: linear-gradient(90deg, #2dd4bf, #5eead4);
 }
 
-.stat-emoji {
-  font-size: 1.3rem;
-  line-height: 1;
-  margin-bottom: 2px;
+/* STREAK */
+
+.s-streak .stat-icon {
+  background: rgba(251, 146, 60, 0.16);
+  box-shadow: 0 0 22px rgba(251, 146, 60, 0.18);
 }
 
-.stat-label p {
-  font-size: 0.68rem;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--clr-text-soft);
-  line-height: 1.2;
+/* BEST */
+
+.s-best .stat-icon {
+  background: rgba(244, 114, 182, 0.16);
+  box-shadow: 0 0 22px rgba(244, 114, 182, 0.18);
 }
 
-.stat-value strong {
-  font-size: 1.6rem;
-  font-weight: 800;
-  color: var(--clr-text-main);
-  line-height: 1;
+/* DONE */
+
+.s-total .stat-icon {
+  background: rgba(45, 212, 191, 0.16);
+  box-shadow: 0 0 22px rgba(45, 212, 191, 0.18);
 }
 
-.stat-sub {
-  font-size: 0.68rem;
-  color: var(--clr-text-soft);
-  font-weight: 600;
+@media (max-width: 768px) {
+  /* ===================================
+     2. STATS LAYOUT
+  =================================== */
 }
