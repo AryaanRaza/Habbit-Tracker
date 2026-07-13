@@ -29,7 +29,7 @@ const Storage = {
   // Clear everything
   clear() {
     localStorage.clear();
-  }
+  },
 };
 // ============================================
 // HabitFlow Storage Keys
@@ -39,7 +39,8 @@ const STORAGE_KEYS = {
   USERS: "habitflow_users",
   CURRENT_USER: "habitflow_current_user",
   HABITS: "habitflow_habits",
-  SETTINGS: "habitflow_settings"
+  SETTINGS: "habitflow_settings",
+  LAST_ACTIVE_DATE: "habitflow_last_active_date",
 };
 
 // ============================================
@@ -69,4 +70,54 @@ function loadUserHabits() {
   const key = getHabitsKey();
 
   return Storage.get(key) || [];
+}
+
+// ============================================
+// USER-SPECIFIC STREAK STORAGE
+// ============================================
+
+function getStreakKey() {
+  const currentUser = Storage.get(STORAGE_KEYS.CURRENT_USER);
+
+  if (!currentUser) {
+    return "habitflow_streak_guest";
+  }
+
+  return `habitflow_streak_${currentUser.id}`;
+}
+
+function saveUserStreak(streakData) {
+  Storage.set(getStreakKey(), streakData);
+}
+
+function loadUserStreak() {
+  return (
+    Storage.get(getStreakKey()) || {
+      current: 0,
+      best: 0,
+      lastCompletedDate: null,
+    }
+  );
+}
+
+// ============================================
+// USER-SPECIFIC LAST ACTIVE DATE
+// ============================================
+
+function getLastActiveKey() {
+  const currentUser = Storage.get(STORAGE_KEYS.CURRENT_USER);
+
+  if (!currentUser) {
+    return "habitflow_last_active_guest";
+  }
+
+  return `habitflow_last_active_${currentUser.id}`;
+}
+
+function saveLastActiveDate(date) {
+  Storage.set(getLastActiveKey(), date);
+}
+
+function loadLastActiveDate() {
+  return Storage.get(getLastActiveKey());
 }
