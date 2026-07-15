@@ -19,41 +19,49 @@
 
 /* ================= MODAL CARD ================= */
 .modal-content {
-  width: min(90%, 480px);
-
-  padding: 42px 30px;
-
-  background: var(--bg-glass-heavy);
-  border: 1px solid var(--border-glass);
-  border-radius: 32px;
-
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-
-  box-shadow: var(--shadow-ui), var(--shadow-glow);
+  width: min(92%, 460px);
 
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 20px;
 
-  animation: scaleIn 0.25s ease;
+  padding: 36px 32px;
+
+  border-radius: 28px;
+
+  background: var(--bg-glass-heavy);
+  border: 1px solid var(--border-glass);
+
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+
+  box-shadow:
+    0 24px 60px rgba(22, 18, 46, 0.22),
+    var(--shadow-glow);
+
+  animation: scaleIn .22s ease;
 }
 
 /* ================= TITLE ================= */
-.modal-title {
-  display: flex;
-  align-items: center;
-  gap: 10px;
+.modal-title{
+    display:flex;
+    align-items:center;
+    gap:14px;
 
-  font-size: 1.7rem;
-  font-weight: 800;
-  color: #f8fafc;
-  letter-spacing: -0.02em;
+    margin:0;
+
+    font-family:var(--font-brand);
+    font-size:2rem;
+    font-weight:800;
+
+    color:var(--clr-modal-heading);
+
+    letter-spacing:-.03em;
 }
 
-.modal-title .material-symbols-rounded {
-  font-size: 30px;
-  color:#32174D;
+.modal-title .material-symbols-rounded{
+    font-size:34px;
+    color:var(--clr-primary-deep);
 }
 .modal-content h2 {
   font-family: var(--font-brand);
@@ -116,51 +124,58 @@
   border-top: 1px solid rgba(255,255,255,0.18);
 }
 
-#edit-cancel {
-  padding: 8px 14px;
-  border-radius: 12px;
+/* ================= ACTION BUTTONS ================= */
 
-  background: rgba(255, 255, 255, 0.25); /* stronger than before */
-  border: 1px solid rgba(255, 255, 255, 0.4);
+#habit-cancel {
+  flex: 1;
 
-  color: var(--clr-text-main); /* 🔥 key fix */
+  padding: 12px 18px;
 
+  border-radius: 14px;
+  border: 1px solid var(--border-glass);
+
+  background: rgba(255,255,255,.18);
+  color: var(--clr-text-main);
+
+  font-weight: 600;
   cursor: pointer;
-  transition: all 0.2s ease;
+
+  transition: .25s ease;
 }
 
-/* Hover = more clarity */
-#edit-cancel:hover {
-  background: rgba(255, 255, 255, 0.45);
-  border-color: rgba(255, 255, 255, 0.6);
-  color: var(--clr-text-heading);
+#habit-cancel:hover {
+  background: rgba(255,255,255,.3);
+  transform: translateY(-1px);
 }
 
-/* Save (primary CTA) */
-#edit-save {
-  padding: 8px 16px;
-  border-radius: 12px;
+#habit-save {
+  flex: 1;
+
+  padding: 12px 18px;
+
+  border: none;
+  border-radius: 14px;
 
   background: var(--grad-btn);
-  border: none;
   color: white;
 
+  font-weight: 700;
   cursor: pointer;
-  font-weight: 500;
 
   box-shadow: var(--shadow-btn);
-  transition: all 0.2s ease;
+
+  transition: .25s ease;
 }
 
-#edit-save:disabled {
-  opacity: 0.6;
+#habit-save:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 28px rgba(123,104,255,.35);
+}
+
+#habit-save:disabled {
+  opacity: .6;
   cursor: not-allowed;
   box-shadow: none;
-}
-
-#edit-save:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 14px 28px rgba(123, 104, 255, 0.35);
 }
 @media (max-width: 480px) {
   .modal-content {
