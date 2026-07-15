@@ -261,19 +261,23 @@
     </span>
   </button>
 
-  <div id="edit-modal" class="modal" hidden>
+  <!-- POP UP MODAL -->
+
+  <div id="habit-modal" class="modal" hidden>
     <div class="modal-content">
-      <h2 class="modal-title">
-        <span class="material-symbols-rounded">edit</span>
-        Edit Habit
+      <h2 class="modal-title" id="habit-modal-title">
+        <span class="material-symbols-rounded" id="habit-modal-icon">
+          add_task
+        </span>
+        New Habit
       </h2>
 
       <label class="modal-label">Name</label>
-      <input type="text" id="edit-name" />
+      <input type="text" id="habit-name" />
 
 
       <label class="modal-label">Category</label>
-      <select id="edit-category">
+      <select id="habit-category-modal">
         <option value="health">🌿 Wellness</option>
         <option value="learning">📚 Learning</option>
         <option value="fitness">💪 Fitness</option>
@@ -285,12 +289,12 @@
 
 
       <label class="modal-label">Reminder Time</label>
-      <input type="time" id="edit-time" />
+      <input type="time" id="habit-time-modal" />
 
 
       <div class="modal-actions">
-        <button id="edit-cancel" type="button">Cancel</button>
-        <button id="edit-save" type="button">Save</button>
+        <button id="habit-cancel" type="button">Cancel</button>
+        <button id="habit-save" type="button">Add Habit</button>
       </div>
     </div>
   </div>
