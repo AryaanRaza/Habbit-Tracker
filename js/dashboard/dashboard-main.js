@@ -102,18 +102,34 @@ document.addEventListener("DOMContentLoaded", () => {
     // Save updated habits to localStorage
     saveHabits();
 
-
     updateProgress();
     applyFilter();
     updateFilterCounts();
   };
 
-  addBtn.addEventListener("click", addHabit);
+  addBtn.addEventListener("click", () => {
+    window.createHabit(habitInput.value, categorySelect.value, timeInput.value);
+
+    // Reset form
+    habitInput.value = "";
+    categorySelect.value = "other";
+    timeInput.value = "";
+  });
 
   habitInput.addEventListener("keydown", (e) => {
     if (e.key === "Enter") {
       e.preventDefault();
-      addHabit();
+
+      window.createHabit(
+        habitInput.value,
+        categorySelect.value,
+        timeInput.value,
+      );
+
+      // Reset form
+      habitInput.value = "";
+      categorySelect.value = "other";
+      timeInput.value = "";
     }
   });
 
