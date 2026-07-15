@@ -1,10 +1,15 @@
-/* ===== EDIT MODAL ===== */
-const editModal = document.getElementById("edit-modal");
-const editName = document.getElementById("edit-name");
-const editCategory = document.getElementById("edit-category");
-const editTime = document.getElementById("edit-time");
-const editCancel = document.getElementById("edit-cancel");
-const editSave = document.getElementById("edit-save");
+/* ===== HABIT MODAL ===== */
+const habitModal = document.getElementById("habit-modal");
+
+const habitModalTitle = document.getElementById("habit-modal-title");
+const habitModalIcon = document.getElementById("habit-modal-icon");
+
+const habitName = document.getElementById("habit-name");
+const habitCategory = document.getElementById("habit-category-modal");
+const habitTime = document.getElementById("habit-time-modal");
+
+const habitCancel = document.getElementById("habit-cancel");
+const habitSave = document.getElementById("habit-save");
 const filterTabs = document.querySelectorAll(".filter-tab");
 
 /* =========================
@@ -12,11 +17,11 @@ const filterTabs = document.querySelectorAll(".filter-tab");
     ========================= */
 window.setSaveLoading = function(isLoading) {
   if (isLoading) {
-    editSave.disabled = true;
-    editSave.textContent = "Saving...";
+    habitSave.disabled = true;
+    habitSave.textContent = "Saving...";
   } else {
-    editSave.disabled = false;
-    editSave.textContent = "Save";
+    habitSave.disabled = false;
+    habitSave.textContent = "Save";
   }
 }
 
@@ -27,7 +32,7 @@ window.openEditModal = function(habit, id) {
   editCategory.value = habit.category;
   editTime.value = habit.time || "";
 
-  editModal.hidden = false;
+  habitModal.hidden = false;
 }
 
 /* =========================
@@ -35,18 +40,18 @@ window.openEditModal = function(habit, id) {
   ========================= */
 
   editCancel.addEventListener("click", () => {
-    editModal.hidden = true;
+    habitModal.hidden = true;
     window.editingId = null;
   });
 
-  editModal.addEventListener("click", (e) => {
-    if (e.target === editModal) {
-      editModal.hidden = true;
+  habitModal.addEventListener("click", (e) => {
+    if (e.target === habitModal) {
+      habitModal.hidden = true;
       window.editingId = null;
     }
   });
 
-  editSave.addEventListener("click", async () => {
+  habitSave.addEventListener("click", async () => {
     const habit = window.habits.find((h) => h.id == window.editingId);
     if (!habit) return;
 
@@ -96,7 +101,7 @@ window.openEditModal = function(habit, id) {
 
     setSaveLoading(false); // ✅ STOP LOADING
 
-    editModal.hidden = true;
+    habitModal.hidden = true;
     window.editingId = null;
 
     // Save edited habit changes
@@ -110,11 +115,11 @@ window.openEditModal = function(habit, id) {
 ========================= */
   document.addEventListener("keydown", (e) => {
     // only work when modal is open
-    if (editModal.hidden) return;
+    if (habitModal.hidden) return;
 
     // ESC → close modal
     if (e.key === "Escape") {
-      editModal.hidden = true;
+      habitModal.hidden = true;
       window.editingId = null;
       initialEditState = null;
       return;
@@ -125,8 +130,8 @@ window.openEditModal = function(habit, id) {
       e.preventDefault();
 
       // prevent saving if disabled
-      if (!editSave.disabled) {
-        editSave.click();
+      if (!habitSave.disabled) {
+        habitSave.click();
       }
     }
   });
