@@ -72,14 +72,18 @@ document.addEventListener("DOMContentLoaded", () => {
   window.createHabit = function (name, category, time) {
     name = name.trim();
     name = name.charAt(0).toUpperCase() + name.slice(1);
-    if (!name) return alert("Enter a habit!");
 
-    // 🚫 Prevent duplicate habits
+    if (!name) {
+      showToast("Enter a habit name");
+      return false;
+    }
+
+    // Prevent duplicate habits
     if (
       window.habits.some((h) => h.name.toLowerCase() === name.toLowerCase())
     ) {
       showToast("Habit already exists ⚠️");
-      return;
+      return false;
     }
 
     const habit = {
@@ -96,15 +100,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
     window.habits.push(habit);
 
-    // Render the new habit card into UI
     renderHabitCard(habit);
 
-    // Save updated habits to localStorage
     saveHabits();
 
     updateProgress();
     applyFilter();
     updateFilterCounts();
+
+    showToast("Habit added ✨");
+
+    return true;
   };
 
   addBtn.addEventListener("click", () => {
