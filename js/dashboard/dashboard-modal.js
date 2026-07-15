@@ -131,9 +131,18 @@ habitSave.addEventListener("click", async () => {
   ========================= */
 
   if (window.habitModalMode === "create") {
-    window.createHabit(habitName.value, habitCategory.value, habitTime.value);
+    const created = window.createHabit(
+      habitName.value,
+      habitCategory.value,
+      habitTime.value,
+    );
+
+    if (!created) {
+      return;
+    }
 
     closeHabitModal();
+
     return;
   }
 

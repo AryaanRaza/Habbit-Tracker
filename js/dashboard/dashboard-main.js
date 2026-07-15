@@ -114,7 +114,13 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   addBtn.addEventListener("click", () => {
-    window.createHabit(habitInput.value, categorySelect.value, timeInput.value);
+    const created = window.createHabit(
+      habitInput.value,
+      categorySelect.value,
+      timeInput.value,
+    );
+
+    if (!created) return;
 
     // Reset form
     habitInput.value = "";
@@ -126,11 +132,13 @@ document.addEventListener("DOMContentLoaded", () => {
     if (e.key === "Enter") {
       e.preventDefault();
 
-      window.createHabit(
+      const created = window.createHabit(
         habitInput.value,
         categorySelect.value,
         timeInput.value,
       );
+
+      if (!created) return;
 
       // Reset form
       habitInput.value = "";
