@@ -13,9 +13,15 @@ const habitSave = document.getElementById("habit-save");
 const filterTabs = document.querySelectorAll(".filter-tab");
 
 /* =========================
+   MODAL STATE
+========================= */
+
+window.habitModalMode = "create";
+
+/* =========================
    SAVE BUTTON LOADING STATE
-    ========================= */
-window.setSaveLoading = function(isLoading) {
+========================= */
+window.setSaveLoading = function (isLoading) {
   if (isLoading) {
     habitSave.disabled = true;
     habitSave.textContent = "Saving...";
@@ -23,115 +29,135 @@ window.setSaveLoading = function(isLoading) {
     habitSave.disabled = false;
     habitSave.textContent = "Save";
   }
-}
+};
 
-window.openEditModal = function(habit, id) {
+window.openEditModal = function (habit, id) {
+  window.habitModalMode = "edit";
   window.editingId = id;
 
-  editName.value = habit.name;
-  editCategory.value = habit.category;
-  editTime.value = habit.time || "";
+  habitModalTitle.childNodes[2].textContent = "Edit Habit";
+  habitModalIcon.textContent = "edit";
+  habitSave.textContent = "Save Changes";
+
+  habitName.value = habit.name;
+  habitCategory.value = habit.category;
+  habitTime.value = habit.time || "";
 
   habitModal.hidden = false;
-}
+};
+
+window.openCreateHabitModal = function () {
+  window.habitModalMode = "create";
+  window.editingId = null;
+
+  habitModalTitle.childNodes[2].textContent = "New Habit";
+  habitModalIcon.textContent = "add_task";
+  habitSave.textContent = "Add Habit";
+
+  habitName.value = "";
+  habitCategory.value = "other";
+  habitTime.value = "";
+
+  habitModal.hidden = false;
+};
 
 /* =========================
      EDIT MODAL ACTIONS 
   ========================= */
 
-  editCancel.addEventListener("click", () => {
+editCancel.addEventListener("click", () => {
+  habitModal.hidden = true;
+  window.editingId = null;
+});
+
+habitModal.addEventListener("click", (e) => {
+  if (e.target === habitModal) {
     habitModal.hidden = true;
     window.editingId = null;
-  });
+  }
+});
 
-  habitModal.addEventListener("click", (e) => {
-    if (e.target === habitModal) {
-      habitModal.hidden = true;
-      window.editingId = null;
+habitSave.addEventListener("click", async () => {
+  const habit = window.habits.find((h) => h.id == window.editingId);
+  if (!habit) return;
+
+  setSaveLoading(true); // ✅ START LOADING
+
+  // simulate slight delay (feels real UX)
+  await new Promise((res) => setTimeout(res, 400));
+
+  const updatedName = editName.value.trim();
+
+  if (!updatedName) {
+    showToast("Habit name cannot be empty");
+    setSaveLoading(false);
+    return;
+  }
+
+  habit.name = updatedName;
+  habit.category = editCategory.value;
+  habit.time = editTime.value;
+
+  const card = document.querySelector(`[data-id="${window.editingId}"]`);
+  if (!card) {
+    setSaveLoading(false);
+    return;
+  }
+
+  const cat = CATEGORIES[habit.category];
+
+  // SAFE UI UPDATE
+  card.querySelector(".habit-name").textContent = habit.name;
+  card.querySelector(".habit-dot").textContent = cat.icon;
+  card.style.setProperty("--cat-color", cat.color);
+
+  let chips = card.querySelector(".habit-chips");
+  let timeChip = card.querySelector(".chip-time");
+
+  if (habit.time) {
+    if (!timeChip) {
+      timeChip = document.createElement("span");
+      timeChip.className = "chip chip-time";
+      chips.appendChild(timeChip);
     }
-  });
+    timeChip.textContent = `⏰ ${habit.time}`;
+  } else {
+    if (timeChip) timeChip.remove();
+  }
 
-  habitSave.addEventListener("click", async () => {
-    const habit = window.habits.find((h) => h.id == window.editingId);
-    if (!habit) return;
+  setSaveLoading(false); // ✅ STOP LOADING
 
-    setSaveLoading(true); // ✅ START LOADING
+  habitModal.hidden = true;
+  window.editingId = null;
 
-    // simulate slight delay (feels real UX)
-    await new Promise((res) => setTimeout(res, 400));
+  // Save edited habit changes
+  saveHabits();
 
-    const updatedName = editName.value.trim();
+  showToast("Habit updated ✨");
+});
 
-    if (!updatedName) {
-      showToast("Habit name cannot be empty");
-      setSaveLoading(false);
-      return;
-    }
-
-    habit.name = updatedName;
-    habit.category = editCategory.value;
-    habit.time = editTime.value;
-
-    const card = document.querySelector(`[data-id="${window.editingId}"]`);
-    if (!card) {
-      setSaveLoading(false);
-      return;
-    }
-
-    const cat = CATEGORIES[habit.category];
-
-    // SAFE UI UPDATE
-    card.querySelector(".habit-name").textContent = habit.name;
-    card.querySelector(".habit-dot").textContent = cat.icon;
-    card.style.setProperty("--cat-color", cat.color);
-
-    let chips = card.querySelector(".habit-chips");
-    let timeChip = card.querySelector(".chip-time");
-
-    if (habit.time) {
-      if (!timeChip) {
-        timeChip = document.createElement("span");
-        timeChip.className = "chip chip-time";
-        chips.appendChild(timeChip);
-      }
-      timeChip.textContent = `⏰ ${habit.time}`;
-    } else {
-      if (timeChip) timeChip.remove();
-    }
-
-    setSaveLoading(false); // ✅ STOP LOADING
-
-    habitModal.hidden = true;
-    window.editingId = null;
-
-    // Save edited habit changes
-    saveHabits();
-
-    showToast("Habit updated ✨");
-  });
-
-  /* =========================
+/* =========================
    KEYBOARD SHORTCUTS (MODAL)
 ========================= */
-  document.addEventListener("keydown", (e) => {
-    // only work when modal is open
-    if (habitModal.hidden) return;
+document.addEventListener("keydown", (e) => {
+  // only work when modal is open
+  if (habitModal.hidden) return;
 
-    // ESC → close modal
-    if (e.key === "Escape") {
-      habitModal.hidden = true;
-      window.editingId = null;
-      initialEditState = null;
-      return;
+  // ESC → close modal
+  if (e.key === "Escape") {
+    habitModal.hidden = true;
+    window.editingId = null;
+    initialEditState = null;
+    return;
+  }
+
+  // ENTER → save (but avoid textarea issues in future)
+  if (e.key === "Enter") {
+    e.preventDefault();
+
+    // prevent saving if disabled
+    if (!habitSave.disabled) {
+      habitSave.click();
     }
-
-    // ENTER → save (but avoid textarea issues in future)
-    if (e.key === "Enter") {
-      e.preventDefault();
-
-      // prevent saving if disabled
-      if (!habitSave.disabled) {
-        habitSave.click();
-      }
-    }
-  });
+  }
+});
