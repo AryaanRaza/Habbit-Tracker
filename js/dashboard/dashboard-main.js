@@ -12,13 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
       SELECTORS
   ========================= */
   const todayDate = document.getElementById("today-date");
-  const habitInput = document.querySelector(".habit-field");
-  const addBtn = document.querySelector(".btn-add-habit");
   const habitContainer = document.querySelector(".habit-list-container");
-  const timeInput = document.getElementById("habit-time");
-
-  const categorySelect = document.getElementById("habit-category");
-
   /* =========================
     CONSTANTS
 ========================= */
@@ -113,39 +107,6 @@ document.addEventListener("DOMContentLoaded", () => {
     return true;
   };
 
-  addBtn.addEventListener("click", () => {
-    const created = window.createHabit(
-      habitInput.value,
-      categorySelect.value,
-      timeInput.value,
-    );
-
-    if (!created) return;
-
-    // Reset form
-    habitInput.value = "";
-    categorySelect.value = "other";
-    timeInput.value = "";
-  });
-
-  habitInput.addEventListener("keydown", (e) => {
-    if (e.key === "Enter") {
-      e.preventDefault();
-
-      const created = window.createHabit(
-        habitInput.value,
-        categorySelect.value,
-        timeInput.value,
-      );
-
-      if (!created) return;
-
-      // Reset form
-      habitInput.value = "";
-      categorySelect.value = "other";
-      timeInput.value = "";
-    }
-  });
 
   /* =========================
      EVENTS
