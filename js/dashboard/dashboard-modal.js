@@ -1,7 +1,7 @@
 /* ===== HABIT MODAL ===== */
 const habitModal = document.getElementById("habit-modal");
 
-const habitModalTitle = document.getElementById("habit-modal-title");
+const habitModalHeading = document.getElementById("habit-modal-heading");
 const habitModalIcon = document.getElementById("habit-modal-icon");
 
 const habitName = document.getElementById("habit-name");
@@ -35,7 +35,7 @@ window.openEditModal = function (habit, id) {
   window.habitModalMode = "edit";
   window.editingId = id;
 
-  habitModalTitle.childNodes[2].textContent = "Edit Habit";
+  habitModalHeading.textContent = "Edit Habit";
   habitModalIcon.textContent = "edit";
   habitSave.textContent = "Save Changes";
 
@@ -50,7 +50,7 @@ window.openCreateHabitModal = function () {
   window.habitModalMode = "create";
   window.editingId = null;
 
-  habitModalTitle.childNodes[2].textContent = "New Habit";
+  habitModalHeading.textContent = "New Habit";
   habitModalIcon.textContent = "add_task";
   habitSave.textContent = "Add Habit";
 
