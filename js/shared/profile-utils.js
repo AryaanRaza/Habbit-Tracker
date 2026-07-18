@@ -38,6 +38,18 @@ function renderProfileAvatar(element, user) {
 
   const avatarData = getUserAvatar(user);
 
+  // Image avatar
+  if (avatarData.isAvatar) {
+    element.innerHTML = `
+      <img
+        src="../img/avatars/streaksaur/${avatarData.text}.png"
+        alt="Profile Avatar"
+        class="profile-avatar-img">
+    `;
+    return;
+  }
+
+  // Letter fallback
   element.textContent = avatarData.text;
 }
 
@@ -52,13 +64,9 @@ function renderDashboardProfile() {
 
   if (!currentUser) return;
 
-  const dashboardName = document.getElementById(
-    "dashboard-profile-name",
-  );
+  const dashboardName = document.getElementById("dashboard-profile-name");
 
-  const dashboardAvatar = document.getElementById(
-    "dashboard-profile-avatar",
-  );
+  const dashboardAvatar = document.getElementById("dashboard-profile-avatar");
 
   renderProfileName(dashboardName, currentUser);
 
