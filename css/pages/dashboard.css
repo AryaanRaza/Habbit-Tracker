@@ -247,7 +247,6 @@
   color: var(--clr-text-soft);
 }
 
-
 /* ── Habit list ── */
 .habit-list-container {
   display: flex;
@@ -397,60 +396,6 @@
   transform: scale(0.96);
 }
 
-/* =========================================
-   ADD HABIT MODAL
-========================================= */
-
-#add-habit-modal .modal-content {
-  max-width: 460px;
-  width: min(92vw, 460px);
-}
-
-#add-habit-modal .modal-title {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-#add-habit-modal .modal-label {
-  display: block;
-  margin: 18px 0 8px;
-  font-size: 0.82rem;
-  font-weight: 700;
-  color: var(--clr-text-soft);
-}
-
-#add-habit-modal input,
-#add-habit-modal select {
-  width: 100%;
-
-  padding: 14px 16px;
-
-  border: 1px solid var(--border-glass);
-  border-radius: 14px;
-
-  background: rgba(255, 255, 255, 0.9);
-
-  font: inherit;
-  color: var(--clr-text-main);
-
-  outline: none;
-
-  transition:
-    border-color 0.25s ease,
-    box-shadow 0.25s ease;
-}
-
-#add-habit-modal input:focus,
-#add-habit-modal select:focus {
-  border-color: var(--clr-secondary-deep);
-  box-shadow: 0 0 0 4px rgba(142, 123, 255, 0.12);
-}
-
-#add-habit-modal .modal-actions {
-  margin-top: 24px;
-}
-
 @media (max-width: 768px) {
   /* ===================================
      1. MAIN FIX → MORE WIDTH
@@ -535,15 +480,25 @@
     font-size: 0.72rem;
   }
 
-    /* ===================================
+  /* ===================================
      6. FLOATING TAB
   =================================== */
 
   .fab-add-habit {
-    width: 58px;
-    height: 58px;
+    width: 60px;
+    height: 60px;
 
-    right: 18px;
-    bottom: 18px;
+    right: 16px;
+
+    /* Raise above bottom navigation */
+    bottom: 78px;
+
+    box-shadow:
+      0 10px 24px rgba(0, 0, 0, 0.16),
+      0 0 16px rgba(236, 143, 195, 0.28);
+  }
+
+  .fab-add-habit .material-symbols-rounded {
+    font-size: 1.9rem;
   }
 }
