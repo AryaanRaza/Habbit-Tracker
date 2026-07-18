@@ -246,7 +246,7 @@ avatarOptions.forEach((option) => {
   option.addEventListener("click", () => {
     const selectedAvatar = option.dataset.avatar;
 
-    avatarDisplay.innerHTML = `
+avatarDisplay.innerHTML = `
   <img
     src="../img/avatars/streaksaur/${selectedAvatar}.png"
     alt="Profile Avatar"
