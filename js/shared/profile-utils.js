@@ -33,6 +33,14 @@ function getUserAvatar(user) {
   };
 }
 
+function getAvatarImagePath(avatarId) {
+  const isSubPage = window.location.pathname.includes("/settings/");
+
+  const basePath = isSubPage ? "../img" : "img";
+
+  return `${basePath}/avatars/streaksaur/${avatarId}.png`;
+}
+
 function renderProfileAvatar(element, user) {
   if (!element) return;
 
@@ -42,7 +50,7 @@ function renderProfileAvatar(element, user) {
   if (avatarData.isAvatar) {
     element.innerHTML = `
       <img
-        src="../img/avatars/streaksaur/${avatarData.text}.png"
+       src="${getAvatarImagePath(avatarData.text)}""
         alt="Profile Avatar"
         class="profile-avatar-img">
     `;
