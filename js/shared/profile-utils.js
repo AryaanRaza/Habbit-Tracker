@@ -50,7 +50,7 @@ function renderProfileAvatar(element, user) {
   if (avatarData.isAvatar) {
     element.innerHTML = `
       <img
-       src="${getAvatarImagePath(avatarData.text)}""
+       src="${getAvatarImagePath(avatarData.text)}"
         alt="Profile Avatar"
         class="profile-avatar-img">
     `;
