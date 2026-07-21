@@ -1,4 +1,3 @@
-
 /* ==============================================
    1. ACCOUNT HERO
    ============================================== */
@@ -18,15 +17,6 @@
   z-index: 2;
 }
 
-.account-profile-name {
-  margin-top: 1rem;
-
-  font-family: var(--font-brand);
-  font-size: 2rem;
-  font-weight: 700;
-
-  color: var(--clr-text-main);
-}
 /* 1b. Avatar Preview */
 .avatar-wrapper {
   position: relative;
@@ -34,8 +24,8 @@
 }
 
 .account-avatar {
-  width: 120px;
-  height: 120px;
+  width: 150px;
+  height: 150px;
 
   border-radius: 50%;
 
@@ -63,6 +53,15 @@
     box-shadow 0.25s ease;
 }
 
+.account-profile-name {
+  margin-top: 1rem;
+
+  font-family: var(--font-brand);
+  font-size: 2rem;
+  font-weight: 700;
+
+  color: var(--clr-text-main);
+}
 
 /* ==============================================
    2. AVATAR GALLERY
@@ -88,9 +87,21 @@
   color: var(--clr-text-soft);
 }
 
+.avatar-grid {
+  display: grid;
+
+  grid-template-columns: repeat(4, 150px);
+
+  justify-content: center;
+
+  gap: 24px;
+
+  margin: 0 auto;
+}
+
 .avatar-option {
-  width: 82px;
-  height: 82px;
+  width: 150px;
+  height: 150px;
 
   display: flex;
   align-items: center;
@@ -99,51 +110,49 @@
   padding: 0;
 
   border: none;
-  border-radius: 20px;
-  cursor: pointer;
+  border-radius: 22px;
 
+  cursor: pointer;
   overflow: hidden;
-
-  background: rgba(255,255,255,.45);
-
-  transition: all .25s ease;
-}
-.avatar-option-img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  display: block;
-}
-
-.avatar-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
-  justify-items: center;
-}
-.avatar-gallery .avatar-option {
-  width: 78px;
-  height: 78px;
-
-  border-radius: 20px;
-  border: none;
-  cursor: pointer;
-
-  font-size: 1.7rem;
 
   background: rgba(255, 255, 255, 0.45);
 
   transition: all 0.25s ease;
 }
 
-.avatar-gallery .avatar-option:hover {
-  transform: translateY(-3px);
-  background: rgba(255, 255, 255, 0.75);
-  box-shadow: 0 10px 25px rgba(142, 123, 255, 0.15);
+.avatar-option-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+
+  display: block;
 }
 
-.avatar-gallery .avatar-option.active {
-  border: 2px solid var(--clr-secondary-deep);
+.avatar-option:hover {
+  transform: translateY(-5px) scale(1.05);
+
+  background: rgba(255, 255, 255, 0.75);
+
+  box-shadow: 0 12px 28px rgba(142, 123, 255, 0.18);
+}
+
+.avatar-option.active {
+  border: 3px solid var(--clr-secondary-deep);
+
   background: rgba(142, 123, 255, 0.12);
-  box-shadow: 0 0 0 4px rgba(142, 123, 255, 0.08);
+
+  box-shadow: 0 0 0 5px rgba(142, 123, 255, 0.1);
+}
+
+
+@media (max-width: 768px) {
+  .avatar-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+  }
+
+  .avatar-option {
+    width: 84px;
+    height: 84px;
+  }
 }
