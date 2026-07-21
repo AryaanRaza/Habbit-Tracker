@@ -1,0 +1,149 @@
+
+/* ==============================================
+   1. ACCOUNT HERO
+   ============================================== */
+
+/* 1a. Hero Layout
+   ------------------------------------------------ */
+.account-hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+
+  padding: 2rem 1.5rem;
+  margin-bottom: 2rem;
+
+  position: relative;
+  z-index: 2;
+}
+
+.account-profile-name {
+  margin-top: 1rem;
+
+  font-family: var(--font-brand);
+  font-size: 2rem;
+  font-weight: 700;
+
+  color: var(--clr-text-main);
+}
+/* 1b. Avatar Preview */
+.avatar-wrapper {
+  position: relative;
+  margin-bottom: 1rem;
+}
+
+.account-avatar {
+  width: 120px;
+  height: 120px;
+
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden; /* <-- ADD THIS */
+
+  background: linear-gradient(
+    135deg,
+    rgba(243, 182, 218, 0.55),
+    rgba(199, 184, 255, 0.45),
+    rgba(215, 232, 255, 0.45)
+  );
+
+  border: 3px solid rgba(255, 255, 255, 0.5);
+
+  box-shadow:
+    0 12px 30px rgba(123, 104, 255, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+
+/* ==============================================
+   2. AVATAR GALLERY
+   ============================================== */
+.avatar-gallery {
+  margin-top: 28px;
+  padding-top: 28px;
+
+  border-top: 1px solid rgba(255, 255, 255, 0.18);
+
+  animation: fadeInUp 0.3s ease;
+}
+
+.avatar-gallery-title {
+  margin-bottom: 18px;
+
+  font-size: 0.9rem;
+  font-weight: 700;
+
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+
+  color: var(--clr-text-soft);
+}
+
+.avatar-option {
+  width: 82px;
+  height: 82px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0;
+
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+
+  overflow: hidden;
+
+  background: rgba(255,255,255,.45);
+
+  transition: all .25s ease;
+}
+.avatar-option-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.avatar-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  justify-items: center;
+}
+.avatar-gallery .avatar-option {
+  width: 78px;
+  height: 78px;
+
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+
+  font-size: 1.7rem;
+
+  background: rgba(255, 255, 255, 0.45);
+
+  transition: all 0.25s ease;
+}
+
+.avatar-gallery .avatar-option:hover {
+  transform: translateY(-3px);
+  background: rgba(255, 255, 255, 0.75);
+  box-shadow: 0 10px 25px rgba(142, 123, 255, 0.15);
+}
+
+.avatar-gallery .avatar-option.active {
+  border: 2px solid var(--clr-secondary-deep);
+  background: rgba(142, 123, 255, 0.12);
+  box-shadow: 0 0 0 4px rgba(142, 123, 255, 0.08);
+}

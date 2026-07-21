@@ -92,6 +92,11 @@ avatarOptions.forEach((option) => {
 
     // Success feedback
     showToast("Avatar updated successfully", "success");
+
+    // Return to Settings after a short delay
+    setTimeout(() => {
+      smartBack();
+    }, 1000);
   });
 });
 

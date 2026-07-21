@@ -28,7 +28,7 @@
     <!-- PAGE: Settings layout, subpage shell, and account-specific styles -->
     <link rel="stylesheet" href="../css/pages/settings-main.css">
     <link rel="stylesheet" href="../css/pages/settings-subpages.css">
-    <link rel="stylesheet" href="../css/pages/account-settings.css">
+    <link rel="stylesheet" href="../css/pages/avatar.css">
     <link rel="stylesheet" href="../css/pages/auth.css">
 
     <!-- ICON FONT: Material Symbols (Rounded variant) -->
@@ -66,26 +66,11 @@
 
         </header>
 
-
-        <!-- =============================================
-             MAIN CARD
-             Glassmorphism panel that wraps the full
-             account hero + all form sections
-             ============================================= -->
         <section class="sub-settings-card glass-panel">
-
-            <!-- -----------------------------------------
-                 ACCOUNT HERO
-                 Profile avatar, display name, streak badge,
-                 stats row, and the inline avatar picker
-                 (hidden by default; shown on mobile or as
-                 fallback when the modal is not used)
-                 ----------------------------------------- -->
             <section class="account-hero">
 
-                <!-- Avatar display + edit trigger button -->
+
                 <div class="avatar-wrapper">
-                    <!-- Avatar display: shows emoji or initial; data-avatar tracks current selection -->
                     <div class="account-avatar" id="account-avatar" data-avatar="initial">
                         H
                     </div>
@@ -96,9 +81,9 @@
             </section>
             <!-- /account-hero -->
             <!-- AVATAR GALLERY -->
-            <section class="avatar-picker">
+            <section class="avatar-gallery">
 
-                <h3 class="avatar-picker-title">
+                <h3 class="avatar-gallery-title">
                     Choose Your Companion
                 </h3>
 
@@ -171,7 +156,7 @@
                     <button type="button" class="avatar-option" data-avatar="samurai">
                         <img src="../img/avatars/streaksaur/samurai.png" alt="Samurai Streaksaur"
                             class="avatar-option-img">
-                    </button> 
+                    </button>
 
 
                     <button type="button" class="avatar-option" data-avatar="warrior">
