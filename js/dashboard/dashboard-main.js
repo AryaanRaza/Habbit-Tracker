@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
   loadHabits();
 
   initFilters();
-  renderDashboardProfile();
+  refreshDashboardProfile();
 
   window.habits.forEach(renderHabitCard);
 
@@ -106,7 +106,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     return true;
   };
-
 
   /* =========================
      EVENTS

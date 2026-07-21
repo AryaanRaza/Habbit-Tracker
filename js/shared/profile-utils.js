@@ -67,7 +67,7 @@ function renderProfileName(element, user) {
   element.textContent = getUserDisplayName(user);
 }
 
-function renderDashboardProfile() {
+function refreshDashboardProfile() {
   const currentUser = Storage.get(STORAGE_KEYS.CURRENT_USER);
 
   if (!currentUser) return;
@@ -88,5 +88,9 @@ function refreshProfileUI() {
 
   if (typeof renderSettingsProfile === "function") {
     renderSettingsProfile();
+  }
+
+  if (typeof renderDashboardProfile === "function") {
+    refreshDashboardProfile();
   }
 }
