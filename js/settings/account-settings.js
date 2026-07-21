@@ -5,13 +5,7 @@
 /* ============================================================
    DOM SELECTORS
 ============================================================ */
-
-const avatarModal = document.getElementById("avatar-modal");
-const openBtn = document.getElementById("avatar-toggle-btn");
-const closeBtn = document.getElementById("close-avatar-modal");
-
 const avatarDisplay = document.getElementById("account-avatar");
-const avatarOptions = document.querySelectorAll(".avatar-option");
 
 const profileName = document.getElementById("profileName");
 
@@ -79,13 +73,6 @@ function loadProfile() {
   renderProfileAvatar(avatarDisplay, currentUser);
 
   avatarDisplay.dataset.avatar = currentUser.avatar || "initial";
-
-  avatarOptions.forEach((option) => {
-    option.classList.toggle(
-      "active",
-      option.dataset.avatar === currentUser.avatar,
-    );
-  });
 }
 
 /* ============================================================
@@ -102,8 +89,6 @@ function saveProfile(e) {
   const email = emailInput.value.trim();
 
   const dob = dobInput.value;
-
-  const avatar = avatarDisplay.dataset.avatar;
 
   const currentPassword = currentPasswordInput?.value.trim();
   const newPassword = passwordInput?.value.trim();
@@ -155,8 +140,6 @@ function saveProfile(e) {
 
   currentUser.dob = dob;
 
-  currentUser.avatar = avatar === "initial" ? "" : avatar;
-
   // --------------------------------
   // Update Session
   // --------------------------------
@@ -207,73 +190,6 @@ function saveProfile(e) {
     saveStatus.classList.remove("show");
   }, 2500);
 }
-
-/* ============================================================
-   AVATAR MODAL
-============================================================ */
-
-if (avatarModal && openBtn) {
-  openBtn.addEventListener("click", () => {
-    avatarModal.classList.add("show");
-  });
-}
-
-if (closeBtn) {
-  closeBtn.addEventListener("click", () => {
-    avatarModal.classList.remove("show");
-  });
-}
-
-// close when clicking backdrop
-avatarModal?.addEventListener("click", (e) => {
-  if (e.target === avatarModal) {
-    avatarModal.classList.remove("show");
-  }
-});
-
-// close on ESC
-document.addEventListener("keydown", (e) => {
-  if (e.key === "Escape") {
-    avatarModal?.classList.remove("show");
-  }
-});
-
-/* ============================================================
-   AVATAR SELECTION
-============================================================ */
-
-avatarOptions.forEach((option) => {
-  option.addEventListener("click", () => {
-    const selectedAvatar = option.dataset.avatar;
-
-avatarDisplay.innerHTML = `
-  <img
-    src="../img/avatars/streaksaur/${selectedAvatar}.png"
-    alt="Profile Avatar"
-    class="profile-avatar-img">
-`;
-
-    avatarDisplay.dataset.avatar = selectedAvatar;
-
-    // animation
-    avatarDisplay.classList.add("avatar-pop");
-
-    setTimeout(() => {
-      avatarDisplay.classList.remove("avatar-pop");
-    }, 250);
-
-    // active state
-    avatarOptions.forEach((avatar) => {
-      avatar.classList.remove("active");
-    });
-
-    option.classList.add("active");
-
-    // close modal
-    avatarModal.classList.remove("show");
-  });
-});
-
 /* ============================================================
    ACCOUNT HERO STATS
 ============================================================ */
