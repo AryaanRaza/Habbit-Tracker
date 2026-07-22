@@ -1,3 +1,50 @@
+.avatar-setting{
+    align-items:center;
+}
+
+.avatar-icon{
+    width:58px;
+    height:58px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    flex-shrink:0;
+
+    font-size:1.8rem;
+
+    border-radius:50%;
+
+    background:rgba(142,123,255,.08);
+    border:3px solid rgba(125,104,255,.65);
+}
+
+.avatar-status{
+    display:block;
+
+    margin-top:4px;
+
+    font-size:.92rem;
+    color:var(--clr-text-soft);
+}
+
+.avatar-chip{
+    display:inline-flex;
+    align-items:center;
+
+    margin-top:8px;
+    padding:4px 10px;
+
+    border-radius:999px;
+
+    font-size:.75rem;
+    font-weight:700;
+
+    color:#4caf50;
+
+    background:rgba(76,175,80,.12);
+}
 /* =========================================
    3. SETTINGS MAIN MENU 
    ========================================= */

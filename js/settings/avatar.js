@@ -55,9 +55,11 @@ function loadProfile() {
 avatarOptions.forEach((option) => {
   option.addEventListener("click", () => {
     const selectedAvatar = option.dataset.avatar;
+    const selectedAvatarName = option.querySelector(".avatar-name").textContent;
 
     // Update preview
     currentUser.avatar = selectedAvatar;
+    currentUser.avatarName = selectedAvatarName;
 
     renderProfileAvatar(avatarDisplay, currentUser);
 

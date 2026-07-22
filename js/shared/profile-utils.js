@@ -33,6 +33,18 @@ function getUserAvatar(user) {
   };
 }
 
+function renderCurrentAvatarName() {
+  const avatarNameElement = document.getElementById("current-avatar-name");
+
+  if (!avatarNameElement) return;
+
+  const currentUser = Storage.get(STORAGE_KEYS.CURRENT_USER);
+
+  if (!currentUser) return;
+
+  avatarNameElement.textContent = `${currentUser.avatarName || "Basic Saur"} · Active`;
+}
+
 function getAvatarImagePath(avatarId) {
   const isSubPage = window.location.pathname.includes("/settings/");
 
@@ -58,6 +70,7 @@ function renderProfileAvatar(element, user) {
   }
 
   // Letter fallback
+  element.innerHTML = "";
   element.textContent = avatarData.text;
 }
 
@@ -67,7 +80,7 @@ function renderProfileName(element, user) {
   element.textContent = getUserDisplayName(user);
 }
 
-function refreshDashboardProfile() {
+function renderDashboardProfile() {
   const currentUser = Storage.get(STORAGE_KEYS.CURRENT_USER);
 
   if (!currentUser) return;
@@ -91,6 +104,10 @@ function refreshProfileUI() {
   }
 
   if (typeof renderDashboardProfile === "function") {
-    refreshDashboardProfile();
+    renderDashboardProfile();
+  }
+
+  if (typeof renderCurrentAvatarName === "function") {
+    renderCurrentAvatarName();
   }
 }
