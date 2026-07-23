@@ -53,14 +53,14 @@ const habitContainer = document.querySelector(".habit-list-container");
           <span class="chip chip-streak">
             <span class="chip-icon">🔥</span>
             <span class="chip-value">${habit.streak}</span>
-            <span class="chip-label">day streak</span>            
+            <span class="chip-label">-day streak</span>            
           </span>
 
           <!-- Total completions -->
           <span class="chip chip-total">
             <span class="chip-icon">✓</span>
             <span class="chip-value">${habit.total}</span>
-            <span class="chip-label">total</span>
+            <span class="chip-label">completion</span>
           </span>
 
 
