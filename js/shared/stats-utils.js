@@ -26,6 +26,16 @@ function getTotalHabits(habits = []) {
 function getTotalCompletions(habits = []) {
   return habits.reduce((sum, habit) => sum + (habit.total || 0), 0);
 }
+
+/**
+ * Returns the number of habits completed today.
+ *
+ * @param {Array} habits
+ * @returns {number}
+ */
+function getCompletedToday(habits = []) {
+  return habits.filter((habit) => habit.completedToday).length;
+}
 /**
  * Returns the highest streak achieved across all habits.
  *
@@ -52,3 +62,4 @@ window.getTotalHabits = getTotalHabits;
 window.getTotalCompletions = getTotalCompletions;
 window.getBestStreak = getBestStreak;
 window.getCurrentStreak = getCurrentStreak;
+window.getCompletedToday = getCompletedToday;

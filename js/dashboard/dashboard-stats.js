@@ -23,7 +23,9 @@ function updateStats() {
   }
 
   if (statTotal) {
-    statTotal.textContent = window.habits.reduce((s, h) => s + h.total, 0);
+    statTotal.textContent = window.habits.filter(
+      (habit) => habit.completedToday,
+    ).length;
   }
 }
 
