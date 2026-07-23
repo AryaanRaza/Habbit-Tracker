@@ -68,8 +68,7 @@ function updateSidebarStats() {
   const navBestStreak = document.getElementById("nav-best-streak");
   const navTotalHabits = document.getElementById("nav-total-habits");
 
-  const bestStreak = Math.max(...window.habits.map((h) => h.best), 0);
-
+  const bestStreak = getBestStreak(window.habits);
   const totalHabits = window.habits.length;
 
   /* ===== Update values ===== */
