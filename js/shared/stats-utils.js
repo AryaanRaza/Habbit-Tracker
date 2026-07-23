@@ -26,9 +26,18 @@ function getTotalHabits(habits = []) {
 function getTotalCompletions(habits = []) {
   return habits.reduce((sum, habit) => sum + (habit.total || 0), 0);
 }
-
+/**
+ * Returns the highest streak achieved across all habits.
+ *
+ * @param {Array} habits
+ * @returns {number}
+ */
+function getBestStreak(habits = []) {
+  return Math.max(...habits.map((habit) => habit.best || 0), 0);
+}
 /* ============================================================
    GLOBAL EXPORTS
 ============================================================ */
 window.getTotalHabits = getTotalHabits;
 window.getTotalCompletions = getTotalCompletions;
+window.getBestStreak = getBestStreak;
