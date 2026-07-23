@@ -35,9 +35,20 @@ function getTotalCompletions(habits = []) {
 function getBestStreak(habits = []) {
   return Math.max(...habits.map((habit) => habit.best || 0), 0);
 }
+
+/**
+ * Returns the highest current streak across all habits.
+ *
+ * @param {Array} habits
+ * @returns {number}
+ */
+function getCurrentStreak(habits = []) {
+  return Math.max(...habits.map((habit) => habit.streak || 0), 0);
+}
 /* ============================================================
    GLOBAL EXPORTS
 ============================================================ */
 window.getTotalHabits = getTotalHabits;
 window.getTotalCompletions = getTotalCompletions;
 window.getBestStreak = getBestStreak;
+window.getCurrentStreak = getCurrentStreak;
