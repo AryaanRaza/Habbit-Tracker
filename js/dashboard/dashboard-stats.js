@@ -15,11 +15,11 @@ const emptyState = document.getElementById("empty-state");
 ========================= */
 function updateStats() {
   if (statBest) {
-    statBest.textContent = Math.max(...window.habits.map((h) => h.best), 0);
+    statBest.textContent = getBestStreak(window.habits);
   }
 
   if (statStreak) {
-    statStreak.textContent = Math.max(...window.habits.map((h) => h.streak), 0);
+    statStreak.textContent = getCurrentStreak(window.habits);
   }
 
   if (statTotal) {
