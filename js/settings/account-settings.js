@@ -203,12 +203,9 @@ function updateAccountStats() {
 
   const habits = loadUserHabits();
 
-  const totalHabits = habits.length;
+  const totalHabits = getTotalHabits(habits);
 
-  const totalCompletions = habits.reduce(
-    (sum, habit) => sum + (habit.total || 0),
-    0,
-  );
+  const totalCompletions = getTotalCompletions(habits);
 
   const bestStreak = Math.max(...habits.map((habit) => habit.best || 0), 0);
 
