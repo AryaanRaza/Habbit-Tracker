@@ -90,6 +90,7 @@ document.addEventListener("DOMContentLoaded", () => {
       total: 0,
       completedToday: false,
       lastCompletedDate: null,
+      previousState: null,
     };
 
     window.habits.push(habit);

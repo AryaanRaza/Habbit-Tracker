@@ -6,6 +6,11 @@ window.habits = [];
 
 window.editingId = null;
 window.currentFilter = "all";
+/**
+ * Temporary undo snapshots.
+ * Lives only in memory and is cleared on refresh.
+ */
+window.habitUndoState = {};
 
 window.globalStreak = {
   current: 0,

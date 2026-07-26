@@ -64,24 +64,27 @@ function getBestStreak(habits = []) {
   return Math.max(...habits.map((habit) => habit.best || 0), 0);
 }
 /* ============================================================
-   STREAK ENGINE
+   HABIT ENGINE
 ============================================================ */
 
 /**
- * Updates a habit's streak after a successful completion.
+ * Applies a habit completion.
  *
- * Handles:
- * - First completion
- * - Consecutive day
- * - Missed days
- * - Best streak updates
+ * Handles all habit-related state updates while storing
+ * a temporary undo snapshot in memory.
  *
  * @param {Object} habit
  */
-function updateHabitStreak(habit) {
+function applyHabitCompletion(habit) {
+  window.habitUndoState[habit.id] = {
+    streak: habit.streak,
+    total: habit.total,
+    lastCompletedDate: habit.lastCompletedDate,
+    completedToday: habit.completedToday,
+  };
+
   const today = new Date().toDateString();
 
-  // No previous completion
   if (!habit.lastCompletedDate) {
     habit.streak = 1;
   } else {
@@ -96,26 +99,32 @@ function updateHabitStreak(habit) {
     } else if (diffDays > 1) {
       habit.streak = 1;
     }
-
-    // diffDays === 0
-    // same-day completion
-    // leave streak unchanged
   }
 
-  habit.best = Math.max(habit.best || 0, habit.streak);
-
+  habit.completedToday = true;
+  habit.total++;
   habit.lastCompletedDate = today;
+  habit.best = Math.max(habit.best, habit.streak);
 }
+
 /**
- * Restores a habit's streak after undoing today's completion.
+ * Restores the habit to its state before completion.
  *
  * @param {Object} habit
  */
-function undoHabitStreak(habit) {
-  habit.streak = Math.max(0, habit.streak - 1);
+function revertHabitCompletion(habit) {
+  const snapshot = window.habitUndoState[habit.id];
 
-  habit.lastCompletedDate = null;
+  if (!snapshot) return;
+
+  habit.streak = snapshot.streak;
+  habit.total = snapshot.total;
+  habit.lastCompletedDate = snapshot.lastCompletedDate;
+  habit.completedToday = snapshot.completedToday;
+
+  delete window.habitUndoState[habit.id];
 }
+
 /* ============================================================
    GLOBAL EXPORTS
 ============================================================ */
@@ -125,5 +134,5 @@ window.getTotalCompletions = getTotalCompletions;
 window.getCurrentStreak = getCurrentStreak;
 window.getBestStreak = getBestStreak;
 
-window.updateHabitStreak = updateHabitStreak;
-window.undoHabitStreak = undoHabitStreak;
+window.applyHabitCompletion = applyHabitCompletion;
+window.revertHabitCompletion = revertHabitCompletion;
