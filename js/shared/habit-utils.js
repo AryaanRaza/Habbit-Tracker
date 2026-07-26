@@ -76,13 +76,6 @@ function getBestStreak(habits = []) {
  * @param {Object} habit
  */
 function applyHabitCompletion(habit) {
-  window.habitUndoState[habit.id] = {
-    streak: habit.streak,
-    total: habit.total,
-    lastCompletedDate: habit.lastCompletedDate,
-    completedToday: habit.completedToday,
-  };
-
   const today = new Date().toDateString();
 
   if (!habit.lastCompletedDate) {
@@ -112,17 +105,19 @@ function applyHabitCompletion(habit) {
  *
  * @param {Object} habit
  */
-function revertHabitCompletion(habit) {
-  const snapshot = window.habitUndoState[habit.id];
-
+/**
+ * Reverts a habit completion.
+ *
+ * @param {Object} habit
+ * @param {Object} snapshot
+ */
+function revertHabitCompletion(habit, snapshot) {
   if (!snapshot) return;
 
   habit.streak = snapshot.streak;
   habit.total = snapshot.total;
   habit.lastCompletedDate = snapshot.lastCompletedDate;
   habit.completedToday = snapshot.completedToday;
-
-  delete window.habitUndoState[habit.id];
 }
 
 /* ============================================================
