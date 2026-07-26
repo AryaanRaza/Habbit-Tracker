@@ -97,10 +97,10 @@ const habitContainer = document.querySelector(".habit-list-container");
     <span class="material-symbols-rounded">more_horiz</span>
     <div class="habit-dropdown">
       <div class="habit-dropdown-item btn-edit-trigger">
-        <span class="material-symbols-rounded" style="font-size:16px">edit</span> Edit
+        <span class="material-symbols-rounded">edit</span> Edit
       </div>
       <div class="habit-dropdown-item btn-delete-trigger is-delete">
-        <span class="material-symbols-rounded" style="font-size:16px">delete</span> Delete
+        <span class="material-symbols-rounded">delete</span> Delete
       </div>
     </div>
   </button>
