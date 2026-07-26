@@ -2,8 +2,6 @@
    COMPLETE HABIT
 ========================= */
 window.completeHabit = function (card, habit) {
-  const today = new Date().toDateString();
-
   const snapshot = {
     streak: habit.streak,
     total: habit.total,
@@ -37,6 +35,11 @@ window.completeHabit = function (card, habit) {
 ========================= */
 window.undoHabit = function (card, habit) {
   const snapshot = window.habitUndoState[habit.id];
+
+  if (!snapshot) {
+    showToast("Undo is only available until you refresh the app.");
+    return;
+  }
 
   revertHabitCompletion(habit, snapshot);
 
