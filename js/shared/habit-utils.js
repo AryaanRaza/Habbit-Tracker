@@ -40,10 +40,8 @@ function getTotalCompletions(habits = []) {
   return habits.reduce((sum, habit) => sum + (habit.total || 0), 0);
 }
 
-
-
 /* ============================================================
-   STREAKS
+   STREAK QUERIES
 ============================================================ */
 
 /**
@@ -65,8 +63,59 @@ function getCurrentStreak(habits = []) {
 function getBestStreak(habits = []) {
   return Math.max(...habits.map((habit) => habit.best || 0), 0);
 }
+/* ============================================================
+   STREAK ENGINE
+============================================================ */
 
+/**
+ * Updates a habit's streak after a successful completion.
+ *
+ * Handles:
+ * - First completion
+ * - Consecutive day
+ * - Missed days
+ * - Best streak updates
+ *
+ * @param {Object} habit
+ */
+function updateHabitStreak(habit) {
+  const today = new Date().toDateString();
 
+  // No previous completion
+  if (!habit.lastCompletedDate) {
+    habit.streak = 1;
+  } else {
+    const previous = new Date(habit.lastCompletedDate);
+
+    const current = new Date(today);
+
+    const diffDays = Math.floor((current - previous) / (1000 * 60 * 60 * 24));
+
+    if (diffDays === 1) {
+      habit.streak++;
+    } else if (diffDays > 1) {
+      habit.streak = 1;
+    }
+
+    // diffDays === 0
+    // same-day completion
+    // leave streak unchanged
+  }
+
+  habit.best = Math.max(habit.best || 0, habit.streak);
+
+  habit.lastCompletedDate = today;
+}
+/**
+ * Restores a habit's streak after undoing today's completion.
+ *
+ * @param {Object} habit
+ */
+function undoHabitStreak(habit) {
+  habit.streak = Math.max(0, habit.streak - 1);
+
+  habit.lastCompletedDate = null;
+}
 /* ============================================================
    GLOBAL EXPORTS
 ============================================================ */
@@ -75,3 +124,6 @@ window.getCompletedToday = getCompletedToday;
 window.getTotalCompletions = getTotalCompletions;
 window.getCurrentStreak = getCurrentStreak;
 window.getBestStreak = getBestStreak;
+
+window.updateHabitStreak = updateHabitStreak;
+window.undoHabitStreak = undoHabitStreak;
