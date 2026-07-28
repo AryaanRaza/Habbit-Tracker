@@ -1,13 +1,10 @@
-<!-- 
-
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Stats | Habit Tracker</title>
-
+  <title>Stats | Habit Tracker </title>
+<!-- links -->
   <link rel="stylesheet" href="css/base/reset.css">
   <link rel="stylesheet" href="css/base/root.css">
   <link rel="stylesheet" href="css/global.css">
@@ -19,11 +16,17 @@
     href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 </head>
 
+<!-- Main container for the dashboard page -->
 <body class="dashboard-container">
+  <!-- Decorative background elements to enhance the UI -->
   <div class="bg-orb orb-1"></div>
   <div class="bg-orb orb-2"></div>
   <div class="bg-orb orb-3"></div>
 
+
+
+
+<!-- Header section displaying the dashboard title, subtitle, and user profile -->
   <header class="dash-header">
     <div class="dash-header-content">
       <div class="dash-user-info">
@@ -34,65 +37,47 @@
     </div>
   </header>
 
+
+
+
+
+
+<!-- Main wrapper containing all dashboard statistics and analytics -->
   <main class="dash-wrapper stats-wrapper">
 
+
+    <!-- Time range selector for filtering statistics -->
     <div class="range-toggle">
       <button class="range-btn is-active" data-range="week">Week</button>
-      <button class="range-btn" data-range="month">Month</button>
-      <button class="range-btn" data-range="all">All time</button>
+      <button class="range-btn "data-range="month">Month</button>
+      <button class="range-btn " data-range="all">All time</button>
     </div>
 
+
+    <!-- Statistics cards displaying key performance metrics -->
     <section class="stats-grid">
+    <!-- Individual statistic card with a circular progress indicator -->
       <div class="stat-card">
         <div class="ring-wrap">
-          <svg width="84" height="84" viewBox="0 0 84 84">
-            <circle class="ring-bg" cx="42" cy="42" r="38"></circle>
-            <circle class="ring-fill" id="ring-fill-streak" cx="42" cy="42" r="38" style="stroke: var(--cat-fitness)"></circle>
+
+          <!-- SVG-based circular progress ring -->
+            <svg width="84" height="84" viewBox="0 0 84 84">
+              <circle class="ring-bg" cx="42" cy="42" r="38"></circle>
+              <circle class="ring-fill" id="ring-fill-streak" cx="42" cy="42" r="38" style="stroke: var(--cat-fitness)"></circle>
           </svg>
           <div class="ring-center">
             <span class="ring-icon">🔥</span>
             <strong class="sc-number" id="sc-streak">0</strong>
           </div>
         </div>
-        <span class="sc-label">days in a row</span>
-        <span class="sc-title">STREAK</span>
-      </div>
-
-      <div class="stat-card">
-        <div class="ring-wrap">
-          <svg width="84" height="84" viewBox="0 0 84 84">
-            <circle class="ring-bg" cx="42" cy="42" r="38"></circle>
-            <circle class="ring-fill" id="ring-fill-best" cx="42" cy="42" r="38" style="stroke: var(--clr-secondary-deep)"></circle>
-          </svg>
-          <div class="ring-center">
-            <span class="ring-icon">🏆</span>
-            <strong class="sc-number" id="sc-best">0</strong>
-          </div>
-        </div>
-        <span class="sc-label">personal best</span>
+        <span class="sc-label">personal test</span>
         <span class="sc-title">BEST</span>
       </div>
-
       <div class="stat-card">
-        <div class="ring-wrap">
-          <svg width="84" height="84" viewBox="0 0 84 84">
-            <circle class="ring-bg" cx="42" cy="42" r="38"></circle>
-            <circle class="ring-fill" id="ring-fill-completed" cx="42" cy="42" r="38" style="stroke: var(--cat-health)"></circle>
-          </svg>
-          <div class="ring-center">
-            <span class="ring-icon">✅</span>
-            <strong class="sc-number" id="sc-completed">0</strong>
-          </div>
-        </div>
-        <span class="sc-label" id="sc-completed-label">this week</span>
-        <span class="sc-title">COMPLETED</span>
-      </div>
-
-      <div class="stat-card">
-        <div class="ring-wrap">
-          <svg width="84" height="84" viewBox="0 0 84 84">
-            <circle class="ring-bg" cx="42" cy="42" r="38"></circle>
-            <circle class="ring-fill" id="ring-fill-rate" cx="42" cy="42" r="38" style="stroke: var(--cat-learning)"></circle>
+        <div clas="ring-wrap">
+           <svg width="84" height="84" viewBox="0 0 84 84">
+             <circle class="ring-bg" cx="42" cy="42" r="38"></circle>
+             <circle class="ring-fill" id="ring-fill-completed" cx="42" cy="42" r="38" style="stroke: var(--cat-health)"></circle>
           </svg>
           <div class="ring-center">
             <strong class="sc-number" id="sc-rate">0%</strong>
@@ -103,206 +88,29 @@
       </div>
     </section>
 
+
+
+<!-- Daily completion chart visualization -->
     <section class="chart-section">
       <div class="section-head">
-        <h2 class="section-label">Daily Completions</h2>
-        <span class="section-tag">Last 7 days</span>
+        <h2 class="sectionlabel">Daily Completion</h2>
+        <span class="section-Tag">Last 7 days</span>
       </div>
-      <div class="week-chart" id="week-chart"></div>
+      <div class="week-chart" id="wee-chart"></div>
       <div class="chart-legend">
-        <span><i class="legend-dot dot-all"></i> All done</span>
-        <span><i class="legend-dot dot-partial"></i> Partial</span>
-        <span><i class="legend-dot dot-today"></i> Today</span>
+        <span><i class="legend-out dot-all"></i>All done</span>
+        <span><i class="legend-out dot-partial"></i>Partial</span>
+        <span><i class="legend-out dot-today"></i>Toady</span>
       </div>
     </section>
 
-    <div class="best-day-banner" id="best-day-banner" hidden>
-      <span class="best-day-tag">BEST DAY THIS MONTH</span>
-      <h3 class="best-day-title" id="best-day-title">—</h3>
-      <p class="best-day-sub" id="best-day-sub">—</p>
-    </div>
 
-    <section class="breakdown-section">
-      <div class="section-head">
-        <h2 class="section-label">Habit Breakdown</h2>
-      </div>
-      <div class="breakdown-list" id="breakdown-list"></div>
-    </section>
-
-    <section class="badges-section">
-      <div class="section-head">
-        <h2 class="section-label">Milestones</h2>
-      </div>
-      <div class="badges-list" id="badges-list"></div>
-    </section>
-
-    <section class="calendar-section">
-      <div class="section-head">
-        <h2 class="section-label">Streak Calendar</h2>
-        <span class="section-tag" id="calendar-month-label">—</span>
-      </div>
-      <div class="calendar-weekdays">
-        <span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span><span>S</span>
-      </div>
-      <div class="calendar-grid" id="calendar-grid"></div>
-      <div class="chart-legend">
-        <span><i class="legend-dot dot-all"></i> More done</span>
-        <span><i class="legend-dot dot-partial"></i> Less done</span>
-        <span><i class="legend-dot dot-today"></i> Today (outline)</span>
-      </div>
-    </section>
-
-    <div class="empty-state" id="stats-empty-state" hidden>
-      <span class="empty-icon">📈</span>
-      <p class="empty-title">No stats yet</p>
-      <p class="empty-sub">Complete a few habits to see your progress here!</p>
-    </div>
-
-  </main>
-
-  <!-- CORE 
-  <script src="js/core/storage.js"></script>
-  <script src="js/core/auth.js"></script>
-  <script src="js/core/protect.js"></script>
-
-  <!-- SHARED 
-  <script src="js/shared/profile-utils.js"></script>
-  <script src="js/shared/navigation.js"></script>
-  <script src="js/shared/habit-utils.js"></script>
-
-  <!-- DATA 
-  <script src="js/dashboard/dashboard-data.js"></script>
-
-  <!-- STATS PAGE RENDER 
-  <script src="js/dashboard/dashboard-stats-render.js"></script>
-
-</body>
-</html> -->
-
-
-
-
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Stats | Habit Tracker</title>
-
-  <link rel="stylesheet" href="css/base/reset.css">
-  <link rel="stylesheet" href="css/base/root.css">
-  <link rel="stylesheet" href="css/global.css">
-  <link rel="stylesheet" href="css/components/buttons.css">
-  <link rel="stylesheet" href="css/components/navigation.css">
-  <link rel="stylesheet" href="css/pages/dashboard.css">
-  <link rel="stylesheet" href="css/pages/stats.css">
-  <link rel="stylesheet"
-    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-</head>
-
-<body class="dashboard-container">
-  <div class="bg-orb orb-1"></div>
-  <div class="bg-orb orb-2"></div>
-  <div class="bg-orb orb-3"></div>
-
-  <header class="dash-header">
-    <div class="dash-header-content">
-      <div class="dash-user-info">
-        <h1 class="dash-user-name">Stats</h1>
-        <p class="dash-date" id="stats-subtitle">Your performance overview</p>
-      </div>
-      <div class="dash-avatar" id="dashboard-profile-avatar">U</div>
-    </div>
-  </header>
-
-  <main class="dash-wrapper stats-wrapper">
-
-    <div class="range-toggle">
-      <button class="range-btn is-active" data-range="week">Week</button>
-      <button class="range-btn" data-range="month">Month</button>
-      <button class="range-btn" data-range="all">All time</button>
-    </div>
-
-    <section class="stats-grid">
-      <div class="stat-card">
-        <div class="ring-wrap">
-          <svg width="84" height="84" viewBox="0 0 84 84">
-            <circle class="ring-bg" cx="42" cy="42" r="38"></circle>
-            <circle class="ring-fill" id="ring-fill-streak" cx="42" cy="42" r="38" style="stroke: var(--cat-fitness)"></circle>
-          </svg>
-          <div class="ring-center">
-            <span class="ring-icon">🔥</span>
-            <strong class="sc-number" id="sc-streak">0</strong>
-          </div>
-        </div>
-        <span class="sc-label">days in a row</span>
-        <span class="sc-title">STREAK</span>
-      </div>
-
-      <div class="stat-card">
-        <div class="ring-wrap">
-          <svg width="84" height="84" viewBox="0 0 84 84">
-            <circle class="ring-bg" cx="42" cy="42" r="38"></circle>
-            <circle class="ring-fill" id="ring-fill-best" cx="42" cy="42" r="38" style="stroke: var(--clr-secondary-deep)"></circle>
-          </svg>
-          <div class="ring-center">
-            <span class="ring-icon">🏆</span>
-            <strong class="sc-number" id="sc-best">0</strong>
-          </div>
-        </div>
-        <span class="sc-label">personal best</span>
-        <span class="sc-title">BEST</span>
-      </div>
-
-      <div class="stat-card">
-        <div class="ring-wrap">
-          <svg width="84" height="84" viewBox="0 0 84 84">
-            <circle class="ring-bg" cx="42" cy="42" r="38"></circle>
-            <circle class="ring-fill" id="ring-fill-completed" cx="42" cy="42" r="38" style="stroke: var(--cat-health)"></circle>
-          </svg>
-          <div class="ring-center">
-            <span class="ring-icon">✅</span>
-            <strong class="sc-number" id="sc-completed">0</strong>
-          </div>
-        </div>
-        <span class="sc-label" id="sc-completed-label">this week</span>
-        <span class="sc-title">COMPLETED</span>
-      </div>
-
-      <div class="stat-card">
-        <div class="ring-wrap">
-          <svg width="84" height="84" viewBox="0 0 84 84">
-            <circle class="ring-bg" cx="42" cy="42" r="38"></circle>
-            <circle class="ring-fill" id="ring-fill-rate" cx="42" cy="42" r="38" style="stroke: var(--cat-learning)"></circle>
-          </svg>
-          <div class="ring-center">
-            <strong class="sc-number" id="sc-rate">0%</strong>
-          </div>
-        </div>
-        <span class="sc-label">completion</span>
-        <span class="sc-title">RATE</span>
-      </div>
-    </section>
-
-    <section class="chart-section">
-      <div class="section-head">
-        <h2 class="section-label">Daily Completions</h2>
-        <span class="section-tag">Last 7 days</span>
-      </div>
-      <div class="week-chart" id="week-chart"></div>
-      <div class="chart-legend">
-        <span><i class="legend-dot dot-all"></i> All done</span>
-        <span><i class="legend-dot dot-partial"></i> Partial</span>
-        <span><i class="legend-dot dot-today"></i> Today</span>
-      </div>
-    </section>
-
+<!-- Category-wise habit distribution -->
     <section class="category-section">
       <div class="section-head">
-        <h2 class="section-label">Category Focus</h2>
+        <h2 class="sction-label">Category Focus</h2>
       </div>
-      <div class="category-body">
+      <div clss="category-body">
         <div class="donut-chart" id="category-donut">
           <div class="donut-hole"></div>
         </div>
@@ -310,9 +118,11 @@
       </div>
     </section>
 
+
+<!-- Weekly activity heatmap showing user consistency -->
     <section class="activity-section">
       <div class="section-head">
-        <h2 class="section-label">Activity — Last 12 Weeks</h2>
+        <h2 class="section-label">Activity - Last 12 weeks</h2>
       </div>
       <div class="heatmap-grid" id="heatmap-grid"></div>
       <div class="chart-legend">
@@ -322,16 +132,19 @@
         <span class="legend-dot heat-swatch heat-2"></span>
         <span class="legend-dot heat-swatch heat-3"></span>
         <span class="legend-dot heat-swatch heat-4"></span>
-        <span>More</span>
       </div>
     </section>
 
+
+    <!-- Banner highlighting the user's best-performing day -->
     <div class="best-day-banner" id="best-day-banner" hidden>
       <span class="best-day-tag">BEST DAY THIS MONTH</span>
-      <h3 class="best-day-title" id="best-day-title">—</h3>
-      <p class="best-day-sub" id="best-day-sub">—</p>
+      <h3 class="best-day-little" id="best-day-little">-</h3>
+      <p class="best-day-sub" id="best-day-sub">-</p>
     </div>
 
+
+    <!-- Detailed habit-wise performance breakdown -->
     <section class="breakdown-section">
       <div class="section-head">
         <h2 class="section-label">Habit Breakdown</h2>
@@ -339,6 +152,8 @@
       <div class="breakdown-list" id="breakdown-list"></div>
     </section>
 
+
+    <!-- Achievement badges and progress tracker -->
     <section class="badges-section">
       <div class="section-head">
         <h2 class="section-label">Badges Unlocked</h2>
@@ -347,16 +162,23 @@
       <div class="badge-progress" id="badge-progress-wrap"></div>
     </section>
 
-    <div class="empty-state" id="stats-empty-state" hidden>
+
+    <!-- Empty state displayed when no statistics are available -->
+    <div class="empty-state" id="state-empty--state" hidden>
       <span class="empty-icon">📈</span>
       <p class="empty-title">No stats yet</p>
-      <p class="empty-sub">Complete a few habits to see your progress here!</p>
+      <p class="empty-sub">Compltete a few habits to see your progress here!</p>
     </div>
-
   </main>
+  
+
+
+
 
   <!-- CORE -->
-  <script src="js/core/storage.js"></script>
+
+  <!-- DATA -->
+ <script src="js/core/storage.js"></script>
   <script src="js/core/auth.js"></script>
   <script src="js/core/protect.js"></script>
 
@@ -370,6 +192,7 @@
 
   <!-- STATS PAGE RENDER -->
   <script src="js/dashboard/dashboard-stats-render.js"></script>
+
 
 </body>
 </html>
