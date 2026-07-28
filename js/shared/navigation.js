@@ -4,10 +4,9 @@ function renderNavigationProfile() {
   const navUsername = document.getElementById("nav-username");
   const navAvatar = document.getElementById("nav-avatar");
 
-  if (!currentUser) return;
+  if (!currentUser || !navUsername || !navAvatar) return;
 
   renderProfileName(navUsername, currentUser);
-
   renderProfileAvatar(navAvatar, currentUser);
 }
 document.addEventListener("DOMContentLoaded", () => {
@@ -200,35 +199,26 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // 2. Updated Active Tab Logic
   const tabs = document.querySelectorAll(".tab-item, .sidebar-link");
+
   tabs.forEach((tab) => {
     const matchToken = tab.getAttribute("data-match");
 
-    /* =========================
-   ACTIVE PAGE HIGHLIGHT
-   ========================= */
-    tabs.forEach((tab) => {
-      const matchToken = tab.getAttribute("data-match");
+    // Skip if no token exists
+    if (!matchToken) return;
 
-      // Skip if no token exists
-      if (!matchToken) return;
+    // Match page from current URL
+    if (path.includes(`${matchToken}.html`)) {
+      tab.classList.add("active");
+    }
 
-      // Match page from current URL
-      if (path.includes(`${matchToken}.html`)) {
-        tab.classList.add("active");
-      }
-
-      // Special handling for settings sub-pages
-      if (matchToken === "settings" && path.includes("/settings/")) {
-        tab.classList.add("active");
-      }
-    });
-    // ============================================
-    // LOAD CURRENT USER NAME
-    // ============================================
-
-    const currentUser = Storage.get(STORAGE_KEYS.CURRENT_USER);
-    renderNavigationProfile();
+    // Highlight Settings for all settings sub-pages
+    if (matchToken === "settings" && path.includes("/settings/")) {
+      tab.classList.add("active");
+    }
   });
+
+  // Load current user's profile once
+  renderNavigationProfile();
 
   /* =========================
    SIDEBAR STATS (NON-DASHBOARD)

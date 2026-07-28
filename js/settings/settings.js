@@ -17,7 +17,7 @@ function renderSettingsProfile() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  renderSettingsProfile();
+  refreshProfileUI();
 });
 
 // ============================================
@@ -49,9 +49,7 @@ logoutModal?.addEventListener("click", (e) => {
   }
 });
 
-const logoutConfirm = document.getElementById(
-  "logout-confirm",
-);
+const logoutConfirm = document.getElementById("logout-confirm");
 
 // Confirm logout
 logoutConfirm?.addEventListener("click", () => {
