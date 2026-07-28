@@ -75,3 +75,7 @@ window.loadHabits = function () {
   // Reset completed habits if a new day has started
   resetDailyHabits();
 };
+
+
+
+
