@@ -156,31 +156,35 @@
     <!-- ═══════════════════════════════════
          HABIT-INPUT-AREA  
     ════════════════════════════════════ -->
-    <section class="habit-input-area">
-      <h2 class="section-label">Add a New Habit</h2>
-      <div class="input-wrapper">
-        <input type="text" class="habit-field" placeholder="e.g. Read for 20 minutes…" maxlength="60"
-          data-testid="habit-input" />
-        <div class="input-meta">
-          <select class="habit-category" id="habit-category" data-testid="habit-category">
-            <option value="health">🌿 Wellness</option>
-            <option value="learning">📚 Learning</option>
-            <option value="fitness">💪 Fitness</option>
-            <option value="mindfulness">🧠 Mindfulness</option>
-            <option value="creativity">🎨 Creativity</option>
-            <option value="work">💻 Productivity</option>
-            <option value="other" selected>✨ General</option>
-          </select>
-          <input type="time" class="habit-time" id="habit-time" title="Reminder time (optional)"
-            data-testid="habit-time" />
-          <button type="button" class="btn btn-add-habit" id="btn-add-habit" data-testid="add-habit-btn">
-            <span class="material-symbols-rounded">add</span>
-            Add
-          </button>
+
+    
+    <!-- <div class="legacy-add-habit" hidden>
+      <section class="habit-input-area">
+        <h2 class="section-label">Add a New Habit</h2>
+        <div class="input-wrapper">
+          <input type="text" class="habit-field" placeholder="e.g. Read for 20 minutes…" maxlength="60"
+            data-testid="habit-input" />
+          <div class="input-meta">
+            <select class="habit-category" id="habit-category" data-testid="habit-category">
+              <option value="health">🌿 Wellness</option>
+              <option value="learning">📚 Learning</option>
+              <option value="fitness">💪 Fitness</option>
+              <option value="mindfulness">🧠 Mindfulness</option>
+              <option value="creativity">🎨 Creativity</option>
+              <option value="work">💻 Productivity</option>
+              <option value="other" selected>✨ General</option>
+            </select>
+            <input type="time" class="habit-time" id="habit-time" title="Reminder time (optional)"
+              data-testid="habit-time" />
+            <button type="button" class="btn btn-add-habit" id="btn-add-habit" data-testid="add-habit-btn">
+              <span class="material-symbols-rounded">add</span>
+              Add
+            </button>
+          </div>
+          
         </div>
-        <!-- <button type="button" class="btn btn-add-habit">+ Add Habit</button> -->
-      </div>
-    </section>
+      </section>
+    </div> -->
 
     <!-- ═══════════════════════════════════
          HABIT LIST 
@@ -252,19 +256,35 @@
 
   <div id="toast" class="toast"></div>
 
-  <div id="edit-modal" class="modal" hidden>
+  <!-- =========================================
+     FLOATING ADD HABIT BUTTON
+========================================= -->
+  <button type="button" class="fab-add-habit" id="fab-add-habit" aria-label="Add Habit">
+    <span class="material-symbols-rounded">
+      add
+    </span>
+  </button>
+
+  <!-- POP UP MODAL -->
+
+  <div id="habit-modal" class="modal" hidden>
     <div class="modal-content">
       <h2 class="modal-title">
-        <span class="material-symbols-rounded">edit</span>
-        Edit Habit
+        <span class="material-symbols-rounded" id="habit-modal-icon">
+          add_task
+        </span>
+
+        <span id="habit-modal-heading">
+          New Habit
+        </span>
       </h2>
 
       <label class="modal-label">Name</label>
-      <input type="text" id="edit-name" />
+      <input type="text" id="habit-name" />
 
 
       <label class="modal-label">Category</label>
-      <select id="edit-category">
+      <select id="habit-category-modal">
         <option value="health">🌿 Wellness</option>
         <option value="learning">📚 Learning</option>
         <option value="fitness">💪 Fitness</option>
@@ -276,15 +296,14 @@
 
 
       <label class="modal-label">Reminder Time</label>
-      <input type="time" id="edit-time" />
+      <input type="time" id="habit-time-modal" />
 
 
       <div class="modal-actions">
-        <button id="edit-cancel" type="button">Cancel</button>
-        <button id="edit-save" type="button">Save</button>
+        <button id="habit-cancel" type="button">Cancel</button>
+        <button id="habit-save" type="button">Add Habit</button>
       </div>
     </div>
-  </div>
   </div>
 
   <!-- CORE -->

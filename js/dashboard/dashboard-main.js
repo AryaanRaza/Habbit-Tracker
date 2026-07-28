@@ -12,13 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
       SELECTORS
   ========================= */
   const todayDate = document.getElementById("today-date");
-  const habitInput = document.querySelector(".habit-field");
-  const addBtn = document.querySelector(".btn-add-habit");
   const habitContainer = document.querySelector(".habit-list-container");
-  const timeInput = document.getElementById("habit-time");
-
-  const categorySelect = document.getElementById("habit-category");
-
   /* =========================
     CONSTANTS
 ========================= */
@@ -69,24 +63,28 @@ document.addEventListener("DOMContentLoaded", () => {
   /* =========================
      ADD HABIT
   ========================= */
-  function addHabit() {
-    let name = habitInput.value.trim();
+  window.createHabit = function (name, category, time) {
+    name = name.trim();
     name = name.charAt(0).toUpperCase() + name.slice(1);
-    if (!name) return alert("Enter a habit!");
 
-    // 🚫 Prevent duplicate habits
+    if (!name) {
+      showToast("Enter a habit name");
+      return false;
+    }
+
+    // Prevent duplicate habits
     if (
       window.habits.some((h) => h.name.toLowerCase() === name.toLowerCase())
     ) {
       showToast("Habit already exists ⚠️");
-      return;
+      return false;
     }
 
     const habit = {
       id: Date.now(),
       name,
-      category: categorySelect.value || "other",
-      time: timeInput.value || "",
+      category: category || "other",
+      time: time || "",
       streak: 0,
       best: 0,
       total: 0,
@@ -96,30 +94,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
     window.habits.push(habit);
 
-    // Render the new habit card into UI
     renderHabitCard(habit);
 
-    // Save updated habits to localStorage
     saveHabits();
-
-    // 🔥 Reset inputs after adding
-    habitInput.value = "";
-    timeInput.value = ""; // ← THIS is your fix
-    categorySelect.value = "other";
 
     updateProgress();
     applyFilter();
     updateFilterCounts();
-  }
 
-  addBtn.addEventListener("click", addHabit);
+    showToast("Habit added ✨");
 
-  habitInput.addEventListener("keydown", (e) => {
-    if (e.key === "Enter") {
-      e.preventDefault();
-      addHabit();
-    }
-  });
+    return true;
+  };
+
 
   /* =========================
      EVENTS
