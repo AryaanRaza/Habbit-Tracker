@@ -37,7 +37,6 @@
    8. RESPONSIVE (max-width: 768px)
    ============================================== */
 
-
 /* ==============================================
    1. ACCOUNT HERO
    ============================================== */
@@ -74,10 +73,7 @@
   align-items: center;
   justify-content: center;
 
-  font-size: 3rem;
-  font-weight: 800;
-
-  color: var(--clr-text-main);
+  overflow: hidden; /* <-- ADD THIS */
 
   background: linear-gradient(
     135deg,
@@ -196,7 +192,6 @@
   color: var(--clr-text-soft);
 }
 
-
 /* ==============================================
    2. INLINE AVATAR PICKER
    Non-modal fallback rendered inside .account-hero.
@@ -223,6 +218,18 @@
   color: var(--clr-text-soft);
 }
 
+.avatar-option {
+  padding: 0;
+  overflow: hidden;
+}
+
+.profile-avatar-img,
+.avatar-option-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
 /* Inline picker: flex wrap layout (vs modal's CSS grid) */
 .avatar-picker .avatar-grid {
   display: flex;
@@ -231,10 +238,10 @@
 }
 
 .avatar-picker .avatar-option {
-  width: 60px;
-  height: 60px;
+  width: 78px;
+  height: 78px;
 
-  border-radius: 18px;
+  border-radius: 20px;
   border: none;
   cursor: pointer;
 
@@ -256,7 +263,6 @@
   background: rgba(142, 123, 255, 0.12);
   box-shadow: 0 0 0 4px rgba(142, 123, 255, 0.08);
 }
-
 
 /* ==============================================
    3. FORM SECTIONS
@@ -387,7 +393,6 @@
 .update-form .btn-glow {
   margin-top: 1.5rem;
 }
-
 
 /* ==============================================
    4. AVATAR PICKER MODAL
@@ -526,7 +531,6 @@
     0 10px 30px rgba(142, 123, 255, 0.2);
 }
 
-
 /* ==============================================
    5. AVATAR ANIMATION & FEEDBACK
    JS adds .avatar-pop for a scale-bounce on selection
@@ -534,7 +538,6 @@
 .account-avatar.avatar-pop {
   transform: scale(1.12);
 }
-
 
 /* ==============================================
    6. SAVE STATUS INDICATOR
@@ -558,7 +561,6 @@
   transform: translateY(0);
 }
 
-
 /* ==============================================
    7. UTILITIES
    ============================================== */
@@ -568,12 +570,10 @@
   display: none;
 }
 
-
 /* ==============================================
    8. RESPONSIVE — max-width: 768px
    ============================================== */
 @media (max-width: 768px) {
-
   /* Hero: shrink avatar and name */
   .account-avatar {
     width: 95px;
