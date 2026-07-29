@@ -1,0 +1,54 @@
+/* =========DASHBOARD STATS LAYOUT========== */
+
+/* Main wrapper arranging all dashboard sections vertically */
+.stats-wrapper { display: flex; flex-direction: column; gap: 24px; }
+
+
+
+/*********************************************************************************************************************************************
+===============================================================================================================================================
+***********************************************************************************************************************************************/
+
+/* ========= RANGE TOGGLE BUTTONS========== */
+/* Toggle buttons for selecting the statistics time range */
+.range-toggle {
+  display: flex; gap: 6px;
+  background: var(--bg-glass);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-xl);
+  padding: 6px; width: fit-content;
+}/*
+
+
+/* Individual time range button styling */
+.range-btn {
+  border: none; background: transparent;
+  padding: 8px 18px; border-radius: var(--radius-xl);
+  font-family: var(--font-main); font-size: 0.85rem; font-weight: 600;
+  color: var(--clr-text-soft); cursor: pointer; transition: all 0.2s ease;
+}
+
+
+/* Active state for the selected range button */
+.range-btn.is-active { background: var(--grad-btn); color: var(--clr-text-white); box-shadow: var(--shadow-btn); }
+
+
+
+
+/*********************************************************************************************************************************************
+===============================================================================================================================================
+***********************************************************************************************************************************************/
+
+
+/* ===STATISTICS CARDS===*/
+
+/* Responsive grid layout for statistic cards */
+.stats-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+.stat-card {
+  background: var(--bg-card); border: 1px solid var(--border-glass);
+  border-radius: var(--radius-xl); padding: 18px;
+  display: flex; flex-direction: column; align-items: center; text-align: center; gap: 5px;
+  box-shadow: var(--shadow-soft); backdrop-filter: blur(10px);
+}
+
+
