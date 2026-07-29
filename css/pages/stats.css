@@ -140,3 +140,29 @@
 
 /* Label below each chart bar */
 .bar-label { font-size: 0.7rem; color: var(--clr-text-soft); }
+
+
+
+
+
+/*********************************************************************************************************************************************
+===============================================================================================================================================
+***********************************************************************************************************************************************/
+/* ===============CHART LEGEND=========== */
+
+
+/* Legend explaining chart colors */
+.chart-legend { display: flex; align-items: center; gap: 8px; margin-top: 14px; font-size: 0.72rem; color: var(--clr-text-soft); }
+
+
+
+/* Small colored indicator used in legends */
+.legend-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; margin-right: 4px; }
+
+
+/* Legend colors */
+.dot-all { background: var(--cat-health); }
+.dot-partial { background: var(--cat-mindfulness); }
+.dot-today { background: var(--clr-secondary-deep); }
+
+
