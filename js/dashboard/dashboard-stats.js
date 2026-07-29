@@ -15,15 +15,15 @@ const emptyState = document.getElementById("empty-state");
 ========================= */
 function updateStats() {
   if (statBest) {
-    statBest.textContent = Math.max(...window.habits.map((h) => h.best), 0);
+    statBest.textContent = getBestStreak(window.habits);
   }
 
   if (statStreak) {
-    statStreak.textContent = Math.max(...window.habits.map((h) => h.streak), 0);
+    statStreak.textContent = getCurrentStreak(window.habits);
   }
 
   if (statTotal) {
-    statTotal.textContent = window.habits.reduce((s, h) => s + h.total, 0);
+    statTotal.textContent = getCompletedToday(window.habits);
   }
 }
 
@@ -68,9 +68,8 @@ function updateSidebarStats() {
   const navBestStreak = document.getElementById("nav-best-streak");
   const navTotalHabits = document.getElementById("nav-total-habits");
 
-  const bestStreak = Math.max(...window.habits.map((h) => h.best), 0);
-
-  const totalHabits = window.habits.length;
+  const bestStreak = getBestStreak(window.habits);
+  const totalHabits = getTotalHabits(window.habits);
 
   /* ===== Update values ===== */
   if (navBestStreak) {
