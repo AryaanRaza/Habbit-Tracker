@@ -183,15 +183,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // ===== COMPLETE =====
     if (e.target.closest(".btn-complete")) {
-      if (e.target.closest(".btn-complete")) {
-        if (!habit.completedToday) {
-          completeHabit(card, habit);
-        } else {
-          undoHabit(card, habit);
-        }
-
-        return;
+      if (!habit.completedToday) {
+        completeHabit(card, habit);
+      } else {
+        undoHabit(card, habit);
       }
+
+      return;
     }
 
     if (e.target.closest(".btn-delete")) {

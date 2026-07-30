@@ -2,16 +2,16 @@
    COMPLETE HABIT
 ========================= */
 window.completeHabit = function (card, habit) {
-  const today = new Date().toDateString();
+  const snapshot = {
+    streak: habit.streak,
+    total: habit.total,
+    lastCompletedDate: habit.lastCompletedDate,
+    completedToday: habit.completedToday,
+  };
 
-  habit.completedToday = true;
-  habit.lastCompletedDate = today;
+  window.habitUndoState[habit.id] = snapshot;
 
-  habit.streak++;
-  habit.total++;
-
-  habit.best = Math.max(habit.best, habit.streak);
-
+  applyHabitCompletion(habit);
   // Update overall daily streak
   updateGlobalStreak();
 
@@ -34,9 +34,16 @@ window.completeHabit = function (card, habit) {
    UNDO HABIT
 ========================= */
 window.undoHabit = function (card, habit) {
-  habit.completedToday = false;
-  habit.streak = Math.max(0, habit.streak - 1);
-  habit.total = Math.max(0, habit.total - 1);
+  const snapshot = window.habitUndoState[habit.id];
+
+  if (!snapshot) {
+    showToast("Undo is only available until you refresh the app.");
+    return;
+  }
+
+  revertHabitCompletion(habit, snapshot);
+
+  delete window.habitUndoState[habit.id];
 
   saveHabits();
 
