@@ -189,3 +189,26 @@
 
 
 
+
+
+
+/*********************************************************************************************************************************************
+===============================================================================================================================================
+***********************************************************************************************************************************************/
+
+/* ===========HABIT BREAKDOWN===================== */
+
+/* Row layout for habit breakdown */
+.breakdown-row { display: grid; grid-template-columns: minmax(0, 90px) 1fr 40px; align-items: center; gap: 10px; margin-bottom: 14px; }
+
+/* Habit name in the breakdown */
+.breakdown-name { font-size: 0.82rem; font-weight: 600; color: var(--clr-text-main); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+/* Background track of the progress bar */
+.breakdown-track { height: 8px; background: var(--bg-card); border-radius: 10px; overflow: hidden; }
+
+/* Filled progress bar */
+.breakdown-fill { height: 100%; border-radius: 10px; transition: width 0.3s ease; }
+
+/* Completion percentage text */
+.breakdown-pct { font-size: 0.78rem; color: var(--clr-text-soft); text-align: right; }
