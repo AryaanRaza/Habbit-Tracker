@@ -166,3 +166,26 @@
 .dot-today { background: var(--clr-secondary-deep); }
 
 
+
+
+
+/*********************************************************************************************************************************************
+===============================================================================================================================================
+***********************************************************************************************************************************************/
+
+/* ============BEST DAY HIGHLIGHT============== */
+/* Banner highlighting the best-performing day */
+.best-day-banner { background: var(--grad-btn); border-radius: var(--radius-2xl); padding: 20px; color: var(--clr-text-white); box-shadow: var(--shadow-btn); }
+
+
+/* Label for the best day banner */
+.best-day-tag { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.08em; opacity: 0.85; }
+
+/* Title showing the best day */
+.best-day-title { font-size: 1.3rem; margin: 6px 0 2px; }
+
+/* Description of the best day */
+.best-day-sub { font-size: 0.85rem; opacity: 0.9; }
+
+
+
