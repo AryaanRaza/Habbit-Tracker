@@ -24,33 +24,53 @@
 }
 
 .account-avatar {
-  width: 150px;
-  height: 150px;
+  width: 230px;
 
-  border-radius: 50%;
+  height: 230px;
 
   display: flex;
-  align-items: center;
+
   justify-content: center;
 
-  overflow: hidden; /* <-- ADD THIS */
+  align-items: center;
+
+  background: none;
+
+  border: none;
+
+  box-shadow: none;
+
+  overflow: visible;
+}
+
+.companion-frame {
+  width: 260px;
+
+  height: 260px;
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  border-radius: 30px;
 
   background: linear-gradient(
     135deg,
-    rgba(243, 182, 218, 0.55),
-    rgba(199, 184, 255, 0.45),
-    rgba(215, 232, 255, 0.45)
+    rgba(255, 255, 255, 0.35),
+    rgba(255, 255, 255, 0.12)
   );
 
-  border: 3px solid rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+}
 
-  box-shadow:
-    0 12px 30px rgba(123, 104, 255, 0.18),
-    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+.account-avatar img {
+  width: 100%;
 
-  transition:
-    transform 0.25s ease,
-    box-shadow 0.25s ease;
+  height: 100%;
+
+  object-fit: contain;
 }
 
 .account-profile-name {
@@ -67,17 +87,51 @@
    ============================================== */
 
 .companion-showcase {
-  max-width: 420px;
   width: 100%;
 
-  padding: 2rem;
+  max-width: 900px;
+
+  margin: auto;
+
+  padding: 2.5rem;
 
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.75rem;
-}
 
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 3rem;
+}
+.companion-content {
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: flex-start;
+
+  gap: 1rem;
+
+  max-width: 420px;
+}
+.companion-meta {
+  display: flex;
+
+  gap: 0.75rem;
+
+  flex-wrap: wrap;
+}
+.meta-chip {
+  padding: 0.6rem 1rem;
+
+  border-radius: 999px;
+
+  background: rgba(255, 255, 255, 0.5);
+
+  font-size: 0.85rem;
+
+  font-weight: 600;
+}
 .companion-name {
   font-family: var(--font-brand);
 
@@ -303,21 +357,80 @@
   color: var(--clr-text-main);
 }
 
+/* ============================================================
+   MOBILE HERO
+============================================================ */
+
 @media (max-width: 768px) {
-  .avatar-grid {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 28px 16px; /* extra vertical gap for the names */
+  .account-hero {
+    padding: 1rem 0;
   }
 
-  .avatar-option {
-    width: 110px;
-    height: 110px;
+  .companion-showcase {
+    flex-direction: column;
+
+    align-items: center;
+
+    text-align: center;
+
+    gap: 1.5rem;
+
+    padding: 1.5rem;
+
+    border-radius: 24px;
   }
 
-  .avatar-name {
-    top: calc(100% + 8px);
+  .companion-art {
+    width: 100%;
 
-    font-size: 0.75rem;
-    font-weight: 600;
+    display: flex;
+
+    justify-content: center;
+  }
+
+  .companion-frame {
+    width: 170px;
+    height: 170px;
+  }
+
+  .account-avatar {
+    width: 150px;
+    height: 150px;
+  }
+
+  .companion-content {
+    width: 100%;
+
+    align-items: center;
+
+    text-align: center;
+  }
+
+  .companion-name {
+    font-size: 1.8rem;
+  }
+
+  .companion-tagline {
+    max-width: 280px;
+
+    margin: 0 auto;
+  }
+
+  .companion-meta {
+    width: 100%;
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    justify-content: center;
+
+    gap: 10px;
+  }
+
+  .meta-chip {
+    font-size: 0.78rem;
+
+    padding: 8px 14px;
   }
 }

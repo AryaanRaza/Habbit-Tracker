@@ -6,10 +6,15 @@
 /* ============================================================
    DOM SELECTORS
 ============================================================ */
-const companionMeta = document.getElementById("companionMeta");
 const avatarDisplay = document.getElementById("account-avatar");
 const profileName = document.getElementById("profileName");
 const companionTagline = document.getElementById("companionTagline");
+
+const heroRarity = document.getElementById("heroRarity");
+
+const heroClass = document.getElementById("heroClass");
+
+const heroUnlock = document.getElementById("heroUnlock");
 
 /* ============================================================
    CURRENT USER
@@ -124,6 +129,10 @@ function loadProfile() {
       profileName.textContent = selectedCompanion.name;
       companionTagline.textContent = selectedCompanion.tagline;
 
+      heroRarity.textContent = `⭐ ${selectedCompanion.rarity}`;
+      heroClass.textContent = `⚔ ${selectedCompanion.class}`;
+      heroUnlock.textContent = `🔥 ${selectedCompanion.unlockStreak} Day Unlock`;
+
       // Update avatar image
       renderProfileAvatar(avatarDisplay, currentUser);
 
@@ -173,27 +182,9 @@ function loadProfile() {
     profileName.textContent = companion.name;
 
     companionTagline.textContent = companion.tagline;
-    companionMeta.innerHTML = `
-
-<div class="meta-chip">
-
-    ⭐ ${companion.rarity}
-
-</div>
-
-<div class="meta-chip">
-
-    ⚔ ${companion.class}
-
-</div>
-
-<div class="meta-chip">
-
-    🔥 ${companion.unlockStreak} Day Unlock
-
-</div>
-
-`;
+    heroRarity.textContent = `⭐ ${companion.rarity}`;
+    heroClass.textContent = `⚔ ${companion.class}`;
+    heroUnlock.textContent = `🔥 ${companion.unlockStreak} Day Unlock`;
   }
 
   renderProfileAvatar(avatarDisplay, currentUser);

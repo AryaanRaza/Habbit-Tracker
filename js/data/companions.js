@@ -30,180 +30,241 @@ const COMPANIONS = [
     image: "../img/avatars/streaksaur/basic.png",
     collection: "starter",
     rarity: "Common",
+    class: "Companion",
     unlockStreak: 0,
+    tagline: "Every legendary streak begins with a single step.",
+    description:
+      "The original Streaksaur. Loyal, cheerful, and always ready to begin a new journey.",
   },
 
   {
     id: "sleepy",
-    name: "Sleepy Streaksaur",
+    name: "Dreamsaur",
     image: "../img/avatars/streaksaur/sleepy.png",
     collection: "starter",
     rarity: "Common",
+    class: "Dreamer",
     unlockStreak: 0,
+    tagline: "Rest today. Rise stronger tomorrow.",
+    description:
+      "A peaceful companion that reminds you consistency also means knowing when to recharge.",
   },
 
   {
     id: "explorer",
-    name: "Explorer Streaksaur",
+    name: "Trailsaur",
     image: "../img/avatars/streaksaur/explorer.png",
     collection: "starter",
     rarity: "Common",
+    class: "Explorer",
     unlockStreak: 0,
+    tagline: "Every habit is a new adventure.",
+    description:
+      "Curious and fearless, Trailsaur loves discovering new paths toward self-improvement.",
   },
 
   {
     id: "warrior",
-
-    name: "Battle Streaksaur",
-
+    name: "Battlesaur",
     image: "../img/avatars/streaksaur/warrior.png",
-
     collection: "streak",
-
     rarity: "Rare",
-
     class: "Warrior",
-
-    tagline: "Forged through unwavering consistency.",
-
     unlockStreak: 7,
-
+    tagline: "Forged through unwavering consistency.",
     description:
-      "A fearless companion earned through dedication and discipline.",
+      "A fearless guardian earned after proving your first week of dedication.",
   },
 
   {
     id: "knight",
-    name: "Knight Streaksaur",
+    name: "Valorsaur",
     image: "../img/avatars/streaksaur/knight.png",
     collection: "streak",
     rarity: "Rare",
+    class: "Knight",
     unlockStreak: 14,
+    tagline: "Honor every promise you make to yourself.",
+    description:
+      "A noble protector whose shield is built from discipline and perseverance.",
   },
 
   {
     id: "detective",
-    name: "Detective Streaksaur",
+    name: "Mystisaur",
     image: "../img/avatars/streaksaur/detective.png",
     collection: "streak",
     rarity: "Rare",
+    class: "Detective",
     unlockStreak: 21,
+    tagline: "Success leaves clues. Find them.",
+    description:
+      "Observes every habit, uncovers every weakness, and turns patterns into victories.",
   },
 
   {
     id: "pirate",
-    name: "Pirate Streaksaur",
+    name: "Corsairsaur",
     image: "../img/avatars/streaksaur/pirate.png",
     collection: "streak",
     rarity: "Epic",
+    class: "Pirate",
     unlockStreak: 30,
+    tagline: "Chart your own course.",
+    description:
+      "A fearless captain who believes every milestone is another treasure discovered.",
   },
 
   {
     id: "mage",
-    name: "Mystic Streaksaur",
+    name: "Mysticsaur",
     image: "../img/avatars/streaksaur/mage.png",
     collection: "streak",
     rarity: "Epic",
+    class: "Mage",
     unlockStreak: 45,
+    tagline: "Consistency is the strongest magic.",
+    description:
+      "Channels ancient streak energy to transform discipline into extraordinary power.",
   },
 
   {
     id: "hero",
-    name: "Hero Streaksaur",
+    name: "Supersaur",
     image: "../img/avatars/streaksaur/hero.png",
     collection: "streak",
     rarity: "Epic",
+    class: "Hero",
     unlockStreak: 60,
+    tagline: "Great habits create great heroes.",
+    description:
+      "A symbol of courage for those who never give up on becoming their best selves.",
   },
 
   {
     id: "dragon",
-    name: "Dragon Streaksaur",
+    name: "Drakesaur",
     image: "../img/avatars/streaksaur/dragon.png",
     collection: "legendary",
     rarity: "Legendary",
+    class: "Dragon",
     unlockStreak: 90,
+    tagline: "Unleash the fire within.",
+    description:
+      "An ancient dragon companion awakened only by relentless determination.",
   },
 
   {
     id: "fire",
-    name: "Fire Streaksaur",
+    name: "Blazesaur",
     image: "../img/avatars/streaksaur/fire.png",
     collection: "legendary",
     rarity: "Legendary",
+    class: "Flame Master",
     unlockStreak: 120,
+    tagline: "Fuel your streak. Burn brighter.",
+    description: "Its flames grow stronger with every habit you complete.",
   },
 
   {
     id: "king",
-    name: "King Streaksaur",
+    name: "Kingsaur",
     image: "../img/avatars/streaksaur/king.png",
     collection: "legendary",
     rarity: "Legendary",
+    class: "King",
     unlockStreak: 180,
+    tagline: "Rule your habits before they rule you.",
+    description:
+      "A legendary ruler who rewards unwavering commitment with unmatched prestige.",
   },
 
   {
     id: "robot",
-    name: "Robot Streaksaur",
+    name: "Mechasaur",
     image: "../img/avatars/streaksaur/robot.png",
     collection: "master",
     rarity: "Mythic",
+    class: "Mech",
     unlockStreak: 240,
+    tagline: "Precision. Discipline. Progress.",
+    description: "Every action is calculated. Every streak optimized.",
   },
 
   {
     id: "astronaut",
-    name: "Astronaut Streaksaur",
+    name: "Cosmosaur",
     image: "../img/avatars/streaksaur/astronaut.png",
     collection: "master",
     rarity: "Mythic",
+    class: "Astronaut",
     unlockStreak: 300,
+    tagline: "Aim beyond the stars.",
+    description:
+      "Proof that consistent effort can take you farther than you ever imagined.",
   },
 
   {
     id: "batman",
-    name: "Dark Streaksaur",
+    name: "Shadowsaur",
     image: "../img/avatars/streaksaur/batman.png",
     collection: "master",
     rarity: "Mythic",
+    class: "Shadow Knight",
     unlockStreak: 365,
+    tagline: "Discipline thrives in the dark.",
+    description:
+      "A silent guardian who protects year-long streaks with relentless determination.",
   },
 
   {
     id: "hacker",
-    name: "Cyber Streaksaur",
+    name: "Hacksaur",
     image: "../img/avatars/streaksaur/hacker.png",
     collection: "master",
     rarity: "Mythic",
+    class: "Cyber Agent",
     unlockStreak: 500,
+    tagline: "Hack your habits. Upgrade yourself.",
+    description:
+      "Masters systems, routines, and the code of consistent success.",
   },
 
   {
     id: "ninja",
-    name: "Ninja Streaksaur",
+    name: "Stealthsaur",
     image: "../img/avatars/streaksaur/ninja.png",
     collection: "master",
     rarity: "Mythic",
+    class: "Ninja",
     unlockStreak: 650,
+    tagline: "Silent effort. Loud results.",
+    description: "Moves unnoticed, yet every action strengthens your streak.",
   },
 
   {
     id: "saiyan",
-    name: "Saiyan Streaksaur",
+    name: "Saiyansaur",
     image: "../img/avatars/streaksaur/saiyan.png",
     collection: "master",
     rarity: "Mythic",
+    class: "Ascended Warrior",
     unlockStreak: 800,
+    tagline: "Every streak unlocks a new form.",
+    description:
+      "The ultimate evolution, achieved only through extraordinary perseverance.",
   },
 
   {
     id: "samurai",
-    name: "Samurai Streaksaur",
+    name: "Katanasaur",
     image: "../img/avatars/streaksaur/samurai.png",
     collection: "master",
     rarity: "Mythic",
+    class: "Samurai",
     unlockStreak: 1000,
+    tagline: "Mastery is forged through discipline.",
+    description:
+      "The final guardian of HabitFlow. Reserved for those whose dedication spans a thousand days.",
   },
 ];
