@@ -37,6 +37,7 @@ const COMPANIONS = [
     collection: "streak",
     rarity: "Rare",
     unlockStreak: 7,
+    tagline: "Forged through unwavering consistency."
   },
 
   {

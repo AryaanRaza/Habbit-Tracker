@@ -8,8 +8,8 @@
 ============================================================ */
 
 const avatarDisplay = document.getElementById("account-avatar");
-
 const profileName = document.getElementById("profileName");
+const companionTagline = document.getElementById("companionTagline");
 
 /* ============================================================
    CURRENT USER
@@ -72,8 +72,18 @@ function loadProfile() {
 
       // Update preview
       currentUser.avatar = selectedAvatar;
-      currentUser.avatarName = selectedAvatarName;
 
+      // Get selected companion
+      const selectedCompanion = COMPANIONS.find((c) => c.id === selectedAvatar);
+
+      // Save companion name
+      currentUser.avatarName = selectedCompanion.name;
+
+      // Update hero text
+      profileName.textContent = selectedCompanion.name;
+      companionTagline.textContent = selectedCompanion.tagline;
+
+      // Update avatar image
       renderProfileAvatar(avatarDisplay, currentUser);
 
       avatarDisplay.dataset.avatar = selectedAvatar;
@@ -116,7 +126,13 @@ function loadProfile() {
   });
   if (!currentUser) return;
 
-  renderProfileName(profileName, currentUser);
+  const companion = COMPANIONS.find((c) => c.id === currentUser.avatar);
+
+  if (companion) {
+    profileName.textContent = companion.name;
+
+    companionTagline.textContent = companion.tagline;
+  }
 
   renderProfileAvatar(avatarDisplay, currentUser);
 
