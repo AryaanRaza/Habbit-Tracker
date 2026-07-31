@@ -246,7 +246,7 @@
 
 
 /* Empty state for donut chart */
-.donut-empty { font-size: 0.8rem; color: var(--clr-text-soft); }*/
+.donut-empty { font-size: 0.8rem; color: var(--clr-text-soft); }
 
 
 
@@ -314,3 +314,46 @@
 .legend-dot.heat-swatch { width: 12px; height: 12px; border-radius: 3px; margin: 0; }
 
 
+
+
+/*********************************************************************************************************************************************
+===============================================================================================================================================
+***********************************************************************************************************************************************/
+
+/* ======BADGES & ACHIEVEMENTS===== */
+
+/*  Container for achievement badges  --- */
+.badges-list { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+
+
+/* Individual badge styling */
+.badge-pill {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 8px 14px; border-radius: var(--radius-xl);
+  font-size: 0.78rem; font-weight: 600;
+  background: var(--bg-card); border: 1px solid var(--border-glass);
+  color: var(--clr-text-soft);
+}
+
+
+/* Style for unlocked badges */
+.badge-pill.is-unlocked { background: var(--grad-accent); color: var(--clr-text-heading); box-shadow: var(--shadow-soft); }
+
+/* Style for locked badges */
+.badge-pill.is-locked { opacity: 0.55; }
+
+
+/* Overall badge progress section */
+.badge-progress { margin-top: 16px; }
+
+/* Top row showing badge progress info */
+.badge-progress-top { display: flex; justify-content: space-between; font-size: 0.75rem; color: var(--clr-text-soft); margin-bottom: 6px; }
+
+/* Progress bar background */
+.badge-progress-track { height: 8px; background: var(--bg-card); border-radius: 10px; overflow: hidden; }
+
+/* Filled progress indicator */
+.badge-progress-fill { height: 100%; background: var(--grad-btn); border-radius: 10px; transition: width 0.4s ease; }
+
+/* Badge progress label */
+.badge-progress-label { font-size: 0.85rem; color: var(--clr-text-main); font-weight: 600; }  
