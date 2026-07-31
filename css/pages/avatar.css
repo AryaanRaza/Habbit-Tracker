@@ -198,23 +198,22 @@
   gap: 8px;
 }
 
-.avatar-rarity{
+.avatar-rarity {
+  padding: 5px 10px;
 
-    padding:5px 10px;
+  border-radius: 999px;
 
-    border-radius:999px;
+  background: rgba(142, 123, 255, 0.12);
 
-    background:rgba(142,123,255,.12);
+  color: var(--clr-secondary-deep);
 
-    color:var(--clr-secondary-deep);
+  font-size: 0.68rem;
 
-    font-size:.68rem;
+  font-weight: 700;
 
-    font-weight:700;
+  text-transform: uppercase;
 
-    text-transform:uppercase;
-
-    letter-spacing:.08em;
+  letter-spacing: 0.08em;
 }
 .avatar-rarity {
   color: #8e7bff;
@@ -269,6 +268,39 @@
   font-size: 0.9rem;
 
   color: var(--clr-text-soft);
+}
+/* ==============================================
+   Companion Metadata
+============================================== */
+
+.companion-meta {
+  margin-top: 1rem;
+
+  display: flex;
+
+  flex-wrap: wrap;
+
+  justify-content: center;
+
+  gap: 0.75rem;
+}
+
+.meta-chip {
+  padding: 0.55rem 1rem;
+
+  border-radius: 999px;
+
+  background: rgba(255, 255, 255, 0.35);
+
+  border: 1px solid rgba(255, 255, 255, 0.4);
+
+  backdrop-filter: blur(10px);
+
+  font-size: 0.82rem;
+
+  font-weight: 600;
+
+  color: var(--clr-text-main);
 }
 
 @media (max-width: 768px) {

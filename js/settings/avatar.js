@@ -6,7 +6,7 @@
 /* ============================================================
    DOM SELECTORS
 ============================================================ */
-
+const companionMeta = document.getElementById("companionMeta");
 const avatarDisplay = document.getElementById("account-avatar");
 const profileName = document.getElementById("profileName");
 const companionTagline = document.getElementById("companionTagline");
@@ -103,7 +103,7 @@ function loadProfile() {
 
   /* ============================================================
    AVATAR SELECTION
-============================================================ */
+  ============================================================ */
 
   avatarOptions.forEach((option) => {
     option.addEventListener("click", () => {
@@ -173,6 +173,27 @@ function loadProfile() {
     profileName.textContent = companion.name;
 
     companionTagline.textContent = companion.tagline;
+    companionMeta.innerHTML = `
+
+<div class="meta-chip">
+
+    ⭐ ${companion.rarity}
+
+</div>
+
+<div class="meta-chip">
+
+    ⚔ ${companion.class}
+
+</div>
+
+<div class="meta-chip">
+
+    🔥 ${companion.unlockStreak} Day Unlock
+
+</div>
+
+`;
   }
 
   renderProfileAvatar(avatarDisplay, currentUser);

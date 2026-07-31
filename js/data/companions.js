@@ -53,12 +53,23 @@ const COMPANIONS = [
 
   {
     id: "warrior",
+
     name: "Battle Streaksaur",
+
     image: "../img/avatars/streaksaur/warrior.png",
+
     collection: "streak",
+
     rarity: "Rare",
-    unlockStreak: 7,
+
+    class: "Warrior",
+
     tagline: "Forged through unwavering consistency.",
+
+    unlockStreak: 7,
+
+    description:
+      "A fearless companion earned through dedication and discipline.",
   },
 
   {
