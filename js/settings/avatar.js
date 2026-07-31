@@ -25,34 +25,66 @@ if (!currentUser) {
   window.location.href = "../login.html";
 }
 
-function renderAvatarGrid() {
-  const avatarGrid = document.getElementById("avatarGrid");
+function renderAvatarCollections() {
+  const container = document.getElementById("avatarCollections");
 
-  avatarGrid.innerHTML = "";
+  container.innerHTML = "";
 
-  COMPANIONS.forEach((companion) => {
-    avatarGrid.innerHTML += `
+  Object.keys(COLLECTIONS).forEach((collectionId) => {
+    const collection = COLLECTIONS[collectionId];
 
-            <button
-                type="button"
-                class="avatar-option"
-                data-avatar="${companion.id}">
+    const companions = COMPANIONS.filter(
+      (companion) => companion.collection === collectionId,
+    );
 
-                <img
-                    src="${companion.image}"
-                    alt="${companion.name}"
-                    class="avatar-option-img">
+    container.innerHTML += `
 
-                <span class="avatar-name">
-                    ${companion.name}
-                </span>
+            <section class="avatar-collection">
 
-            </button>
+                <div class="collection-header">
+
+                    <h3>
+                        ${collection.title}
+                    </h3>
+
+                    <p>
+                        ${collection.description}
+                    </p>
+
+                </div>
+
+                <div
+                    class="avatar-grid"
+                    id="${collectionId}Grid">
+                </div>
+
+            </section>
 
         `;
+
+    const grid = document.getElementById(`${collectionId}Grid`);
+
+    companions.forEach((companion) => {
+      grid.innerHTML += `
+
+                <button
+                    class="avatar-option"
+                    data-avatar="${companion.id}">
+
+                    <img
+                        src="${companion.image}"
+                        class="avatar-option-img">
+
+                    <span class="avatar-name">
+                        ${companion.name}
+                    </span>
+
+                </button>
+
+            `;
+    });
   });
 }
-
 /* ============================================================
    LOAD PROFILE
 ============================================================ */
@@ -150,6 +182,6 @@ function loadProfile() {
    INITIAL LOAD
 ============================================================ */
 
-renderAvatarGrid();
+renderAvatarCollections();
 
 loadProfile();

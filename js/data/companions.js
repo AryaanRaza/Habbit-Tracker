@@ -1,6 +1,27 @@
 // ============================================================
 // HabitFlow — Companion Registry
 // ============================================================
+const COLLECTIONS = {
+  starter: {
+    title: "🟢 Starter Collection",
+    description: "Always available from day one.",
+  },
+
+  streak: {
+    title: "🔥 Streak Collection",
+    description: "Unlock through daily streaks.",
+  },
+
+  legendary: {
+    title: "👑 Legendary Collection",
+    description: "For HabitFlow veterans.",
+  },
+
+  master: {
+    title: "💎 Master Collection",
+    description: "The rarest companions.",
+  },
+};
 
 const COMPANIONS = [
   {
@@ -37,7 +58,7 @@ const COMPANIONS = [
     collection: "streak",
     rarity: "Rare",
     unlockStreak: 7,
-    tagline: "Forged through unwavering consistency."
+    tagline: "Forged through unwavering consistency.",
   },
 
   {

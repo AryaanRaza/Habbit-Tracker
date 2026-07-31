@@ -66,59 +66,56 @@
    1c. Companion Showcase
    ============================================== */
 
-.companion-showcase{
-    max-width:420px;
-    width:100%;
+.companion-showcase {
+  max-width: 420px;
+  width: 100%;
 
-    padding:2rem;
+  padding: 2rem;
 
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    gap:.75rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
 }
 
-.companion-name{
+.companion-name {
+  font-family: var(--font-brand);
 
-    font-family:var(--font-brand);
+  font-size: 2rem;
 
-    font-size:2rem;
+  font-weight: 700;
 
-    font-weight:700;
-
-    color:var(--clr-text-main);
+  color: var(--clr-text-main);
 }
 
-.companion-status{
+.companion-status {
+  padding: 0.45rem 1rem;
 
-    padding:.45rem 1rem;
+  border-radius: 999px;
 
-    border-radius:999px;
+  background: rgba(143, 123, 255, 0.12);
 
-    background:rgba(143,123,255,.12);
+  color: var(--clr-secondary-deep);
 
-    color:var(--clr-secondary-deep);
+  font-size: 0.82rem;
 
-    font-size:.82rem;
+  font-weight: 700;
 
-    font-weight:700;
+  letter-spacing: 0.04em;
 
-    letter-spacing:.04em;
-
-    text-transform:uppercase;
+  text-transform: uppercase;
 }
 
-.companion-tagline{
+.companion-tagline {
+  max-width: 260px;
 
-    max-width:260px;
+  text-align: center;
 
-    text-align:center;
+  color: var(--clr-text-soft);
 
-    color:var(--clr-text-soft);
+  font-size: 0.95rem;
 
-    font-size:.95rem;
-
-    line-height:1.6;
+  line-height: 1.6;
 }
 
 /* ==============================================
@@ -179,18 +176,18 @@
   transition: all 0.25s ease;
 }
 
-.avatar-name{
-    position:absolute;
+.avatar-name {
+  position: absolute;
 
-    left:50%;
-    top:calc(100% + 10px);
+  left: 50%;
+  top: calc(100% + 10px);
 
-    transform:translateX(-50%);
+  transform: translateX(-50%);
 
-    white-space:nowrap;
+  white-space: nowrap;
 
-    font-size:.82rem;
-    font-weight:600;
+  font-size: 0.82rem;
+  font-weight: 600;
 }
 
 .avatar-option-img {
@@ -217,9 +214,33 @@
   box-shadow: 0 0 0 5px rgba(142, 123, 255, 0.1);
 }
 
+/* ==============================================
+   Companion Collections
+============================================== */
+
+.avatar-collection {
+  margin-bottom: 3rem;
+}
+
+.collection-header {
+  margin-bottom: 1.5rem;
+}
+
+.collection-header h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--clr-text-main);
+}
+
+.collection-header p {
+  margin-top: 0.35rem;
+
+  font-size: 0.9rem;
+
+  color: var(--clr-text-soft);
+}
 
 @media (max-width: 768px) {
-
   .avatar-grid {
     grid-template-columns: repeat(3, 1fr);
     gap: 28px 16px; /* extra vertical gap for the names */
@@ -236,5 +257,4 @@
     font-size: 0.75rem;
     font-weight: 600;
   }
-
 }
