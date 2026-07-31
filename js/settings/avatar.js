@@ -67,21 +67,30 @@ function renderAvatarCollections() {
     companions.forEach((companion) => {
       grid.innerHTML += `
 
-                <button
-                    class="avatar-option"
-                    data-avatar="${companion.id}">
+<button
+    class="avatar-option"
+    data-avatar="${companion.id}">
 
-                    <img
-                        src="${companion.image}"
-                        class="avatar-option-img">
+    <img
+        src="${companion.image}"
+        alt="${companion.name}"
+        class="avatar-option-img">
 
-                    <span class="avatar-name">
-                        ${companion.name}
-                    </span>
+    <div class="avatar-card-info">
 
-                </button>
+        <h4 class="avatar-name">
+            ${companion.name}
+        </h4>
 
-            `;
+        <span class="avatar-rarity">
+            ${companion.rarity}
+        </span>
+
+    </div>
+
+</button>
+
+`;
     });
   });
 }
