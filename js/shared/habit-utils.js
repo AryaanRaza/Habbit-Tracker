@@ -1,3 +1,4 @@
+
 /**
  * ============================================================
  * HabitFlow — Shared Stats Utilities
@@ -63,8 +64,9 @@ function getCurrentStreak(habits = []) {
 function getBestStreak(habits = []) {
   return Math.max(...habits.map((habit) => habit.best || 0), 0);
 }
+
 /* ============================================================
-   HABIT ENGINE
+   HABIT ENGINE (Aryaan's undo/complete logic)
 ============================================================ */
 
 /**
@@ -82,9 +84,7 @@ function applyHabitCompletion(habit) {
     habit.streak = 1;
   } else {
     const previous = new Date(habit.lastCompletedDate);
-
     const current = new Date(today);
-
     const diffDays = Math.floor((current - previous) / (1000 * 60 * 60 * 24));
 
     if (diffDays === 1) {
@@ -98,13 +98,14 @@ function applyHabitCompletion(habit) {
   habit.total++;
   habit.lastCompletedDate = today;
   habit.best = Math.max(habit.best, habit.streak);
+
+  // completedDates history — needed for stats page charts/calendar
+  if (!habit.completedDates) habit.completedDates = [];
+  if (!habit.completedDates.includes(today)) {
+    habit.completedDates.push(today);
+  }
 }
 
-/**
- * Restores the habit to its state before completion.
- *
- * @param {Object} habit
- */
 /**
  * Reverts a habit completion.
  *
@@ -116,18 +117,10 @@ function revertHabitCompletion(habit, snapshot) {
 
   habit.streak = snapshot.streak;
   habit.total = snapshot.total;
+  habit.best = snapshot.best;
   habit.lastCompletedDate = snapshot.lastCompletedDate;
   habit.completedToday = snapshot.completedToday;
+  habit.completedDates = snapshot.completedDates
+    ? [...snapshot.completedDates]
+    : habit.completedDates;
 }
-
-/* ============================================================
-   GLOBAL EXPORTS
-============================================================ */
-window.getTotalHabits = getTotalHabits;
-window.getCompletedToday = getCompletedToday;
-window.getTotalCompletions = getTotalCompletions;
-window.getCurrentStreak = getCurrentStreak;
-window.getBestStreak = getBestStreak;
-
-window.applyHabitCompletion = applyHabitCompletion;
-window.revertHabitCompletion = revertHabitCompletion;
