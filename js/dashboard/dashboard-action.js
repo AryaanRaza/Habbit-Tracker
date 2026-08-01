@@ -22,10 +22,29 @@ window.completeHabit = function (card, habit) {
   window.habitUndoState[habit.id] = snapshot;
   /* ---------------------------------------------------------- */
 
+  /* ----------------------------------------------------------
+     Date-gap aware streak calculation.
+     Blind streak++ was wrong across missed days — this checks
+     the gap since last completion before deciding.
+     ---------------------------------------------------------- */
+  if (!habit.lastCompletedDate) {
+    habit.streak = 1;
+  } else {
+    const previous = new Date(habit.lastCompletedDate);
+    const current = new Date(today);
+    const diffDays = Math.floor((current - previous) / (1000 * 60 * 60 * 24));
+
+    if (diffDays === 1) {
+      habit.streak++;
+    } else if (diffDays > 1) {
+      habit.streak = 1;
+    }
+    // diffDays === 0 → already completed today, streak untouched
+  }
+  /* ---------------------------------------------------------- */
+
   habit.completedToday = true;
   habit.lastCompletedDate = today;
-
-  habit.streak++;
   habit.total++;
 
   habit.best = Math.max(habit.best, habit.streak);
@@ -57,7 +76,6 @@ window.completeHabit = function (card, habit) {
 ========================= */
 window.undoHabit = function (card, habit) {
 
-
   /* ----------------------------------------------------------
      Undo is only available while the temporary snapshot exists.
      Since the snapshot is stored only in memory, refreshing the
@@ -88,7 +106,6 @@ window.undoHabit = function (card, habit) {
   delete window.habitUndoState[habit.id];
   /* ---------------------------------------------------------- */
 
-
   saveHabits();
 
   setHabitUndoUI(card);
@@ -101,3 +118,28 @@ window.undoHabit = function (card, habit) {
 
   showToast("Marked as not done ❌");
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
