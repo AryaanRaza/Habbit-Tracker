@@ -124,3 +124,47 @@ function revertHabitCompletion(habit, snapshot) {
     ? [...snapshot.completedDates]
     : habit.completedDates;
 }
+
+
+/* ============================================================
+   STATS PAGE — CHARTS, CALENDAR, BADGES
+============================================================ */
+
+/**
+ * Last 7 days of completion data — for the weekly bar chart.
+ *
+ * @param {Array} habits
+ * @returns {Array}
+ */
+function getWeeklyCompletionData(habits = []) {
+  const days = [];
+  const today = new Date();
+
+  for (let i = 6; i >= 0; i--) {
+    const d = new Date();
+    d.setDate(today.getDate() - i);
+    const dateStr = d.toDateString();
+
+    const totalHabits = habits.length;
+    const completedCount = habits.filter((h) =>
+      (h.completedDates || []).includes(dateStr)
+    ).length;
+
+    let status = "none";
+    if (totalHabits > 0) {
+      if (completedCount === totalHabits) status = "all";
+      else if (completedCount > 0) status = "partial";
+    }
+    if (dateStr === today.toDateString()) status = "today";
+
+    days.push({
+      dateStr,
+      label: d.toLocaleDateString("en-US", { weekday: "narrow" }),
+      completedCount,
+      totalHabits,
+      status,
+    });
+  }
+
+  return days;
+}
