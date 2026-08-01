@@ -4,22 +4,22 @@
 const COLLECTIONS = {
   starter: {
     title: "🟢 Starter Collection",
-    description: "Always available from day one.",
+    description: "Your first companions. Available immediately.",
   },
 
   streak: {
     title: "🔥 Streak Collection",
-    description: "Unlock through daily streaks.",
+    description: "Unlock by maintaining your daily streak.",
   },
 
   legendary: {
     title: "👑 Legendary Collection",
-    description: "For HabitFlow veterans.",
+    description: "Reserved for HabitFlow's most dedicated users.",
   },
 
   master: {
-    title: "💎 Master Collection",
-    description: "The rarest companions.",
+    title: "🤖 Master Collection",
+    description: "Only consistency legends can reach this tier.",
   },
 };
 

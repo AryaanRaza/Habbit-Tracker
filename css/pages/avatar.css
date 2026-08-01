@@ -303,23 +303,52 @@
 ============================================== */
 
 .avatar-collection {
-  margin-bottom: 3rem;
+  margin-bottom: 4rem;
 }
 
 .collection-header {
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;
+  padding-left: 0.4rem;
 }
 
 .collection-header h3 {
-  font-size: 1.1rem;
+  position: relative;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+
+  font-size: 1.35rem;
   font-weight: 700;
-  color: var(--clr-text-main);
+
+  color: var(--clr-text-heading);
+
+  letter-spacing: -0.02em;
+}
+
+.collection-header h3::before {
+  content: "";
+
+  width: 12px;
+  height: 12px;
+
+  border-radius: 50%;
+
+  background: var(--collection-color);
+
+  box-shadow:
+    0 0 14px var(--collection-color),
+    0 0 28px color-mix(in srgb, var(--collection-color) 45%, transparent);
 }
 
 .collection-header p {
-  margin-top: 0.35rem;
+  margin-top: 0.55rem;
+  margin-left: 1.25rem;
 
-  font-size: 0.9rem;
+  max-width: 460px;
+
+  font-size: 0.95rem;
+  line-height: 1.6;
 
   color: var(--clr-text-soft);
 }
