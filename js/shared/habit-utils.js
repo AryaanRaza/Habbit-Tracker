@@ -168,3 +168,47 @@ function getWeeklyCompletionData(habits = []) {
 
   return days;
 }
+
+
+/**
+ * Finds the day this month with the most habits completed.
+ *
+ * @param {Array} habits
+ * @returns {Object|null}
+ */
+function getBestDayThisMonth(habits = []) {
+  const now = new Date();
+  const year = now.getFullYear();
+  const month = now.getMonth();
+  const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+  let bestDate = null;
+  let bestCount = 0;
+
+  for (let day = 1; day <= daysInMonth; day++) {
+    const d = new Date(year, month, day);
+    if (d > now) break;
+
+    const dateStr = d.toDateString();
+    const count = habits.filter((h) =>
+      (h.completedDates || []).includes(dateStr)
+    ).length;
+
+    if (count > bestCount) {
+      bestCount = count;
+      bestDate = d;
+    }
+  }
+
+  if (!bestDate) return null;
+
+  return {
+    label: bestDate.toLocaleDateString("en-US", {
+      weekday: "long",
+      month: "long",
+      day: "numeric",
+    }),
+    completedCount: bestCount,
+    totalHabits: habits.length,
+  };
+}
