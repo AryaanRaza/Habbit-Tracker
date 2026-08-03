@@ -278,3 +278,23 @@ function getHabitBreakdown(habits = []) {
     };
   });
 }
+/**
+ * Streak milestone badges — locked/unlocked based on best streak.
+ *
+ * @param {Array} habits
+ * @returns {Array}
+ */
+function getStreakMilestones(habits = []) {
+  const best = getBestStreak(habits);
+  const milestones = [
+    { days: 3, label: "3 Day Spark", icon: "🔥" },
+    { days: 7, label: "7 Day Streak", icon: "⭐" },
+    { days: 14, label: "2 Week Warrior", icon: "💪" },
+    { days: 30, label: "30 Day King", icon: "🏅" },
+    { days: 60, label: "60 Day Master", icon: "🥈" },
+    { days: 100, label: "Century Club", icon: "🥇" },
+    { days: 180, label: "Half Year Hero", icon: "💎" },
+    { days: 365, label: "One Year King", icon: "👑" },
+  ];
+  return milestones.map((m) => ({ ...m, unlocked: best >= m.days }));
+}
