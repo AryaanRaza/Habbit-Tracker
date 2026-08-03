@@ -212,3 +212,36 @@ function getBestDayThisMonth(habits = []) {
     totalHabits: habits.length,
   };
 }
+
+
+/**
+ * Completed count + completion rate for a given range (week/month/all).
+ *
+ * @param {Array} habits
+ * @param {string} range
+ * @returns {Object}
+ */
+function getRangeStats(habits = [], range = "week") {
+  const now = new Date();
+  let daysBack = range === "week" ? 7 : range === "month" ? now.getDate() : null;
+
+  let completedCount = 0;
+
+  habits.forEach((h) => {
+    const dates = h.completedDates || [];
+    if (range === "all") {
+      completedCount += h.total || dates.length;
+    } else {
+      dates.forEach((dateStr) => {
+        const d = new Date(dateStr);
+        const diffDays = Math.floor((now - d) / (1000 * 60 * 60 * 24));
+        if (diffDays >= 0 && diffDays < daysBack) completedCount++;
+      });
+    }
+  });
+
+  const possible = range === "all" ? null : habits.length * daysBack;
+  const rate = possible ? Math.round((completedCount / possible) * 100) : null;
+
+  return { completedCount, rate };
+}
