@@ -245,3 +245,36 @@ function getRangeStats(habits = [], range = "week") {
 
   return { completedCount, rate };
 }
+
+
+/**
+ * Per-habit completion % for the current month — for the breakdown list.
+ *
+ * @param {Array} habits
+ * @returns {Array}
+ */
+function getHabitBreakdown(habits = []) {
+  const now = new Date();
+  const daysElapsed = now.getDate();
+
+  return habits.map((h) => {
+    const completedThisMonth = (h.completedDates || []).filter((dateStr) => {
+      const d = new Date(dateStr);
+      return (
+        d.getFullYear() === now.getFullYear() && d.getMonth() === now.getMonth()
+      );
+    }).length;
+
+    const pct =
+      daysElapsed === 0
+        ? 0
+        : Math.min(100, Math.round((completedThisMonth / daysElapsed) * 100));
+
+    return {
+      name: h.name,
+      category: h.category || "other",
+      completedThisMonth,
+      pct,
+    };
+  });
+}
