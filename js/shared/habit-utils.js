@@ -298,3 +298,39 @@ function getStreakMilestones(habits = []) {
   ];
   return milestones.map((m) => ({ ...m, unlocked: best >= m.days }));
 }
+
+/**
+ * Category-wise lifetime completion breakdown — for donut chart.
+ *
+ * @param {Array} habits
+ * @returns {Array}
+ */
+function getCategoryBreakdown(habits = []) {
+  const categoryLabels = {
+    health: "Wellness",
+    learning: "Learning",
+    fitness: "Fitness",
+    mindfulness: "Mindfulness",
+    creativity: "Creativity",
+    work: "Productivity",
+    other: "General",
+  };
+
+  const totals = {};
+  habits.forEach((h) => {
+    const cat = h.category || "other";
+    totals[cat] = (totals[cat] || 0) + (h.total || 0);
+  });
+
+  const totalAll = Object.values(totals).reduce((a, b) => a + b, 0);
+
+  const breakdown = Object.entries(totals).map(([cat, count]) => ({
+    category: cat,
+    label: categoryLabels[cat] || cat,
+    count,
+    pct: totalAll === 0 ? 0 : Math.round((count / totalAll) * 100),
+  }));
+
+  breakdown.sort((a, b) => b.count - a.count);
+  return breakdown;
+}
