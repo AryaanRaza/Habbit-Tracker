@@ -12,7 +12,6 @@
    --clr-secondary-deep → gallery labels, rarity tags
    ================================================================== */
 
-
 /* ==================================================================
    1. ACCOUNT HERO
    ================================================================== */
@@ -80,7 +79,6 @@
   object-fit: contain;
 }
 
-
 /* ==================================================================
    2. COMPANION INFO (name, tagline, meta chips)
    ================================================================== */
@@ -134,7 +132,6 @@
   font-weight: 600;
   color: var(--clr-text-dark);
 }
-
 
 /* ==================================================================
    3. AVATAR GALLERY
@@ -220,6 +217,9 @@
 }
 
 .avatar-option {
+  position: relative;
+  overflow: hidden;
+
   width: 150px;
   min-height: 205px;
   padding: 14px;
@@ -255,6 +255,41 @@
   object-fit: contain;
   flex-shrink: 0;
 }
+/* ============================================================
+   COMPANION LOCK OVERLAY
+============================================================ */
+
+.avatar-image-wrapper {
+  position: relative;
+}
+
+.avatar-lock-overlay {
+  position: absolute;
+  inset: 0;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+
+  border-radius: 18px;
+
+  background: rgba(15, 18, 35, 0.45);
+  backdrop-filter: blur(3px);
+}
+
+.lock-icon {
+  font-size: 1.6rem;
+}
+
+.lock-text {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: white;
+}
 
 .avatar-card-info {
   width: 100%;
@@ -286,7 +321,6 @@
   text-transform: uppercase;
   letter-spacing: 0.08em;
 }
-
 
 /* ==================================================================
    4. MOBILE RESPONSIVE

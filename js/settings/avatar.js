@@ -86,9 +86,24 @@ function renderAvatarCollections() {
     data-avatar="${companion.id}">
 
     <img
+    <div class="avatar-image-wrapper">
+
+    <img
         src="${companion.image}"
         alt="${companion.name}"
         class="avatar-option-img">
+
+     <div class="avatar-lock-overlay">
+
+        <span class="lock-icon">🔒</span>
+
+        <span class="lock-text">
+            Locked
+        </span>
+
+    </div>
+
+</div>
 
     <div class="avatar-card-info">
 
