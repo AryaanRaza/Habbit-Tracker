@@ -77,6 +77,8 @@ function renderAvatarCollections() {
     const grid = document.getElementById(`${collectionId}Grid`);
 
     companions.forEach((companion) => {
+      const isUnlocked = playerBestStreak >= companion.unlockStreak;
+
       grid.innerHTML += `
 
 <button
