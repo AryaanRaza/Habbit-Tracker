@@ -21,6 +21,13 @@ const heroUnlock = document.getElementById("heroUnlock");
 ============================================================ */
 
 const currentUser = Storage.get(STORAGE_KEYS.CURRENT_USER);
+// ============================================================
+// PLAYER PROGRESSION
+// ============================================================
+
+// Highest streak the user has ever achieved.
+// This drives the companion unlock system.
+const playerBestStreak = getBestStreak(currentUser.habits || []);
 
 /* ============================================================
    PROTECTION
