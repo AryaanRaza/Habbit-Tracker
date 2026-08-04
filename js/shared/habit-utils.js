@@ -393,3 +393,22 @@ function getActivityHeatmapData(habits = [], weeksCount = 12) {
   return weeks;
 }
 
+/* ============================================================
+   GLOBAL EXPORTS
+============================================================ */
+window.getTotalHabits = getTotalHabits;
+window.getCompletedToday = getCompletedToday;
+window.getTotalCompletions = getTotalCompletions;
+window.getCurrentStreak = getCurrentStreak;
+window.getBestStreak = getBestStreak;
+
+window.applyHabitCompletion = applyHabitCompletion;
+window.revertHabitCompletion = revertHabitCompletion;
+
+window.getWeeklyCompletionData = getWeeklyCompletionData;
+window.getBestDayThisMonth = getBestDayThisMonth;
+window.getRangeStats = getRangeStats;
+window.getHabitBreakdown = getHabitBreakdown;
+window.getStreakMilestones = getStreakMilestones;
+window.getCategoryBreakdown = getCategoryBreakdown;
+window.getActivityHeatmapData = getActivityHeatmapData;
