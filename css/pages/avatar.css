@@ -1,59 +1,55 @@
-/* ==============================================
-   1. ACCOUNT HERO
-   ============================================== */
+/* ==================================================================
+   AVATAR PAGE STYLES
+   Structure:
+   1. Account Hero (companion showcase, avatar frame)
+   2. Companion Info (name, tagline, meta chips)
+   3. Avatar Gallery (collections, grid, cards)
+   4. Mobile Responsive
 
-/* 1a. Hero Layout
-   ------------------------------------------------ */
+   Typography/color pulled from root.css theme tokens:
+   --font-brand   → companion name, collection headings
+   --font-tagline → companion flavor text
+   --clr-secondary-deep → gallery labels, rarity tags
+   ================================================================== */
+
+
+/* ==================================================================
+   1. ACCOUNT HERO
+   ================================================================== */
+
 .account-hero {
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
+  position: relative;
+  z-index: 2;
 
   padding: 2rem 1.5rem;
   margin-bottom: 2rem;
-
-  position: relative;
-  z-index: 2;
 }
 
-/* 1b. Avatar Preview */
-.avatar-wrapper {
-  position: relative;
-  margin-bottom: 1rem;
-}
-
-.account-avatar {
-  width: 230px;
-
-  height: 230px;
+/* Companion showcase card: frame + info side by side on desktop */
+.companion-showcase {
+  width: 100%;
+  max-width: 900px;
+  margin: auto;
+  padding: 2.5rem;
 
   display: flex;
-
-  justify-content: center;
-
   align-items: center;
-
-  background: none;
-
-  border: none;
-
-  box-shadow: none;
-
-  overflow: visible;
+  justify-content: center;
+  gap: 3rem;
 }
 
+/* Avatar frame (glass panel behind the companion image) */
 .companion-frame {
   width: 260px;
-
   height: 260px;
 
   display: flex;
-
-  justify-content: center;
-
   align-items: center;
-
+  justify-content: center;
   border-radius: 30px;
 
   background: linear-gradient(
@@ -61,246 +57,109 @@
     rgba(255, 255, 255, 0.35),
     rgba(255, 255, 255, 0.12)
   );
-
   border: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+.account-avatar {
+  width: 230px;
+  height: 230px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: none;
+  border: none;
+  box-shadow: none;
+  overflow: visible;
 }
 
 .account-avatar img {
   width: 100%;
-
   height: 100%;
-
   object-fit: contain;
 }
 
-.account-profile-name {
-  margin-top: 1rem;
 
-  font-family: var(--font-brand);
-  font-size: 2rem;
-  font-weight: 700;
+/* ==================================================================
+   2. COMPANION INFO (name, tagline, meta chips)
+   ================================================================== */
 
-  color: var(--clr-text-main);
-}
-/* ==============================================
-   1c. Companion Showcase
-   ============================================== */
-
-.companion-showcase {
-  width: 100%;
-
-  max-width: 900px;
-
-  margin: auto;
-
-  padding: 2.5rem;
-
-  display: flex;
-
-  align-items: center;
-
-  justify-content: center;
-
-  gap: 3rem;
-}
 .companion-content {
   display: flex;
-
   flex-direction: column;
-
   align-items: flex-start;
-
   gap: 1rem;
-
   max-width: 420px;
 }
-.companion-meta {
-  display: flex;
 
-  gap: 0.75rem;
-
-  flex-wrap: wrap;
-}
-.meta-chip {
-  padding: 0.6rem 1rem;
-
-  border-radius: 999px;
-
-  background: rgba(255, 255, 255, 0.5);
-
-  font-size: 0.85rem;
-
-  font-weight: 600;
-}
 .companion-name {
   font-family: var(--font-brand);
-
   font-size: 2rem;
-
   font-weight: 700;
-
   color: var(--clr-text-main);
 }
 
-.companion-status {
-  padding: 0.45rem 1rem;
-
-  border-radius: 999px;
-
-  background: rgba(143, 123, 255, 0.12);
-
-  color: var(--clr-secondary-deep);
-
-  font-size: 0.82rem;
-
-  font-weight: 700;
-
-  letter-spacing: 0.04em;
-
-  text-transform: uppercase;
-}
-
+/* Flavor-text style tagline — uses the brand's playful display font
+   so each companion's line feels like personality, not UI copy */
 .companion-tagline {
   max-width: 260px;
-
   text-align: center;
 
-  color: var(--clr-text-soft);
-
-  font-size: 0.95rem;
-
+  font-family: var(--font-tagline);
+  font-size: 1.15rem;
+  font-style: italic;
   line-height: 1.6;
+  color: var(--clr-text-wine);
 }
 
-/* ==============================================
-   2. AVATAR GALLERY
-   ============================================== */
-.avatar-name {
-  font-size: 0.85rem;
+.companion-meta {
+  margin-top: 1rem;
 
-  font-weight: 700;
-
-  text-align: center;
-
-  color: var(--clr-text-main);
-
-  line-height: 1.3;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
 }
+
+.meta-chip {
+  padding: 0.55rem 1rem;
+  border-radius: 999px;
+
+  background: rgba(255, 255, 255, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(10px);
+
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--clr-text-dark);
+}
+
+
+/* ==================================================================
+   3. AVATAR GALLERY
+   ================================================================== */
+
 .avatar-gallery {
   margin-top: 28px;
   padding-top: 28px;
-
   border-top: 1px solid rgba(255, 255, 255, 0.18);
 
   animation: fadeInUp 0.3s ease;
 }
 
+/* Section eyebrow — brand-colored label, not muted body text */
 .avatar-gallery-title {
   margin-bottom: 18px;
 
   font-size: 0.9rem;
   font-weight: 700;
-
   text-transform: uppercase;
   letter-spacing: 0.08em;
-
-  color: var(--clr-text-soft);
-}
-
-.avatar-grid {
-  display: grid;
-
-  grid-template-columns: repeat(4, 150px);
-
-  justify-content: center;
-
-  gap: 24px;
-
-  margin: 0 auto;
-}
-
-.avatar-option {
-  width: 150px;
-  min-height: 205px;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-
-  padding: 14px;
-
-  border: none;
-  border-radius: 22px;
-
-  cursor: pointer;
-
-  background: rgba(255, 255, 255, 0.45);
-
-  transition: 0.25s;
-}
-
-.avatar-card-info {
-  margin-top: 14px;
-
-  width: 100%;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
-  gap: 8px;
-}
-
-.avatar-rarity {
-  padding: 5px 10px;
-
-  border-radius: 999px;
-
-  background: rgba(142, 123, 255, 0.12);
-
   color: var(--clr-secondary-deep);
-
-  font-size: 0.68rem;
-
-  font-weight: 700;
-
-  text-transform: uppercase;
-
-  letter-spacing: 0.08em;
-}
-.avatar-rarity {
-  color: #8e7bff;
 }
 
-.avatar-option-img {
-  width: 90px;
-  height: 90px;
-
-  object-fit: contain;
-
-  flex-shrink: 0;
-}
-
-.avatar-option:hover {
-  transform: translateY(-5px) scale(1.05);
-
-  background: rgba(255, 255, 255, 0.75);
-
-  box-shadow: 0 12px 28px rgba(142, 123, 255, 0.18);
-}
-
-.avatar-option.active {
-  border: 3px solid var(--clr-secondary-deep);
-
-  background: rgba(142, 123, 255, 0.12);
-
-  box-shadow: 0 0 0 5px rgba(142, 123, 255, 0.1);
-}
-
-/* ==============================================
-   Companion Collections
-============================================== */
+/* --- Collections (grouped sections within the gallery) --- */
 
 .avatar-collection {
   margin-bottom: 4rem;
@@ -311,6 +170,8 @@
   padding-left: 0.4rem;
 }
 
+/* Brand display font for collection names (Free / Streak Unlocks / Awards)
+   so they read as part of the Streaksaur identity, not generic UI headings */
 .collection-header h3 {
   position: relative;
 
@@ -318,24 +179,21 @@
   align-items: center;
   gap: 0.8rem;
 
-  font-size: 1.35rem;
-  font-weight: 700;
-
+  font-family: var(--font-brand);
+  font-size: 1.6rem;
+  font-weight: 400;
+  letter-spacing: 0;
   color: var(--clr-text-heading);
-
-  letter-spacing: -0.02em;
 }
 
+/* Colored dot indicator before each collection title (color set via --collection-color) */
 .collection-header h3::before {
   content: "";
-
   width: 12px;
   height: 12px;
-
   border-radius: 50%;
 
   background: var(--collection-color);
-
   box-shadow:
     0 0 14px var(--collection-color),
     0 0 28px color-mix(in srgb, var(--collection-color) 45%, transparent);
@@ -344,51 +202,95 @@
 .collection-header p {
   margin-top: 0.55rem;
   margin-left: 1.25rem;
-
   max-width: 460px;
 
   font-size: 0.95rem;
   line-height: 1.6;
-
   color: var(--clr-text-soft);
 }
-/* ==============================================
-   Companion Metadata
-============================================== */
 
-.companion-meta {
-  margin-top: 1rem;
+/* --- Grid + cards --- */
+
+.avatar-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 150px);
+  justify-content: center;
+  gap: 24px;
+  margin: 0 auto;
+}
+
+.avatar-option {
+  width: 150px;
+  min-height: 205px;
+  padding: 14px;
 
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
 
-  flex-wrap: wrap;
+  border: none;
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.45);
+  cursor: pointer;
 
-  justify-content: center;
-
-  gap: 0.75rem;
+  transition: 0.25s;
 }
 
-.meta-chip {
-  padding: 0.55rem 1rem;
+.avatar-option:hover {
+  transform: translateY(-5px) scale(1.05);
+  background: rgba(255, 255, 255, 0.75);
+  box-shadow: 0 12px 28px rgba(142, 123, 255, 0.18);
+}
 
+.avatar-option.active {
+  border: 3px solid var(--clr-secondary-deep);
+  background: rgba(142, 123, 255, 0.12);
+  box-shadow: 0 0 0 5px rgba(142, 123, 255, 0.1);
+}
+
+.avatar-option-img {
+  width: 90px;
+  height: 90px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.avatar-card-info {
+  width: 100%;
+  margin-top: 14px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.avatar-name {
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-align: center;
+  line-height: 1.3;
+  color: var(--clr-text-heading);
+}
+
+.avatar-rarity {
+  padding: 5px 10px;
   border-radius: 999px;
 
-  background: rgba(255, 255, 255, 0.35);
+  background: rgba(142, 123, 255, 0.12);
+  color: var(--clr-secondary-deep);
 
-  border: 1px solid rgba(255, 255, 255, 0.4);
-
-  backdrop-filter: blur(10px);
-
-  font-size: 0.82rem;
-
-  font-weight: 600;
-
-  color: var(--clr-text-main);
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
 }
 
-/* ============================================================
-   MOBILE HERO
-============================================================ */
+
+/* ==================================================================
+   4. MOBILE RESPONSIVE
+   ================================================================== */
 
 @media (max-width: 768px) {
   .account-hero {
@@ -397,23 +299,16 @@
 
   .companion-showcase {
     flex-direction: column;
-
     align-items: center;
-
     text-align: center;
-
     gap: 1.5rem;
-
     padding: 1.5rem;
-
     border-radius: 24px;
   }
 
   .companion-art {
     width: 100%;
-
     display: flex;
-
     justify-content: center;
   }
 
@@ -429,9 +324,7 @@
 
   .companion-content {
     width: 100%;
-
     align-items: center;
-
     text-align: center;
   }
 
@@ -441,25 +334,19 @@
 
   .companion-tagline {
     max-width: 280px;
-
     margin: 0 auto;
   }
 
   .companion-meta {
     width: 100%;
-
     display: flex;
-
     flex-wrap: wrap;
-
     justify-content: center;
-
     gap: 10px;
   }
 
   .meta-chip {
-    font-size: 0.78rem;
-
     padding: 8px 14px;
+    font-size: 0.78rem;
   }
 }

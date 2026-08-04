@@ -27,7 +27,7 @@ const currentUser = Storage.get(STORAGE_KEYS.CURRENT_USER);
 
 // Highest streak the user has ever achieved.
 // This drives the companion unlock system.
-const playerBestStreak = getBestStreak(currentUser.habits || []);
+// const playerBestStreak = getBestStreak(currentUser.habits || []);
 
 /* ============================================================
    PROTECTION
@@ -77,12 +77,12 @@ function renderAvatarCollections() {
     const grid = document.getElementById(`${collectionId}Grid`);
 
     companions.forEach((companion) => {
-      const isUnlocked = playerBestStreak >= companion.unlockStreak;
+      const isUnlocked = true;
 
       grid.innerHTML += `
 
 <button
-    class="avatar-option ${isUnlocked ? "" : "locked"}"
+    class="avatar-option"
     data-avatar="${companion.id}">
 
     <img
