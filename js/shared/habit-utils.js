@@ -334,3 +334,62 @@ function getCategoryBreakdown(habits = []) {
   breakdown.sort((a, b) => b.count - a.count);
   return breakdown;
 }
+
+
+
+/**
+ * Last N weeks of activity data (GitHub-style grid) — columns = weeks, rows = Mon..Sun.
+ *
+ * @param {Array} habits
+ * @param {number} weeksCount
+ * @returns {Array}
+ */
+function getActivityHeatmapData(habits = [], weeksCount = 12) {
+  const today = new Date();
+  const totalDays = weeksCount * 7;
+  const days = [];
+
+  for (let i = totalDays - 1; i >= 0; i--) {
+    const d = new Date();
+    d.setDate(today.getDate() - i);
+    const dateStr = d.toDateString();
+
+    const totalHabits = habits.length;
+    const completedCount = habits.filter((h) =>
+      (h.completedDates || []).includes(dateStr)
+    ).length;
+
+    const pct = totalHabits === 0 ? 0 : Math.round((completedCount / totalHabits) * 100);
+    let heat = 0;
+    if (pct > 0 && pct < 34) heat = 1;
+    else if (pct >= 34 && pct < 67) heat = 2;
+    else if (pct >= 67 && pct < 100) heat = 3;
+    else if (pct === 100 && totalHabits > 0) heat = 4;
+
+    days.push({
+      dateStr,
+      heat,
+      completedCount,
+      totalHabits,
+      isToday: dateStr === today.toDateString(),
+      weekday: d.getDay(),
+      label: d.toLocaleDateString("en-US", { month: "short", day: "numeric" }),
+    });
+  }
+
+  const firstWeekday = days[0].weekday;
+  const mondayIndex = firstWeekday === 0 ? 6 : firstWeekday - 1;
+
+  const padded = [];
+  for (let i = 0; i < mondayIndex; i++) padded.push(null);
+  padded.push(...days);
+  while (padded.length % 7 !== 0) padded.push(null);
+
+  const weeks = [];
+  for (let i = 0; i < padded.length; i += 7) {
+    weeks.push(padded.slice(i, i + 7));
+  }
+
+  return weeks;
+}
+
