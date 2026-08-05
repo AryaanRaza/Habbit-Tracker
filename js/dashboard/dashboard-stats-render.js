@@ -44,3 +44,20 @@ function renderTopStats() {
   setRing("ring-fill-completed", rate === null ? (completedCount > 0 ? 100 : 0) : rate);
   setRing("ring-fill-rate", rate === null ? 0 : rate);
 }
+
+function renderWeekChart() {
+  const data = getWeeklyCompletionData(window.habits || []);
+  const container = document.getElementById("week-chart");
+  container.innerHTML = "";
+
+  data.forEach((day) => {
+    const pct = day.totalHabits === 0 ? 4 : Math.max(4, Math.round((day.completedCount / day.totalHabits) * 100));
+    const bar = document.createElement("div");
+    bar.className = `chart-bar status-${day.status}`;
+    bar.innerHTML = `
+      <div class="bar-track"><div class="bar-fill" style="height:${pct}%"></div></div>
+      <span class="bar-label">${day.label}</span>
+    `;
+    container.appendChild(bar);
+  });
+}
