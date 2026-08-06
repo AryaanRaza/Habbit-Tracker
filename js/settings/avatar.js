@@ -77,7 +77,12 @@ function renderAvatarCollections() {
     const grid = document.getElementById(`${collectionId}Grid`);
 
     companions.forEach((companion) => {
-      const isUnlocked = true;
+      const bestStreak = Math.max(
+        ...(currentUser.habits || []).map((habit) => habit.best || 0),
+        0,
+      );
+
+      const isUnlocked = bestStreak >= companion.unlockStreak;
 
       grid.innerHTML += `
 
@@ -93,7 +98,7 @@ function renderAvatarCollections() {
         alt="${companion.name}"
         class="avatar-option-img">
 
-     <div class="avatar-lock-overlay">
+     <div class="avatar-lock-overlay ${isUnlocked ? "hidden" : ""}">
 
         <span class="lock-icon">🔒</span>
 

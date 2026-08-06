@@ -278,6 +278,9 @@
   background: rgba(15, 18, 35, 0.45);
   backdrop-filter: blur(3px);
 }
+.avatar-lock-overlay.hidden {
+  display: none;
+}
 
 .lock-icon {
   font-size: 1.6rem;
