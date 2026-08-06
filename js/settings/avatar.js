@@ -80,6 +80,7 @@ function renderAvatarCollections() {
       const bestStreak = getPlayerBestStreak(currentUser);
 
       const isUnlocked = bestStreak >= companion.unlockStreak;
+      const progress = Math.min(bestStreak, companion.unlockStreak);
 
       grid.innerHTML += `
 
@@ -103,9 +104,9 @@ function renderAvatarCollections() {
       Unlock at
     </span>
 
-    <span class="lock-streak">
-    ${companion.unlockStreak} Days
-    </span>
+   <span class="lock-streak">
+     ${progress} / ${companion.unlockStreak} Days
+   </span>
 
     </div>
 

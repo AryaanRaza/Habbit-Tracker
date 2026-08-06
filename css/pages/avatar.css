@@ -295,9 +295,13 @@
 }
 
 .lock-streak {
-  font-size: 0.9rem;
+  margin-top: 2px;
+
+  font-size: 0.95rem;
   font-weight: 700;
   color: #fff;
+
+  letter-spacing: 0.02em;
 }
 
 .avatar-card-info {
