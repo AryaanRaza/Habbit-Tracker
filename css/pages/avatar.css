@@ -167,6 +167,26 @@
   padding-left: 0.4rem;
 }
 
+.collection-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: .5rem;
+}
+
+.collection-progress {
+  padding: 6px 10px;
+  border-radius: 999px;
+
+  background: rgba(255, 255, 255, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+
+  font-size: 0.8rem;
+  font-weight: 700;
+
+  color: var(--clr-secondary-deep);
+}
+
 /* Brand display font for collection names (Free / Streak Unlocks / Awards)
    so they read as part of the Streaksaur identity, not generic UI headings */
 .collection-header h3 {

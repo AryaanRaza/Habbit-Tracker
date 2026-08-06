@@ -49,21 +49,37 @@ function renderAvatarCollections() {
       (companion) => companion.collection === collectionId,
     );
 
+    const bestStreak = getPlayerBestStreak(currentUser);
+
+    const unlockedCount = companions.filter(
+      (companion) => bestStreak >= companion.unlockStreak,
+    ).length;
+
     container.innerHTML += `
 
             <section class="avatar-collection">
 
-                <div class="collection-header">
+<div class="collection-header">
 
-                    <h3>
-                        ${collection.title}
-                    </h3>
+    <div class="collection-title-row">
 
-                    <p>
-                        ${collection.description}
-                    </p>
+        <h3>
+            ${collection.title}
+        </h3>
 
-                </div>
+        <span class="collection-progress">
+
+            ${unlockedCount} / ${companions.length}
+
+        </span>
+
+    </div>
+
+    <p>
+        ${collection.description}
+    </p>
+
+</div>
 
                 <div
                     class="avatar-grid"
