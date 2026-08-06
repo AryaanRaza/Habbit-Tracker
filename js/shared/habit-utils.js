@@ -21,6 +21,16 @@ function getTotalHabits(habits = []) {
 }
 
 /**
+ * Returns the player's highest unlocked streak.
+ *
+ * @param {Object} user
+ * @returns {number}
+ */
+function getPlayerBestStreak(user) {
+  return getBestStreak(user?.habits || []);
+}
+
+/**
  * Returns the number of habits completed today.
  *
  * @param {Array} habits
@@ -131,3 +141,4 @@ window.getBestStreak = getBestStreak;
 
 window.applyHabitCompletion = applyHabitCompletion;
 window.revertHabitCompletion = revertHabitCompletion;
+window.getPlayerBestStreak = getPlayerBestStreak;

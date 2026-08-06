@@ -77,10 +77,7 @@ function renderAvatarCollections() {
     const grid = document.getElementById(`${collectionId}Grid`);
 
     companions.forEach((companion) => {
-      const bestStreak = Math.max(
-        ...(currentUser.habits || []).map((habit) => habit.best || 0),
-        0,
-      );
+      const bestStreak = getPlayerBestStreak(currentUser);
 
       const isUnlocked = bestStreak >= companion.unlockStreak;
 
@@ -149,10 +146,7 @@ function loadProfile() {
 
       const selectedCompanion = COMPANIONS.find((c) => c.id === selectedAvatar);
 
-      const bestStreak = Math.max(
-        ...(currentUser.habits || []).map((habit) => habit.best || 0),
-        0,
-      );
+      const bestStreak = getPlayerBestStreak(currentUser);
 
       if (bestStreak < selectedCompanion.unlockStreak) {
         showToast(
