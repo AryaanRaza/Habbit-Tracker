@@ -61,3 +61,31 @@ function renderWeekChart() {
     container.appendChild(bar);
   });
 }
+
+function renderCategoryDonut() {
+  const breakdown = getCategoryBreakdown(window.habits || []);
+  const donut = document.getElementById("category-donut");
+  const legend = document.getElementById("category-legend");
+  legend.innerHTML = "";
+
+  if (breakdown.length === 0 || breakdown.every((b) => b.count === 0)) {
+    donut.style.background = "var(--bg-card-strong)";
+    legend.innerHTML = `<p class="donut-empty">No completions yet</p>`;
+    return;
+  }
+
+  let cumulative = 0;
+  const stops = breakdown.map((b) => {
+    const start = cumulative;
+    cumulative += b.pct;
+    return `var(--cat-${b.category}) ${start}% ${cumulative}%`;
+  });
+  donut.style.background = `conic-gradient(${stops.join(", ")})`;
+
+  breakdown.forEach((b) => {
+    const row = document.createElement("span");
+    row.className = "legend-dot-row";
+    row.innerHTML = `<i class="legend-dot" style="background: var(--cat-${b.category})"></i> ${b.label} · ${b.pct}%`;
+    legend.appendChild(row);
+  });
+}
