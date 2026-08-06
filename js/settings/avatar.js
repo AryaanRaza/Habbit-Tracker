@@ -146,14 +146,27 @@ function loadProfile() {
   avatarOptions.forEach((option) => {
     option.addEventListener("click", () => {
       const selectedAvatar = option.dataset.avatar;
+
+      const selectedCompanion = COMPANIONS.find((c) => c.id === selectedAvatar);
+
+      const bestStreak = Math.max(
+        ...(currentUser.habits || []).map((habit) => habit.best || 0),
+        0,
+      );
+
+      if (bestStreak < selectedCompanion.unlockStreak) {
+        showToast(
+          `🔒 Reach a ${selectedCompanion.unlockStreak}-day streak to unlock ${selectedCompanion.name}.`,
+          "info",
+        );
+
+        return;
+      }
       const selectedAvatarName =
         option.querySelector(".avatar-name").textContent;
 
       // Update preview
       currentUser.avatar = selectedAvatar;
-
-      // Get selected companion
-      const selectedCompanion = COMPANIONS.find((c) => c.id === selectedAvatar);
 
       // Save companion name
       currentUser.avatarName = selectedCompanion.name;
