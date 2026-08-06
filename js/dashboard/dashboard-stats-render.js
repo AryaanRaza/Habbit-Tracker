@@ -89,3 +89,26 @@ function renderCategoryDonut() {
     legend.appendChild(row);
   });
 }
+
+function renderActivityHeatmap() {
+  const weeks = getActivityHeatmapData(window.habits || [], 12);
+  const grid = document.getElementById("heatmap-grid");
+  grid.innerHTML = "";
+
+  weeks.forEach((week) => {
+    week.forEach((day) => {
+      const cell = document.createElement("div");
+      if (!day) {
+        cell.className = "heat-cell cell-blank";
+      } else {
+        cell.className = `heat-cell heat-${day.heat}${day.isToday ? " is-today" : ""}`;
+        const count = day.completedCount;
+        cell.setAttribute(
+          "data-tooltip",
+          `${count} habit${count === 1 ? "" : "s"} completed on ${day.label}`
+        );
+      }
+      grid.appendChild(cell);
+    });
+  });
+}
