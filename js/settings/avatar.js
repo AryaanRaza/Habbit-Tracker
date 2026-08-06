@@ -102,9 +102,13 @@ function renderAvatarCollections() {
 
         <span class="lock-icon">🔒</span>
 
-        <span class="lock-text">
-            Locked
-        </span>
+    <span class="lock-text">
+      Unlock at
+    </span>
+
+    <span class="lock-streak">
+    ${companion.unlockStreak} Days
+    </span>
 
     </div>
 
