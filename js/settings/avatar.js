@@ -85,7 +85,7 @@ function renderAvatarCollections() {
       grid.innerHTML += `
 
 <button
-    class="avatar-option"
+    class="avatar-option ${isUnlocked ? "" : "locked"}"
     data-avatar="${companion.id}">
 
     <img

@@ -249,6 +249,25 @@
   box-shadow: 0 0 0 5px rgba(142, 123, 255, 0.1);
 }
 
+/* ============================================================
+   LOCKED COMPANIONS
+============================================================ */
+
+.avatar-option.locked {
+  cursor: not-allowed;
+  background: rgba(255, 255, 255, 0.28);
+}
+
+.avatar-option.locked:hover {
+  transform: none;
+  box-shadow: none;
+  background: rgba(255, 255, 255, 0.28);
+}
+
+.avatar-option.locked .avatar-option-img {
+  filter: grayscale(0.55) brightness(0.8);
+}
+
 .avatar-option-img {
   width: 90px;
   height: 90px;
