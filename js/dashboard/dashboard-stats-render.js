@@ -112,3 +112,19 @@ function renderActivityHeatmap() {
     });
   });
 }
+
+function renderBestDayBanner() {
+  const best = getBestDayThisMonth(window.habits || []);
+  const banner = document.getElementById("best-day-banner");
+
+  if (!best || best.completedCount === 0) {
+    banner.hidden = true;
+    return;
+  }
+
+  banner.hidden = false;
+  document.getElementById("best-day-title").textContent = best.label;
+  document.getElementById("best-day-sub").textContent =
+    `${best.completedCount} / ${best.totalHabits} habits completed`;
+}
+
