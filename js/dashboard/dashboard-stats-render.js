@@ -128,3 +128,21 @@ function renderBestDayBanner() {
     `${best.completedCount} / ${best.totalHabits} habits completed`;
 }
 
+function renderBreakdown() {
+  const breakdown = getHabitBreakdown(window.habits || []);
+  const container = document.getElementById("breakdown-list");
+  container.innerHTML = "";
+
+  breakdown.forEach((h) => {
+    const row = document.createElement("div");
+    row.className = "breakdown-row";
+    row.innerHTML = `
+      <span class="breakdown-name">${h.name}</span>
+      <div class="breakdown-track">
+        <div class="breakdown-fill" style="width:${h.pct}%; background: var(--cat-${h.category})"></div>
+      </div>
+      <span class="breakdown-pct">${h.pct}%</span>
+    `;
+    container.appendChild(row);
+  });
+}
