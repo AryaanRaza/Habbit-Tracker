@@ -146,3 +146,39 @@ function renderBreakdown() {
     container.appendChild(row);
   });
 }
+function renderBadges() {
+  const habits = window.habits || [];
+  const milestones = getStreakMilestones(habits);
+  const best = getBestStreak(habits);
+
+  const pillContainer = document.getElementById("badges-list");
+  pillContainer.innerHTML = "";
+
+  milestones.forEach((m) => {
+    const pill = document.createElement("span");
+    pill.className = `badge-pill ${m.unlocked ? "is-unlocked" : "is-locked"}`;
+    pill.textContent = `${m.unlocked ? m.icon : "🔒"} ${m.label}`;
+    pillContainer.appendChild(pill);
+  });
+
+  const progressWrap = document.getElementById("badge-progress-wrap");
+  const nextLocked = milestones.find((m) => !m.unlocked);
+
+  if (!nextLocked) {
+    progressWrap.innerHTML = `<p class="badge-progress-label">All milestones unlocked! 🎉</p>`;
+    return;
+  }
+
+  const pct = Math.min(100, Math.round((best / nextLocked.days) * 100));
+  progressWrap.innerHTML = `
+    <div class="badge-progress-top">
+      <span>Progress to ${nextLocked.label}</span>
+      <span>${best} / ${nextLocked.days} days</span>
+    </div>
+    <div class="badge-progress-track">
+      <div class="badge-progress-fill" style="width:${pct}%"></div>
+    </div>
+  `;
+}
+
+document.addEventListener("DOMContentLoaded", initStatsPage);
