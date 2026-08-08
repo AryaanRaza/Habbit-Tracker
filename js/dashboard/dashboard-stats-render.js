@@ -8,6 +8,25 @@ function setRing(id, pct) {
   el.style.strokeDashoffset = RING_CIRC - (RING_CIRC * clamped) / 100;
 }
 
+
+function initStatsPage() {
+  loadHabits();
+
+  if (!window.habits || window.habits.length === 0) {
+    document.getElementById("stats-empty-state").hidden = false;
+  }
+
+  renderTopStats();
+  renderWeekChart();
+  renderCategoryDonut();
+  renderActivityHeatmap();
+  renderBestDayBanner();
+  renderBreakdown();
+  renderBadges();
+  bindRangeToggle();
+}
+
+
 function bindRangeToggle() {
   const buttons = document.querySelectorAll(".range-btn");
   buttons.forEach((btn) => {
