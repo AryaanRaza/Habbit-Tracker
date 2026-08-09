@@ -99,49 +99,44 @@ function renderAvatarCollections() {
       const progress = Math.min(bestStreak, companion.unlockStreak);
 
       grid.innerHTML += `
-
-<button
+  <button
     class="avatar-option ${isUnlocked ? "" : "locked"}"
     data-avatar="${companion.id}">
 
-    <img
     <div class="avatar-image-wrapper">
 
-    <img
+      <img
         src="${companion.image}"
         alt="${companion.name}"
         class="avatar-option-img">
 
-     <div class="avatar-lock-overlay ${isUnlocked ? "hidden" : ""}">
-
-        <span class="lock-icon">🔒</span>
-
-    <span class="lock-text">
-      Unlock at
-    </span>
-
-   <span class="lock-streak">
-     ${progress} / ${companion.unlockStreak} Days
-   </span>
-
     </div>
 
-</div>
+    <div class="avatar-lock-overlay ${isUnlocked ? "hidden" : ""}">
+      <span class="lock-icon">🔒</span>
+
+      <span class="lock-text">
+        Unlock at
+      </span>
+
+      <span class="lock-streak">
+        ${progress} / ${companion.unlockStreak} Days
+      </span>
+    </div>
 
     <div class="avatar-card-info">
 
-        <h4 class="avatar-name">
-            ${companion.name}
-        </h4>
+      <h4 class="avatar-name">
+        ${companion.name}
+      </h4>
 
-        <span class="avatar-rarity">
-            ${companion.rarity}
-        </span>
+      <span class="avatar-rarity">
+        ${companion.rarity}
+      </span>
 
     </div>
 
-</button>
-
+  </button>
 `;
     });
   });

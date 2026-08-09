@@ -284,9 +284,7 @@
   background: rgba(255, 255, 255, 0.28);
 }
 
-.avatar-option.locked .avatar-option-img {
-  filter: grayscale(0.55) brightness(0.8);
-}
+
 
 .avatar-option-img {
   width: 90px;
@@ -301,13 +299,54 @@
   transform: translateY(-6px) scale(1.08) rotate(-2deg);
 }
 /* ============================================================
-   COMPANION LOCK OVERLAY
-============================================================ */
+   LOCKED COMPANION EFFECT
+   ============================================================ */
 
-.avatar-image-wrapper {
+.avatar-option.locked {
   position: relative;
+  overflow: hidden;
+
+  cursor: not-allowed;
+
+  background: rgba(255, 255, 255, 0.28);
 }
 
+.avatar-option.locked:hover {
+  transform: none;
+  box-shadow: none;
+  background: rgba(255, 255, 255, 0.28);
+}
+
+
+/* Full-card blur layer */
+.avatar-option.locked::before {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  border-radius: inherit;
+
+  background: rgba(25, 25, 45, 0.42);
+
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+
+  z-index: 2;
+
+  pointer-events: none;
+}
+
+
+/* Keep normal card content underneath the blur */
+.avatar-option.locked .avatar-image-wrapper,
+.avatar-option.locked .avatar-card-info {
+  position: relative;
+  z-index: 1;
+}
+
+
+/* Lock information stays completely sharp */
 .avatar-lock-overlay {
   position: absolute;
   inset: 0;
@@ -316,16 +355,54 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 6px;
 
-  border-radius: 18px;
+  gap: 4px;
 
-  background: rgba(15, 18, 35, 0.45);
-  backdrop-filter: blur(3px);
+  z-index: 3;
+
+  pointer-events: none;
 }
+
 .avatar-lock-overlay.hidden {
   display: none;
 }
+
+
+/* Locked image */
+.avatar-option.locked .avatar-option-img {
+  filter: grayscale(0.35) brightness(0.75);
+}
+
+
+/* Lock icon */
+.lock-icon {
+  font-size: 1.6rem;
+  line-height: 1;
+}
+
+
+/* Unlock text */
+.lock-text {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: white;
+}
+
+
+/* Progress text */
+.lock-streak {
+  margin-top: 2px;
+
+  font-size: 0.95rem;
+  font-weight: 700;
+
+  color: white;
+
+  letter-spacing: 0.02em;
+}
+
 
 .lock-icon {
   font-size: 1.6rem;
