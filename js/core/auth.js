@@ -46,6 +46,22 @@ function isAuthenticated() {
   return !!getCurrentUser();
 }
 
+// ============================================
+// AUTHORIZATION
+// ============================================
+
+/**
+ * Check whether the current user has admin privileges.
+ *
+ * Keeps permission logic centralized so other
+ * features do not need to check `isAdmin` directly.
+ */
+function hasAdminPrivileges() {
+  const user = getCurrentUser();
+
+  return user?.isAdmin === true;
+}
+
 // Save current session
 function saveSession(user) {
   Storage.set(STORAGE_KEYS.CURRENT_USER, user);
