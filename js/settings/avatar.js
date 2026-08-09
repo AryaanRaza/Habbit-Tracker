@@ -51,8 +51,8 @@ function renderAvatarCollections() {
 
     const bestStreak = getPlayerBestStreak(currentUser);
 
-    const unlockedCount = companions.filter(
-      (companion) => bestStreak >= companion.unlockStreak,
+    const unlockedCount = companions.filter((companion) =>
+      currentUser.isAdmin ? true : bestStreak >= companion.unlockStreak,
     ).length;
 
     container.innerHTML += `
@@ -95,8 +95,13 @@ function renderAvatarCollections() {
     companions.forEach((companion) => {
       const bestStreak = getPlayerBestStreak(currentUser);
 
-      const isUnlocked = bestStreak >= companion.unlockStreak;
-      const progress = Math.min(bestStreak, companion.unlockStreak);
+      const isUnlocked = currentUser.isAdmin
+        ? true
+        : bestStreak >= companion.unlockStreak;
+
+      const progress = currentUser.isAdmin
+        ? companion.unlockStreak
+        : Math.min(bestStreak, companion.unlockStreak);
 
       grid.innerHTML += `
   <button
