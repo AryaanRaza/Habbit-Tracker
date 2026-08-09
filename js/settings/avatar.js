@@ -22,6 +22,13 @@ const heroUnlock = document.getElementById("heroUnlock");
 
 const currentUser = Storage.get(STORAGE_KEYS.CURRENT_USER);
 // ============================================================
+// ADMIN ACCESS
+// ============================================================
+
+function hasFullAvatarAccess(user) {
+  return user?.isAdmin === true;
+}
+// ============================================================
 // AVATAR UNLOCK PERMISSION
 // ============================================================
 
@@ -33,7 +40,7 @@ const currentUser = Storage.get(STORAGE_KEYS.CURRENT_USER);
  * Normal users must reach the required streak.
  */
 function canUnlockAvatar(companion) {
-  if (hasAdminPrivileges()) {
+  if (hasFullAvatarAccess(currentUser)) {
     return true;
   }
 
@@ -72,7 +79,9 @@ function renderAvatarCollections() {
     const bestStreak = getPlayerBestStreak(currentUser);
 
     const unlockedCount = companions.filter((companion) =>
-      currentUser.isAdmin ? true : bestStreak >= companion.unlockStreak,
+      hasFullAvatarAccess(currentUser)
+        ? true
+        : bestStreak >= companion.unlockStreak,
     ).length;
 
     container.innerHTML += `
