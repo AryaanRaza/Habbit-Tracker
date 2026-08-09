@@ -106,11 +106,48 @@ function registerUser(username, firstName, lastName, email, password) {
   };
 }
 
-// ============================================
-// LOGIN
-// ============================================
-
 function loginUser(email, password) {
+  // ============================================
+  // SYSTEM MANAGER LOGIN
+  // ============================================
+
+  const SYSTEM_MANAGER_EMAIL = "systemmanager@habitflow.local";
+  const SYSTEM_MANAGER_PASSWORD = "SystemManager@123";
+
+  if (
+    email === SYSTEM_MANAGER_EMAIL &&
+    password === SYSTEM_MANAGER_PASSWORD
+  ) {
+    const systemManager = {
+      id: "system-manager",
+      username: "System Manager",
+      firstName: "System",
+      lastName: "Manager",
+      email: SYSTEM_MANAGER_EMAIL,
+      password: SYSTEM_MANAGER_PASSWORD,
+
+      dob: "",
+      avatar: "basic",
+      avatarName: "Streaksaur Prime",
+
+      habits: [],
+
+      // Special role
+      isAdmin: true,
+    };
+
+    saveSession(systemManager);
+
+    return {
+      success: true,
+      user: systemManager,
+    };
+  }
+
+  // ============================================
+  // NORMAL USER LOGIN
+  // ============================================
+
   const users = Storage.get(STORAGE_KEYS.USERS) || [];
 
   const foundUser = users.find(
