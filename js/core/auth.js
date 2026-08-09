@@ -10,8 +10,6 @@
 function showToast(message, type = "info") {
   const toast = document.getElementById("toast");
 
-  if (!toast) return;
-
   let icon = "info";
 
   if (type === "success") {
@@ -22,12 +20,16 @@ function showToast(message, type = "info") {
     icon = "error";
   }
 
+  if (type === "warning") {
+    icon = "lock";
+  }
+
   toast.innerHTML = `
-    <span class="material-symbols-rounded toast-icon toast-icon-auth">
-      ${icon}
-    </span>
-    ${message}
-  `;
+  <span class="material-symbols-rounded toast-icon toast-icon-${type}">
+    ${icon}
+  </span>
+  <span class="toast-message">${message}</span>
+`;
 
   toast.classList.add("show");
 
@@ -130,10 +132,7 @@ function loginUser(email, password) {
   const SYSTEM_MANAGER_EMAIL = "systemmanager@habitflow.local";
   const SYSTEM_MANAGER_PASSWORD = "SystemManager@123";
 
-  if (
-    email === SYSTEM_MANAGER_EMAIL &&
-    password === SYSTEM_MANAGER_PASSWORD
-  ) {
+  if (email === SYSTEM_MANAGER_EMAIL && password === SYSTEM_MANAGER_PASSWORD) {
     const systemManager = {
       id: "system-manager",
       username: "System Manager",
@@ -289,4 +288,3 @@ loginForm?.addEventListener("submit", (e) => {
     window.location.href = "dashboard.html";
   }, 1200);
 });
-

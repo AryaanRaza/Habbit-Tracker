@@ -118,11 +118,11 @@ function renderAvatarCollections() {
     const grid = document.getElementById(`${collectionId}Grid`);
 
     companions.forEach((companion) => {
-      const bestStreak = getPlayerBestStreak(currentUser);
-
       const isUnlocked = canUnlockAvatar(companion);
 
-      const progress = Math.min(bestStreak, companion.unlockStreak);
+      const progress = hasFullAvatarAccess(currentUser)
+        ? companion.unlockStreak
+        : Math.min(getPlayerBestStreak(currentUser), companion.unlockStreak);
 
       grid.innerHTML += `
   <button
@@ -184,12 +184,10 @@ function loadProfile() {
 
       const selectedCompanion = COMPANIONS.find((c) => c.id === selectedAvatar);
 
-      const bestStreak = getPlayerBestStreak(currentUser);
-
       if (!canUnlockAvatar(selectedCompanion)) {
         showToast(
-          `🔒 Reach a ${selectedCompanion.unlockStreak}-day streak to unlock ${selectedCompanion.name}.`,
-          "info",
+          `Reach a ${selectedCompanion.unlockStreak}-day streak to unlock ${selectedCompanion.name}.`,
+          "warning",
         );
 
         return;
