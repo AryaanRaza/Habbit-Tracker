@@ -22,6 +22,26 @@ const heroUnlock = document.getElementById("heroUnlock");
 
 const currentUser = Storage.get(STORAGE_KEYS.CURRENT_USER);
 // ============================================================
+// AVATAR UNLOCK PERMISSION
+// ============================================================
+
+/**
+ * Determines whether a companion can be unlocked
+ * by the current user.
+ *
+ * System Managers bypass streak requirements.
+ * Normal users must reach the required streak.
+ */
+function canUnlockAvatar(companion) {
+  if (hasAdminPrivileges()) {
+    return true;
+  }
+
+  const bestStreak = getPlayerBestStreak(currentUser);
+
+  return bestStreak >= companion.unlockStreak;
+}
+// ============================================================
 // PLAYER PROGRESSION
 // ============================================================
 
