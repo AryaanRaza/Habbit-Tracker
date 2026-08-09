@@ -186,7 +186,7 @@ function loadProfile() {
 
       const bestStreak = getPlayerBestStreak(currentUser);
 
-      if (!currentUser.isAdmin && bestStreak < selectedCompanion.unlockStreak) {
+      if (!canUnlockAvatar(selectedCompanion)) {
         showToast(
           `🔒 Reach a ${selectedCompanion.unlockStreak}-day streak to unlock ${selectedCompanion.name}.`,
           "info",
