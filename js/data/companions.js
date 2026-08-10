@@ -267,4 +267,19 @@ const COMPANIONS = [
     description:
       "The final guardian of HabitFlow. Reserved for those whose dedication spans a thousand days.",
   },
+
+  {
+    id: "titan",
+    name: "Titanasaur",
+    image: "../img/avatars/streaksaur/titan.png",
+    collection: "master",
+    rarity: "Mythic",
+    class: "Titan Slayer",
+    unlockStreak: 1200,
+
+    tagline: "Dedicate your heart. Keep moving forward.",
+
+    description:
+      "Beyond every wall lies another challenge. Those who refuse to stop are the ones who discover what lies beyond.",
+  },
 ];
