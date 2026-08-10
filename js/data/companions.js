@@ -282,4 +282,17 @@ const COMPANIONS = [
     description:
       "Beyond every wall lies another challenge. Those who refuse to stop are the ones who discover what lies beyond.",
   },
+
+  {
+    id: "thunder",
+    name: "Thundersaur",
+    image: "../img/avatars/streaksaur/thunder.png",
+    collection: "master",
+    rarity: "Mythic",
+    class: "Thunder Warrior",
+    unlockStreak: 1500,
+    tagline: "Let the storm answer your call.",
+    description:
+      "A mighty warrior wielding a legendary hammer, carrying the strength of the storm into every battle.",
+  },
 ];
