@@ -64,16 +64,16 @@ const COMPANIONS = [
   },
 
   {
-    id: "warrior",
-    name: "Battlesaur",
-    image: "../img/avatars/streaksaur/warrior.png",
+    id: "gladiator",
+    name: "Gladiatorsaur",
+    image: "../img/avatars/streaksaur/gladiator.png",
     collection: "streak",
     rarity: "Rare",
-    class: "Warrior",
+    class: "Gladiator",
     unlockStreak: 7,
-    tagline: "Forged through unwavering consistency.",
+    tagline: "Enter the arena. Fight for your streak.",
     description:
-      "A fearless guardian earned after proving your first week of dedication.",
+      "A battle-hardened warrior who turns every challenge into another victory.",
   },
 
   {
