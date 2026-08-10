@@ -284,8 +284,6 @@
   background: rgba(255, 255, 255, 0.28);
 }
 
-
-
 .avatar-option-img {
   width: 90px;
   height: 90px;
@@ -317,7 +315,6 @@
   background: rgba(255, 255, 255, 0.28);
 }
 
-
 /* Full-card blur layer */
 .avatar-option.locked::before {
   content: "";
@@ -337,14 +334,12 @@
   pointer-events: none;
 }
 
-
 /* Keep normal card content underneath the blur */
 .avatar-option.locked .avatar-image-wrapper,
 .avatar-option.locked .avatar-card-info {
   position: relative;
   z-index: 1;
 }
-
 
 /* Lock information stays completely sharp */
 .avatar-lock-overlay {
@@ -367,19 +362,16 @@
   display: none;
 }
 
-
 /* Locked image */
 .avatar-option.locked .avatar-option-img {
   filter: grayscale(0.35) brightness(0.75);
 }
-
 
 /* Lock icon */
 .lock-icon {
   font-size: 1.6rem;
   line-height: 1;
 }
-
 
 /* Unlock text */
 .lock-text {
@@ -389,7 +381,6 @@
   text-transform: uppercase;
   color: white;
 }
-
 
 /* Progress text */
 .lock-streak {
@@ -402,7 +393,6 @@
 
   letter-spacing: 0.02em;
 }
-
 
 .lock-icon {
   font-size: 1.6rem;
@@ -461,7 +451,7 @@
 .avatar-option:hover .avatar-rarity {
   transform: translateY(2px);
 
-  box-shadow: 0 6px 16px rgba(0,0,0,.08);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
 }
 /* ==================================================================
    4. MOBILE RESPONSIVE
@@ -523,5 +513,27 @@
   .meta-chip {
     padding: 8px 14px;
     font-size: 0.78rem;
+  }
+  .collection-progress {
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  /* =========================================
+       MOBILE AVATAR GRID
+       ========================================= */
+
+  .avatar-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    width: 100%;
+    max-width: 100%;
+    justify-content: center;
+    gap: 16px;
+  }
+
+  .avatar-option {
+    width: 100%;
+    min-width: 0;
+    max-width: 180px;
   }
 }
