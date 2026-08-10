@@ -47,4 +47,19 @@ self.addEventListener("fetch", (event) => {
     return;
   }
 
+  
+  event.respondWith(
+    caches.match(event.request).then((cachedResponse) => {
+      return (
+        cachedResponse ||
+        fetch(event.request).catch(() => {
+          if (event.request.mode === "navigate") {
+            return caches.match("dashboard.html");
+          }
+        })
+      );
+    })
+  );
+});
+
  
