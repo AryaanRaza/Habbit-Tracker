@@ -25,9 +25,12 @@ window.completeHabit = function (card, habit) {
   applyFilter();
   updateFilterCounts();
 
-  showToast("Nice! Habit completed ✅");
-
-  if (pct === 100) fireConfetti();
+  if (pct === 100) {
+    fireConfetti();
+    showCompletionPopup();
+  } else {
+    showToast("Nice! Habit completed ✅");
+  }
 };
 
 /* =========================
