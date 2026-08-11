@@ -187,14 +187,13 @@
 /* =========================
    MOBILE
 ========================= */
-@media (max-width:768px) {
-
-  .sub-page-banner{
+@media (max-width: 768px) {
+  .sub-page-banner {
     position: relative;
     padding-top: 18px;
   }
 
-  .back-btn{
+  .back-btn {
     top: 18px;
     left: 18px;
 
@@ -204,23 +203,23 @@
     border-radius: 14px;
   }
 
-  .back-btn span{
+  .back-btn span {
     font-size: 1.15rem !important;
   }
 
   /* Leave room for the back button */
-  .page-heading{
-    padding: 0 12px 0 58px;
+  .page-heading {
+    padding: 0 12px;
   }
 
-  .page-heading h1{
+  .page-heading h1 {
     font-size: 1.75rem;
     line-height: 1.15;
+    font-family: var(--font-heading);
   }
 
-  .page-heading p{
+  .page-heading p {
     margin-top: 10px;
     padding-inline: 8px;
   }
-
 }
