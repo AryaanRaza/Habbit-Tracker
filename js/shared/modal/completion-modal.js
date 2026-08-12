@@ -4,42 +4,45 @@
    Handles the "All Habits Completed" celebration popup.
 ============================================================ */
 
-
 /* ============================================================
    SELECTORS
 ============================================================ */
 
-const completionModal =
-  document.getElementById("completion-modal");
+const completionModal = document.getElementById("completion-modal");
 
-const completionClose =
-  document.getElementById("completion-close");
+const completionClose = document.getElementById("completion-close");
 
-const completionCount =
-  document.getElementById("completion-count");
+const completionCount = document.getElementById("completion-count");
 
-const completionStreaksaur =
-  document.getElementById("completion-streaksaur");
+const completionStreaksaur = document.getElementById("completion-streaksaur");
 
+/* ============================================================
+   CELEBRATION STATE
+============================================================ */
+
+let completionCelebrationShown = false;
 
 /* ============================================================
    SHOW COMPLETION POPUP
 ============================================================ */
 
 window.showCompletionPopup = function () {
-
   if (!completionModal) return;
+
+  // Celebrate only once per dashboard session
+  if (completionCelebrationShown) return;
+
+  completionCelebrationShown = true;
 
   const totalHabits = window.habits.length;
 
   const completedHabits = window.habits.filter(
-    (habit) => habit.completedToday
+    (habit) => habit.completedToday,
   ).length;
 
   /* Update completion count */
   if (completionCount) {
-    completionCount.textContent =
-      `✓ ${completedHabits} / ${totalHabits} habits completed`;
+    completionCount.textContent = `✓ ${completedHabits} / ${totalHabits} habits completed`;
   }
 
   /* Restart video from beginning */
@@ -52,55 +55,41 @@ window.showCompletionPopup = function () {
   openModal(completionModal);
 };
 
-
 /* ============================================================
    CLOSE COMPLETION POPUP
 ============================================================ */
 
 window.closeCompletionPopup = function () {
-
   if (!completionModal) return;
 
   closeModal(completionModal);
 };
-
 
 /* ============================================================
    CLOSE BUTTON
 ============================================================ */
 
 if (completionClose) {
-
-  completionClose.addEventListener(
-    "click",
-    window.closeCompletionPopup
-  );
+  completionClose.addEventListener("click", window.closeCompletionPopup);
 }
-
 
 /* ============================================================
    CLICK OUTSIDE
 ============================================================ */
 
 if (completionModal) {
-
   completionModal.addEventListener("click", (e) => {
-
     if (e.target === completionModal) {
       window.closeCompletionPopup();
     }
-
   });
-
 }
-
 
 /* ============================================================
    ESCAPE KEY
 ============================================================ */
 
 document.addEventListener("keydown", (e) => {
-
   if (!completionModal || completionModal.hidden) {
     return;
   }
@@ -108,5 +97,4 @@ document.addEventListener("keydown", (e) => {
   if (e.key === "Escape") {
     window.closeCompletionPopup();
   }
-
 });
