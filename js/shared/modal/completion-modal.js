@@ -45,10 +45,22 @@ window.showCompletionPopup = function () {
     completionCount.textContent = `✓ ${completedHabits} / ${totalHabits} habits completed`;
   }
 
-  /* Restart video from beginning */
+  /* ============================================================
+   PLAY CELEBRATION VIDEO
+============================================================ */
+
   if (completionStreaksaur) {
+    completionStreaksaur.pause();
     completionStreaksaur.currentTime = 0;
-    completionStreaksaur.play().catch(() => {});
+
+    const playPromise = completionStreaksaur.play();
+
+    if (playPromise !== undefined) {
+      playPromise.catch(() => {
+        // Autoplay may be blocked by the browser.
+        // The video will still be available to play manually.
+      });
+    }
   }
 
   /* Show popup */
@@ -63,6 +75,11 @@ window.closeCompletionPopup = function () {
   if (!completionModal) return;
 
   closeModal(completionModal);
+
+  if (completionStreaksaur) {
+    completionStreaksaur.pause();
+    completionStreaksaur.currentTime = 0;
+  }
 };
 
 /* ============================================================
