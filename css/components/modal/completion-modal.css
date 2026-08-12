@@ -1,6 +1,9 @@
-
 /* ==========================================
    ALL HABITS COMPLETED CELEBRATION
+========================================== */
+
+/* ==========================================
+   COMPLETION MODAL BACKDROP
 ========================================== */
 
 .completion-modal {
@@ -13,10 +16,17 @@
 
   padding: 20px;
 
-  background: rgba(20, 10, 40, 0.38);
+  /* Soft dreamy backdrop */
+  background:
+    radial-gradient(
+      circle at 50% 45%,
+      rgba(243, 182, 218, 0.16),
+      transparent 45%
+    ),
+    rgba(35, 25, 65, 0.32);
 
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
 
   z-index: 1100;
 
@@ -27,7 +37,13 @@
   display: none;
 }
 
+/* ==========================================
+   COMPLETION MODAL CARD
+========================================== */
+
 .completion-modal-content {
+  position: relative;
+
   width: min(92%, 430px);
 
   display: flex;
@@ -40,20 +56,65 @@
 
   border-radius: 28px;
 
-  background: var(--bg-glass-heavy);
-  border: 1px solid var(--border-glass);
+  /* Bright celebratory glass */
+background:
+    radial-gradient(
+        circle at 50% 25%,
+        rgba(255, 255, 255, 0.48),
+        transparent 42%
+    ),
+    linear-gradient(
+        145deg,
+        rgba(255, 225, 244, 0.78),
+        rgba(226, 218, 255, 0.72) 50%,
+        rgba(215, 237, 255, 0.76)
+    );
+
+  border: 1px solid rgba(255, 255, 255, 0.62);
 
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
 
   box-shadow:
-    0 24px 60px rgba(22, 18, 46, 0.22),
-    var(--shadow-glow);
+    /* Deep soft shadow */
+    0 24px 60px rgba(35, 25, 65, 0.22),
+    /* Soft celebration aura */ 0 0 30px rgba(243, 182, 218, 0.2),
+    0 0 70px rgba(185, 170, 255, 0.16),
+    /* Glass highlight */ inset 0 1px 0 rgba(255, 255, 255, 0.85),
+    /* Soft inner light */ inset 0 0 35px rgba(255, 255, 255, 0.12);
 
-  animation: completionScaleIn 0.3s
-    cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  overflow: hidden;
+
+  animation: completionScaleIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
+/* ==========================================
+   SOFT TOP LIGHT
+========================================== */
 
+.completion-modal-content::before {
+  content: "";
+
+  position: absolute;
+
+  top: -70px;
+  left: 50%;
+
+  width: 240px;
+  height: 150px;
+
+  transform: translateX(-50%);
+
+  background: radial-gradient(
+    ellipse,
+    rgba(255, 255, 255, 0.42) 0%,
+    rgba(243, 182, 218, 0.16) 40%,
+    transparent 72%
+  );
+
+  filter: blur(18px);
+
+  pointer-events: none;
+}
 /* ==========================================
    STREAKSAUR VIDEO
 ========================================== */
@@ -67,6 +128,9 @@
   justify-content: center;
 
   margin-bottom: 8px;
+
+  /* Soft glow behind Streaksaur */
+  filter: drop-shadow(0 8px 18px rgba(243, 182, 218, 0.28));
 }
 
 .completion-avatar video {
@@ -164,8 +228,7 @@
 .completion-btn:hover {
   transform: translateY(-2px);
 
-  box-shadow:
-    0 14px 28px rgba(123, 104, 255, 0.35);
+  box-shadow: 0 14px 28px rgba(123, 104, 255, 0.35);
 }
 
 .completion-btn:active {
@@ -203,7 +266,6 @@
 ========================================== */
 
 @media (max-width: 480px) {
-
   .completion-modal {
     padding: 16px;
   }
