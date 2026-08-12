@@ -119,20 +119,68 @@ background:
    STREAKSAUR VIDEO
 ========================================== */
 
+/* ==========================================
+   STREAKSAUR CELEBRATION AREA
+========================================== */
+
 .completion-avatar {
-  width: 150px;
-  height: 150px;
+    position: relative;
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    width: 150px;
+    height: 150px;
 
-  margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-  /* Soft glow behind Streaksaur */
-  filter: drop-shadow(0 8px 18px rgba(243, 182, 218, 0.28));
+    margin-bottom: 8px;
+
+    isolation: isolate;
 }
 
+/* Soft warm glow behind Streaksaur */
+.completion-avatar::before {
+    content: "";
+
+    position: absolute;
+
+    width: 125px;
+    height: 125px;
+
+    left: 50%;
+    top: 50%;
+
+    transform: translate(-50%, -50%);
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255, 208, 132, 0.28) 0%,
+            rgba(243, 182, 218, 0.18) 38%,
+            transparent 72%
+        );
+
+    filter: blur(18px);
+
+    z-index: -1;
+
+    pointer-events: none;
+}
+
+.completion-avatar video {
+    position: relative;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+
+    display: block;
+
+    filter:
+        drop-shadow(0 8px 14px rgba(90, 65, 120, 0.16))
+        drop-shadow(0 0 12px rgba(255, 213, 145, 0.18));
+}
 .completion-avatar video {
   width: 100%;
   height: 100%;
