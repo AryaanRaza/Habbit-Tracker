@@ -6,11 +6,6 @@
 
 
 /*********************************************************************************************************************************************
-===============================================================================================================================================
-***********************************************************************************************************************************************/
-
-/* ========= RANGE TOGGLE BUTTONS========== */
-/* Toggle buttons for selecting the statistics time range */
 .range-toggle {
   display: flex; gap: 6px;
   background: var(--bg-glass);
@@ -36,13 +31,6 @@
 
 
 /*********************************************************************************************************************************************
-===============================================================================================================================================
-***********************************************************************************************************************************************/
-
-
-/* ===STATISTICS CARDS===*/
-
-/* Responsive grid layout for statistic cards */
 .stats-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
 .stat-card {
   background: var(--bg-card); border: 1px solid var(--border-glass);
@@ -54,21 +42,6 @@
 
 
 /*********************************************************************************************************************************************
-===============================================================================================================================================
-***********************************************************************************************************************************************/
-/* ========CIRCULAR PROGRESS RINGS============ */
-/* Wrapper for the circular progress ring */
-.ring-wrap { position: relative; width: 84px; height: 84px; margin: 0 auto 6px; }
-
-
-/* Rotates the SVG so progress starts from the top */
-.ring-wrap svg { transform: rotate(-90deg); }
-
-/* Background circle of the progress ring */
-.ring-bg { fill: none; stroke: var(--bg-card-strong); stroke-width: 8; }
-
-
-/* Animated progress circle */
 .ring-fill {
   fill: none; stroke-width: 8; stroke-linecap: round;
   stroke-dasharray: 239; stroke-dashoffset: 239;
@@ -110,57 +83,6 @@
 
 
 /*********************************************************************************************************************************************
-===============================================================================================================================================
-***********************************************************************************************************************************************/
-/* ================== WEEKLY BAR CHART=====================*/
-
-/* Layout for the weekly bar chart */
-.week-chart { display: flex; justify-content: space-between; align-items: flex-end; height: 140px; margin-top: 16px; }
-
-
-
-/* Individual bar in the chart */
-.chart-bar { display: flex; flex-direction: column; align-items: center; gap: 6px; flex: 1; }
-
-
-/* Background track of the chart bar */
-.bar-track { width: 22px; height: 100px; background: var(--bg-card-strong); border: 1px solid var(--border-glass); border-radius: 10px; display: flex; align-items: flex-end; overflow: hidden; }
-
-
-
-/* Filled portion of the chart bar */
-.bar-fill { width: 100%; background: var(--bg-card-strong); border-radius: 10px; transition: height 0.3s ease; }
-
-
-/* Different colors for chart status */
-.chart-bar.status-all .bar-fill { background: var(--cat-health); }
-.chart-bar.status-partial .bar-fill { background: var(--cat-mindfulness); }
-.chart-bar.status-today .bar-fill { background: var(--clr-secondary-deep); }
-
-
-/* Label below each chart bar */
-.bar-label { font-size: 0.7rem; color: var(--clr-text-soft); }
-
-
-
-
-
-/*********************************************************************************************************************************************
-===============================================================================================================================================
-***********************************************************************************************************************************************/
-/* ===============CHART LEGEND=========== */
-
-
-/* Legend explaining chart colors */
-.chart-legend { display: flex; align-items: center; gap: 8px; margin-top: 14px; font-size: 0.72rem; color: var(--clr-text-soft); }
-
-
-
-/* Small colored indicator used in legends */
-.legend-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; margin-right: 4px; }
-
-
-/* Legend colors */
 .dot-all { background: var(--cat-health); }
 .dot-partial { background: var(--cat-mindfulness); }
 .dot-today { background: var(--clr-secondary-deep); }
@@ -170,131 +92,6 @@
 
 
 /*********************************************************************************************************************************************
-===============================================================================================================================================
-***********************************************************************************************************************************************/
-
-/* ============BEST DAY HIGHLIGHT============== */
-/* Banner highlighting the best-performing day */
-.best-day-banner { background: var(--grad-btn); border-radius: var(--radius-2xl); padding: 20px; color: var(--clr-text-white); box-shadow: var(--shadow-btn); }
-
-
-/* Label for the best day banner */
-.best-day-tag { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.08em; opacity: 0.85; }
-
-/* Title showing the best day */
-.best-day-title { font-size: 1.3rem; margin: 6px 0 2px; }
-
-/* Description of the best day */
-.best-day-sub { font-size: 0.85rem; opacity: 0.9; }
-
-
-
-
-
-
-/*********************************************************************************************************************************************
-===============================================================================================================================================
-***********************************************************************************************************************************************/
-
-/* ===========HABIT BREAKDOWN===================== */
-
-/* Row layout for habit breakdown */
-.breakdown-row { display: grid; grid-template-columns: minmax(0, 90px) 1fr 40px; align-items: center; gap: 10px; margin-bottom: 14px; }
-
-/* Habit name in the breakdown */
-.breakdown-name { font-size: 0.82rem; font-weight: 600; color: var(--clr-text-main); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-
-/* Background track of the progress bar */
-.breakdown-track { height: 8px; background: var(--bg-card); border-radius: 10px; overflow: hidden; }
-
-/* Filled progress bar */
-.breakdown-fill { height: 100%; border-radius: 10px; transition: width 0.3s ease; }
-
-/* Completion percentage text */
-.breakdown-pct { font-size: 0.78rem; color: var(--clr-text-soft); text-align: right; }
-
-
-
-
-
-/*********************************************************************************************************************************************
-===============================================================================================================================================
-***********************************************************************************************************************************************/
-
-/* ============CATEGORY DONUT CHART=============== */
-
-.category-body { display: flex; align-items: center; gap: 20px; margin-top: 16px; flex-wrap: wrap; }
-
-/* Circular donut chart */
-.donut-chart { width: 110px; height: 110px; border-radius: 50%; position: relative; flex-shrink: 0; }
-
-
-/* Inner hole of the donut chart */
-.donut-hole { position: absolute; inset: 20px; background: var(--bg-glass); border-radius: 50%; }
-
-
-/* Legend for category distribution */
-.category-legend { display: flex; flex-direction: column; gap: 6px; font-size: 0.8rem; color: var(--clr-text-main); }
-
-
-/* Single legend item */
-.legend-dot-row { display: flex; align-items: center; gap: 6px; }
-
-
-/* Colored dot inside the legend */
-.legend-dot-row .legend-dot { width: 9px; height: 9px; border-radius: 50%; display: inline-block; margin: 0; }
-
-
-/* Empty state for donut chart */
-.donut-empty { font-size: 0.8rem; color: var(--clr-text-soft); }
-
-
-
-
-
-/*********************************************************************************************************************************************
-===============================================================================================================================================
-***********************************************************************************************************************************************/
-
-/* ==================ACTIVITY HEATMAP============= */
-
-/* GitHub-style activity heatmap */ 
-.heatmap-grid {
-  display: grid;
-  grid-auto-flow: column;
-  grid-template-rows: repeat(7, 14px);
-  gap: 4px;
-  margin-top: 16px;
-  overflow-x: auto;
-  padding-bottom: 4px;
-}
-
-
-/* Individual heatmap cell */
-.heat-cell { width: 14px; height: 14px; border-radius: 4px; background: var(--bg-card); position: relative; cursor: default; }
-
-
-/* Empty heatmap cell */
-.heat-cell.cell-blank { background: transparent; }
-
-
-/* Heat intensity levels */
-.heat-cell.heat-0 { background: var(--bg-card); }
-.heat-cell.heat-1 { background: rgba(52, 211, 153, 0.28); }
-.heat-cell.heat-2 { background: rgba(52, 211, 153, 0.5); }
-.heat-cell.heat-3 { background: rgba(52, 211, 153, 0.75); }
-.heat-cell.heat-4 { background: var(--cat-health); }
-
-
-/* Highlights the current day */
-.heat-cell.is-today { outline: 2px solid var(--clr-secondary-deep); outline-offset: 1px; }
-
-
-
-/* Tooltip displayed on hover */
-.heat-cell[data-tooltip]:hover::after {
-  content: attr(data-tooltip);
-  position: absolute; bottom: 130%; left: 50%; transform: translateX(-50%);
   background: var(--clr-text-heading); color: #fff;
   font-size: 0.62rem; padding: 4px 8px; border-radius: 6px;
   white-space: nowrap; z-index: 10; pointer-events: none;
@@ -317,43 +114,3 @@
 
 
 /*********************************************************************************************************************************************
-===============================================================================================================================================
-***********************************************************************************************************************************************/
-
-/* ======BADGES & ACHIEVEMENTS===== */
-
-/*  Container for achievement badges  --- */
-.badges-list { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
-
-
-/* Individual badge styling */
-.badge-pill {
-  display: inline-flex; align-items: center; gap: 6px;
-  padding: 8px 14px; border-radius: var(--radius-xl);
-  font-size: 0.78rem; font-weight: 600;
-  background: var(--bg-card); border: 1px solid var(--border-glass);
-  color: var(--clr-text-soft);
-}
-
-
-/* Style for unlocked badges */
-.badge-pill.is-unlocked { background: var(--grad-accent); color: var(--clr-text-heading); box-shadow: var(--shadow-soft); }
-
-/* Style for locked badges */
-.badge-pill.is-locked { opacity: 0.55; }
-
-
-/* Overall badge progress section */
-.badge-progress { margin-top: 16px; }
-
-/* Top row showing badge progress info */
-.badge-progress-top { display: flex; justify-content: space-between; font-size: 0.75rem; color: var(--clr-text-soft); margin-bottom: 6px; }
-
-/* Progress bar background */
-.badge-progress-track { height: 8px; background: var(--bg-card); border-radius: 10px; overflow: hidden; }
-
-/* Filled progress indicator */
-.badge-progress-fill { height: 100%; background: var(--grad-btn); border-radius: 10px; transition: width 0.4s ease; }
-
-/* Badge progress label */
-.badge-progress-label { font-size: 0.85rem; color: var(--clr-text-main); font-weight: 600; }  
