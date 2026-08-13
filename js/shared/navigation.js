@@ -215,6 +215,9 @@ document.addEventListener("DOMContentLoaded", () => {
     if (matchToken === "settings" && path.includes("/settings/")) {
       tab.classList.add("active");
     }
+    if (matchToken === "analytics" && path.includes("analytics.html")) {
+      tab.classList.add("active");
+    }
   });
 
   // Load current user's profile once

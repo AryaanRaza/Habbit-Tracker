@@ -30,6 +30,11 @@
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
 
+  <!-- PWA additions -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#7b68ff">
+  <link rel="apple-touch-icon" href="img/icon/icon-192.png">
+
 </head>
 
 <body class="dashboard-container">
@@ -47,9 +52,33 @@
 
       <div class="dash-user-info">
 
+<<<<<<< HEAD
+            <!-- Individual Cards -->
+            <article class="habit-card">
+                <div class="habit-info">
+                    <h3 class="habit-name">Code for 1 Hour</h3>
+                    <div class="habit-meta">
+                        <p class="habit-stats">Streak: 5 days | Total: 14</p>
+                    </div>
+                </div>
+                    <div class="habit-dino">
+                       <img src="/img/Completion..png" alt="Not started" class="dino-img" />
+                </div>  
+                <div class="habit-actions">
+                    <button class="btn btn-complete">Mark as Done</button>
+                    <button class="btn-delete" title="Delete Habit">
+                        <span class="material-symbols-rounded">delete</span>
+                    </button>
+                </div>
+                <div class="habit-dino">
+                       <img src="/img/Completion..png" alt="Not started" class="dino-img" />
+                </div>  
+            </article>
+=======
         <p class="dash-greeting" id="dashboard-greeting">
           Good Morning, 👋
         </p>
+>>>>>>> 27697bdef87d47ed435ff6d88198748cf03cfae8
 
         <h1 class="dash-user-name" id="dashboard-profile-name">
           User
@@ -274,7 +303,7 @@
   <script src="js/core/storage.js"></script>
   <script src="js/core/auth.js"></script>
   <script src="js/core/protect.js"></script>
-
+  <script src="js/core/pwa-register.js"></script>
   <!-- SHARED -->
   <script src="js/shared/profile-utils.js"></script>
   <script src="js/shared/navigation.js"></script>
