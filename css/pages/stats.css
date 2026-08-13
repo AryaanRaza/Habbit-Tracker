@@ -191,8 +191,8 @@
 .badge-icon { font-size: 1.4rem; }
 .badge-label { font-size: 0.6rem; text-align: center; font-weight: 600; color: var(--clr-text-main); line-height: 1.1; }
 .badge-days { font-size: 0.58rem; color: var(--clr-text-soft); } */ 
-/* 
-2
+
+/* ------------------------------------------------------------------------------------------------------- */
 .stats-wrapper { display: flex; flex-direction: column; gap: 24px; }
 
 .range-toggle {
@@ -217,114 +217,3 @@
   display: flex; flex-direction: column; align-items: center; text-align: center; gap: 4px;
   box-shadow: var(--shadow-soft); backdrop-filter: blur(10px);
 }
-
-.ring-wrap { position: relative; width: 84px; height: 84px; margin: 0 auto 6px; }
-.ring-wrap svg { transform: rotate(-90deg); }
-.ring-bg { fill: none; stroke: var(--bg-card-strong); stroke-width: 8; }
-.ring-fill {
-  fill: none; stroke-width: 8; stroke-linecap: round;
-  stroke-dasharray: 239; stroke-dashoffset: 239;
-  transition: stroke-dashoffset 0.6s ease;
-}
-.ring-center {
-  position: absolute; inset: 0; display: flex; flex-direction: column;
-  align-items: center; justify-content: center; gap: 1px;
-}
-.ring-icon { font-size: 0.85rem; }
-
-.sc-label { font-size: 0.75rem; color: var(--clr-text-soft); }
-.sc-title { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.06em; color: var(--clr-secondary-deep); margin-top: 2px; }
-
-.chart-section, .breakdown-section, .badges-section, .category-section, .activity-section {
-  background: var(--bg-glass); border: 1px solid var(--border-glass);
-  border-radius: var(--radius-2xl); padding: 20px; box-shadow: var(--shadow-soft);
-}
-.section-tag { font-size: 0.75rem; color: var(--clr-secondary-deep); background: var(--bg-card-strong); padding: 4px 10px; border-radius: var(--radius-xl); }
-
-.week-chart { display: flex; justify-content: space-between; align-items: flex-end; height: 140px; margin-top: 16px; }
-.chart-bar { display: flex; flex-direction: column; align-items: center; gap: 6px; flex: 1; }
-.bar-track { width: 22px; height: 100px; background: var(--bg-card-strong); border: 1px solid var(--border-glass); border-radius: 10px; display: flex; align-items: flex-end; overflow: hidden; }
-.bar-fill { width: 100%; background: var(--bg-card-strong); border-radius: 10px; transition: height 0.3s ease; }
-.chart-bar.status-all .bar-fill { background: var(--cat-health); }
-.chart-bar.status-partial .bar-fill { background: var(--cat-mindfulness); }
-.chart-bar.status-today .bar-fill { background: var(--clr-secondary-deep); }
-.bar-label { font-size: 0.7rem; color: var(--clr-text-soft); }
-
-.chart-legend { display: flex; align-items: center; gap: 8px; margin-top: 14px; font-size: 0.72rem; color: var(--clr-text-soft); }
-.legend-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; margin-right: 4px; }
-.dot-all { background: var(--cat-health); }
-.dot-partial { background: var(--cat-mindfulness); }
-.dot-today { background: var(--clr-secondary-deep); }
-
-.best-day-banner { background: var(--grad-btn); border-radius: var(--radius-2xl); padding: 20px; color: var(--clr-text-white); box-shadow: var(--shadow-btn); }
-.best-day-tag { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.08em; opacity: 0.85; }
-.best-day-title { font-size: 1.3rem; margin: 6px 0 2px; }
-.best-day-sub { font-size: 0.85rem; opacity: 0.9; }
-
-.breakdown-row { display: grid; grid-template-columns: minmax(0, 90px) 1fr 40px; align-items: center; gap: 10px; margin-bottom: 14px; }
-.breakdown-name { font-size: 0.82rem; font-weight: 600; color: var(--clr-text-main); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.breakdown-track { height: 8px; background: var(--bg-card); border-radius: 10px; overflow: hidden; }
-.breakdown-fill { height: 100%; border-radius: 10px; transition: width 0.3s ease; }
-.breakdown-pct { font-size: 0.78rem; color: var(--clr-text-soft); text-align: right; }
-
-/* --- Category Focus donut --- 
-.category-body { display: flex; align-items: center; gap: 20px; margin-top: 16px; flex-wrap: wrap; }
-.donut-chart { width: 110px; height: 110px; border-radius: 50%; position: relative; flex-shrink: 0; }
-.donut-hole { position: absolute; inset: 20px; background: var(--bg-glass); border-radius: 50%; }
-.category-legend { display: flex; flex-direction: column; gap: 6px; font-size: 0.8rem; color: var(--clr-text-main); }
-.legend-dot-row { display: flex; align-items: center; gap: 6px; }
-.legend-dot-row .legend-dot { width: 9px; height: 9px; border-radius: 50%; display: inline-block; margin: 0; }
-.donut-empty { font-size: 0.8rem; color: var(--clr-text-soft); }
-
-/* --- Activity heatmap (last 12 weeks) --- 
-.heatmap-grid {
-  display: grid;
-  grid-auto-flow: column;
-  grid-template-rows: repeat(7, 14px);
-  gap: 4px;
-  margin-top: 16px;
-  overflow-x: auto;
-  padding-bottom: 4px;
-}
-.heat-cell { width: 14px; height: 14px; border-radius: 4px; background: var(--bg-card); position: relative; cursor: default; }
-.heat-cell.cell-blank { background: transparent; }
-.heat-cell.heat-0 { background: var(--bg-card); }
-.heat-cell.heat-1 { background: rgba(52, 211, 153, 0.28); }
-.heat-cell.heat-2 { background: rgba(52, 211, 153, 0.5); }
-.heat-cell.heat-3 { background: rgba(52, 211, 153, 0.75); }
-.heat-cell.heat-4 { background: var(--cat-health); }
-.heat-cell.is-today { outline: 2px solid var(--clr-secondary-deep); outline-offset: 1px; }
-
-.heat-cell[data-tooltip]:hover::after {
-  content: attr(data-tooltip);
-  position: absolute; bottom: 130%; left: 50%; transform: translateX(-50%);
-  background: var(--clr-text-heading); color: #fff;
-  font-size: 0.62rem; padding: 4px 8px; border-radius: 6px;
-  white-space: nowrap; z-index: 10; pointer-events: none;
-  box-shadow: var(--shadow-ui);
-}
-.heat-cell[data-tooltip]:hover::before {
-  content: ""; position: absolute; bottom: 115%; left: 50%; transform: translateX(-50%);
-  border: 4px solid transparent; border-top-color: var(--clr-text-heading);
-  z-index: 10;
-}
-
-.legend-dot.heat-swatch { width: 12px; height: 12px; border-radius: 3px; margin: 0; }
-
-/* --- Badges (pill style) --- */
-.badges-list { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
-.badge-pill {
-  display: inline-flex; align-items: center; gap: 6px;
-  padding: 8px 14px; border-radius: var(--radius-xl);
-  font-size: 0.78rem; font-weight: 600;
-  background: var(--bg-card); border: 1px solid var(--border-glass);
-  color: var(--clr-text-soft);
-}
-.badge-pill.is-unlocked { background: var(--grad-accent); color: var(--clr-text-heading); box-shadow: var(--shadow-soft); }
-.badge-pill.is-locked { opacity: 0.55; }
-
-.badge-progress { margin-top: 16px; }
-.badge-progress-top { display: flex; justify-content: space-between; font-size: 0.75rem; color: var(--clr-text-soft); margin-bottom: 6px; }
-.badge-progress-track { height: 8px; background: var(--bg-card); border-radius: 10px; overflow: hidden; }
-.badge-progress-fill { height: 100%; background: var(--grad-btn); border-radius: 10px; transition: width 0.4s ease; }
-.badge-progress-label { font-size: 0.85rem; color: var(--clr-text-main); font-weight: 600; } */
