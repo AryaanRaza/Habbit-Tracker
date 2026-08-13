@@ -5,61 +5,282 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Settings | HabitFlow</title>
+    <!-- BASE -->
+    <link rel="stylesheet" href="css/base/reset.css">
+    <link rel="stylesheet" href="css/base/root.css">
+
+    <!-- GLOBAL -->
     <link rel="stylesheet" href="css/global.css">
-    <link rel="stylesheet" href="css/style.css">
+
+    <!-- COMPONENTS -->
+
+    <link rel="stylesheet" href="css/components/navigation.css">
+
+    <!-- PAGE -->
+    <link rel="stylesheet" href="css/pages/settings-main.css">
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
+  <!-- PWA additions -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#7b68ff">
+    <link rel="apple-touch-icon" href="img/icon/icon-192.png">
+
 </head>
 
 <body class="settings-page">
     <main class="settings-layout">
-        <header class="settings-branding">
-            <h1>HabitFlow</h1>
-            <p>Manage your account and app details.</p>
-        </header>
-
         <div class="settings-card glass-panel">
-            <header class="settings-header">
-                <h2>Settings</h2>
+
+            <!-- PAGE HEADER -->
+            <header class="settings-page-header">
+                <div class="header-content">
+                    <h1>Settings</h1>
+                    <p class="desktop-subtitle">
+                        Manage your account and app details.
+                    </p>
+                    <div class="mobile-user-info">
+                        <h2 id="settings-profile-name">Guest</h2>
+                        <span>🔥 1-day streak</span>
+                    </div>
+                </div>
+
+                <a href="settings/avatar.html" class="header-avatar" id="settings-profile-avatar"
+                    aria-label="Open Avatar Settings">
+                    G
+                </a>
             </header>
 
-            <nav class="settings-list">
-                <a href="settings/accupdate.html" class="settings-item">
-                    <div class="item-content">
-                        <span class="item-icon">👤</span>
-                        <span class="item-text">Account</span>
-                    </div>
-                    <span class="chevron">›</span>
-                </a>
+            <!-- ACCOUNT -->
+            <section class="settings-section">
+                <h3 class="section-label">ACCOUNT</h3>
 
-                <a href="settings/terms.html" class="settings-item">
-                    <div class="item-content">
-                        <span class="item-icon">📜</span>
-                        <span class="item-text">Terms and Conditions</span>
-                    </div>
-                    <span class="chevron">›</span>
-                </a>
+                <nav class="settings-list">
 
-                <a href="settings/policy.html" class="settings-item">
-                    <div class="item-content">
-                        <span class="item-icon">🔒</span>
-                        <span class="item-text">Privacy Policy</span>
-                    </div>
-                    <span class="chevron">›</span>
-                </a>
+                    <a href="settings/avatar.html" class="settings-item avatar-setting">
 
-                <a href="settings/about.html" class="settings-item">
-                    <div class="item-content">
-                        <span class="item-icon">ℹ️</span>
-                        <span class="item-text">About App</span>
+                        <div class="item-content">
+
+                            <div class="avatar-icon">
+                                🦖
+                            </div>
+
+                            <div class="item-details">
+
+                                <span class="item-text">
+                                    My Avatar
+                                </span>
+
+                                <!-- Updated dynamically -->
+                                <span class="avatar-status" id="current-avatar-name">
+                                    King Saur · Active
+                                </span>
+
+                                <span class="avatar-chip">
+                                    🌱 Change Streaksaur
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                        <span class="chevron">›</span>
+
+                    </a>
+
+                    <a href="settings/accupdate.html" class="settings-item">
+                        <div class="item-content">
+                            <span class="item-icon">👤</span>
+
+                            <div class="item-details">
+                                <span class="item-text">Account</span>
+                                <span class="item-subtext">
+                                    Profile, email, password
+                                </span>
+                            </div>
+                        </div>
+                        <span class="chevron">›</span>
+                    </a>
+                </nav>
+            </section>
+
+            <!-- PREFERENCES -->
+            <section class="settings-section">
+                <h3 class="section-label">PREFERENCES</h3>
+
+                <nav class="settings-list">
+
+                    <a href="#" class="settings-item">
+                        <div class="item-content">
+                            <span class="item-icon">🔔</span>
+                            <div class="item-details">
+                                <span class="item-text">Notifications</span>
+                                <span class="item-subtext">
+                                    Reminders and alerts
+                                </span>
+                            </div>
+                        </div>
+                        <span class="chevron">›</span>
+                    </a>
+
+                    <a href="#" class="settings-item">
+                        <div class="item-content">
+                            <span class="item-icon">🎨</span>
+                            <div class="item-details">
+                                <span class="item-text">Appearance</span>
+                                <span class="item-subtext">
+                                    Theme and display
+                                </span>
+                            </div>
+                        </div>
+                        <span class="chevron">›</span>
+                    </a>
+
+                </nav>
+            </section>
+
+            <!-- LEGAL -->
+            <section class="settings-section">
+                <h3 class="section-label">LEGAL</h3>
+
+                <nav class="settings-list">
+
+                    <a href="settings/terms.html" class="settings-item">
+                        <div class="item-content">
+                            <span class="item-icon">📜</span>
+                            <div class="item-details">
+                                <span class="item-text">Terms and Conditions</span>
+                                <span class="item-subtext">
+                                    Usage agreement
+                                </span>
+                            </div>
+                        </div>
+                        <span class="chevron">›</span>
+                    </a>
+
+                    <a href="settings/policy.html" class="settings-item">
+                        <div class="item-content">
+                            <span class="item-icon">🔒</span>
+                            <div class="item-details">
+                                <span class="item-text">Privacy Policy</span>
+                                <span class="item-subtext">
+                                    How your data is handled
+                                </span>
+                            </div>
+                        </div>
+                        <span class="chevron">›</span>
+                    </a>
+
+                </nav>
+            </section>
+
+            <!-- APP -->
+            <section class="settings-section">
+                <h3 class="section-label">APP</h3>
+
+                <nav class="settings-list">
+
+                    <a href="settings/about.html" class="settings-item">
+                        <div class="item-content">
+                            <span class="item-icon">ℹ️</span>
+                            <div class="item-details">
+                                <span class="item-text">About App</span>
+                                <span class="item-subtext">
+                                    Version and credits
+                                </span>
+                            </div>
+                        </div>
+                        <span class="chevron">›</span>
+                    </a>
+
+                    <a href="#" class="settings-item danger-item">
+                        <div class="item-content">
+                            <span class="item-icon">🗑️</span>
+                            <div class="item-details">
+                                <span class="item-text">Data & Privacy</span>
+                                <span class="item-subtext">
+                                    Reset all your data
+                                </span>
+                            </div>
+                        </div>
+                        <span class="chevron">›</span>
+                    </a>
+
+                    <!-- <a href="#" class="settings-item logout-item" id="logout-trigger">
+                        <div class="item-content">
+                            <span class="item-icon">🚪</span>
+
+                            <div class="item-details">
+                                <span class="item-text">Log Out</span>
+                                <span class="item-subtext">
+                                    Sign out from your account
+                                </span>
+                            </div>
+                        </div>
+
+                        <span class="chevron">›</span>
+                    </a> -->
+
+                </nav>
+            </section>
+
+            <!-- LOGOUT -->
+            <section class="logout-section">
+
+                <div class="logout-card">
+
+                    <div class="logout-icon">
+                        🚪
                     </div>
-                    <span class="chevron">›</span>
-                </a>
-            </nav>
+
+                    <h3>Log Out</h3>
+
+                    <p>
+                        End your current HabitFlow session and return to the welcome screen.
+                    </p>
+
+                    <button type="button" class="logout-card-btn" id="logout-trigger">
+                        Log Out
+                    </button>
+
+                </div>
+
+            </section>
+
         </div>
     </main>
+    <!-- LOGOUT CONFIRMATION MODAL -->
+    <div class="logout-modal-overlay" id="logout-modal" hidden>
+        <div class="logout-modal">
+            <h2>Log Out?</h2>
 
-    <script src="js/navigation.js"></script>
+            <p>
+                Are you sure you want to sign out of HabitFlow?
+            </p>
+
+            <div class="logout-modal-actions">
+                <button type="button" class="logout-cancel-btn" id="logout-cancel">
+                    Cancel
+                </button>
+
+                <button type="button" class="logout-confirm-btn" id="logout-confirm">
+                    Log Out
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/core/storage.js"></script>
+    <script src="js/core/auth.js"></script>
+    <script src="js/core/protect.js"></script>
+    <script src="js/core/pwa-register.js"></script>
+
+    <script src="js/shared/profile-utils.js"></script>
+    <script src="js/shared/navigation.js"></script>
+    <script src="js/shared/smart-back.js"></script>
+    <script src="js/shared/password-ui.js"></script>
+
+    <script src="js/settings/settings.js"></script>
 </body>
 
 </html>

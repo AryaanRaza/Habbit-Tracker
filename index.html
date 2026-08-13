@@ -6,8 +6,26 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Habit Tracker | Build Better Habits</title>
+
+  <!-- BASE -->
+  <link rel="stylesheet" href="css/base/reset.css">
+  <link rel="stylesheet" href="css/base/root.css">
+
+  <!-- GLOBAL -->
   <link rel="stylesheet" href="css/global.css">
-  <link rel="stylesheet" href="css/style.css">
+
+  <!-- COMPONENTS -->
+
+
+
+  <!-- PAGE -->
+  <link rel="stylesheet" href="css/pages/landing-page.css">
+  
+  <!-- PWA additions -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#7b68ff">
+  <link rel="apple-touch-icon" href="img/icon/icon-192.png">
+
 </head>
 
 <body class="landing-page">
@@ -31,8 +49,15 @@
 
       <div class="guest-option">
         <p>or</p>
-        <a href="dashboard.html" class="btn-guest">Continue as Guest</a>
+        <button id="guestBtn" class="btn-guest">
+          Continue as Guest
+        </button>
       </div>
+      <script src="js/core/storage.js"></script>
+      <script src="js/core/auth.js"></script>
+      <script src="js/core/redirect.js"></script>
+      <script src="js/core/pwa-register.js"></script>
+
     </main>
   </div>
 </body>

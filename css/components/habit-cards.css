@@ -1,0 +1,454 @@
+/* ═══════════════════════════════════════════════════════════════
+    HABIT LIST & CARDS
+════════════════════════════════════════════════════════════════ */
+.habit-card {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  background: var(--bg-card-strong);
+  border: 1.5px solid var(--border-glass);
+  border-left: 5px solid var(--cat-color, var(--clr-secondary-deep));
+  border-radius: 24px;
+  padding: 22px 20px;
+  box-shadow: var(--shadow-soft);
+  will-change: transform;
+  touch-action: pan-y;
+  transition:
+    transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.3s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+.habit-card.deleting {
+  opacity: 0;
+  transform: translateY(12px) scale(0.96);
+  filter: blur(2px);
+}
+
+.habit-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px rgba(140, 120, 220, 0.13);
+}
+
+/* Placeholder for habit type icon */
+.habit-dot {
+  width: 44px;
+  height: 44px;
+  border-radius: 16px;
+  background: color-mix(
+    in srgb,
+    var(--cat-color, var(--clr-secondary-deep)) 18%,
+    transparent
+  );
+  color: var(--cat-color, var(--clr-secondary-deep));
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  flex-shrink: 0;
+  transition:
+    transform 0.3s ease,
+    background 0.3s ease;
+}
+
+.habit-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.habit-name {
+  font-size: 1rem;
+  font-weight: 800;
+  color: var(--clr-text-main);
+  margin-bottom: 7px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+.habit-name:hover {
+  color: var(--clr-secondary-deep);
+}
+.habit-name::first-letter {
+  font-family: var(--font-brand);
+  font-size: 1.3rem;
+  color: var(--clr-secondary-deep);
+}
+
+/* Chips */
+.habit-chips {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 0.64rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 4px 9px;
+  border-radius: 99px;
+  white-space: nowrap;
+}
+.chip-streak {
+  background: rgba(251, 146, 60, 0.18);
+  color: #c2410c;
+}
+.chip-total {
+  background: rgba(142, 123, 255, 0.18);
+  color: #4c1d95;
+}
+.chip-time {
+  background: rgba(45, 212, 191, 0.18);
+  color: #0f766e;
+}
+
+.habit-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+/* ── Completed state ── */
+.habit-card.is-completed {
+  opacity: 0.62;
+  border-color: #86efac;
+  background: rgba(240, 253, 244, 0.9);
+}
+
+.habit-card.is-completed .habit-dot {
+  background: rgb(169, 240, 172);
+}
+
+.habit-card.is-completed .btn-complete {
+  background: #d1fae5;
+  color: #065f46;
+  border-color: #86efac;
+}
+
+.habit-card.is-completed:hover {
+  opacity: 0.88;
+  cursor: pointer;
+}
+
+/* ── Delete animation ── */
+.habit-card.deleting {
+  transform: translateX(60px) scale(0.95);
+  opacity: 0;
+  pointer-events: none;
+}
+/* Hide ⋯ menu on desktop */
+.btn-more {
+  display: none;
+}
+
+/* ═══════════════════════════════════════
+   MOBILE RESPONSIVE FIXES
+   HabitFlow — Compact Mobile Layout
+═══════════════════════════════════════ */
+@media (max-width: 768px) {
+  /* ═══════════════════════════════════════
+     SECTION LAYOUT
+  ═══════════════════════════════════════ */
+  .habit-list-section {
+    padding: 18px 14px;
+  }
+
+  .habit-list-container {
+    overflow: visible;
+  }
+
+  .input-meta {
+    flex-wrap: wrap;
+  }
+
+  .habit-category,
+  .habit-time,
+  .btn-add-habit {
+    width: 100%;
+  }
+
+  /* ═══════════════════════════════════════
+     HABIT CARD
+  ═══════════════════════════════════════ */
+  .habit-card {
+    position: relative;
+    overflow: visible;
+
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 10px;
+
+    padding: 14px;
+
+    touch-action: pan-y;
+    will-change: transform;
+  }
+
+  /* Bring active dropdown card above others */
+  .habit-card:has(.habit-dropdown.open) {
+    z-index: 50;
+  }
+  /* ═══════════════════════════════════════
+   MOBILE INLINE CHIPS
+═══════════════════════════════════════ */
+
+  .habit-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    gap: 10px;
+    min-width: 0;
+  }
+
+  /* Habit title */
+  .habit-name {
+    margin-bottom: 0;
+
+    width: 100%;
+  }
+
+  /* Chips row below title */
+  .habit-chips {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+
+    flex-wrap: wrap;
+  }
+
+  /* Compact mobile chips */
+  .chip {
+    padding: 4px 8px;
+
+    font-size: 0.56rem;
+    font-weight: 800;
+
+    gap: 4px;
+  }
+
+  /* Show labels again */
+  .chip-label {
+    display: inline;
+  }
+
+  /* Keep icon alignment clean */
+  .chip-icon,
+  .chip-value {
+    display: inline-flex;
+    align-items: center;
+  }
+
+  /* Time chip */
+  .chip-time {
+    padding: 4px 7px;
+    font-size: 0.55rem;
+  }
+
+  /* ═══════════════════════════════════════
+     ACTIONS AREA
+  ═══════════════════════════════════════ */
+  .habit-actions {
+    position: relative;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+
+    width: auto;
+    flex-shrink: 0;
+  }
+
+  /* Hide desktop buttons on mobile */
+  .btn-edit,
+  .btn-delete {
+    display: none;
+  }
+
+  /* ═══════════════════════════════════════
+     COMPLETE BUTTON
+  ═══════════════════════════════════════ */
+  .btn-complete {
+    white-space: nowrap;
+
+    padding: 6px 10px;
+
+    font-size: 0.68rem;
+
+    flex-shrink: 0;
+  }
+
+  /* Prevent toast text from breaking into 2 lines */
+  .toast {
+    white-space: nowrap;
+  }
+
+  /* ═══════════════════════════════════════
+     ⋯ MORE BUTTON
+  ═══════════════════════════════════════ */
+  .btn-more {
+    width: 36px;
+    height: 36px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    cursor: pointer;
+
+    border-radius: 12px;
+
+    color: var(--clr-text-soft);
+
+    font-size: 1.2rem;
+    font-weight: 700;
+
+    border: 1px solid rgba(255, 255, 255, 0.35);
+
+    background: rgba(255, 255, 255, 0.28);
+
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+
+    transition:
+      transform 0.2s ease,
+      background 0.2s ease,
+      box-shadow 0.2s ease;
+  }
+
+  .btn-more:hover {
+    transform: translateY(-1px);
+
+    background: rgba(255, 255, 255, 0.4);
+
+    box-shadow: 0 6px 18px rgba(123, 104, 255, 0.16);
+  }
+
+  /* ═══════════════════════════════════════
+     DREAMY GLASS DROPDOWN
+  ═══════════════════════════════════════ */
+  .habit-dropdown {
+    display: none;
+
+    position: absolute;
+
+    top: calc(100% + 12px);
+    right: 0;
+
+    min-width: 170px;
+
+    overflow: hidden;
+
+    border-radius: 18px;
+
+    /* dreamy glass surface */
+    background: rgb(255, 255, 255);
+
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+
+    border: 1px solid rgba(255, 255, 255, 0.55);
+
+    box-shadow:
+      0 18px 38px rgba(123, 104, 255, 0.22),
+      0 4px 12px rgba(243, 182, 218, 0.12),
+      inset 0 1px 0 rgba(255, 255, 255, 0.5);
+
+    z-index: 9999;
+
+    animation: dropdownIn 0.18s ease;
+  }
+
+  .habit-dropdown.open {
+    display: block;
+  }
+
+  /* ═══════════════════════════════════════
+     DROPDOWN ANIMATION
+  ═══════════════════════════════════════ */
+  @keyframes dropdownIn {
+    from {
+      opacity: 0;
+      transform: translateY(-6px) scale(0.96);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  /* ═══════════════════════════════════════
+     DROPDOWN ITEMS
+  ═══════════════════════════════════════ */
+  .habit-dropdown-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    padding: 13px 16px;
+
+    cursor: pointer;
+
+    font-size: 0.82rem;
+    font-weight: 700;
+
+    color: #352a63;
+
+    transition:
+      background 0.2s ease,
+      transform 0.15s ease,
+      color 0.2s ease;
+  }
+
+  .habit-dropdown-item .material-symbols-rounded {
+    font-size: 18px;
+    opacity: 0.82;
+  }
+
+  /* Divider */
+  .habit-dropdown-item + .habit-dropdown-item {
+    border-top: 1px solid rgba(255, 255, 255, 0.22);
+  }
+
+  /* Hover */
+  .habit-dropdown-item:hover {
+    background: linear-gradient(
+      135deg,
+      rgba(243, 182, 218, 0.16),
+      rgba(199, 184, 255, 0.18),
+      rgba(215, 232, 255, 0.18)
+    );
+
+    color: var(--clr-secondary-deep);
+  }
+
+  /* Click press effect */
+  .habit-dropdown-item:active {
+    transform: scale(0.98);
+  }
+
+  /* Delete item */
+  .habit-dropdown-item.is-delete {
+    color: #dc2626;
+  }
+
+  .habit-dropdown-item.is-delete:hover {
+    background: rgba(255, 80, 80, 0.1);
+    color: #b91c1c;
+  }
+  .btn-complete {
+    display: none;
+  }
+}
