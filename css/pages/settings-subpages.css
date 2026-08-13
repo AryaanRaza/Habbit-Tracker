@@ -1,0 +1,226 @@
+/* =========================================
+   3.1. SUB-SETTINGS (About, Privacy, etc.)
+   ========================================= */
+
+/* This applies ONLY to pages with the .sub-settings-page class */
+.sub-settings-page .settings-header {
+  text-align: center;
+  width: 100%;
+}
+.sub-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin-top: 20px;
+}
+.header-top {
+  width: 100%;
+  max-width: 860px;
+
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.sub-header h2 {
+  margin-top: 15px; /* Adds space between HabitFlow and Privacy Policy */
+  text-align: center;
+  width: 100%;
+}
+
+/* =========================
+   SUB SETTINGS PAGES
+========================= */
+
+.sub-settings-page {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 12px 20px 100px;
+  position: relative;
+}
+
+.sub-settings-layout {
+  width: min(94vw, 1100px);
+  position: relative;
+  z-index: 2;
+}
+.sub-page-banner {
+  margin-bottom: 24px;
+}
+
+.sub-page-banner::after {
+  content: "";
+  display: block;
+
+  width: 100%;
+  max-width: 200px;
+
+  height: 1px;
+
+  margin: 18px auto 0;
+
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.page-heading {
+  text-align: center;
+  margin-top: 14px;
+}
+
+.page-heading h1 {
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  font-weight: 800;
+  color: var(--clr-text-main);
+  margin-bottom: 8px;
+  letter-spacing: -0.02em;
+}
+
+.page-heading p {
+  max-width: 520px;
+  margin-inline: auto;
+  line-height: 1.6;
+  color: var(--clr-text-dark);
+  font-size: 0.98rem;
+}
+
+.sub-settings-card.glass-panel {
+  width: min(100%, 860px);
+  margin: 0 auto;
+  border-radius: 32px;
+  padding: 26px 24px;
+  background: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
+  box-shadow:
+    0 20px 60px rgba(20, 8, 48, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.16);
+  position: relative;
+  overflow: hidden;
+}
+
+.sub-settings-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(
+      circle at 18% 22%,
+      rgba(255, 255, 255, 0.14),
+      transparent 24%
+    ),
+    radial-gradient(
+      circle at 82% 16%,
+      rgba(0, 221, 235, 0.08),
+      transparent 20%
+    ),
+    radial-gradient(
+      circle at 72% 82%,
+      rgba(255, 95, 126, 0.08),
+      transparent 24%
+    );
+}
+
+.sub-page-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  margin-bottom: 20px;
+  position: relative;
+  z-index: 1;
+}
+
+.sub-page-title h2 {
+  margin: 0 0 6px 0;
+  font-size: 1.5rem;
+  color: var(--clr-text-main);
+  font-weight: 700;
+}
+
+.sub-page-title p {
+  margin: 0;
+  font-size: 0.95rem;
+  color: var(--clr-text-dark);
+  line-height: 1.5;
+}
+
+.sub-page-content {
+  position: relative;
+  z-index: 1;
+}
+
+/* Legal / text-heavy pages */
+.legal-content {
+  display: grid;
+  gap: 14px;
+}
+
+.content-block {
+  padding: 18px 18px;
+  border-radius: 20px;
+  background: rgba(247, 247, 247, 0.256);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  margin-bottom: 10px;
+}
+
+.content-block h3 {
+  margin: 0 0 8px 0;
+  font-size: 1rem;
+  color: var(--clr-text-main);
+}
+
+.content-block p {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--clr-text-dark);
+}
+.update-form .btn-glow {
+  align-self: center; /* This stops the "stretch" and fits the button to its text */
+  flex-shrink: 1;
+}
+
+/* =========================
+   MOBILE
+========================= */
+@media (max-width:768px) {
+
+  .sub-page-banner{
+    position: relative;
+    padding-top: 18px;
+  }
+
+  .back-btn{
+    top: 18px;
+    left: 18px;
+
+    width: 44px;
+    height: 44px;
+
+    border-radius: 14px;
+  }
+
+  .back-btn span{
+    font-size: 1.15rem !important;
+  }
+
+  /* Leave room for the back button */
+  .page-heading{
+    padding: 0 12px 0 58px;
+  }
+
+  .page-heading h1{
+    font-size: 1.75rem;
+    line-height: 1.15;
+  }
+
+  .page-heading p{
+    margin-top: 10px;
+    padding-inline: 8px;
+  }
+
+}
