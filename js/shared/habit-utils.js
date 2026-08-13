@@ -1,3 +1,4 @@
+
 /**
  * ============================================================
  * HabitFlow — Shared Stats Utilities
@@ -57,23 +58,21 @@ function getWeeklyCompletionData(habits = []) {
   return days;
 }
 
+/* ============================================================
+   HABIT ENGINE (Aryaan's undo/complete logic)
+
 function getBestDayThisMonth(habits = []) {
   const now = new Date();
   const year = now.getFullYear();
   const month = now.getMonth();
   const daysInMonth = new Date(year, month + 1, 0).getDate();
 
-  let bestDate = null;
-  let bestCount = 0;
-
-  for (let day = 1; day <= daysInMonth; day++) {
-    const d = new Date(year, month, day);
-    if (d > now) break;
-
-    const dateStr = d.toDateString();
-    const count = habits.filter((h) =>
-      (h.completedDates || []).includes(dateStr)
-    ).length;
+  if (!habit.lastCompletedDate) {
+    habit.streak = 1;
+  } else {
+    const previous = new Date(habit.lastCompletedDate);
+    const current = new Date(today);
+    const diffDays = Math.floor((current - previous) / (1000 * 60 * 60 * 24));
 
     if (count > bestCount) {
       bestCount = count;
@@ -81,120 +80,23 @@ function getBestDayThisMonth(habits = []) {
     }
   }
 
-  if (!bestDate) return null;
+  habit.completedToday = true;
+  habit.total++;
+  habit.lastCompletedDate = today;
+  habit.best = Math.max(habit.best, habit.streak);
 
-  return {
-    label: bestDate.toLocaleDateString("en-US", {
-      weekday: "long",
-      month: "long",
-      day: "numeric",
-    }),
-    completedCount: bestCount,
-    totalHabits: habits.length,
-  };
-}
-
-function getRangeStats(habits = [], range = "week") {
-  const now = new Date();
-  let daysBack = range === "week" ? 7 : range === "month" ? now.getDate() : null;
-
-  let completedCount = 0;
-
-  habits.forEach((h) => {
-    const dates = h.completedDates || [];
-    if (range === "all") {
-      completedCount += h.total || dates.length;
-    } else {
-      dates.forEach((dateStr) => {
-        const d = new Date(dateStr);
-        const diffDays = Math.floor((now - d) / (1000 * 60 * 60 * 24));
-        if (diffDays >= 0 && diffDays < daysBack) completedCount++;
-      });
-    }
-  });
-
-  const possible = range === "all" ? null : habits.length * daysBack;
-  const rate = possible ? Math.round((completedCount / possible) * 100) : null;
-
-  return { completedCount, rate };
-}
-
-function getHabitBreakdown(habits = []) {
-  const now = new Date();
-  const daysElapsed = now.getDate();
-
-  return habits.map((h) => {
-    const completedThisMonth = (h.completedDates || []).filter((dateStr) => {
-      const d = new Date(dateStr);
-      return (
-        d.getFullYear() === now.getFullYear() && d.getMonth() === now.getMonth()
-      );
-    }).length;
-
-    const pct =
-      daysElapsed === 0
-        ? 0
-        : Math.min(100, Math.round((completedThisMonth / daysElapsed) * 100));
-
-    return {
-      name: h.name,
-      category: h.category || "other",
-      completedThisMonth,
-      pct,
-    };
-  });
-}
-
-function getStreakMilestones(habits = []) {
-  const best = getBestStreak(habits);
-  const milestones = [
-    { days: 3, label: "3 Day Spark", icon: "🔥" },
-    { days: 7, label: "7 Day Streak", icon: "⭐" },
-    { days: 14, label: "2 Week Warrior", icon: "💪" },
-    { days: 30, label: "30 Day King", icon: "🏅" },
-    { days: 60, label: "60 Day Master", icon: "🥈" },
-    { days: 100, label: "Century Club", icon: "🥇" },
-    { days: 180, label: "Half Year Hero", icon: "💎" },
-    { days: 365, label: "One Year King", icon: "👑" },
-  ];
-  return milestones.map((m) => ({ ...m, unlocked: best >= m.days }));
+  // completedDates history — needed for stats page charts/calendar
+  if (!habit.completedDates) habit.completedDates = [];
+  if (!habit.completedDates.includes(today)) {
+    habit.completedDates.push(today);
+  }
 }
 
 /**
- * Category-wise lifetime completion breakdown — for donut chart
- */
-function getCategoryBreakdown(habits = []) {
-  const categoryLabels = {
-    health: "Wellness",
-    learning: "Learning",
-    fitness: "Fitness",
-    mindfulness: "Mindfulness",
-    creativity: "Creativity",
-    work: "Productivity",
-    other: "General",
-  };
-
-  const totals = {};
-  habits.forEach((h) => {
-    const cat = h.category || "other";
-    totals[cat] = (totals[cat] || 0) + (h.total || 0);
-  });
-
-  const totalAll = Object.values(totals).reduce((a, b) => a + b, 0);
-
-  const breakdown = Object.entries(totals).map(([cat, count]) => ({
-    category: cat,
-    label: categoryLabels[cat] || cat,
-    count,
-    pct: totalAll === 0 ? 0 : Math.round((count / totalAll) * 100),
-  }));
-
-  breakdown.sort((a, b) => b.count - a.count);
-  return breakdown;
-}
-
-/**
- * Last N weeks activity grid (GitHub-style) — columns = weeks, rows = Mon..Sun
+ * Reverts a habit completion.
+ *
+ * @param {Object} habit
+ * @param {Object} snapshot
  */
 function getActivityHeatmapData(habits = [], weeksCount = 12) {
   const today = new Date();
@@ -232,6 +134,19 @@ function getActivityHeatmapData(habits = [], weeksCount = 12) {
   const firstWeekday = days[0].weekday;
   const mondayIndex = firstWeekday === 0 ? 6 : firstWeekday - 1;
 
+  habit.streak = snapshot.streak;
+  habit.total = snapshot.total;
+  habit.best = snapshot.best;
+  habit.lastCompletedDate = snapshot.lastCompletedDate;
+  habit.completedToday = snapshot.completedToday;
+  habit.completedDates = snapshot.completedDates
+    ? [...snapshot.completedDates]
+    : habit.completedDates;
+}
+
+
+/* ============================================================
+   STATS PAGE — CHARTS, CALENDAR, BADGES
   const padded = [];
   for (let i = 0; i < mondayIndex; i++) padded.push(null);
   padded.push(...days);
@@ -251,8 +166,10 @@ function getActivityHeatmapData(habits = [], weeksCount = 12) {
 window.getTotalHabits = getTotalHabits;
 window.getTotalCompletions = getTotalCompletions;
 window.getBestStreak = getBestStreak;
-window.getCurrentStreak = getCurrentStreak;
-window.getCompletedToday = getCompletedToday;
+
+window.applyHabitCompletion = applyHabitCompletion;
+window.revertHabitCompletion = revertHabitCompletion;
+
 window.getWeeklyCompletionData = getWeeklyCompletionData;
 window.getBestDayThisMonth = getBestDayThisMonth;
 window.getRangeStats = getRangeStats;

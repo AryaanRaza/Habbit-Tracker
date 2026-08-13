@@ -8,6 +8,7 @@ function setRing(id, pct) {
   el.style.strokeDashoffset = RING_CIRC - (RING_CIRC * clamped) / 100;
 }
 
+
 function initStatsPage() {
   loadHabits();
 
@@ -25,6 +26,7 @@ function initStatsPage() {
   bindRangeToggle();
 }
 
+
 function bindRangeToggle() {
   const buttons = document.querySelectorAll(".range-btn");
   buttons.forEach((btn) => {
@@ -36,7 +38,6 @@ function bindRangeToggle() {
     });
   });
 }
-
 function renderTopStats() {
   const habits = window.habits || [];
 
@@ -164,7 +165,6 @@ function renderBreakdown() {
     container.appendChild(row);
   });
 }
-
 function renderBadges() {
   const habits = window.habits || [];
   const milestones = getStreakMilestones(habits);

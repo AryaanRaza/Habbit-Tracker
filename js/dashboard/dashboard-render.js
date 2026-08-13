@@ -108,7 +108,7 @@ const habitContainer = document.querySelector(".habit-list-container");
 </div>
 
 
-    `;
+    ;`
 
     // Finally inject card into DOM
     habitContainer.appendChild(card);
