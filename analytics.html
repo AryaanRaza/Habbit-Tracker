@@ -13,11 +13,18 @@
   <link rel="stylesheet" href="css/components/buttons.css">
   <link rel="stylesheet" href="css/components/navigation.css">
   <link rel="stylesheet" href="css/pages/dashboard.css">
+
+
   <!-- PAGE-SPECIFIC STYLES FOR STATS -->
   <link rel="stylesheet" href="css/pages/stats.css">
   <link rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-</head>
+
+  <!-- PWA additions -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#7b68ff">
+  <link rel="apple-touch-icon" href="img/icon/icon-192.png">
+  </head>
 
 <!-- Main container for the stats page -->
 <body class="dashboard-container">
@@ -203,6 +210,7 @@
   <script src="js/core/storage.js"></script>
   <script src="js/core/auth.js"></script>
   <script src="js/core/protect.js"></script>
+  <script src="js/core/pwa-register.js"></script>
 
   <!-- SHARED: navigation injects the sidebar/bottom-nav; habit-utils has all calculation functions -->
   <script src="js/shared/profile-utils.js"></script>
