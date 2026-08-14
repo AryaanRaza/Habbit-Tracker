@@ -66,16 +66,18 @@ window.completeHabit = function (card, habit) {
   applyFilter();
   updateFilterCounts();
 
-  showToast("Nice! Habit completed ✅");
-
-  if (pct === 100) fireConfetti();
+  if (pct === 100) {
+    fireConfetti();
+    showCompletionPopup();
+  } else {
+    showToast("Nice! Habit completed ✅");
+  }
 };
 
 /* =========================
    UNDO HABIT
 ========================= */
 window.undoHabit = function (card, habit) {
-
   /* ----------------------------------------------------------
      Undo is only available while the temporary snapshot exists.
      Since the snapshot is stored only in memory, refreshing the
