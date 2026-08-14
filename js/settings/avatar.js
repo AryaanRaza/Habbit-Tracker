@@ -44,7 +44,7 @@ function canUnlockAvatar(companion) {
     return true;
   }
 
-  const bestStreak = getPlayerBestStreak(currentUser);
+  const bestStreak = getPlayerBestStreak();
 
   return bestStreak >= companion.unlockStreak;
 }
@@ -122,7 +122,7 @@ function renderAvatarCollections() {
 
       const progress = hasFullAvatarAccess(currentUser)
         ? companion.unlockStreak
-        : Math.min(getPlayerBestStreak(currentUser), companion.unlockStreak);
+        : Math.min(getPlayerBestStreak(), companion.unlockStreak);
 
       grid.innerHTML += `
   <button
