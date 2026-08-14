@@ -1,15 +1,10 @@
 /* =========================
    COMPLETE HABIT
 ========================= */
+/* =========================
+   COMPLETE HABIT
+========================= */
 window.completeHabit = function (card, habit) {
-  const today = new Date().toDateString();
-
-  /* ----------------------------------------------------------
-     Save a temporary snapshot for Undo.
-     This exists only in memory (window.habitUndoState),
-     so users can undo only until they refresh or close the app.
-     (ARYAAN)
-     ---------------------------------------------------------- */
   const snapshot = {
     streak: habit.streak,
     total: habit.total,
@@ -20,43 +15,15 @@ window.completeHabit = function (card, habit) {
   };
 
   window.habitUndoState[habit.id] = snapshot;
-  /* ---------------------------------------------------------- */
 
-  /* ----------------------------------------------------------
-     Date-gap aware streak calculation.
-     Blind streak++ was wrong across missed days — this checks
-     the gap since last completion before deciding.
-     ---------------------------------------------------------- */
-  if (!habit.lastCompletedDate) {
-    habit.streak = 1;
-  } else {
-    const previous = new Date(habit.lastCompletedDate);
-    const current = new Date(today);
-    const diffDays = Math.floor((current - previous) / (1000 * 60 * 60 * 24));
+  // Centralized habit completion logic
+  applyHabitCompletion(habit);
 
-    if (diffDays === 1) {
-      habit.streak++;
-    } else if (diffDays > 1) {
-      habit.streak = 1;
-    }
-    // diffDays === 0 → already completed today, streak untouched
-  }
-  /* ---------------------------------------------------------- */
-
-  habit.completedToday = true;
-  habit.lastCompletedDate = today;
-  habit.total++;
-
-  habit.best = Math.max(habit.best, habit.streak);
-
-  if (!habit.completedDates) habit.completedDates = [];
-  if (!habit.completedDates.includes(today)) {
-    habit.completedDates.push(today);
-  }
-
+  // Update overall daily streak
   updateGlobalStreak();
 
   saveHabits();
+
   setHabitCompletedUI(card);
 
   refreshChips(card, habit);
