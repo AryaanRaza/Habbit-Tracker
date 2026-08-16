@@ -63,7 +63,18 @@ function getCurrentStreak(habits = []) {
 function getBestStreak(habits = []) {
   return Math.max(...habits.map((habit) => habit.best || 0), 0);
 }
+/**
+ * Returns the player's highest streak across all stored habits.
+ *
+ * Uses the current user's user-specific habit storage.
+ *
+ * @returns {number}
+ */
+function getPlayerBestStreak() {
+  const habits = loadUserHabits();
 
+  return getBestStreak(habits);
+}
 /* ============================================================
    HABIT ENGINE (Aryaan's undo/complete logic)
 ============================================================ */
@@ -145,7 +156,7 @@ function getWeeklyCompletionData(habits = []) {
 
     const totalHabits = habits.length;
     const completedCount = habits.filter((h) =>
-      (h.completedDates || []).includes(dateStr)
+      (h.completedDates || []).includes(dateStr),
     ).length;
 
     let status = "none";
@@ -188,7 +199,7 @@ function getBestDayThisMonth(habits = []) {
 
     const dateStr = d.toDateString();
     const count = habits.filter((h) =>
-      (h.completedDates || []).includes(dateStr)
+      (h.completedDates || []).includes(dateStr),
     ).length;
 
     if (count > bestCount) {
@@ -219,7 +230,8 @@ function getBestDayThisMonth(habits = []) {
  */
 function getRangeStats(habits = [], range = "week") {
   const now = new Date();
-  let daysBack = range === "week" ? 7 : range === "month" ? now.getDate() : null;
+  let daysBack =
+    range === "week" ? 7 : range === "month" ? now.getDate() : null;
 
   let completedCount = 0;
 
@@ -350,10 +362,11 @@ function getActivityHeatmapData(habits = [], weeksCount = 12) {
 
     const totalHabits = habits.length;
     const completedCount = habits.filter((h) =>
-      (h.completedDates || []).includes(dateStr)
+      (h.completedDates || []).includes(dateStr),
     ).length;
 
-    const pct = totalHabits === 0 ? 0 : Math.round((completedCount / totalHabits) * 100);
+    const pct =
+      totalHabits === 0 ? 0 : Math.round((completedCount / totalHabits) * 100);
     let heat = 0;
     if (pct > 0 && pct < 34) heat = 1;
     else if (pct >= 34 && pct < 67) heat = 2;
@@ -395,6 +408,7 @@ window.getCompletedToday = getCompletedToday;
 window.getTotalCompletions = getTotalCompletions;
 window.getCurrentStreak = getCurrentStreak;
 window.getBestStreak = getBestStreak;
+window.getPlayerBestStreak = getPlayerBestStreak;
 
 window.applyHabitCompletion = applyHabitCompletion;
 window.revertHabitCompletion = revertHabitCompletion;
