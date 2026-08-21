@@ -1,0 +1,16 @@
+/* =========================================================
+   HABITFLOW — ACHIEVEMENTS PAGE
+========================================================= */
+
+.achievements-page {
+    min-height: 100vh;
+
+    background: var(--grad-page);
+
+    color: var(--clr-text-main);
+    font-family: var(--font-main);
+
+    position: relative;
+
+    overflow-x: hidden;
+}
