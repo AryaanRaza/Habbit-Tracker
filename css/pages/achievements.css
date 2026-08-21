@@ -275,6 +275,85 @@
   background: rgba(123, 104, 255, 0.15);
 }
 
+
+/* =========================================================
+   ACHIEVEMENT COLLECTION
+========================================================= */
+
+.achievement-collection {
+    width: 100%;
+    max-width: 780px;
+
+    margin: 30px auto 0;
+}
+
+
+/* =========================================================
+   SECTION HEADER
+========================================================= */
+
+.achievement-section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 20px;
+}
+
+
+.achievement-section-header h2 {
+    font-family: var(--font-heading);
+
+    font-size: 1.35rem;
+    font-weight: 800;
+
+    color: var(--clr-text-heading);
+}
+
+
+.achievement-section-header p {
+    margin-top: 5px;
+
+    color: var(--clr-text-soft);
+
+    font-size: 0.82rem;
+    font-weight: 500;
+}
+
+
+/* =========================================================
+   ACHIEVEMENT PROGRESS
+========================================================= */
+
+.achievement-progress {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+
+    flex-shrink: 0;
+}
+
+
+.achievement-progress span {
+    color: var(--clr-secondary-deep);
+
+    font-size: 1rem;
+    font-weight: 800;
+}
+
+
+.achievement-progress small {
+    margin-top: 3px;
+
+    color: var(--clr-text-soft);
+
+    font-size: 0.68rem;
+    font-weight: 700;
+
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
 /* =========================================================
    SUMMARY — RESPONSIVE
 ========================================================= */
